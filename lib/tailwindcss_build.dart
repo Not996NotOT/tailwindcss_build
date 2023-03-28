@@ -90,7 +90,8 @@ class Div
         IPadding<Div>,
         IMargin<Div>,
         IBackgroundColor<Div>,
-        IFlex<Div> {
+        IFlex<Div>,
+        IBuildWidget {
   List<Widget> widgets;
 
   Div(this.widgets);
@@ -341,13 +342,13 @@ class Div
   @override
   Div gap(double size) {
     List<Widget> widgetList = [];
-    widgets.forEach((element) {
-      widgetList.add(element);
+    for (var widget in widgets) {
+      widgetList.add(widget);
       widgetList.add(SizedBox(
         height: flexDirection == Axis.vertical ? size : 0,
         width: flexDirection == Axis.horizontal ? size : 0,
       ));
-    });
+    }
     widgetList.removeLast();
     widgets = widgetList;
     return this;

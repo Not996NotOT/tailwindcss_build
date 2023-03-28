@@ -1,7 +1,7 @@
 name: tailwindcss_build
-description: A new Flutter package project.
+description: Plugins developed based on tailwind css
 version: 0.0.1
-homepage:
+homepage: https://github.com/Not996NotOT/tailwindcss_build
 
 environment:
   sdk: '>=2.19.5 <3.0.0'
