@@ -56,6 +56,12 @@ abstract class IBackgroundColor<W> {
   W bg(Color color);
 }
 
+// justify-start	justify-content: flex-start;
+// justify-end	justify-content: flex-end;
+// justify-center	justify-content: center;
+// justify-between	justify-content: space-between;
+// justify-around	justify-content: space-around;
+// justify-evenly	justify-content: space-evenly;
 abstract class IFlex<W> {
   Axis? flexDirection;
   MainAxisAlignment? flexMainAxisAlignment;
@@ -65,8 +71,17 @@ abstract class IFlex<W> {
   W flex();
   W flexRow();
   W flexCol();
+  W itemsStart();
+  W itemsEnd();
   W itemsCenter();
+  W itemsBaseLine();
+  W itemsStretch();
+  W justifyStart();
+  W justifyEnd();
   W justifyCenter();
+  W justifyBetween();
+  W justifyAround();
+  W justifyEvenly();
   W flex1();
 }
 
@@ -392,6 +407,60 @@ class Div
     var _widget =
         isFlex1 == true ? Expanded(flex: 1, child: _container) : _container;
     return _widget;
+  }
+
+  @override
+  Div itemsBaseLine() {
+    flexCrossAxisAlignment = CrossAxisAlignment.baseline;
+    return this;
+  }
+
+  @override
+  Div itemsEnd() {
+    flexCrossAxisAlignment = CrossAxisAlignment.end;
+    return this;
+  }
+
+  @override
+  Div itemsStart() {
+    flexCrossAxisAlignment = CrossAxisAlignment.start;
+    return this;
+  }
+
+  @override
+  Div itemsStretch() {
+    flexCrossAxisAlignment = CrossAxisAlignment.stretch;
+    return this;
+  }
+
+  @override
+  Div justifyAround() {
+    flexMainAxisAlignment = MainAxisAlignment.spaceAround;
+    return this;
+  }
+
+  @override
+  Div justifyBetween() {
+    flexMainAxisAlignment = MainAxisAlignment.spaceBetween;
+    return this;
+  }
+
+  @override
+  Div justifyEnd() {
+    flexMainAxisAlignment = MainAxisAlignment.end;
+    return this;
+  }
+
+  @override
+  Div justifyEvenly() {
+    flexMainAxisAlignment = MainAxisAlignment.spaceEvenly;
+    return this;
+  }
+
+  @override
+  Div justifyStart() {
+    flexMainAxisAlignment = MainAxisAlignment.start;
+    return this;
   }
 }
 
