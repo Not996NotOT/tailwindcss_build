@@ -384,11 +384,17 @@ class Div
         top: pTop ?? 0,
         bottom: pBottom ?? 0);
 
+    var _margin = EdgeInsets.only(
+        left: mLeft ?? 0,
+        right: mRight ?? 0,
+        top: mTop ?? 0,
+        bottom: mBottom ?? 0);
     var _container = Container(
       height: _height,
       width: _width,
       constraints: _boxConstraints,
       padding: _padding,
+      margin: _margin,
       color: bgColor,
       child: Flex(
         direction: flexDirection ?? Axis.vertical,
@@ -824,6 +830,12 @@ class Span
   }
 }
 
+extension SpanExtension on Span {
+  Div div(){
+    return Div([build()]);
+  }
+}
+
 extension TextExtension on Text {
   Span extension() {
     return Span(this.data ?? "");
@@ -835,3 +847,4 @@ extension ContainerExtension on Container {
     return Div([this]);
   }
 }
+

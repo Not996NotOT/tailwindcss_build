@@ -59,6 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: ListView(
           children: [
+            Span("Typography").fontBold().textLg().build(),
             Div([
               Span("Font Size").fontBold().textLg().build(),
               Span("XS").textXs().build(),
@@ -75,7 +76,32 @@ class _MyHomePageState extends State<MyHomePage> {
                   .leading3()
                   .italic()
                   .build()
-            ]).flexCol().gap(12).build(),
+            ]).flexCol().mt(40).gap(12).build(),
+            Div([
+              Span("Font Style").fontBold().textLg().build(),
+              Span("Italic").italic().build(),
+              Span("NoItalic").noItalic().build(),
+            ]).flexCol().gap(12).my(40).build(),
+            Span("Flexbox ").fontBold().textLg().build(),
+            Div([
+              Div([
+                Span("item1")
+                    .italic()
+                    .div()
+                    .bg(Colors.red)
+                    .itemsCenter()
+                    .justifyCenter()
+                    .h(100)
+                    .w(100)
+                    .build(),
+                Span("item2").build()
+              ]).flex().flexRow().gap(12).build(),
+              Div([Span("item1").build(), Span("item2").build()])
+                  .flex()
+                  .flexCol()
+                  .gap(12)
+                  .build()
+            ]).build()
           ],
         ));
   }
