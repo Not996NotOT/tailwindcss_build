@@ -1,3 +1,5 @@
+## 0.0.3
+- add lineHeight maxLine fontStyle
 ## 0.0.2
 - add font size example
 - add flex layout

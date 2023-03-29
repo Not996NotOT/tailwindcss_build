@@ -56,12 +56,6 @@ abstract class IBackgroundColor<W> {
   W bg(Color color);
 }
 
-// justify-start	justify-content: flex-start;
-// justify-end	justify-content: flex-end;
-// justify-center	justify-content: center;
-// justify-between	justify-content: space-between;
-// justify-around	justify-content: space-around;
-// justify-evenly	justify-content: space-evenly;
 abstract class IFlex<W> {
   Axis? flexDirection;
   MainAxisAlignment? flexMainAxisAlignment;
@@ -489,11 +483,66 @@ abstract class ITextSize<W> {
   W textSize(double fontSize);
 }
 
+abstract class ITextStyle<W> {
+  FontStyle? fontStyle;
+  W italic();
+  W noItalic();
+}
+
+abstract class ILineClamp<W> {
+  int? maxLines;
+  bool? textWrap;
+  TextOverflow? textOverflow;
+  W lineClamp(int maxLines);
+  W lineClamp1();
+  W lineClamp2();
+  W lineClamp3();
+  W lineClamp4();
+  W lineClamp5();
+  W lineClamp6();
+  W lineClampNone();
+}
+
+abstract class ILineHeight<W> {
+  double? lineHeight;
+  // leading-3	line-height: .75rem; /* 12px */
+  // leading-4	line-height: 1rem; /* 16px */
+  // leading-5	line-height: 1.25rem; /* 20px */
+  // leading-6	line-height: 1.5rem; /* 24px */
+  // leading-7	line-height: 1.75rem; /* 28px */
+  // leading-8	line-height: 2rem; /* 32px */
+  // leading-9	line-height: 2.25rem; /* 36px */
+  // leading-10	line-height: 2.5rem; /* 40px */
+  // leading-none	line-height: 1;
+  // leading-tight	line-height: 1.25;
+  // leading-snug	line-height: 1.375;
+  // leading-normal	line-height: 1.5;
+  // leading-relaxed	line-height: 1.625;
+  // leading-loose	line-height: 2;
+  W leading3();
+  W leading4();
+  W leading5();
+  W leading6();
+  W leading7();
+  W leading8();
+  W leading9();
+  W leading10();
+  W leadingNone();
+  W leadingTight();
+  W leadingSnug();
+  W leadingNormal();
+  W leadingRelaxed();
+  W leadingLoose();
+}
+
 class Span
     implements
         ITextColor<Span>,
         ITextWeight<Span>,
         ITextSize<Span>,
+        ITextStyle<Span>,
+        ILineClamp<Span>,
+        ILineHeight<Span>,
         IBuildWidget {
   String textStr;
   Span(this.textStr);
@@ -506,22 +555,27 @@ class Span
     return this;
   }
 
+  @override
   FontWeight? textWeight;
+  @override
   fontNormal() {
     textWeight = FontWeight.w400;
     return this;
   }
 
+  @override
   Span fontMedium() {
     textWeight = FontWeight.w500;
     return this;
   }
 
+  @override
   Span fontSemibold() {
     textWeight = FontWeight.w600;
     return this;
   }
 
+  @override
   Span fontBold() {
     textWeight = FontWeight.w700;
     return this;
@@ -579,14 +633,194 @@ class Span
   }
 
   @override
+  FontStyle? fontStyle;
+
+  @override
+  Span italic() {
+    fontStyle = FontStyle.italic;
+    return this;
+  }
+
+  @override
+  Span noItalic() {
+    fontStyle = FontStyle.normal;
+    return this;
+  }
+
+  @override
   Widget build() {
     return Text(
       textStr,
-      softWrap: true,
+      softWrap: textWrap,
       overflow: TextOverflow.ellipsis,
+      maxLines: maxLines,
       style: TextStyle(
-          fontSize: fontSize, fontWeight: textWeight, color: textColor),
+          overflow: textOverflow,
+          fontSize: fontSize,
+          fontWeight: textWeight,
+          color: textColor,
+          fontStyle: fontStyle),
     );
+  }
+
+  @override
+  int? maxLines;
+
+  @override
+  bool? textWrap;
+
+  @override
+  TextOverflow? textOverflow;
+
+  @override
+  lineClamp(int lines) {
+    maxLines = lines;
+    textWrap = true;
+    textOverflow = TextOverflow.ellipsis;
+    return this;
+  }
+
+  @override
+  lineClamp1() {
+    maxLines = 1;
+    textWrap = true;
+    textOverflow = TextOverflow.ellipsis;
+    return this;
+  }
+
+  @override
+  lineClamp2() {
+    maxLines = 2;
+    textWrap = true;
+    textOverflow = TextOverflow.ellipsis;
+    return this;
+  }
+
+  @override
+  lineClamp3() {
+    maxLines = 3;
+    textWrap = true;
+    textOverflow = TextOverflow.ellipsis;
+    return this;
+  }
+
+  @override
+  lineClamp4() {
+    maxLines = 4;
+    textWrap = true;
+    textOverflow = TextOverflow.ellipsis;
+    return this;
+  }
+
+  @override
+  lineClamp5() {
+    maxLines = 5;
+    textWrap = true;
+    textOverflow = TextOverflow.ellipsis;
+    return this;
+  }
+
+  @override
+  lineClamp6() {
+    maxLines = 6;
+    textWrap = true;
+    textOverflow = TextOverflow.ellipsis;
+    return this;
+  }
+
+  @override
+  lineClampNone() {
+    maxLines = 1;
+    textWrap = false;
+    textOverflow = TextOverflow.visible;
+    return this;
+  }
+
+  @override
+  double? lineHeight;
+
+  @override
+  Span leading10() {
+    lineHeight = 40;
+    return this;
+  }
+
+  @override
+  Span leading3() {
+    lineHeight = 12;
+    return this;
+  }
+
+  @override
+  Span leading4() {
+    lineHeight = 16;
+    return this;
+  }
+
+  @override
+  Span leading5() {
+    lineHeight = 20;
+    return this;
+  }
+
+  @override
+  Span leading6() {
+    lineHeight = 24;
+    return this;
+  }
+
+  @override
+  Span leading7() {
+    lineHeight = 28;
+    return this;
+  }
+
+  @override
+  Span leading8() {
+    lineHeight = 32;
+    return this;
+  }
+
+  @override
+  Span leading9() {
+    lineHeight = 36;
+    return this;
+  }
+
+  @override
+  Span leadingLoose() {
+    lineHeight = (fontSize ?? 16) * 2;
+    return this;
+  }
+
+  @override
+  Span leadingNone() {
+    lineHeight = (fontSize ?? 16);
+    return this;
+  }
+
+  @override
+  Span leadingNormal() {
+    lineHeight = (fontSize ?? 16) * 1.5;
+    return this;
+  }
+
+  @override
+  Span leadingRelaxed() {
+    lineHeight = (fontSize ?? 16) * 1.625;
+    return this;
+  }
+
+  @override
+  Span leadingSnug() {
+    lineHeight = (fontSize ?? 16) * 1.375;
+    return this;
+  }
+
+  @override
+  Span leadingTight() {
+    lineHeight = (fontSize ?? 16) * 1.25;
+    return this;
   }
 }
 

@@ -68,6 +68,13 @@ class _MyHomePageState extends State<MyHomePage> {
               Span("XL").textXl().build(),
               Span("2XL").text2xl().build(),
               Span("Custom Size").textSize(30).build(),
+              Span("Font Example")
+                  .fontBold()
+                  .fontMedium()
+                  .lineClamp2()
+                  .leading3()
+                  .italic()
+                  .build()
             ]).flexCol().gap(12).build(),
           ],
         ));
