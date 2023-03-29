@@ -61,6 +61,7 @@ abstract class IFlex<W> {
   MainAxisAlignment? flexMainAxisAlignment;
   CrossAxisAlignment? flexCrossAxisAlignment;
   bool? isFlex1;
+  bool? isFlex;
   W gap(double size);
   W flex();
   W flexRow();
@@ -93,6 +94,40 @@ abstract class IBorder<W> {
   W border8();
 }
 
+abstract class ITextAlign<W> {
+  TextAlign? textAlign;
+  W textLeft();
+  W textCenter();
+  W textRight();
+  W textJustify();
+  W textStart();
+  W textEnd();
+}
+
+abstract class IGridGap<W> {
+  double? gridGapX;
+  double? gridGapY;
+  W gapX(double gapX);
+  W gapY(double gapY);
+}
+
+abstract class IGridTemplateColumns<W> {
+  int? gridColCount;
+  W gridCols(int columns);
+}
+
+abstract class IGrid<W> implements IGridTemplateColumns<W>, IGridGap<W> {
+  bool? isGrid;
+  W grid();
+}
+
+abstract class IAspect<W> {
+  double? _aspectRatio;
+  W aspectRatio();
+  W aspectVideo();
+  W aspect(double aspectRatio);
+}
+
 class Div
     implements
         ISize<Div>,
@@ -100,6 +135,9 @@ class Div
         IMargin<Div>,
         IBackgroundColor<Div>,
         IFlex<Div>,
+        ITextAlign<Div>,
+        IGrid<Div>,
+        IAspect<Div>,
         IBuildWidget {
   List<Widget> widgets;
 
@@ -308,6 +346,7 @@ class Div
 
   @override
   Div flex() {
+    isFlex = true;
     flexDirection = Axis.horizontal;
     flexMainAxisAlignment = MainAxisAlignment.start;
     flexCrossAxisAlignment = CrossAxisAlignment.start;
@@ -316,6 +355,7 @@ class Div
 
   @override
   Div flexCol() {
+    isFlex = true;
     flexDirection = Axis.vertical;
     flexMainAxisAlignment = MainAxisAlignment.start;
     flexCrossAxisAlignment = CrossAxisAlignment.start;
@@ -350,6 +390,8 @@ class Div
 
   @override
   Div gap(double size) {
+    gridGapX = size;
+    gridGapY = size;
     List<Widget> widgetList = [];
     for (var widget in widgets) {
       widgetList.add(widget);
@@ -389,20 +431,30 @@ class Div
         right: mRight ?? 0,
         top: mTop ?? 0,
         bottom: mBottom ?? 0);
-    var _container = Container(
-      height: _height,
-      width: _width,
-      constraints: _boxConstraints,
-      padding: _padding,
-      margin: _margin,
-      color: bgColor,
-      child: Flex(
+
+    var _flex = Flex(
         direction: flexDirection ?? Axis.vertical,
         mainAxisAlignment: flexMainAxisAlignment ?? MainAxisAlignment.start,
         crossAxisAlignment: flexCrossAxisAlignment ?? CrossAxisAlignment.start,
-        children: widgets,
-      ),
-    );
+        children: widgets);
+
+    var _container = Container(
+        height: _height,
+        width: _width,
+        constraints: _boxConstraints,
+        decoration: BoxDecoration(color: bgColor, border: Border()),
+        padding: _padding,
+        margin: _margin,
+        child: isFlex == true
+            ? _flex
+            : isGrid == true
+                ? GridView.count(
+                    childAspectRatio: _aspectRatio ?? 0,
+                    crossAxisCount: gridColCount ?? 0,
+                    crossAxisSpacing: gridGapX ?? 0,
+                    mainAxisSpacing: gridGapY ?? 0,
+                    children: widgets)
+                : _flex);
 
     var _widget =
         isFlex1 == true ? Expanded(flex: 1, child: _container) : _container;
@@ -462,6 +514,105 @@ class Div
     flexMainAxisAlignment = MainAxisAlignment.start;
     return this;
   }
+
+  @override
+  TextAlign? textAlign;
+
+  @override
+  Div textCenter() {
+    textAlign = TextAlign.center;
+    return this;
+  }
+
+  @override
+  Div textEnd() {
+    textAlign = TextAlign.end;
+    return this;
+  }
+
+  @override
+  Div textJustify() {
+    textAlign = TextAlign.end;
+    return this;
+  }
+
+  @override
+  Div textLeft() {
+    textAlign = TextAlign.left;
+    return this;
+  }
+
+  @override
+  Div textRight() {
+    textAlign = TextAlign.right;
+    return this;
+  }
+
+  @override
+  Div textStart() {
+    textAlign = TextAlign.start;
+    return this;
+  }
+
+  @override
+  double? gridGapX;
+
+  @override
+  double? gridGapY;
+
+  @override
+  int? gridColCount;
+
+  @override
+  Div gridCols(int columns) {
+    gridColCount = columns;
+    return this;
+  }
+
+  @override
+  Div gapX(double gapX) {
+    gridGapX = gapX;
+    return this;
+  }
+
+  @override
+  Div gapY(double gapY) {
+    gridGapY = gapY;
+    return this;
+  }
+
+  @override
+  bool? isFlex;
+
+  @override
+  bool? isGrid;
+
+  @override
+  Div grid() {
+    isGrid = true;
+    return this;
+  }
+
+  @override
+  double? _aspectRatio;
+
+  @override
+  Div aspect(double aspectRatio) {
+    _aspectRatio = aspectRatio;
+    return this;
+  }
+
+  @override
+  Div aspectRatio() {
+    _aspectRatio = 1 / 1;
+    return this;
+  }
+
+  @override
+  Div aspectVideo() {
+    _aspectRatio = 16 / 9;
+    return this;
+  }
 }
 
 abstract class ITextColor<W> {
@@ -511,20 +662,6 @@ abstract class ILineClamp<W> {
 
 abstract class ILineHeight<W> {
   double? lineHeight;
-  // leading-3	line-height: .75rem; /* 12px */
-  // leading-4	line-height: 1rem; /* 16px */
-  // leading-5	line-height: 1.25rem; /* 20px */
-  // leading-6	line-height: 1.5rem; /* 24px */
-  // leading-7	line-height: 1.75rem; /* 28px */
-  // leading-8	line-height: 2rem; /* 32px */
-  // leading-9	line-height: 2.25rem; /* 36px */
-  // leading-10	line-height: 2.5rem; /* 40px */
-  // leading-none	line-height: 1;
-  // leading-tight	line-height: 1.25;
-  // leading-snug	line-height: 1.375;
-  // leading-normal	line-height: 1.5;
-  // leading-relaxed	line-height: 1.625;
-  // leading-loose	line-height: 2;
   W leading3();
   W leading4();
   W leading5();
@@ -831,7 +968,7 @@ class Span
 }
 
 extension SpanExtension on Span {
-  Div div(){
+  Div div() {
     return Div([build()]);
   }
 }
@@ -847,4 +984,3 @@ extension ContainerExtension on Container {
     return Div([this]);
   }
 }
-

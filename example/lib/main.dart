@@ -59,6 +59,68 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: ListView(
           children: [
+            Span("Grid").fontBold().textLg().build(),
+            Div([
+              Span("Grid Template Columns").fontBold().textLg().build(),
+              Div([
+                Span("item1")
+                    .italic()
+                    .div()
+                    .bg(Colors.red)
+                    .itemsCenter()
+                    .justifyCenter()
+                    .build(),
+                Span("item2")
+                    .italic()
+                    .div()
+                    .bg(Colors.green)
+                    .itemsCenter()
+                    .justifyCenter()
+                    .build(),
+                Span("item3")
+                    .italic()
+                    .div()
+                    .bg(Colors.blue)
+                    .itemsCenter()
+                    .justifyCenter()
+                    .build(),
+                Span("item4")
+                    .italic()
+                    .div()
+                    .bg(Colors.pink)
+                    .itemsCenter()
+                    .justifyCenter()
+                    .build(),
+                Span("item1")
+                    .italic()
+                    .div()
+                    .bg(Colors.red)
+                    .itemsCenter()
+                    .justifyCenter()
+                    .build(),
+                Span("item2")
+                    .italic()
+                    .div()
+                    .bg(Colors.green)
+                    .itemsCenter()
+                    .justifyCenter()
+                    .build(),
+                Span("item3")
+                    .italic()
+                    .div()
+                    .bg(Colors.blue)
+                    .itemsCenter()
+                    .justifyCenter()
+                    .build(),
+              ])
+                  .grid()
+                  .h(300)
+                  .gapX(20)
+                  .gapY(10)
+                  .gridCols(4)
+                  .aspect(3 / 6)
+                  .build()
+            ]).flex().flexCol().gap(12).build(),
             Span("Typography").fontBold().textLg().build(),
             Div([
               Span("Font Size").fontBold().textLg().build(),
@@ -81,7 +143,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Span("Font Style").fontBold().textLg().build(),
               Span("Italic").italic().build(),
               Span("NoItalic").noItalic().build(),
-            ]).flexCol().gap(12).my(40).build(),
+            ]).flex().flexCol().gap(12).my(40).build(),
             Span("Flexbox ").fontBold().textLg().build(),
             Div([
               Div([
