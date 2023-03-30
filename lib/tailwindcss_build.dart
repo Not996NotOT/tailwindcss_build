@@ -81,17 +81,19 @@ abstract class IFlex<W> {
 }
 
 abstract class IBorder<W> {
-  double? borderwidth;
-  Color? bordercolor;
-  double? borderradius;
-  W borderWidth(double width);
-  W borderColor(Color color);
-  W borderRadius(double width);
-  W border();
-  W border2();
-  W border4();
-  W border6();
-  W border8();
+  double? borderTopWidth;
+  Color? borderTopColor;
+  double? borderLeftWidth;
+  Color? borderLeftColor;
+  double? borderRightWidth;
+  Color? borderRightColor;
+  double? borderBottomWidth;
+  Color? borderBotttomColor;
+  W boder({double width = 0, Color color = Colors.transparent});
+  W boderT({double width = 0, Color color = Colors.transparent});
+  W boderB({double width = 0, Color color = Colors.transparent});
+  W boderL({double width = 0, Color color = Colors.transparent});
+  W boderR({double width = 0, Color color = Colors.transparent});
 }
 
 abstract class ITextAlign<W> {
@@ -128,6 +130,66 @@ abstract class IAspect<W> {
   W aspect(double aspectRatio);
 }
 
+abstract class IRounded<W> {
+  double? bordertlRadius;
+  double? brodertrRaidus;
+  double? borderblRadius;
+  double? borderbrRadius;
+  W roundedSm();
+  W rounded({double? borderRadius});
+  W roundedMd();
+  W roundedLg();
+  W roundedFull();
+}
+
+abstract class IGradientColor<W> {
+  Alignment? colorFromAlignment;
+  Alignment? colorToAlignment;
+  Color? colorFrom;
+  double? colorFromPercentage;
+  Color? colorVia;
+  double? colorViaPercentage;
+  Color? colorTo;
+  double? colorToPercentage;
+  W from(Color color, {double? percentage});
+  W via(Color color, {double? percentage});
+  W to(Color color, {double? percentage});
+  W bgGradientToT();
+//   bg-gradient-to-t	background-image: linear-gradient(to top, var(--tw-gradient-stops));
+  W bgGradientToTr();
+// bg-gradient-to-tr	background-image: linear-gradient(to top right, var(--tw-gradient-stops));
+  W bgGradientToR();
+// bg-gradient-to-r	background-image: linear-gradient(to right, var(--tw-gradient-stops));
+  W bgGradientToBR();
+// bg-gradient-to-br	background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
+  W bgGgradientToB();
+// bg-gradient-to-b	background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
+  W bgGgradientToBl();
+// bg-gradient-to-bl	background-image: linear-gradient(to bottom left, var(--tw-gradient-stops));
+  W bggradientToL();
+// bg-gradient-to-l	background-image: linear-gradient(to left, var(--tw-gradient-stops));
+  W bggradientToTl();
+// bg-gradient-to-tl	background-image: linear-gradient(to top left, var(--tw-gradient-stops));
+}
+
+abstract class IShadow<W> {
+  List<BoxShadow>? boxShadowList;
+  W shadowSm();
+  // shadow-sm	box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  W shadow();
+  // shadow	box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  W shadowMd();
+  // shadow-md	box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  W shadowLg();
+  // shadow-lg	box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  W shadowXl();
+  // shadow-xl	box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  W shadow2xl();
+  // shadow-2xl	box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  W shadowInner();
+  // shadow-inner	box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+}
+
 class Div
     implements
         ISize<Div>,
@@ -138,6 +200,10 @@ class Div
         ITextAlign<Div>,
         IGrid<Div>,
         IAspect<Div>,
+        IRounded<Div>,
+        IBorder<Div>,
+        IGradientColor<Div>,
+        IShadow<Div>,
         IBuildWidget {
   List<Widget> widgets;
 
@@ -438,18 +504,54 @@ class Div
         crossAxisAlignment: flexCrossAxisAlignment ?? CrossAxisAlignment.start,
         children: widgets);
 
+    List<Color> gradientColors = colorVia == null
+        ? [colorFrom ?? Colors.transparent, colorTo ?? Colors.transparent]
+        : [
+            colorFrom ?? Colors.transparent,
+            colorVia ?? Colors.transparent,
+            colorTo ?? Colors.transparent
+          ];
+
+    var _gradient = colorFrom == null
+        ? null
+        : LinearGradient(
+            begin: colorFromAlignment ?? Alignment.centerLeft,
+            end: colorToAlignment ?? Alignment.centerRight,
+            colors: gradientColors);
     var _container = Container(
         height: _height,
         width: _width,
         constraints: _boxConstraints,
-        decoration: BoxDecoration(color: bgColor, border: Border()),
+        decoration: BoxDecoration(
+            gradient: _gradient,
+            boxShadow: boxShadowList,
+            color: _gradient == null ? bgColor : null,
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(bordertlRadius ?? 0),
+                topRight: Radius.circular(brodertrRaidus ?? 0),
+                bottomLeft: Radius.circular(borderblRadius ?? 0),
+                bottomRight: Radius.circular(borderblRadius ?? 0)),
+            border: Border(
+              top: BorderSide(
+                  color: borderTopColor ?? Colors.transparent,
+                  width: borderTopWidth ?? 0),
+              bottom: BorderSide(
+                  color: borderBotttomColor ?? Colors.transparent,
+                  width: borderBottomWidth ?? 0),
+              left: BorderSide(
+                  color: borderLeftColor ?? Colors.transparent,
+                  width: borderLeftWidth ?? 0),
+              right: BorderSide(
+                  color: borderRightColor ?? Colors.transparent,
+                  width: borderRightWidth ?? 0),
+            )),
         padding: _padding,
         margin: _margin,
         child: isFlex == true
             ? _flex
             : isGrid == true
                 ? GridView.count(
-                    childAspectRatio: _aspectRatio ?? 0,
+                    childAspectRatio: _aspectRatio ?? 1 / 1,
                     crossAxisCount: gridColCount ?? 0,
                     crossAxisSpacing: gridGapX ?? 0,
                     mainAxisSpacing: gridGapY ?? 0,
@@ -611,6 +713,367 @@ class Div
   @override
   Div aspectVideo() {
     _aspectRatio = 16 / 9;
+    return this;
+  }
+
+  @override
+  double? borderblRadius;
+
+  @override
+  double? borderbrRadius;
+
+  @override
+  double? bordertlRadius;
+
+  @override
+  double? brodertrRaidus;
+
+  @override
+  Div rounded({double? borderRadius = 4}) {
+    bordertlRadius = borderRadius;
+    brodertrRaidus = borderRadius;
+    borderblRadius = borderRadius;
+    borderbrRadius = borderRadius;
+    return this;
+  }
+
+  @override
+  Div roundedFull() {
+    bordertlRadius = 9999;
+    brodertrRaidus = 9999;
+    borderblRadius = 9999;
+    borderbrRadius = 9999;
+    return this;
+  }
+
+  @override
+  Div roundedLg() {
+    bordertlRadius = 8;
+    brodertrRaidus = 8;
+    borderblRadius = 8;
+    borderbrRadius = 8;
+    return this;
+  }
+
+  @override
+  Div roundedMd() {
+    bordertlRadius = 6;
+    brodertrRaidus = 6;
+    borderblRadius = 6;
+    borderbrRadius = 6;
+    return this;
+  }
+
+  @override
+  Div roundedSm() {
+    bordertlRadius = 2;
+    brodertrRaidus = 2;
+    borderblRadius = 2;
+    borderbrRadius = 2;
+    return this;
+  }
+
+  @override
+  double? borderBottomWidth;
+
+  @override
+  Color? borderBotttomColor;
+
+  @override
+  Color? borderLeftColor;
+
+  @override
+  double? borderLeftWidth;
+
+  @override
+  Color? borderRightColor;
+
+  @override
+  double? borderRightWidth;
+
+  @override
+  Color? borderTopColor;
+
+  @override
+  double? borderTopWidth;
+
+  @override
+  Div boder({double width = 0, Color color = Colors.transparent}) {
+    borderBottomWidth = width;
+    borderBotttomColor = color;
+    borderLeftWidth = width;
+    borderLeftColor = color;
+    borderRightWidth = width;
+    borderRightColor = color;
+    borderTopWidth = width;
+    borderTopColor = color;
+    return this;
+  }
+
+  @override
+  Div boderB({double width = 0, Color color = Colors.transparent}) {
+    borderBottomWidth = width;
+    borderBotttomColor = color;
+    return this;
+  }
+
+  @override
+  Div boderL({double width = 0, Color color = Colors.transparent}) {
+    borderLeftWidth = width;
+    borderLeftColor = color;
+    return this;
+  }
+
+  @override
+  Div boderR({double width = 0, Color color = Colors.transparent}) {
+    borderRightWidth = width;
+    borderRightColor = color;
+    return this;
+  }
+
+  @override
+  Div boderT({double width = 0, Color color = Colors.transparent}) {
+    borderTopWidth = width;
+    borderTopColor = color;
+    return this;
+  }
+
+  @override
+  Color? colorFrom;
+
+  @override
+  Alignment? colorFromAlignment;
+
+  @override
+  double? colorFromPercentage;
+
+  @override
+  Color? colorTo;
+
+  @override
+  Alignment? colorToAlignment;
+
+  @override
+  double? colorToPercentage;
+
+  @override
+  Color? colorVia;
+
+  @override
+  double? colorViaPercentage;
+
+  @override
+  Div bgGgradientToB() {
+    colorFromAlignment = Alignment.topCenter;
+    colorToAlignment = Alignment.bottomCenter;
+    return this;
+  }
+
+  @override
+  Div bgGgradientToBl() {
+    colorFromAlignment = Alignment.bottomRight;
+    colorToAlignment = Alignment.topLeft;
+    return this;
+  }
+
+  @override
+  Div bgGradientToBR() {
+    colorFromAlignment = Alignment.bottomLeft;
+    colorToAlignment = Alignment.topRight;
+    return this;
+  }
+
+  @override
+  Div bgGradientToR() {
+    colorFromAlignment = Alignment.bottomRight;
+    colorToAlignment = Alignment.topLeft;
+    return this;
+  }
+
+  @override
+  Div bgGradientToT() {
+    colorFromAlignment = Alignment.bottomCenter;
+    colorToAlignment = Alignment.topCenter;
+    return this;
+  }
+
+  @override
+  Div bgGradientToTr() {
+    colorFromAlignment = Alignment.topLeft;
+    colorToAlignment = Alignment.bottomRight;
+    return this;
+  }
+
+  @override
+  Div bggradientToL() {
+    colorFromAlignment = Alignment.topLeft;
+    colorToAlignment = Alignment.bottomRight;
+    return this;
+  }
+
+  @override
+  Div bggradientToTl() {
+    colorFromAlignment = Alignment.topLeft;
+    colorToAlignment = Alignment.bottomRight;
+    return this;
+  }
+
+  @override
+  Div from(Color color, {double? percentage}) {
+    colorFrom = color;
+    colorFromPercentage = percentage;
+    return this;
+  }
+
+  @override
+  Div to(Color color, {double? percentage}) {
+    colorTo = color;
+    colorToPercentage = percentage;
+    return this;
+  }
+
+  @override
+  Div via(Color color, {double? percentage}) {
+    colorVia = color;
+    colorViaPercentage = percentage;
+    return this;
+  }
+
+  @override
+  List<BoxShadow>? boxShadowList;
+
+  @override
+  Div shadow() {
+    // shadow
+    // box-shadow:
+    // 0 1px 3px 0 rgb(0 0 0 / 0.1),
+    // 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    boxShadowList = [
+      const BoxShadow(
+        color: Color.fromRGBO(0, 0, 0, 0.1),
+        offset: Offset(0, 1),
+        blurRadius: 3,
+        spreadRadius: 0,
+      ),
+      const BoxShadow(
+        color: Color.fromRGBO(0, 0, 0, 0.1),
+        offset: Offset(0, 1),
+        blurRadius: 2,
+        spreadRadius: -1,
+      )
+    ];
+    return this;
+  }
+
+  @override
+  Div shadowSm() {
+    //shadow-sm	box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    boxShadowList = [
+      const BoxShadow(
+        color: Color.fromRGBO(0, 0, 0, 0.05),
+        offset: Offset(0, 1),
+        blurRadius: 2,
+        spreadRadius: 0,
+      )
+    ];
+    return this;
+  }
+
+  @override
+  Div shadowMd() {
+    // shadow-md
+    //box-shadow:
+    //0 4px 6px -1px rgb(0 0 0 / 0.1),
+    //0 2px 4px -2px rgb(0 0 0 / 0.1);
+    boxShadowList = [
+      const BoxShadow(
+        color: Color.fromRGBO(0, 0, 0, 0.1),
+        offset: Offset(0, 4),
+        blurRadius: 6,
+        spreadRadius: -1,
+      ),
+      const BoxShadow(
+        color: Color.fromRGBO(0, 0, 0, 0.1),
+        offset: Offset(0, 2),
+        blurRadius: 4,
+        spreadRadius: -2,
+      )
+    ];
+    return this;
+  }
+
+  @override
+  Div shadowLg() {
+    // shadow-lg
+    //box-shadow:
+    //0 10px 15px -3px rgb(0 0 0 / 0.1),
+    //0 4px 6px -4px rgb(0 0 0 / 0.1);
+    boxShadowList = [
+      const BoxShadow(
+        color: Color.fromRGBO(0, 0, 0, 0.1),
+        offset: Offset(0, 10),
+        blurRadius: 15,
+        spreadRadius: -3,
+      ),
+      const BoxShadow(
+        color: Color.fromRGBO(0, 0, 0, 0.1),
+        offset: Offset(0, 4),
+        blurRadius: 6,
+        spreadRadius: -4,
+      )
+    ];
+    return this;
+  }
+
+  @override
+  Div shadow2xl() {
+    // shadow-2xl	box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    boxShadowList = [
+      const BoxShadow(
+          color: Color.fromRGBO(0, 0, 0, 0.25),
+          offset: Offset(0, 25),
+          blurRadius: 50,
+          spreadRadius: -12,
+          blurStyle: BlurStyle.normal),
+    ];
+    return this;
+  }
+
+  @override
+  Div shadowInner() {
+    // shadow-inner	box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+    boxShadowList = [
+      const BoxShadow(
+        color: Color.fromRGBO(0, 0, 0, 0.05),
+        offset: Offset(0, 2),
+        blurRadius: 4,
+        spreadRadius: 0,
+        blurStyle: BlurStyle.inner,
+      ),
+    ];
+    return this;
+  }
+
+  @override
+  Div shadowXl() {
+    // shadow-xl
+    //box-shadow:
+    //0 20px 25px -5px rgb(0 0 0 / 0.1),
+    //0 8px 10px -6px rgb(0 0 0 / 0.1);
+    boxShadowList = [
+      const BoxShadow(
+        color: Color.fromRGBO(0, 0, 0, 0.1),
+        offset: Offset(0, 20),
+        blurRadius: 25,
+        spreadRadius: -5,
+      ),
+      const BoxShadow(
+        color: Color.fromRGBO(0, 0, 0, 0.1),
+        offset: Offset(0, 8),
+        blurRadius: 10,
+        spreadRadius: -6,
+      )
+    ];
     return this;
   }
 }
@@ -970,6 +1433,27 @@ class Span
 extension SpanExtension on Span {
   Div div() {
     return Div([build()]);
+  }
+}
+
+class OnEvent implements IBuildWidget {
+  Widget widget;
+  OnEvent(this.widget);
+  void Function()? ontap;
+  OnEvent onTap(void Function()? tap) {
+    ontap = tap;
+    return this;
+  }
+
+  @override
+  Widget build() {
+    return GestureDetector(onTap: ontap, child: widget);
+  }
+}
+
+extension Divextension on Div {
+  OnEvent event() {
+    return OnEvent(build());
   }
 }
 

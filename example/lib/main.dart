@@ -59,6 +59,38 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: ListView(
           children: [
+            Div(List.generate(
+                    8,
+                    (index) => Div([])
+                        .bg(Colors.yellow)
+                        .shadowXl()
+                        .roundedLg()
+                        .build()))
+                .h(1200)
+                .m(12)
+                .grid()
+                .gridCols(2)
+                .aspect(2/1)
+                .gapX(16)
+                .gapY(16)
+                .build(),
+            Div([
+              Span("button")
+                  .fontBold()
+                  .textBase()
+                  .text(Colors.white)
+                  .div()
+                  .flex()
+                  .justifyCenter()
+                  .w(100)
+                  .px(8)
+                  .py(4)
+                  .m(8)
+                  .shadow2xl()
+                  .bg(Colors.blue)
+                  .rounded()
+                  .build(),
+            ]).build(),
             Span("Grid").fontBold().textLg().build(),
             Div([
               Span("Grid Template Columns").fontBold().textLg().build(),
@@ -147,14 +179,24 @@ class _MyHomePageState extends State<MyHomePage> {
             Span("Flexbox ").fontBold().textLg().build(),
             Div([
               Div([
-                Span("item1")
-                    .italic()
-                    .div()
-                    .bg(Colors.red)
+                Div([
+                  Icon(Icons.search),
+                  Span("item1").italic().fontBold().text(Colors.white).build()
+                ])
+                    .boder(color: Colors.blue, width: 2)
+                    .from(Colors.red)
+                    .via(Colors.green)
+                    .to(Colors.blue)
+                    .bgGradientToT()
+                    .roundedFull()
+                    .flexRow()
+                    .gap(12)
                     .itemsCenter()
                     .justifyCenter()
-                    .h(100)
-                    .w(100)
+                    .h(32)
+                    .w(200)
+                    .event()
+                    .onTap(() => print("123"))
                     .build(),
                 Span("item2").build()
               ]).flex().flexRow().gap(12).build(),
