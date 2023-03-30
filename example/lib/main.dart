@@ -59,21 +59,60 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: ListView(
           children: [
-            Div(List.generate(
-                    8,
-                    (index) => Div([])
-                        .bg(Colors.yellow)
-                        .shadowXl()
-                        .roundedLg()
-                        .build()))
-                .h(1200)
-                .m(12)
-                .grid()
-                .gridCols(2)
-                .aspect(2/1)
-                .gapX(16)
-                .gapY(16)
-                .build(),
+            Div([
+              Div([
+                Input("input", onChange: (value) {
+                  print("input值:${value}");
+                })
+                    .fontNormal()
+                    .textBase()
+                    .text(Colors.black)
+                    .div()
+                    .roundedFull()
+                    .px(16)
+                    .py(8)
+                    .shadow2xl()
+                    .bg(Colors.white)
+                    .hFull()
+                    .wFull()
+                    .build()
+              ])
+                  .roundedFull()
+                  .from(Colors.blue)
+                  .to(Colors.purple)
+                  .w(200)
+                  .h(32)
+                  .p(2)
+                  .build(),
+              Span("提交")
+                  .text(Colors.white)
+                  .div()
+                  .from(Colors.blue)
+                  .to(Colors.purple)
+                  .bgGradientToBR()
+                  .w(80)
+                  .textCenter()
+                  .px(12)
+                  .py(8)
+                  .center()
+                  .roundedFull()
+                  .build()
+            ]).flex().flexRow().itemsCenter().gap(12).m(12).build(),
+            // Div(List.generate(
+            //         4,
+            //         (index) => Div([])
+            //             .bg(Colors.yellow)
+            //             .shadowXl()
+            //             .roundedLg()
+            //             .build()))
+            //     .h(1200)
+            //     .m(12)
+            //     .grid()
+            //     .gridCols(2)
+            //     .aspect(2/1)
+            //     .gapX(16)
+            //     .gapY(16)
+            //     .build(),
             Div([
               Span("button")
                   .fontBold()

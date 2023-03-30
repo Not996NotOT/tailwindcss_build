@@ -190,6 +190,11 @@ abstract class IShadow<W> {
   // shadow-inner	box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
 }
 
+abstract class ICenter<W> {
+  bool? isCenter;
+  W center();
+}
+
 class Div
     implements
         ISize<Div>,
@@ -204,9 +209,9 @@ class Div
         IBorder<Div>,
         IGradientColor<Div>,
         IShadow<Div>,
+        ICenter<Div>,
         IBuildWidget {
   List<Widget> widgets;
-
   Div(this.widgets);
   @override
   double? height;
@@ -430,8 +435,7 @@ class Div
 
   @override
   Div flexRow() {
-    flex();
-    return this;
+    return flex();
   }
 
   @override
@@ -518,7 +522,14 @@ class Div
             begin: colorFromAlignment ?? Alignment.centerLeft,
             end: colorToAlignment ?? Alignment.centerRight,
             colors: gradientColors);
+
+    var isSingleWidget = widgets.length == 1;
+    var isTextField = isSingleWidget && widgets[0].runtimeType == TextField;
+
     var _container = Container(
+        alignment: isTextField || isCenter == true
+            ? Alignment.center
+            : Alignment.topLeft,
         height: _height,
         width: _width,
         constraints: _boxConstraints,
@@ -556,7 +567,9 @@ class Div
                     crossAxisSpacing: gridGapX ?? 0,
                     mainAxisSpacing: gridGapY ?? 0,
                     children: widgets)
-                : _flex);
+                : widgets.length == 1
+                    ? widgets[0]
+                    : _flex);
 
     var _widget =
         isFlex1 == true ? Expanded(flex: 1, child: _container) : _container;
@@ -1076,6 +1089,15 @@ class Div
     ];
     return this;
   }
+
+  @override
+  bool? isCenter;
+
+  @override
+  Div center() {
+    isCenter = true;
+    return this;
+  }
 }
 
 abstract class ITextColor<W> {
@@ -1457,9 +1479,61 @@ extension Divextension on Div {
   }
 }
 
+
+
+class Input extends Span {
+  late String _value;
+  late String _placeholder;
+  late TextEditingController _textEditingController;
+  Input(String value,
+      {String placeholder = "", TextEditingController? controller,void Function(String value)? onChange})
+      : super(value) {
+    _value = value;
+    _placeholder = placeholder;
+    _textEditingController =
+        controller ?? TextEditingController(text: value);
+    _textEditingController.addListener(() {
+      if(onChange!=null){
+        onChange(_textEditingController.text);
+      }
+    });
+  }
+
+  Widget build() {
+    return TextField(
+        controller: _textEditingController,
+        style: TextStyle(
+            overflow: textOverflow,
+            fontSize: fontSize,
+            fontWeight: textWeight,
+            color: textColor,
+            fontStyle: fontStyle),
+        textAlignVertical: TextAlignVertical.center,
+        textAlign: TextAlign.left,
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          isDense: true,
+          contentPadding: EdgeInsets.zero,
+        ));
+  }
+}
+
+extension InputExtension on Input {
+  Div div() {
+    print("InputExtension");
+    return Div([build()]);
+  }
+}
+
 extension TextExtension on Text {
-  Span extension() {
+  Span span() {
     return Span(this.data ?? "");
+  }
+}
+
+extension TextFieldExtension on TextField {
+  Div div() {
+    return Div([this]);
   }
 }
 

@@ -1,3 +1,6 @@
+
+## 0.0.6
+- add input example
 ## 0.0.5
 - add border border-radius bg-gradient box-shadow
 ## 0.0.4
