@@ -48,6 +48,28 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
+class GradientText extends StatelessWidget {
+  const GradientText({
+    Key? key,
+    required this.text,
+    this.style,
+    required this.gradient,
+  }) : super(key: key);
+  final String text;
+  final TextStyle? style;
+  final Gradient gradient;
+  @override
+  Widget build(BuildContext context) {
+    return ShaderMask(
+      blendMode: BlendMode.srcIn,
+      shaderCallback: (bounds) => gradient.createShader(
+        Rect.fromLTWH(0, 0, bounds.width, bounds.height),
+      ),
+      child: Text(text, style: style),
+    );
+  }
+}
+
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
@@ -60,17 +82,24 @@ class _MyHomePageState extends State<MyHomePage> {
         body: ListView(
           children: [
             Div([
+              GradientText(
+                text: "Welcome",
+                gradient: LinearGradient(colors: [
+                  Colors.green.shade300,
+                  Colors.blue.shade700,
+                ]),
+                style: const TextStyle(fontSize: 32.0),
+              ),
               Div([
-                Input("input", onChange: (value) {
-                  print("input值:${value}");
-                })
-                    .fontNormal()
-                    .textBase()
-                    .text(Colors.black)
-                    .div()
+                Input("", placeholder: "请输入姓名")
+                    .placeholder()
+                    .fontBold()
+                    .text(size: 14, color: Colors.red.withOpacity(0.3))
+                    .asInput()
+                    .text(size: 14, color: Colors.black)
+                    .asDiv()
                     .roundedFull()
-                    .px(16)
-                    .py(8)
+                    .px(12)
                     .shadow2xl()
                     .bg(Colors.white)
                     .hFull()
@@ -85,8 +114,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   .p(2)
                   .build(),
               Span("提交")
-                  .text(Colors.white)
-                  .div()
+                  .text(color: Colors.white)
+                  .asDiv()
                   .from(Colors.blue)
                   .to(Colors.purple)
                   .bgGradientToBR()
@@ -117,8 +146,8 @@ class _MyHomePageState extends State<MyHomePage> {
               Span("button")
                   .fontBold()
                   .textBase()
-                  .text(Colors.white)
-                  .div()
+                  .text(color: Colors.white)
+                  .asDiv()
                   .flex()
                   .justifyCenter()
                   .w(100)
@@ -136,49 +165,49 @@ class _MyHomePageState extends State<MyHomePage> {
               Div([
                 Span("item1")
                     .italic()
-                    .div()
+                    .asDiv()
                     .bg(Colors.red)
                     .itemsCenter()
                     .justifyCenter()
                     .build(),
                 Span("item2")
                     .italic()
-                    .div()
+                    .asDiv()
                     .bg(Colors.green)
                     .itemsCenter()
                     .justifyCenter()
                     .build(),
                 Span("item3")
                     .italic()
-                    .div()
+                    .asDiv()
                     .bg(Colors.blue)
                     .itemsCenter()
                     .justifyCenter()
                     .build(),
                 Span("item4")
                     .italic()
-                    .div()
+                    .asDiv()
                     .bg(Colors.pink)
                     .itemsCenter()
                     .justifyCenter()
                     .build(),
                 Span("item1")
                     .italic()
-                    .div()
+                    .asDiv()
                     .bg(Colors.red)
                     .itemsCenter()
                     .justifyCenter()
                     .build(),
                 Span("item2")
                     .italic()
-                    .div()
+                    .asDiv()
                     .bg(Colors.green)
                     .itemsCenter()
                     .justifyCenter()
                     .build(),
                 Span("item3")
                     .italic()
-                    .div()
+                    .asDiv()
                     .bg(Colors.blue)
                     .itemsCenter()
                     .justifyCenter()
@@ -220,7 +249,11 @@ class _MyHomePageState extends State<MyHomePage> {
               Div([
                 Div([
                   Icon(Icons.search),
-                  Span("item1").italic().fontBold().text(Colors.white).build()
+                  Span("item1")
+                      .italic()
+                      .fontBold()
+                      .text(color: Colors.white)
+                      .build()
                 ])
                     .boder(color: Colors.blue, width: 2)
                     .from(Colors.red)

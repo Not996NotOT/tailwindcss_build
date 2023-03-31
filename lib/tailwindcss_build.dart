@@ -1102,7 +1102,6 @@ class Div
 
 abstract class ITextColor<W> {
   Color? textColor;
-  W text(Color color);
 }
 
 abstract class ITextWeight<W> {
@@ -1123,6 +1122,11 @@ abstract class ITextSize<W> {
   W textXl();
   W text2xl();
   W textSize(double fontSize);
+}
+
+abstract class ITextColorAndSizeStyle<W>
+    implements ITextColor<W>, ITextSize<W> {
+  text({Color? color, double? size});
 }
 
 abstract class ITextStyle<W> {
@@ -1165,9 +1169,8 @@ abstract class ILineHeight<W> {
 
 class Span
     implements
-        ITextColor<Span>,
+        ITextColorAndSizeStyle<Span>,
         ITextWeight<Span>,
-        ITextSize<Span>,
         ITextStyle<Span>,
         ILineClamp<Span>,
         ILineHeight<Span>,
@@ -1178,8 +1181,9 @@ class Span
   Color? textColor;
 
   @override
-  Span text(Color color) {
+  Span text({Color? color = Colors.transparent, double? size = 16}) {
     textColor = color;
+    fontSize = size;
     return this;
   }
 
@@ -1453,8 +1457,18 @@ class Span
 }
 
 extension SpanExtension on Span {
-  Div div() {
+  Div asDiv() {
     return Div([build()]);
+  }
+
+  Input asInput() {
+    InputPlaceholder? _inputPlaceholder;
+    if (runtimeType == InputPlaceholder) {
+      _inputPlaceholder = this as InputPlaceholder;
+    }
+    return Input(_inputPlaceholder?.input._value ?? "",
+        placeholder: _inputPlaceholder?.input._placeholder ?? "",
+        inputPlaceholder: _inputPlaceholder);
   }
 }
 
@@ -1479,28 +1493,54 @@ extension Divextension on Div {
   }
 }
 
+class InputPlaceholder extends Span {
+  Input input;
+  InputPlaceholder(this.input) : super(input._placeholder);
+}
 
+abstract class IOnChange<W> {
+  void Function(String value)? _onChange;
+  W onChange(void Function(String value)? onChange);
+}
 
-class Input extends Span {
+class Input extends Span implements IOnChange<Input> {
   late String _value;
   late String _placeholder;
   late TextEditingController _textEditingController;
+  void Function(String value)? _onChange;
+  late InputPlaceholder? _inputPlaceholder;
   Input(String value,
-      {String placeholder = "", TextEditingController? controller,void Function(String value)? onChange})
+      {String placeholder = "",
+      TextEditingController? controller,
+      InputPlaceholder? inputPlaceholder,
+      void Function(String value)? onChange})
       : super(value) {
     _value = value;
     _placeholder = placeholder;
-    _textEditingController =
-        controller ?? TextEditingController(text: value);
+    _inputPlaceholder = inputPlaceholder;
+    _textEditingController = controller ?? TextEditingController(text: value);
+    _onChange = onChange;
     _textEditingController.addListener(() {
-      if(onChange!=null){
-        onChange(_textEditingController.text);
+      if (_onChange != null) {
+        _onChange!(_textEditingController.text);
       }
     });
   }
 
+  @override
+  Input onChange(void Function(String value)? onChange) {
+    _onChange = onChange;
+    _textEditingController.addListener(() {
+      if (_onChange != null) {
+        _onChange!(_textEditingController.text);
+      }
+    });
+    return this;
+  }
+
   Widget build() {
     return TextField(
+        cursorHeight: fontSize,
         controller: _textEditingController,
         style: TextStyle(
             overflow: textOverflow,
@@ -1511,17 +1551,35 @@ class Input extends Span {
         textAlignVertical: TextAlignVertical.center,
         textAlign: TextAlign.left,
         decoration: InputDecoration(
+          hintText: _placeholder,
+          labelStyle: _inputPlaceholder == null
+              ? null:TextStyle(
+              overflow: _inputPlaceholder?.textOverflow,
+              fontSize: _inputPlaceholder?.fontSize,
+              fontWeight: _inputPlaceholder?.textWeight,
+              color: _inputPlaceholder?.textColor,
+              fontStyle: _inputPlaceholder?.fontStyle),
+          hintStyle: _inputPlaceholder == null
+              ? null
+              : TextStyle(
+                  overflow: _inputPlaceholder?.textOverflow,
+                  fontSize: _inputPlaceholder?.fontSize,
+                  fontWeight: _inputPlaceholder?.textWeight,
+                  color: _inputPlaceholder?.textColor,
+                  fontStyle: _inputPlaceholder?.fontStyle),
           border: InputBorder.none,
           isDense: true,
-          contentPadding: EdgeInsets.zero,
         ));
   }
 }
 
 extension InputExtension on Input {
   Div div() {
-    print("InputExtension");
     return Div([build()]);
+  }
+
+  InputPlaceholder placeholder() {
+    return InputPlaceholder(this);
   }
 }
 
