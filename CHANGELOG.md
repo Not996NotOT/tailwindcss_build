@@ -1,4 +1,6 @@
 
+## 0.0.7
+- add relative
 ## 0.0.6
 - add input example 
 ## 0.0.5

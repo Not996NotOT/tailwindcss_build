@@ -195,6 +195,24 @@ abstract class ICenter<W> {
   W center();
 }
 
+abstract class IPosition<W> {
+  bool? isRelative;
+  bool? isAbsolute;
+  W relative();
+  W absolute();
+}
+
+abstract class ITopRightBottomLeft<W> {
+  double? positionTop;
+  double? positionRight;
+  double? positionBottom;
+  double? positionLeft;
+  W top(double top);
+  W right(double right);
+  W bottom(double bottom);
+  W left(double left);
+}
+
 class Div
     implements
         ISize<Div>,
@@ -210,6 +228,8 @@ class Div
         IGradientColor<Div>,
         IShadow<Div>,
         ICenter<Div>,
+        IPosition<Div>,
+        ITopRightBottomLeft<Div>,
         IBuildWidget {
   List<Widget> widgets;
   Div(this.widgets);
@@ -269,13 +289,13 @@ class Div
 
   @override
   Div hFull() {
-    maxHeight = double.infinity;
+    height = double.infinity;
     return this;
   }
 
   @override
   Div wFull() {
-    maxWidth = double.infinity;
+    width = double.infinity;
     return this;
   }
 
@@ -502,7 +522,14 @@ class Div
         top: mTop ?? 0,
         bottom: mBottom ?? 0);
 
+    List<Widget> positionedWidgets =
+        widgets.where((widget) => widget.runtimeType == Positioned).toList();
+
+    widgets =
+        widgets.where((widget) => widget.runtimeType != Positioned).toList();
+
     var _flex = Flex(
+        mainAxisSize: MainAxisSize.max,
         direction: flexDirection ?? Axis.vertical,
         mainAxisAlignment: flexMainAxisAlignment ?? MainAxisAlignment.start,
         crossAxisAlignment: flexCrossAxisAlignment ?? CrossAxisAlignment.start,
@@ -567,12 +594,23 @@ class Div
                     crossAxisSpacing: gridGapX ?? 0,
                     mainAxisSpacing: gridGapY ?? 0,
                     children: widgets)
-                : widgets.length == 1
+                : (widgets.length == 1 && isFlex != true)
                     ? widgets[0]
                     : _flex);
 
+    var _isPosition = isRelative == true
+        ? Stack(children: [_container, ...positionedWidgets])
+        : isAbsolute == true
+            ? Positioned(
+                child: _container,
+                left: positionLeft,
+                right: positionRight,
+                top: positionTop,
+                bottom: positionBottom,
+              )
+            : _container;
     var _widget =
-        isFlex1 == true ? Expanded(flex: 1, child: _container) : _container;
+        isFlex1 == true ? Flexible(flex: 1, child: _isPosition) : _isPosition;
     return _widget;
   }
 
@@ -1098,6 +1136,60 @@ class Div
     isCenter = true;
     return this;
   }
+
+  @override
+  bool? isAbsolute;
+
+  @override
+  bool? isRelative;
+
+  @override
+  Div absolute() {
+    isAbsolute = true;
+    return this;
+  }
+
+  @override
+  Div relative() {
+    isRelative = true;
+    return this;
+  }
+
+  @override
+  double? positionBottom;
+
+  @override
+  double? positionLeft;
+
+  @override
+  double? positionRight;
+
+  @override
+  double? positionTop;
+
+  @override
+  Div bottom(double bottom) {
+    positionBottom = bottom;
+    return this;
+  }
+
+  @override
+  Div left(double left) {
+    positionLeft = left;
+    return this;
+  }
+
+  @override
+  Div right(double right) {
+    positionRight = right;
+    return this;
+  }
+
+  @override
+  Div top(double top) {
+    positionTop = top;
+    return this;
+  }
 }
 
 abstract class ITextColor<W> {
@@ -1553,12 +1645,13 @@ class Input extends Span implements IOnChange<Input> {
         decoration: InputDecoration(
           hintText: _placeholder,
           labelStyle: _inputPlaceholder == null
-              ? null:TextStyle(
-              overflow: _inputPlaceholder?.textOverflow,
-              fontSize: _inputPlaceholder?.fontSize,
-              fontWeight: _inputPlaceholder?.textWeight,
-              color: _inputPlaceholder?.textColor,
-              fontStyle: _inputPlaceholder?.fontStyle),
+              ? null
+              : TextStyle(
+                  overflow: _inputPlaceholder?.textOverflow,
+                  fontSize: _inputPlaceholder?.fontSize,
+                  fontWeight: _inputPlaceholder?.textWeight,
+                  color: _inputPlaceholder?.textColor,
+                  fontStyle: _inputPlaceholder?.fontStyle),
           hintStyle: _inputPlaceholder == null
               ? null
               : TextStyle(
