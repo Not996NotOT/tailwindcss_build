@@ -83,13 +83,36 @@ class _MyHomePageState extends State<MyHomePage> {
         body: ListView(
           children: [
             Div([
+              Img("")
+                  .h(100)
+                  .w(100)
+                  .roundedFull()
+                  .asDiv()
+                  .center()
+                  .h(105)
+                  .w(105)
+                  .roundedFull()
+                  .from(Colors.red)
+                  .via(Colors.blue)
+                  .to(Colors.green)
+                  .build()
+            ])
+                .rounded()
+                .shadow()
+                .bg(Colors.white)
+                .p(12)
+                .m(12)
+                .w(wFull)
+                .mb(100)
+                .build(),
+            Div([
               Div([
                 Div([
-                  Input("", placeholder: "说点什么吧").build(),
+                  Input("", placeholder: "say any").build(),
                 ]).build(),
                 Div([
                   Div([]).h(100).w(100).bg(Colors.black).build(),
-                  Input("", placeholder: "图片最多上传3张哦～～").build(),
+                  Input("", placeholder: "upload img").build(),
                 ]).flexCol().gap(12).build()
               ])
                   .flex()
@@ -182,204 +205,204 @@ class _MyHomePageState extends State<MyHomePage> {
                 .w(200)
                 .h(100)
                 .bg(Colors.red)
-                .build()
-            // Div([
-            //   GradientText(
-            //     text: "Welcome",
-            //     gradient: LinearGradient(colors: [
-            //       Colors.green.shade300,
-            //       Colors.blue.shade700,
-            //     ]),
-            //     style: const TextStyle(fontSize: 32.0),
-            //   ),
-            //   Div([
-            //     Input("", placeholder: "请输入姓名")
-            //         .placeholder()
-            //         .fontBold()
-            //         .text(size: 14, color: Colors.red.withOpacity(0.3))
-            //         .asInput()
-            //         .text(size: 14, color: Colors.black)
-            //         .asDiv()
-            //         .roundedFull()
-            //         .px(12)
-            //         .shadow2xl()
-            //         .bg(Colors.white)
-            //         .hFull()
-            //         .wFull()
-            //         .build()
-            //   ])
-            //       .roundedFull()
-            //       .from(Colors.blue)
-            //       .to(Colors.purple)
-            //       .w(200)
-            //       .h(32)
-            //       .p(2)
-            //       .build(),
-            //   Span("提交")
-            //       .text(color: Colors.white)
-            //       .asDiv()
-            //       .from(Colors.blue)
-            //       .to(Colors.purple)
-            //       .bgGradientToBR()
-            //       .w(80)
-            //       .textCenter()
-            //       .px(12)
-            //       .py(8)
-            //       .center()
-            //       .roundedFull()
-            //       .build()
-            // ]).flex().flexRow().itemsCenter().gap(12).m(12).build(),
-            // // Div(List.generate(
-            // //         4,
-            // //         (index) => Div([])
-            // //             .bg(Colors.yellow)
-            // //             .shadowXl()
-            // //             .roundedLg()
-            // //             .build()))
-            // //     .h(1200)
-            // //     .m(12)
-            // //     .grid()
-            // //     .gridCols(2)
-            // //     .aspect(2/1)
-            // //     .gapX(16)
-            // //     .gapY(16)
-            // //     .build(),
-            // Div([
-            //   Span("button")
-            //       .fontBold()
-            //       .textBase()
-            //       .text(color: Colors.white)
-            //       .asDiv()
-            //       .flex()
-            //       .justifyCenter()
-            //       .w(100)
-            //       .px(8)
-            //       .py(4)
-            //       .m(8)
-            //       .shadow2xl()
-            //       .bg(Colors.blue)
-            //       .rounded()
-            //       .build(),
-            // ]).build(),
-            // Span("Grid").fontBold().textLg().build(),
-            // Div([
-            //   Span("Grid Template Columns").fontBold().textLg().build(),
-            //   Div([
-            //     Span("item1")
-            //         .italic()
-            //         .asDiv()
-            //         .bg(Colors.red)
-            //         .itemsCenter()
-            //         .justifyCenter()
-            //         .build(),
-            //     Span("item2")
-            //         .italic()
-            //         .asDiv()
-            //         .bg(Colors.green)
-            //         .itemsCenter()
-            //         .justifyCenter()
-            //         .build(),
-            //     Span("item3")
-            //         .italic()
-            //         .asDiv()
-            //         .bg(Colors.blue)
-            //         .itemsCenter()
-            //         .justifyCenter()
-            //         .build(),
-            //     Span("item4")
-            //         .italic()
-            //         .asDiv()
-            //         .bg(Colors.pink)
-            //         .itemsCenter()
-            //         .justifyCenter()
-            //         .build(),
-            //     Span("item1")
-            //         .italic()
-            //         .asDiv()
-            //         .bg(Colors.red)
-            //         .itemsCenter()
-            //         .justifyCenter()
-            //         .build(),
-            //     Span("item2")
-            //         .italic()
-            //         .asDiv()
-            //         .bg(Colors.green)
-            //         .itemsCenter()
-            //         .justifyCenter()
-            //         .build(),
-            //     Span("item3")
-            //         .italic()
-            //         .asDiv()
-            //         .bg(Colors.blue)
-            //         .itemsCenter()
-            //         .justifyCenter()
-            //         .build(),
-            //   ])
-            //       .grid()
-            //       .h(300)
-            //       .gapX(20)
-            //       .gapY(10)
-            //       .gridCols(4)
-            //       .aspect(3 / 6)
-            //       .build()
-            // ]).flex().flexCol().gap(12).build(),
-            // Span("Typography").fontBold().textLg().build(),
-            // Div([
-            //   Span("Font Size").fontBold().textLg().build(),
-            //   Span("XS").textXs().build(),
-            //   Span("SM").textSm().build(),
-            //   Span("Base").textBase().build(),
-            //   Span("LG").textLg().build(),
-            //   Span("XL").textXl().build(),
-            //   Span("2XL").text2xl().build(),
-            //   Span("Custom Size").textSize(30).build(),
-            //   Span("Font Example")
-            //       .fontBold()
-            //       .fontMedium()
-            //       .lineClamp2()
-            //       .leading3()
-            //       .italic()
-            //       .build()
-            // ]).flexCol().mt(40).gap(12).build(),
-            // Div([
-            //   Span("Font Style").fontBold().textLg().build(),
-            //   Span("Italic").italic().build(),
-            //   Span("NoItalic").noItalic().build(),
-            // ]).flex().flexCol().gap(12).my(40).build(),
-            // Span("Flexbox ").fontBold().textLg().build(),
-            // Div([
-            //   Div([
-            //     Div([
-            //       Icon(Icons.search),
-            //       Span("item1")
-            //           .italic()
-            //           .fontBold()
-            //           .text(color: Colors.white)
-            //           .build()
-            //     ])
-            //         .boder(color: Colors.blue, width: 2)
-            //         .from(Colors.red)
-            //         .via(Colors.green)
-            //         .to(Colors.blue)
-            //         .bgGradientToT()
-            //         .roundedFull()
-            //         .flexRow()
-            //         .gap(12)
-            //         .itemsCenter()
-            //         .justifyCenter()
-            //         .h(32)
-            //         .w(200)
-            //         .event()
-            //         .onTap(() => print("123"))
-            //         .build(),
-            //     Span("item2").build()
-            //   ]).flex().flexRow().gap(12).build(),
-            //   Div([Span("item1").build(), Span("item2").build()])
-            //       .flex()
-            //       .flexCol()
-            //       .gap(12)
-            //       .build()
-            // ]).build()
+                .build(),
+            Div([
+              GradientText(
+                text: "Welcome",
+                gradient: LinearGradient(colors: [
+                  Colors.green.shade300,
+                  Colors.blue.shade700,
+                ]),
+                style: const TextStyle(fontSize: 32.0),
+              ),
+              Div([
+                Input("", placeholder: "enter your name")
+                    .placeholder()
+                    .fontBold()
+                    .text(size: 14, color: Colors.red.withOpacity(0.3))
+                    .asInput()
+                    .text(size: 14, color: Colors.black)
+                    .asDiv()
+                    .roundedFull()
+                    .px(12)
+                    .shadow2xl()
+                    .bg(Colors.white)
+                    .hFull()
+                    .wFull()
+                    .build()
+              ])
+                  .roundedFull()
+                  .from(Colors.blue)
+                  .to(Colors.purple)
+                  .w(200)
+                  .h(32)
+                  .p(2)
+                  .build(),
+              Span("提交")
+                  .text(color: Colors.white)
+                  .asDiv()
+                  .from(Colors.blue)
+                  .to(Colors.purple)
+                  .bgGradientToBR()
+                  .w(80)
+                  .textCenter()
+                  .px(12)
+                  .py(8)
+                  .center()
+                  .roundedFull()
+                  .build()
+            ]).flex().flexRow().itemsCenter().gap(12).m(12).build(),
+            // Div(List.generate(
+            //         4,
+            //         (index) => Div([])
+            //             .bg(Colors.yellow)
+            //             .shadowXl()
+            //             .roundedLg()
+            //             .build()))
+            //     .h(1200)
+            //     .m(12)
+            //     .grid()
+            //     .gridCols(2)
+            //     .aspect(2/1)
+            //     .gapX(16)
+            //     .gapY(16)
+            //     .build(),
+            Div([
+              Span("button")
+                  .fontBold()
+                  .textBase()
+                  .text(color: Colors.white)
+                  .asDiv()
+                  .flex()
+                  .justifyCenter()
+                  .w(100)
+                  .px(8)
+                  .py(4)
+                  .m(8)
+                  .shadow2xl()
+                  .bg(Colors.blue)
+                  .rounded()
+                  .build(),
+            ]).build(),
+            Span("Grid").fontBold().textLg().build(),
+            Div([
+              Span("Grid Template Columns").fontBold().textLg().build(),
+              Div([
+                Span("item1")
+                    .italic()
+                    .asDiv()
+                    .bg(Colors.red)
+                    .itemsCenter()
+                    .justifyCenter()
+                    .build(),
+                Span("item2")
+                    .italic()
+                    .asDiv()
+                    .bg(Colors.green)
+                    .itemsCenter()
+                    .justifyCenter()
+                    .build(),
+                Span("item3")
+                    .italic()
+                    .asDiv()
+                    .bg(Colors.blue)
+                    .itemsCenter()
+                    .justifyCenter()
+                    .build(),
+                Span("item4")
+                    .italic()
+                    .asDiv()
+                    .bg(Colors.pink)
+                    .itemsCenter()
+                    .justifyCenter()
+                    .build(),
+                Span("item1")
+                    .italic()
+                    .asDiv()
+                    .bg(Colors.red)
+                    .itemsCenter()
+                    .justifyCenter()
+                    .build(),
+                Span("item2")
+                    .italic()
+                    .asDiv()
+                    .bg(Colors.green)
+                    .itemsCenter()
+                    .justifyCenter()
+                    .build(),
+                Span("item3")
+                    .italic()
+                    .asDiv()
+                    .bg(Colors.blue)
+                    .itemsCenter()
+                    .justifyCenter()
+                    .build(),
+              ])
+                  .grid()
+                  .h(300)
+                  .gapX(20)
+                  .gapY(10)
+                  .gridCols(4)
+                  .aspect(3 / 6)
+                  .build()
+            ]).flex().flexCol().gap(12).build(),
+            Span("Typography").fontBold().textLg().build(),
+            Div([
+              Span("Font Size").fontBold().textLg().build(),
+              Span("XS").textXs().build(),
+              Span("SM").textSm().build(),
+              Span("Base").textBase().build(),
+              Span("LG").textLg().build(),
+              Span("XL").textXl().build(),
+              Span("2XL").text2xl().build(),
+              Span("Custom Size").textSize(30).build(),
+              Span("Font Example")
+                  .fontBold()
+                  .fontMedium()
+                  .lineClamp2()
+                  .leading3()
+                  .italic()
+                  .build()
+            ]).flexCol().mt(40).gap(12).build(),
+            Div([
+              Span("Font Style").fontBold().textLg().build(),
+              Span("Italic").italic().build(),
+              Span("NoItalic").noItalic().build(),
+            ]).flex().flexCol().gap(12).my(40).build(),
+            Span("Flexbox ").fontBold().textLg().build(),
+            Div([
+              Div([
+                Div([
+                  Icon(Icons.search),
+                  Span("item1")
+                      .italic()
+                      .fontBold()
+                      .text(color: Colors.white)
+                      .build()
+                ])
+                    .boder(color: Colors.blue, width: 2)
+                    .from(Colors.red)
+                    .via(Colors.green)
+                    .to(Colors.blue)
+                    .bgGradientToT()
+                    .roundedFull()
+                    .flexRow()
+                    .gap(12)
+                    .itemsCenter()
+                    .justifyCenter()
+                    .h(32)
+                    .w(200)
+                    .event()
+                    .onTap(() => print("123"))
+                    .build(),
+                Span("item2").build()
+              ]).flex().flexRow().gap(12).build(),
+              Div([Span("item1").build(), Span("item2").build()])
+                  .flex()
+                  .flexCol()
+                  .gap(12)
+                  .build()
+            ]).build()
           ],
         ));
   }

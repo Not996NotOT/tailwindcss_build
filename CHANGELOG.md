@@ -1,4 +1,6 @@
 
+## 0.0.8
+- add img
 ## 0.0.7
 - add relative
 ## 0.0.6

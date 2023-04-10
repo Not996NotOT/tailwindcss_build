@@ -6,15 +6,18 @@ abstract class IBuildWidget {
   Widget build();
 }
 
-abstract class ISize<W> {
+abstract class IBaseSize<W> {
   double? height;
   double? width;
+  W h(double h);
+  W w(double w);
+}
+
+abstract class ISize<W> extends IBaseSize<W> {
   double? minHeight;
   double? minWidth;
   double? maxHeight;
   double? maxWidth;
-  W h(double h);
-  W w(double w);
   W wFull();
   W hFull();
   W minW(double minW);
@@ -130,7 +133,11 @@ abstract class IAspect<W> {
   W aspect(double aspectRatio);
 }
 
-abstract class IRounded<W> {
+abstract class IBaseRounded<W> {
+  W roundedFull();
+}
+
+abstract class IRounded<W> extends IBaseRounded<W> {
   double? bordertlRadius;
   double? brodertrRaidus;
   double? borderblRadius;
@@ -139,7 +146,6 @@ abstract class IRounded<W> {
   W rounded({double? borderRadius});
   W roundedMd();
   W roundedLg();
-  W roundedFull();
 }
 
 abstract class IGradientColor<W> {
@@ -1666,8 +1672,65 @@ class Input extends Span implements IOnChange<Input> {
   }
 }
 
+class Img implements IBuildWidget, IBaseSize<Img>, IBaseRounded<Img> {
+  String src;
+  Img(this.src);
+  @override
+  Widget build() {
+    var gaplessPlayback = true;
+    var img = src.isEmpty
+        ? Container()
+        : src.toLowerCase().contains("http")
+            ? Image.network(
+                src,
+                gaplessPlayback: gaplessPlayback,
+                width: width,
+                height: height,
+                fit: BoxFit.cover,
+              )
+            : Image.asset(src,
+                gaplessPlayback: gaplessPlayback,
+                width: width,
+                height: height,
+                fit: BoxFit.cover);
+    return isCircular == true ? ClipOval(child: img) : img;
+  }
+
+  @override
+  double? height;
+
+  @override
+  double? width;
+
+  @override
+  Img h(double h) {
+    height = h;
+    return this;
+  }
+
+  @override
+  Img w(double w) {
+    width = w;
+    return this;
+  }
+
+  bool? isCircular;
+
+  @override
+  Img roundedFull() {
+    isCircular = true;
+    return this;
+  }
+}
+
+extension ImgExtension on Img {
+  Div asDiv() {
+    return Div([build()]);
+  }
+}
+
 extension InputExtension on Input {
-  Div div() {
+  Div asDiv() {
     return Div([build()]);
   }
 
@@ -1677,13 +1740,13 @@ extension InputExtension on Input {
 }
 
 extension TextExtension on Text {
-  Span span() {
+  Span asSpan() {
     return Span(this.data ?? "");
   }
 }
 
 extension TextFieldExtension on TextField {
-  Div div() {
+  Div asDiv() {
     return Div([this]);
   }
 }
