@@ -1,6 +1,6 @@
 name: tailwindcss_build
 description: Plugins developed based on tailwind css
-version: 0.0.6
+version: 0.0.8
 homepage: https://github.com/Not996NotOT/tailwindcss_build
 
 environment:
