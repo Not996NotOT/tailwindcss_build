@@ -83,6 +83,15 @@ class _MyHomePageState extends State<MyHomePage> {
         body: ListView(
           children: [
             Div([
+              Div([
+                Div([
+                  Icon(Icons.camera),
+                  Span("text").build(),
+                ]).h(80).w(80).flex().flexCol().justifyCenter().itemsCenter().bg(Colors.blue).build(),
+                Span("today").build()
+              ]).flex().flexCol().bg(Colors.red).build()
+            ]).mb(20).bg(Colors.white).build(),
+            Div([
               Img("")
                   .h(100)
                   .w(100)

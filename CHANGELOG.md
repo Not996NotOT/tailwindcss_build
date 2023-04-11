@@ -1,4 +1,5 @@
-
+## 0.0.9
+- fix flex layout center bug
 ## 0.0.8
 - add img
 ## 0.0.7

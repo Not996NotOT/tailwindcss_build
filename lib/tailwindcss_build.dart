@@ -562,7 +562,7 @@ class Div
     var _container = Container(
         alignment: isTextField || isCenter == true
             ? Alignment.center
-            : Alignment.topLeft,
+            : isFlex ==true ? null : Alignment.topLeft,
         height: _height,
         width: _width,
         constraints: _boxConstraints,
