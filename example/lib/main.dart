@@ -71,23 +71,124 @@ class GradientText extends StatelessWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  TwTabsController twTabsController = TwTabsController();
+  var selectedIndex = 0;
+  var tabList = ["A", "B", "C"];
+  @override
+  void initState() {
+    super.initState();
+    twTabsController.addListener(() {
+      print(twTabsController.selectedIndex);
+      setState(() {
+        selectedIndex = twTabsController.selectedIndex;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var wFull = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
           title: Text(widget.title),
         ),
         body: ListView(
           children: [
             Div([
               Div([
+                Img("https://img.js.design/assets/smartFill/img292164da731af0.jpg")
+                    .roundedLg()
+                    .asDiv()
+                    .roundedLg()
+                    .absolute()
+                    .aspectRatio()
+                    .build(),
+                Div([])
+                    .absolute()
+                    .h(28)
+                    .w(wFull - 24)
+                    .bg(Colors.black54)
+                    .roundedLg()
+                    .bottom(0)
+                    .build(),
+                Span("2021/06/01 13:33:33")
+                    .text(color: Colors.white)
+                    .textSm()
+                    .asDiv()
+                    .flex()
+                    .itemsCenter()
+                    .absolute()
+                    .h(28)
+                    .pr(15)
+                    .bottom(0)
+                    .right(0)
+                    .build()
+              ]).aspectRatio().roundedLg().shadow().relative().build(),
+            ]).p(12).build(),
+            Div([
+              Div(List.generate(tabList.length, (index) {
+                var span = Span(tabList[index]).fontBold();
+                var font = selectedIndex == index
+                    ? span
+                        .text(color: Color.fromRGBO(255, 96, 10, 1), size: 18)
+                        .asDiv()
+                        .boderB(width: 2, color: Color.fromRGBO(255, 96, 10, 1))
+                        .pb(7)
+                        .pt(4)
+                    : span
+                        .text(color: Color.fromRGBO(100, 105, 110, 1), size: 18)
+                        .asDiv()
+                        .pb(9)
+                        .pt(4);
+                return font.px(8).build();
+              }))
+                  .flex()
+                  .flexRow()
+                  .justifyBetween()
+                  .itemsEnd()
+                  .gap(16)
+                  .py(8)
+                  .px(42)
+                  .asTabs(twTabsController),
+              selectedIndex == 0
+                  ? Div([Text("123")]).bg(Colors.blue).flex1().build()
+                  : Container()
+            ]).flex().flexCol().h(200).mb(100).build(),
+            Div([
+              Div(List.generate(4, (index) {
+                var span = Span("tab${index}").fontBold();
+                var font = selectedIndex == index
+                    ? span
+                        .text(color: Colors.red, size: 18)
+                        .asDiv()
+                        .boderB(width: 2, color: Colors.red)
+                        .pb(2)
+                        .pt(4)
+                    : span
+                        .text(color: Colors.black, size: 18)
+                        .asDiv()
+                        .pb(4)
+                        .pt(4);
+                return font.px(8).build();
+              })).flex().flexRow().itemsEnd().gap(16).asTabs(twTabsController),
+              selectedIndex == 0
+                  ? Div([Text("123")]).bg(Colors.blue).flex1().build()
+                  : Container()
+            ]).flex().flexCol().h(600).mb(100).build(),
+            Div([
+              Div([
                 Div([
                   Icon(Icons.camera),
                   Span("text").build(),
-                ]).h(80).w(80).flex().flexCol().justifyCenter().itemsCenter().bg(Colors.blue).build(),
+                ])
+                    .h(80)
+                    .w(80)
+                    .flex()
+                    .flexCol()
+                    .justifyCenter()
+                    .itemsCenter()
+                    .bg(Colors.blue)
+                    .build(),
                 Span("today").build()
               ]).flex().flexCol().bg(Colors.red).build()
             ]).mb(20).bg(Colors.white).build(),

@@ -138,6 +138,7 @@ abstract class IBaseRounded<W> {
 }
 
 abstract class IRounded<W> extends IBaseRounded<W> {
+  bool? isBorderRadius;
   double? bordertlRadius;
   double? brodertrRaidus;
   double? borderblRadius;
@@ -486,18 +487,21 @@ class Div
 
   @override
   Div gap(double size) {
-    gridGapX = size;
-    gridGapY = size;
-    List<Widget> widgetList = [];
-    for (var widget in widgets) {
-      widgetList.add(widget);
-      widgetList.add(SizedBox(
-        height: flexDirection == Axis.vertical ? size : 0,
-        width: flexDirection == Axis.horizontal ? size : 0,
-      ));
+    if (size > 0) {
+      gridGapX = size;
+      gridGapY = size;
+      List<Widget> widgetList = [];
+      for (var widget in widgets) {
+        widgetList.add(widget);
+        widgetList.add(SizedBox(
+          height: flexDirection == Axis.vertical ? size : 0,
+          width: flexDirection == Axis.horizontal ? size : 0,
+        ));
+      }
+      widgetList.removeLast();
+      widgets = widgetList;
     }
-    widgetList.removeLast();
-    widgets = widgetList;
+
     return this;
   }
 
@@ -562,7 +566,9 @@ class Div
     var _container = Container(
         alignment: isTextField || isCenter == true
             ? Alignment.center
-            : isFlex ==true ? null : Alignment.topLeft,
+            : isFlex == true
+                ? null
+                : Alignment.topLeft,
         height: _height,
         width: _width,
         constraints: _boxConstraints,
@@ -570,11 +576,13 @@ class Div
             gradient: _gradient,
             boxShadow: boxShadowList,
             color: _gradient == null ? bgColor : null,
-            borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(bordertlRadius ?? 0),
-                topRight: Radius.circular(brodertrRaidus ?? 0),
-                bottomLeft: Radius.circular(borderblRadius ?? 0),
-                bottomRight: Radius.circular(borderblRadius ?? 0)),
+            borderRadius: isBorderRadius == true
+                ? BorderRadius.only(
+                    topLeft: Radius.circular(bordertlRadius ?? 0),
+                    topRight: Radius.circular(brodertrRaidus ?? 0),
+                    bottomLeft: Radius.circular(borderblRadius ?? 0),
+                    bottomRight: Radius.circular(borderblRadius ?? 0))
+                : null,
             border: Border(
               top: BorderSide(
                   color: borderTopColor ?? Colors.transparent,
@@ -786,7 +794,11 @@ class Div
   double? brodertrRaidus;
 
   @override
+  bool? isBorderRadius;
+
+  @override
   Div rounded({double? borderRadius = 4}) {
+    isBorderRadius = true;
     bordertlRadius = borderRadius;
     brodertrRaidus = borderRadius;
     borderblRadius = borderRadius;
@@ -796,6 +808,7 @@ class Div
 
   @override
   Div roundedFull() {
+    isBorderRadius = true;
     bordertlRadius = 9999;
     brodertrRaidus = 9999;
     borderblRadius = 9999;
@@ -805,6 +818,7 @@ class Div
 
   @override
   Div roundedLg() {
+    isBorderRadius = true;
     bordertlRadius = 8;
     brodertrRaidus = 8;
     borderblRadius = 8;
@@ -814,6 +828,7 @@ class Div
 
   @override
   Div roundedMd() {
+    isBorderRadius = true;
     bordertlRadius = 6;
     brodertrRaidus = 6;
     borderblRadius = 6;
@@ -823,6 +838,7 @@ class Div
 
   @override
   Div roundedSm() {
+    isBorderRadius = true;
     bordertlRadius = 2;
     brodertrRaidus = 2;
     borderblRadius = 2;
@@ -1589,6 +1605,10 @@ extension Divextension on Div {
   OnEvent event() {
     return OnEvent(build());
   }
+
+  TwTabs asTabs(TwTabsController twTabsController) {
+    return TwTabs(twTabsController: twTabsController, widget: this);
+  }
 }
 
 class InputPlaceholder extends Span {
@@ -1672,7 +1692,7 @@ class Input extends Span implements IOnChange<Input> {
   }
 }
 
-class Img implements IBuildWidget, IBaseSize<Img>, IBaseRounded<Img> {
+class Img implements IBuildWidget, IBaseSize<Img>, IRounded<Img> {
   String src;
   Img(this.src);
   @override
@@ -1693,7 +1713,15 @@ class Img implements IBuildWidget, IBaseSize<Img>, IBaseRounded<Img> {
                 width: width,
                 height: height,
                 fit: BoxFit.cover);
-    return isCircular == true ? ClipOval(child: img) : img;
+    return isBorderRadius == true
+        ? ClipRRect(
+            child: img,
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(bordertlRadius ?? 0),
+                topRight: Radius.circular(brodertrRaidus ?? 0),
+                bottomLeft: Radius.circular(borderblRadius ?? 0),
+                bottomRight: Radius.circular(borderblRadius ?? 0)))
+        : img;
   }
 
   @override
@@ -1714,12 +1742,104 @@ class Img implements IBuildWidget, IBaseSize<Img>, IBaseRounded<Img> {
     return this;
   }
 
-  bool? isCircular;
+  @override
+  double? borderblRadius;
+
+  @override
+  double? borderbrRadius;
+
+  @override
+  double? bordertlRadius;
+
+  @override
+  double? brodertrRaidus;
+
+  @override
+  bool? isBorderRadius;
+
+  @override
+  Img rounded({double? borderRadius = 4}) {
+    isBorderRadius = true;
+    bordertlRadius = borderRadius;
+    brodertrRaidus = borderRadius;
+    borderblRadius = borderRadius;
+    borderbrRadius = borderRadius;
+    return this;
+  }
 
   @override
   Img roundedFull() {
-    isCircular = true;
+    isBorderRadius = true;
+    bordertlRadius = 9999;
+    brodertrRaidus = 9999;
+    borderblRadius = 9999;
+    borderbrRadius = 9999;
     return this;
+  }
+
+  @override
+  Img roundedLg() {
+    isBorderRadius = true;
+    bordertlRadius = 8;
+    brodertrRaidus = 8;
+    borderblRadius = 8;
+    borderbrRadius = 8;
+    return this;
+  }
+
+  @override
+  Img roundedMd() {
+    isBorderRadius = true;
+    bordertlRadius = 6;
+    brodertrRaidus = 6;
+    borderblRadius = 6;
+    borderbrRadius = 6;
+    return this;
+  }
+
+  @override
+  Img roundedSm() {
+    isBorderRadius = true;
+    bordertlRadius = 2;
+    brodertrRaidus = 2;
+    borderblRadius = 2;
+    borderbrRadius = 2;
+    return this;
+  }
+}
+
+class TwTabsController extends ChangeNotifier {
+  int selectedIndex = 0;
+  changeIndex(int selectedIndex) {
+    this.selectedIndex = selectedIndex;
+    notifyListeners();
+  }
+}
+
+class TwTabs extends StatefulWidget {
+  TwTabsController twTabsController;
+  Div widget;
+  TwTabs({Key? key, required this.twTabsController, required this.widget})
+      : super(key: key);
+
+  @override
+  State<TwTabs> createState() => _TwTabsState();
+}
+
+class _TwTabsState extends State<TwTabs> {
+  @override
+  Widget build(BuildContext context) {
+    var w = widget.widget.widgets
+        .where((element) => element.runtimeType != SizedBox)
+        .toList();
+    widget.widget.widgets = List.generate(
+        w.length,
+        (index) => GestureDetector(
+              child: w[index],
+              onTap: () => widget.twTabsController.changeIndex(index),
+            )).toList();
+    widget.widget.gap(widget.widget.gridGapX ?? 0);
+    return widget.widget.build();
   }
 }
 

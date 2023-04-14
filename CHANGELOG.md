@@ -1,3 +1,5 @@
+## 0.1.0
+- fix bug and add tabs
 ## 0.0.9
 - fix flex layout center bug
 ## 0.0.8
