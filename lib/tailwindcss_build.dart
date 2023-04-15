@@ -1218,14 +1218,21 @@ abstract class ITextColor<W> {
   Color? textColor;
 }
 
-abstract class ITextWeight<W> {
+abstract class ITextWeightProperty<W> {
   FontWeight? textWeight;
+}
+
+abstract class ITextWeightMethod<W> {
   W fontNormal();
   W fontMedium();
   W fontSemibold();
   W fontBold();
   W fontWeight(FontWeight fontWeight);
+  W font({FontWeight? weight});
 }
+
+abstract class ITextWeight<W>
+    implements ITextWeightProperty<W>, ITextWeightMethod<W> {}
 
 abstract class ITextSize<W> {
   double? fontSize;
@@ -1568,21 +1575,17 @@ class Span
     lineHeight = (fontSize ?? 16) * 1.25;
     return this;
   }
+
+  @override
+  Span font({FontWeight? weight}) {
+    textWeight = weight ?? FontWeight.normal;
+    return this;
+  }
 }
 
 extension SpanExtension on Span {
   Div asDiv() {
     return Div([build()]);
-  }
-
-  Input asInput() {
-    InputPlaceholder? _inputPlaceholder;
-    if (runtimeType == InputPlaceholder) {
-      _inputPlaceholder = this as InputPlaceholder;
-    }
-    return Input(_inputPlaceholder?.input._value ?? "",
-        placeholder: _inputPlaceholder?.input._placeholder ?? "",
-        inputPlaceholder: _inputPlaceholder);
   }
 }
 
@@ -1612,8 +1615,7 @@ extension Divextension on Div {
 }
 
 class InputPlaceholder extends Span {
-  Input input;
-  InputPlaceholder(this.input) : super(input._placeholder);
+  InputPlaceholder(super.textStr);
 }
 
 abstract class IOnChange<W> {
@@ -1621,28 +1623,49 @@ abstract class IOnChange<W> {
   W onChange(void Function(String value)? onChange);
 }
 
-class Input extends Span implements IOnChange<Input> {
+abstract class ICaret<W> {
+  Color? caretColor;
+  W caret(Color? color);
+}
+
+class Input extends Span implements IOnChange<Input>, ICaret<Input> {
   late String _value;
   late String _placeholder;
   late TextEditingController _textEditingController;
+  late InputPlaceholder _inputPlaceholder;
   void Function(String value)? _onChange;
-  late InputPlaceholder? _inputPlaceholder;
+  late int _maxLines;
+  late Widget? _prefixIcon;
   Input(String value,
       {String placeholder = "",
+      int maxLines = 1,
+      Widget? prefixIcon,
       TextEditingController? controller,
-      InputPlaceholder? inputPlaceholder,
       void Function(String value)? onChange})
       : super(value) {
+    _maxLines = maxLines;
     _value = value;
     _placeholder = placeholder;
-    _inputPlaceholder = inputPlaceholder;
+    _inputPlaceholder = InputPlaceholder(placeholder);
     _textEditingController = controller ?? TextEditingController(text: value);
     _onChange = onChange;
+    _prefixIcon = prefixIcon;
     _textEditingController.addListener(() {
       if (_onChange != null) {
         _onChange!(_textEditingController.text);
       }
     });
+  }
+
+  Input placeholderText(
+      {Color? color = Colors.transparent, double? size = 16}) {
+    _inputPlaceholder.text(color: color, size: size);
+    return this;
+  }
+
+  Input placeholderFont({FontWeight? weight = FontWeight.normal}) {
+    _inputPlaceholder.fontWeight(weight ?? FontWeight.normal);
+    return this;
   }
 
   @override
@@ -1658,6 +1681,10 @@ class Input extends Span implements IOnChange<Input> {
 
   Widget build() {
     return TextField(
+        minLines: 1,
+        maxLines: _maxLines,
+        expands:false,
+        cursorColor: caretColor ?? Colors.black,
         cursorHeight: fontSize,
         controller: _textEditingController,
         style: TextStyle(
@@ -1669,26 +1696,28 @@ class Input extends Span implements IOnChange<Input> {
         textAlignVertical: TextAlignVertical.center,
         textAlign: TextAlign.left,
         decoration: InputDecoration(
-          hintText: _placeholder,
-          labelStyle: _inputPlaceholder == null
-              ? null
-              : TextStyle(
-                  overflow: _inputPlaceholder?.textOverflow,
-                  fontSize: _inputPlaceholder?.fontSize,
-                  fontWeight: _inputPlaceholder?.textWeight,
-                  color: _inputPlaceholder?.textColor,
-                  fontStyle: _inputPlaceholder?.fontStyle),
+          prefixIcon: _prefixIcon,
+          hintText: _inputPlaceholder.textStr,
           hintStyle: _inputPlaceholder == null
               ? null
               : TextStyle(
-                  overflow: _inputPlaceholder?.textOverflow,
-                  fontSize: _inputPlaceholder?.fontSize,
-                  fontWeight: _inputPlaceholder?.textWeight,
-                  color: _inputPlaceholder?.textColor,
-                  fontStyle: _inputPlaceholder?.fontStyle),
+                  overflow: _inputPlaceholder.textOverflow,
+                  fontSize: _inputPlaceholder.fontSize,
+                  fontWeight: _inputPlaceholder.textWeight,
+                  color: _inputPlaceholder.textColor,
+                  fontStyle: _inputPlaceholder.fontStyle),
           border: InputBorder.none,
           isDense: true,
         ));
+  }
+
+  @override
+  Color? caretColor;
+
+  @override
+  Input caret(Color? color) {
+    caretColor = color;
+    return this;
   }
 }
 
@@ -1854,9 +1883,9 @@ extension InputExtension on Input {
     return Div([build()]);
   }
 
-  InputPlaceholder placeholder() {
-    return InputPlaceholder(this);
-  }
+  // InputPlaceholder asPlaceholder() {
+  //   return InputPlaceholder(this);
+  // }
 }
 
 extension TextExtension on Text {

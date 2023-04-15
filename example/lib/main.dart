@@ -94,6 +94,18 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: ListView(
           children: [
+            Input("", placeholder: "请输入文字",prefixIcon: Icon(Icons.search))
+                  .caret(Colors.purple)
+                  .placeholderText(color: Colors.green)
+                  .placeholderFont(weight: FontWeight.bold)
+                  .text(color: Colors.red)
+                  .font()
+                  .asDiv()
+                  .roundedFull()
+                  .px(12)
+                  .py(8)
+                  .bg(Colors.black26)
+                  .build(),
             Div([
               Div([
                 Img("https://img.js.design/assets/smartFill/img292164da731af0.jpg")
@@ -327,10 +339,8 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Div([
                 Input("", placeholder: "enter your name")
-                    .placeholder()
                     .fontBold()
                     .text(size: 14, color: Colors.red.withOpacity(0.3))
-                    .asInput()
                     .text(size: 14, color: Colors.black)
                     .asDiv()
                     .roundedFull()

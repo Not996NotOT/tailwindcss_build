@@ -1,3 +1,5 @@
+## 0.1.1
+- fix Input bug and add placeholder
 ## 0.1.0
 - fix bug and add tabs
 ## 0.0.9
