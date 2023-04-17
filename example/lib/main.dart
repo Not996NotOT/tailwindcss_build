@@ -93,19 +93,48 @@ class _MyHomePageState extends State<MyHomePage> {
           title: Text(widget.title),
         ),
         body: ListView(
+          shrinkWrap: true,
           children: [
-            Input("", placeholder: "请输入文字",prefixIcon: Icon(Icons.search))
-                  .caret(Colors.purple)
-                  .placeholderText(color: Colors.green)
-                  .placeholderFont(weight: FontWeight.bold)
-                  .text(color: Colors.red)
-                  .font()
-                  .asDiv()
-                  .roundedFull()
-                  .px(12)
+            Div([
+              Div(List.generate(
+                  8,
+                  (index) => Container(color:Colors.blue,child: Span("123").build(),))).grid().gridCols(4).gap(16).build()
+            ]).build(),
+            Div([
+              Div(List.generate(30, (index) {
+                return Span("No.${index}")
+                    .asDiv()
+                    .flex()
+                    .itemsCenter()
+                    .justifyCenter()
+                    .px(9)
+                    .py(4)
+                    .bg(Colors.yellow)
+                    .roundedFull()
+                    .build();
+              }))
+                  .flex()
+                  .flexRow()
+                  .itemsCenter()
                   .py(8)
-                  .bg(Colors.black26)
-                  .build(),
+                  .gap(16)
+                  .overflowXAuto()
+                  .build()
+            ]).build(),
+            Input("",
+                    placeholder: "enter your name",
+                    prefixIcon: Icon(Icons.search))
+                .caret(Colors.purple)
+                .placeholderText(color: Colors.green)
+                .placeholderFont(weight: FontWeight.bold)
+                .text(color: Colors.red)
+                .font()
+                .asDiv()
+                .roundedFull()
+                .px(12)
+                .py(8)
+                .bg(Colors.black26)
+                .build(),
             Div([
               Div([
                 Img("https://img.js.design/assets/smartFill/img292164da731af0.jpg")
@@ -404,68 +433,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   .rounded()
                   .build(),
             ]).build(),
-            Span("Grid").fontBold().textLg().build(),
-            Div([
-              Span("Grid Template Columns").fontBold().textLg().build(),
-              Div([
-                Span("item1")
-                    .italic()
-                    .asDiv()
-                    .bg(Colors.red)
-                    .itemsCenter()
-                    .justifyCenter()
-                    .build(),
-                Span("item2")
-                    .italic()
-                    .asDiv()
-                    .bg(Colors.green)
-                    .itemsCenter()
-                    .justifyCenter()
-                    .build(),
-                Span("item3")
-                    .italic()
-                    .asDiv()
-                    .bg(Colors.blue)
-                    .itemsCenter()
-                    .justifyCenter()
-                    .build(),
-                Span("item4")
-                    .italic()
-                    .asDiv()
-                    .bg(Colors.pink)
-                    .itemsCenter()
-                    .justifyCenter()
-                    .build(),
-                Span("item1")
-                    .italic()
-                    .asDiv()
-                    .bg(Colors.red)
-                    .itemsCenter()
-                    .justifyCenter()
-                    .build(),
-                Span("item2")
-                    .italic()
-                    .asDiv()
-                    .bg(Colors.green)
-                    .itemsCenter()
-                    .justifyCenter()
-                    .build(),
-                Span("item3")
-                    .italic()
-                    .asDiv()
-                    .bg(Colors.blue)
-                    .itemsCenter()
-                    .justifyCenter()
-                    .build(),
-              ])
-                  .grid()
-                  .h(300)
-                  .gapX(20)
-                  .gapY(10)
-                  .gridCols(4)
-                  .aspect(3 / 6)
-                  .build()
-            ]).flex().flexCol().gap(12).build(),
             Span("Typography").fontBold().textLg().build(),
             Div([
               Span("Font Size").fontBold().textLg().build(),

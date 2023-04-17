@@ -220,6 +220,13 @@ abstract class ITopRightBottomLeft<W> {
   W left(double left);
 }
 
+abstract class IOverflow<W> {
+  bool? overflow_x_auto;
+  bool? overflow_y_auto;
+  W overflowXAuto();
+  W overflowYAuto();
+}
+
 class Div
     implements
         ISize<Div>,
@@ -237,6 +244,7 @@ class Div
         ICenter<Div>,
         IPosition<Div>,
         ITopRightBottomLeft<Div>,
+        IOverflow<Div>,
         IBuildWidget {
   List<Widget> widgets;
   Div(this.widgets);
@@ -490,16 +498,18 @@ class Div
     if (size > 0) {
       gridGapX = size;
       gridGapY = size;
-      List<Widget> widgetList = [];
-      for (var widget in widgets) {
-        widgetList.add(widget);
-        widgetList.add(SizedBox(
-          height: flexDirection == Axis.vertical ? size : 0,
-          width: flexDirection == Axis.horizontal ? size : 0,
-        ));
+      if (isFlex == true) {
+        List<Widget> widgetList = [];
+        for (var widget in widgets) {
+          widgetList.add(widget);
+          widgetList.add(SizedBox(
+            height: flexDirection == Axis.vertical ? size : 0,
+            width: flexDirection == Axis.horizontal ? size : 0,
+          ));
+        }
+        widgetList.removeLast();
+        widgets = widgetList;
       }
-      widgetList.removeLast();
-      widgets = widgetList;
     }
 
     return this;
@@ -563,6 +573,29 @@ class Div
     var isSingleWidget = widgets.length == 1;
     var isTextField = isSingleWidget && widgets[0].runtimeType == TextField;
 
+    var _containerChild = isFlex == true
+        ? _flex
+        : isGrid == true
+            ? GridView.count(
+                shrinkWrap: true,
+                childAspectRatio: _aspectRatio ?? 1 / 1,
+                crossAxisCount: gridColCount ?? 0,
+                crossAxisSpacing: gridGapX ?? 0,
+                mainAxisSpacing: gridGapY ?? 0,
+                children: widgets)
+            : (widgets.length == 1 && isFlex != true)
+                ? widgets[0]
+                : _flex;
+
+    var _scrollChild = (overflow_x_auto != null || overflow_y_auto != null)
+        ? SingleChildScrollView(
+            child: _containerChild,
+            physics: ClampingScrollPhysics(),
+            scrollDirection:
+                overflow_x_auto == true ? Axis.horizontal : Axis.vertical,
+          )
+        : _containerChild;
+
     var _container = Container(
         alignment: isTextField || isCenter == true
             ? Alignment.center
@@ -599,18 +632,7 @@ class Div
             )),
         padding: _padding,
         margin: _margin,
-        child: isFlex == true
-            ? _flex
-            : isGrid == true
-                ? GridView.count(
-                    childAspectRatio: _aspectRatio ?? 1 / 1,
-                    crossAxisCount: gridColCount ?? 0,
-                    crossAxisSpacing: gridGapX ?? 0,
-                    mainAxisSpacing: gridGapY ?? 0,
-                    children: widgets)
-                : (widgets.length == 1 && isFlex != true)
-                    ? widgets[0]
-                    : _flex);
+        child: _scrollChild);
 
     var _isPosition = isRelative == true
         ? Stack(children: [_container, ...positionedWidgets])
@@ -1212,6 +1234,24 @@ class Div
     positionTop = top;
     return this;
   }
+
+  @override
+  bool? overflow_x_auto;
+
+  @override
+  bool? overflow_y_auto;
+
+  @override
+  Div overflowXAuto() {
+    overflow_x_auto = true;
+    return this;
+  }
+
+  @override
+  Div overflowYAuto() {
+    overflow_y_auto = true;
+    return this;
+  }
 }
 
 abstract class ITextColor<W> {
@@ -1683,7 +1723,7 @@ class Input extends Span implements IOnChange<Input>, ICaret<Input> {
     return TextField(
         minLines: 1,
         maxLines: _maxLines,
-        expands:false,
+        expands: false,
         cursorColor: caretColor ?? Colors.black,
         cursorHeight: fontSize,
         controller: _textEditingController,

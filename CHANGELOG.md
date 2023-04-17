@@ -1,3 +1,9 @@
+## 0.1.4
+- fix grid autoheight and gap 
+## 0.1.3
+- add overflow-x and overflow-y
+## 0.1.2
+- fix bug
 ## 0.1.1
 - fix Input bug and add placeholder
 ## 0.1.0
