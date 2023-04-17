@@ -577,6 +577,9 @@ class Div
         ? _flex
         : isGrid == true
             ? GridView.count(
+                physics: overflow_y_auto == true
+                    ? null
+                    : NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 childAspectRatio: _aspectRatio ?? 1 / 1,
                 crossAxisCount: gridColCount ?? 0,
@@ -1299,7 +1302,6 @@ abstract class ITextStyle<W> {
 abstract class ILineClamp<W> {
   int? maxLines;
   bool? textWrap;
-  TextOverflow? textOverflow;
   W lineClamp(int maxLines);
   W lineClamp1();
   W lineClamp2();
@@ -1328,6 +1330,13 @@ abstract class ILineHeight<W> {
   W leadingLoose();
 }
 
+abstract class ITextOverflow<W> {
+  TextOverflow? textOverflow;
+  W truncate();
+  W textEllipsis();
+  W textClip();
+}
+
 class Span
     implements
         ITextColorAndSizeStyle<Span>,
@@ -1335,6 +1344,7 @@ class Span
         ITextStyle<Span>,
         ILineClamp<Span>,
         ILineHeight<Span>,
+        ITextOverflow<Span>,
         IBuildWidget {
   String textStr;
   Span(this.textStr);
@@ -1442,10 +1452,10 @@ class Span
 
   @override
   Widget build() {
-    return Text(
+    var _text = Text(
       textStr,
       softWrap: textWrap,
-      overflow: TextOverflow.ellipsis,
+      overflow: textOverflow,
       maxLines: maxLines,
       style: TextStyle(
           overflow: textOverflow,
@@ -1454,6 +1464,9 @@ class Span
           color: textColor,
           fontStyle: fontStyle),
     );
+    return (textWrap == true || textOverflow != null)
+        ? Flexible(child: _text)
+        : _text;
   }
 
   @override
@@ -1469,7 +1482,6 @@ class Span
   lineClamp(int lines) {
     maxLines = lines;
     textWrap = true;
-    textOverflow = TextOverflow.ellipsis;
     return this;
   }
 
@@ -1477,7 +1489,6 @@ class Span
   lineClamp1() {
     maxLines = 1;
     textWrap = true;
-    textOverflow = TextOverflow.ellipsis;
     return this;
   }
 
@@ -1485,7 +1496,6 @@ class Span
   lineClamp2() {
     maxLines = 2;
     textWrap = true;
-    textOverflow = TextOverflow.ellipsis;
     return this;
   }
 
@@ -1493,7 +1503,6 @@ class Span
   lineClamp3() {
     maxLines = 3;
     textWrap = true;
-    textOverflow = TextOverflow.ellipsis;
     return this;
   }
 
@@ -1501,7 +1510,6 @@ class Span
   lineClamp4() {
     maxLines = 4;
     textWrap = true;
-    textOverflow = TextOverflow.ellipsis;
     return this;
   }
 
@@ -1509,7 +1517,6 @@ class Span
   lineClamp5() {
     maxLines = 5;
     textWrap = true;
-    textOverflow = TextOverflow.ellipsis;
     return this;
   }
 
@@ -1517,7 +1524,6 @@ class Span
   lineClamp6() {
     maxLines = 6;
     textWrap = true;
-    textOverflow = TextOverflow.ellipsis;
     return this;
   }
 
@@ -1525,7 +1531,6 @@ class Span
   lineClampNone() {
     maxLines = 1;
     textWrap = false;
-    textOverflow = TextOverflow.visible;
     return this;
   }
 
@@ -1619,6 +1624,25 @@ class Span
   @override
   Span font({FontWeight? weight}) {
     textWeight = weight ?? FontWeight.normal;
+    return this;
+  }
+
+  @override
+  Span textClip() {
+    textOverflow = TextOverflow.clip;
+    return this;
+  }
+
+  @override
+  Span textEllipsis() {
+    textOverflow = TextOverflow.ellipsis;
+    return this;
+  }
+
+  @override
+  Span truncate() {
+    maxLines = 1;
+    textOverflow = TextOverflow.ellipsis;
     return this;
   }
 }
@@ -1782,7 +1806,8 @@ class Img implements IBuildWidget, IBaseSize<Img>, IRounded<Img> {
                 width: width,
                 height: height,
                 fit: BoxFit.cover);
-    return isBorderRadius == true
+
+    var _img = isBorderRadius == true
         ? ClipRRect(
             child: img,
             borderRadius: BorderRadius.only(
@@ -1791,6 +1816,7 @@ class Img implements IBuildWidget, IBaseSize<Img>, IRounded<Img> {
                 bottomLeft: Radius.circular(borderblRadius ?? 0),
                 bottomRight: Radius.circular(borderblRadius ?? 0)))
         : img;
+    return (height == null && width == null) ? Flexible(child: _img) : _img;
   }
 
   @override

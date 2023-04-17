@@ -97,9 +97,19 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Div([
               Div(List.generate(
-                  8,
-                  (index) => Container(color:Colors.blue,child: Span("123").build(),))).grid().gridCols(4).gap(16).build()
-            ]).build(),
+                      12,
+                      (index) => Div([
+                            Img("https://img.js.design/assets/smartFill/img292164da731af0.jpg").build(),
+                            Div([
+                              Span("zhangsan").build(),
+                              Span("zh13513251253253").truncate().build()
+                            ]).bg(Colors.blue).flex().flexRow().build()
+                          ]).flex().flexCol().gap(5).itemsStretch().build()))
+                  .grid()
+                  .gridCols(2)
+                  .gap(16)
+                  .build()
+            ]).overflowYAuto().build(),
             Div([
               Div(List.generate(30, (index) {
                 return Span("No.${index}")
