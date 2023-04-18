@@ -1,3 +1,9 @@
+## 0.1.6
+
+- add example
+- add input focus event
+- fix grid and flex bug
+
 ## 0.1.5
 
 - fix text overflow and wrap

@@ -454,8 +454,6 @@ class Div
   Div flex() {
     isFlex = true;
     flexDirection = Axis.horizontal;
-    flexMainAxisAlignment = MainAxisAlignment.start;
-    flexCrossAxisAlignment = CrossAxisAlignment.start;
     return this;
   }
 
@@ -463,8 +461,6 @@ class Div
   Div flexCol() {
     isFlex = true;
     flexDirection = Axis.vertical;
-    flexMainAxisAlignment = MainAxisAlignment.start;
-    flexCrossAxisAlignment = CrossAxisAlignment.start;
     return this;
   }
 
@@ -494,24 +490,23 @@ class Div
   }
 
   @override
-  Div gap(double size) {
-    if (size > 0) {
-      gridGapX = size;
-      gridGapY = size;
+  Div gap(double gapSize) {
+    if (gapSize > 0) {
+      gridGapX = gapSize;
+      gridGapY = gapSize;
       if (isFlex == true) {
         List<Widget> widgetList = [];
         for (var widget in widgets) {
           widgetList.add(widget);
           widgetList.add(SizedBox(
-            height: flexDirection == Axis.vertical ? size : 0,
-            width: flexDirection == Axis.horizontal ? size : 0,
+            height: flexDirection == Axis.vertical ? gapSize : 0,
+            width: flexDirection == Axis.horizontal ? gapSize : 0,
           ));
         }
         widgetList.removeLast();
         widgets = widgetList;
       }
     }
-
     return this;
   }
 
@@ -573,19 +568,21 @@ class Div
     var isSingleWidget = widgets.length == 1;
     var isTextField = isSingleWidget && widgets[0].runtimeType == TextField;
 
+    var _aspectRatioGrid = GridView.count(
+        physics:
+            overflow_y_auto == true ? null : NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        childAspectRatio: _aspectRatio ?? 1 / 1,
+        crossAxisCount: gridColCount ?? 2,
+        crossAxisSpacing: gridGapX ?? 0,
+        mainAxisSpacing: gridGapY ?? 0,
+        children: widgets);
+
     var _containerChild = isFlex == true
         ? _flex
         : isGrid == true
-            ? GridView.count(
-                physics: overflow_y_auto == true
-                    ? null
-                    : NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                childAspectRatio: _aspectRatio ?? 1 / 1,
-                crossAxisCount: gridColCount ?? 0,
-                crossAxisSpacing: gridGapX ?? 0,
-                mainAxisSpacing: gridGapY ?? 0,
-                children: widgets)
+            ? _aspectRatioGrid
+            //: _flex;
             : (widgets.length == 1 && isFlex != true)
                 ? widgets[0]
                 : _flex;
@@ -600,11 +597,10 @@ class Div
         : _containerChild;
 
     var _container = Container(
-        alignment: isTextField || isCenter == true
+        alignment: (flexMainAxisAlignment == MainAxisAlignment.center &&
+                flexCrossAxisAlignment == CrossAxisAlignment.center)
             ? Alignment.center
-            : isFlex == true
-                ? null
-                : Alignment.topLeft,
+            : null,
         height: _height,
         width: _width,
         constraints: _boxConstraints,
@@ -1464,7 +1460,7 @@ class Span
           color: textColor,
           fontStyle: fontStyle),
     );
-    return (textWrap == true || textOverflow != null)
+    return (textWrap == true && textOverflow != null)
         ? Flexible(child: _text)
         : _text;
   }
@@ -1698,14 +1694,17 @@ class Input extends Span implements IOnChange<Input>, ICaret<Input> {
   late TextEditingController _textEditingController;
   late InputPlaceholder _inputPlaceholder;
   void Function(String value)? _onChange;
+  void Function(FocusNode focusNode)? _onFocus;
   late int _maxLines;
   late Widget? _prefixIcon;
+  FocusNode? _focusNode;
   Input(String value,
       {String placeholder = "",
       int maxLines = 1,
       Widget? prefixIcon,
       TextEditingController? controller,
-      void Function(String value)? onChange})
+      void Function(String value)? onChange,
+      void Function(FocusNode focusNode)? onFocus})
       : super(value) {
     _maxLines = maxLines;
     _value = value;
@@ -1714,6 +1713,13 @@ class Input extends Span implements IOnChange<Input>, ICaret<Input> {
     _textEditingController = controller ?? TextEditingController(text: value);
     _onChange = onChange;
     _prefixIcon = prefixIcon;
+    _focusNode = FocusNode();
+    _onFocus = onFocus;
+    _focusNode?.addListener(() {
+      if (_onFocus != null) {
+        _onFocus!(_focusNode!);
+      }
+    });
     _textEditingController.addListener(() {
       if (_onChange != null) {
         _onChange!(_textEditingController.text);
@@ -1745,6 +1751,7 @@ class Input extends Span implements IOnChange<Input>, ICaret<Input> {
 
   Widget build() {
     return TextField(
+        focusNode: _focusNode,
         minLines: 1,
         maxLines: _maxLines,
         expands: false,
