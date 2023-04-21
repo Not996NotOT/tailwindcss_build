@@ -59,11 +59,16 @@ abstract class IBackgroundColor<W> {
   W bg(Color color);
 }
 
-abstract class IFlex<W> {
+abstract class IFlex1<W> {
+  bool? isFlex1;
+  W flex1();
+}
+
+abstract class IFlex<W> extends IFlex1<W> {
   Axis? flexDirection;
   MainAxisAlignment? flexMainAxisAlignment;
   CrossAxisAlignment? flexCrossAxisAlignment;
-  bool? isFlex1;
+
   bool? isFlex;
   W gap(double size);
   W flex();
@@ -80,7 +85,6 @@ abstract class IFlex<W> {
   W justifyBetween();
   W justifyAround();
   W justifyEvenly();
-  W flex1();
 }
 
 abstract class IBorder<W> {
@@ -1792,7 +1796,7 @@ class Input extends Span implements IOnChange<Input>, ICaret<Input> {
   }
 }
 
-class Img implements IBuildWidget, IBaseSize<Img>, IRounded<Img> {
+class Img implements IBuildWidget, IBaseSize<Img>, IRounded<Img>, IFlex1<Img> {
   String src;
   Img(this.src);
   @override
@@ -1823,7 +1827,7 @@ class Img implements IBuildWidget, IBaseSize<Img>, IRounded<Img> {
                 bottomLeft: Radius.circular(borderblRadius ?? 0),
                 bottomRight: Radius.circular(borderblRadius ?? 0)))
         : img;
-    return (height == null && width == null) ? Flexible(child: _img) : _img;
+    return isFlex1 == true ? Flexible(child: _img) : _img;
   }
 
   @override
@@ -1906,6 +1910,15 @@ class Img implements IBuildWidget, IBaseSize<Img>, IRounded<Img> {
     brodertrRaidus = 2;
     borderblRadius = 2;
     borderbrRadius = 2;
+    return this;
+  }
+
+  @override
+  bool? isFlex1;
+
+  @override
+  Img flex1() {
+    isFlex1 = true;
     return this;
   }
 }

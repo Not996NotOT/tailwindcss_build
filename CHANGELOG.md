@@ -1,3 +1,5 @@
+## 0.1.7
+- fix img flex1 bug
 ## 0.1.6
 
 - add example
