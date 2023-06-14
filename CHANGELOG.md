@@ -1,3 +1,7 @@
+## 0.1.9
+- add single rounded 
+## 0.1.8
+- fix boder property error
 ## 0.1.7
 - fix img flex1 bug
 ## 0.1.6

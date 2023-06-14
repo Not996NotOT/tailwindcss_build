@@ -94,6 +94,9 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Div([
+        Div([
+           Span("test").asDiv().px(8).py(4).bg(Colors.blue).roundedBL(borderRadius: 4).roundedTR(borderRadius: 4).build(),
+        ]).flex().flexRow().p(4).build(),
         Span("Input").text2xl().fontBold().build(),
         Input("", onFocus: (focusNode) {
           print("focus");
@@ -193,6 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 4,
                 (index) => Span("item${index}")
                     .asDiv()
+                    .boder()
                     .h(index == 3 ? 400 : 100)
                     .bg(Colors.red)
                     .p(16)

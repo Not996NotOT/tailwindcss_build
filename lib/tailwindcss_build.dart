@@ -96,11 +96,11 @@ abstract class IBorder<W> {
   Color? borderRightColor;
   double? borderBottomWidth;
   Color? borderBotttomColor;
-  W boder({double width = 0, Color color = Colors.transparent});
-  W boderT({double width = 0, Color color = Colors.transparent});
-  W boderB({double width = 0, Color color = Colors.transparent});
-  W boderL({double width = 0, Color color = Colors.transparent});
-  W boderR({double width = 0, Color color = Colors.transparent});
+  W border({double width = 0, Color color = Colors.transparent});
+  W borderT({double width = 0, Color color = Colors.transparent});
+  W borderB({double width = 0, Color color = Colors.transparent});
+  W borderL({double width = 0, Color color = Colors.transparent});
+  W borderR({double width = 0, Color color = Colors.transparent});
 }
 
 abstract class ITextAlign<W> {
@@ -141,16 +141,28 @@ abstract class IBaseRounded<W> {
   W roundedFull();
 }
 
-abstract class IRounded<W> extends IBaseRounded<W> {
+abstract class IBaseRoundedAll<W> {
+  W roundedSm();
+  W rounded({double? borderRadius});
+  W roundedMd();
+  W roundedLg();
+}
+
+abstract class IRounded<W> implements IBaseRounded<W>, IBaseRoundedAll<W> {
   bool? isBorderRadius;
   double? bordertlRadius;
   double? brodertrRaidus;
   double? borderblRadius;
   double? borderbrRadius;
-  W roundedSm();
-  W rounded({double? borderRadius});
-  W roundedMd();
-  W roundedLg();
+
+  W roundedT({double? borderRadius});
+  W roundedR({double? borderRadius});
+  W roundedB({double? borderRadius});
+  W roundedL({double? borderRadius});
+  W roundedTL({double? borderRadius});
+  W roundedTR({double? borderRadius});
+  W roundedBR({double? borderRadius});
+  W roundedBL({double? borderRadius});
 }
 
 abstract class IGradientColor<W> {
@@ -614,10 +626,18 @@ class Div
             color: _gradient == null ? bgColor : null,
             borderRadius: isBorderRadius == true
                 ? BorderRadius.only(
-                    topLeft: Radius.circular(bordertlRadius ?? 0),
-                    topRight: Radius.circular(brodertrRaidus ?? 0),
-                    bottomLeft: Radius.circular(borderblRadius ?? 0),
-                    bottomRight: Radius.circular(borderblRadius ?? 0))
+                    topLeft: bordertlRadius == null
+                        ? Radius.zero
+                        : Radius.circular(bordertlRadius ?? 0),
+                    topRight: brodertrRaidus == null
+                        ? Radius.zero
+                        : Radius.circular(brodertrRaidus ?? 0),
+                    bottomLeft: borderblRadius == null
+                        ? Radius.zero
+                        : Radius.circular(borderblRadius ?? 0),
+                    bottomRight: borderbrRadius == null
+                        ? Radius.zero
+                        : Radius.circular(borderbrRadius ?? 0))
                 : null,
             border: Border(
               top: BorderSide(
@@ -895,6 +915,7 @@ class Div
   @override
   double? borderTopWidth;
 
+  @Deprecated("Property error,please use 'border'.")
   @override
   Div boder({double width = 0, Color color = Colors.transparent}) {
     borderBottomWidth = width;
@@ -908,6 +929,7 @@ class Div
     return this;
   }
 
+  @Deprecated("Property error,please use 'borderB'.")
   @override
   Div boderB({double width = 0, Color color = Colors.transparent}) {
     borderBottomWidth = width;
@@ -915,6 +937,7 @@ class Div
     return this;
   }
 
+  @Deprecated("Property error,please use 'borderL'.")
   @override
   Div boderL({double width = 0, Color color = Colors.transparent}) {
     borderLeftWidth = width;
@@ -922,6 +945,7 @@ class Div
     return this;
   }
 
+  @Deprecated("Property error,please use 'borderR'.")
   @override
   Div boderR({double width = 0, Color color = Colors.transparent}) {
     borderRightWidth = width;
@@ -929,8 +953,50 @@ class Div
     return this;
   }
 
+  @Deprecated("Property error,please use 'borderT'.")
   @override
   Div boderT({double width = 0, Color color = Colors.transparent}) {
+    borderTopWidth = width;
+    borderTopColor = color;
+    return this;
+  }
+
+  @override
+  Div border({double width = 0, Color color = Colors.transparent}) {
+    borderBottomWidth = width;
+    borderBotttomColor = color;
+    borderLeftWidth = width;
+    borderLeftColor = color;
+    borderRightWidth = width;
+    borderRightColor = color;
+    borderTopWidth = width;
+    borderTopColor = color;
+    return this;
+  }
+
+  @override
+  Div borderB({double width = 0, Color color = Colors.transparent}) {
+    borderBottomWidth = width;
+    borderBotttomColor = color;
+    return this;
+  }
+
+  @override
+  Div borderL({double width = 0, Color color = Colors.transparent}) {
+    borderLeftWidth = width;
+    borderLeftColor = color;
+    return this;
+  }
+
+  @override
+  Div borderR({double width = 0, Color color = Colors.transparent}) {
+    borderRightWidth = width;
+    borderRightColor = color;
+    return this;
+  }
+
+  @override
+  Div borderT({double width = 0, Color color = Colors.transparent}) {
     borderTopWidth = width;
     borderTopColor = color;
     return this;
@@ -1253,6 +1319,66 @@ class Div
   @override
   Div overflowYAuto() {
     overflow_y_auto = true;
+    return this;
+  }
+
+  @override
+  Div roundedB({double? borderRadius = 4}) {
+    isBorderRadius = true;
+    borderblRadius = borderRadius;
+    borderbrRadius = borderRadius;
+    return this;
+  }
+
+  @override
+  Div roundedBL({double? borderRadius = 4}) {
+    isBorderRadius = true;
+    borderblRadius = borderRadius;
+    return this;
+  }
+
+  @override
+  Div roundedBR({double? borderRadius = 4}) {
+    isBorderRadius = true;
+    borderbrRadius = borderRadius;
+    return this;
+  }
+
+  @override
+  Div roundedL({double? borderRadius = 4}) {
+    isBorderRadius = true;
+    bordertlRadius = borderRadius;
+    borderblRadius = borderRadius;
+    return this;
+  }
+
+  @override
+  Div roundedR({double? borderRadius = 4}) {
+    isBorderRadius = true;
+    brodertrRaidus = borderRadius;
+    borderbrRadius = borderRadius;
+    return this;
+  }
+
+  @override
+  Div roundedT({double? borderRadius = 4}) {
+    isBorderRadius = true;
+    bordertlRadius = borderRadius;
+    brodertrRaidus = borderRadius;
+    return this;
+  }
+
+  @override
+  Div roundedTL({double? borderRadius = 4}) {
+    isBorderRadius = true;
+    bordertlRadius = borderRadius;
+    return this;
+  }
+
+  @override
+  Div roundedTR({double? borderRadius}) {
+    isBorderRadius = true;
+    brodertrRaidus = borderRadius;
     return this;
   }
 }
@@ -1796,7 +1922,13 @@ class Input extends Span implements IOnChange<Input>, ICaret<Input> {
   }
 }
 
-class Img implements IBuildWidget, IBaseSize<Img>, IRounded<Img>, IFlex1<Img> {
+class Img
+    implements
+        IBuildWidget,
+        IBaseSize<Img>,
+        IBaseRoundedAll<Img>,
+        IBaseRounded<Img>,
+        IFlex1<Img> {
   String src;
   Img(this.src);
   @override
@@ -1822,10 +1954,18 @@ class Img implements IBuildWidget, IBaseSize<Img>, IRounded<Img>, IFlex1<Img> {
         ? ClipRRect(
             child: img,
             borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(bordertlRadius ?? 0),
-                topRight: Radius.circular(brodertrRaidus ?? 0),
-                bottomLeft: Radius.circular(borderblRadius ?? 0),
-                bottomRight: Radius.circular(borderblRadius ?? 0)))
+                topLeft: bordertlRadius == null
+                    ? Radius.zero
+                    : Radius.circular(bordertlRadius ?? 0),
+                topRight: brodertrRaidus == null
+                    ? Radius.zero
+                    : Radius.circular(brodertrRaidus ?? 0),
+                bottomLeft: borderblRadius == null
+                    ? Radius.zero
+                    : Radius.circular(borderblRadius ?? 0),
+                bottomRight: borderbrRadius == null
+                    ? Radius.zero
+                    : Radius.circular(borderbrRadius ?? 0)))
         : img;
     return isFlex1 == true ? Flexible(child: _img) : _img;
   }
