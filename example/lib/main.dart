@@ -71,6 +71,7 @@ class GradientText extends StatelessWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String value = "";
   TwTabsController twTabsController = TwTabsController();
   var selectedIndex = 0;
   var tabList = ["A", "B", "C"];
@@ -95,7 +96,44 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Div([
         Div([
-           Span("test").asDiv().px(8).py(4).bg(Colors.blue).roundedBL(borderRadius: 4).roundedTR(borderRadius: 4).build(),
+          Select(
+                  List.generate(
+                      20,
+                      (index) => Option(
+                          label: Span("hellohellohellohellohellohellohellohello${index}").textClip()
+                              .text(
+                                  color: index == int.tryParse(value)
+                                      ? Colors.pink
+                                      : Colors.blue,
+                                  size: 16)
+                              .build(),
+                          value: index.toString())),
+                  value: value,
+                  placeholder: "choose hello",
+                  itemColor: Colors.yellow)
+              .placeholderText(color: Colors.blue, size: 16)
+              .onChange((v) {
+                setState(() {
+                  value = v;
+                });
+              })
+              .asDiv()
+              .py(8)
+              .px(16)
+              .bg(Colors.black12)
+              .rounded()
+              .w(wFull)
+              .build(),
+        ]).flex().flexRow().build(),
+        Div([
+          Span("test")
+              .asDiv()
+              .px(8)
+              .py(4)
+              .bg(Colors.blue)
+              .roundedBL(borderRadius: 4)
+              .roundedTR(borderRadius: 4)
+              .build(),
         ]).flex().flexRow().p(4).build(),
         Span("Input").text2xl().fontBold().build(),
         Input("", onFocus: (focusNode) {

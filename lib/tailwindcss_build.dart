@@ -1922,6 +1922,59 @@ class Input extends Span implements IOnChange<Input>, ICaret<Input> {
   }
 }
 
+class Option {
+  Widget? label;
+  String value;
+  Option({this.label, this.value = ""});
+}
+
+class Select extends Input {
+  List<Option> options;
+  Color? itemColor;
+  double itemHeight;
+  Select(this.options,
+      {String value = "",
+      String placeholder = "",
+      this.itemColor,
+      this.itemHeight = kMinInteractiveDimension})
+      : super(value, placeholder: placeholder);
+
+  @override
+  Select onChange(void Function(String value)? onChange) {
+    _onChange = onChange;
+    return this;
+  }
+
+  @override
+  Widget build() {
+    return Container(
+      child: DropdownButtonHideUnderline(
+          child: DropdownButton(
+              iconSize: _inputPlaceholder.fontSize != null
+                  ? _inputPlaceholder.fontSize! + 10
+                  : 24,
+              itemHeight: itemHeight >= kMinInteractiveDimension
+                  ? itemHeight
+                  : kMinInteractiveDimension,
+              isDense: true,
+              value: _value == "" ? null : _value,
+              hint: _inputPlaceholder.build(),
+              dropdownColor: itemColor,
+              items: options
+                  .map((e) => DropdownMenuItem(
+                        child: e.label ?? Container(),
+                        value: e.value,
+                      ))
+                  .toList(),
+              onChanged: (value) {
+                if (_onChange != null && value != null) {
+                  _onChange!(value);
+                }
+              })),
+    );
+  }
+}
+
 class Img
     implements
         IBuildWidget,
