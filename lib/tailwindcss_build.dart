@@ -2,6 +2,13 @@ library tailwindcss_build;
 
 import 'package:flutter/material.dart';
 
+// 导入 Tailwind CSS 工具类扩展
+export 'aspect_ratio.dart';
+export 'border_radius.dart';
+export 'colors.dart';
+export 'height.dart';
+export 'width.dart';
+
 abstract class IBuildWidget {
   Widget build();
 }
