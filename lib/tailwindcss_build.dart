@@ -14,8 +14,10 @@ export 'align_items.dart' hide CrossAxisAlignmentExt;
 export 'align_self.dart';
 // Layout utilities
 export 'aspect_ratio.dart';
+export 'backdrop_filter.dart';
 // Backgrounds
 export 'background_attachment.dart';
+export 'background_blend_mode.dart';
 export 'background_clip.dart';
 export 'background_color.dart';
 export 'background_image.dart';
@@ -23,21 +25,21 @@ export 'background_origin.dart';
 export 'background_position.dart';
 export 'background_repeat.dart';
 export 'background_size.dart';
+export 'border_color.dart';
 // Borders
 export 'border_radius.dart';
-export 'border_width.dart';
-export 'border_color.dart';
 export 'border_style.dart';
-export 'outline_width.dart';
-export 'outline_color.dart';
-export 'outline_style.dart';
-export 'outline_offset.dart';
+export 'border_width.dart';
+// Effects
+export 'box_shadow.dart';
 export 'box_utilities.dart';
 export 'break_utilities.dart';
 // Colors
 export 'colors.dart';
 export 'columns.dart';
 export 'display.dart';
+// Filters
+export 'filter.dart';
 export 'flex.dart';
 export 'flex_basis.dart';
 export 'flex_direction.dart';
@@ -60,6 +62,10 @@ export 'grid_template_columns.dart';
 export 'grid_template_rows.dart';
 // Sizing
 export 'height.dart';
+// Interactivity
+export 'interactivity.dart';
+export 'svg_utilities.dart';
+export 'accessibility_utilities.dart';
 export 'isolation.dart';
 export 'justify_content.dart' hide MainAxisAlignmentExt;
 export 'justify_items.dart';
@@ -68,19 +74,33 @@ export 'letter_spacing.dart';
 export 'line_height.dart';
 // Spacing
 export 'margin.dart';
+export 'mask_utilities.dart';
+export 'mix_blend_mode.dart';
 export 'object_utilities.dart';
+export 'opacity.dart';
 export 'order.dart';
+export 'outline_color.dart';
+export 'outline_offset.dart';
+export 'outline_style.dart';
+export 'outline_width.dart';
 export 'overflow.dart';
 export 'padding.dart';
 export 'place_content.dart';
 export 'place_items.dart';
 export 'place_self.dart';
 export 'position.dart';
+// Tables
+export 'table_utilities.dart';
 export 'text_align.dart';
 export 'text_color.dart';
 export 'text_decoration.dart';
 export 'text_overflow.dart';
+export 'text_shadow.dart';
 export 'text_transform.dart';
-export 'visibility.dart';
+// Transforms
+export 'transforms.dart';
+// Transitions & Animation
+export 'transition_animation.dart';
+export 'visibility.dart' hide OpacityExt;
 export 'width.dart';
 export 'z_index.dart';
