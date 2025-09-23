@@ -452,3 +452,5 @@ class _CustomEllipsisText extends StatelessWidget {
     return child;
   }
 }
+
+
