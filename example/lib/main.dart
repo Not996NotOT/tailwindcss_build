@@ -3,6 +3,7 @@ import 'package:tailwindcss_build/tailwindcss_build.dart';
 
 import 'aspect_ratio_demo.dart';
 import 'border_radius_demo.dart';
+import 'chat/chat_list_demo.dart';
 import 'colors_demo.dart';
 import 'height_demo.dart';
 import 'width_demo.dart';
@@ -38,7 +39,7 @@ class DemoHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 6,
+          length: 7,
       child: Scaffold(
         appBar: AppBar(
           title: const Text('Tailwind CSS Build 演示'),
@@ -52,6 +53,7 @@ class DemoHomePage extends StatelessWidget {
               Tab(icon: Icon(Icons.width_full), text: '宽度'),
               Tab(icon: Icon(Icons.height), text: '高度'),
               Tab(icon: Icon(Icons.palette), text: '颜色'),
+              Tab(icon: Icon(Icons.chat), text: '聊天列表'),
             ],
           ),
         ),
@@ -63,6 +65,7 @@ class DemoHomePage extends StatelessWidget {
             WidthDemo(),
             HeightDemo(),
             ColorsDemo(),
+            ChatListDemo(),
           ],
         ),
       ),
@@ -175,10 +178,16 @@ class HomeDemo extends StatelessWidget {
                 color: Colors.purple,
               ),
               _buildFeatureCard(
-                icon: Icons.extension,
-                title: '更多',
-                description: '持续更新\n更多工具类',
+                icon: Icons.chat,
+                title: '聊天列表',
+                description: '完整示例\n语法糖应用',
                 color: Colors.teal,
+              ),
+              _buildFeatureCard(
+                icon: Icons.code,
+                title: '语法糖演示',
+                description: '新语法\n简化调用',
+                color: Colors.indigo,
               ),
             ],
           ),

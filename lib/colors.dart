@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 /// Tailwind CSS Color system for Flutter
 /// Complete color palette matching TailwindCSS v4.1 specifications
 /// Each color includes 11 steps: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950
+/// 
+/// 这是颜色系统的核心数据源，BaseColorsExt 基于这个类构建
+/// This is the core data source for the color system, BaseColorsExt is built on top of this class
 
 class TwColors {
   

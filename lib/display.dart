@@ -19,8 +19,8 @@ extension DisplayExt on Widget {
   Widget inline() => IntrinsicWidth(child: this);
   
   /// flex -> display: flex;
-  /// 在Flutter中使用Flex容器
-  Widget flex() => Flex(
+  /// 在Flutter中使用Flex容器 (重命名为displayFlex避免冲突)
+  Widget displayFlex() => Flex(
     direction: Axis.horizontal,
     children: [this],
   );

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'flex_container.dart';
+
 /// Tailwind CSS Flex utilities for Flutter
 /// Utilities for controlling how flex items both grow and shrink.
 extension FlexExt on Widget {
@@ -36,6 +38,24 @@ extension FlexExt on Widget {
     fit: fit,
     child: this,
   );
+
+  // ===== TailwindCSS flex容器方法 =====
+  
+  /// flex -> display: flex;
+  /// 创建一个flex容器，支持链式调用items-center、justify-center等
+  FlexContainer flex() {
+    return FlexContainer(child: this);
+  }
+
+  /// flex-col -> flex-direction: column;
+  FlexContainer flexCol() {
+    return FlexContainer(child: this, direction: Axis.vertical);
+  }
+
+  /// flex-row -> flex-direction: row;
+  FlexContainer flexRow() {
+    return FlexContainer(child: this, direction: Axis.horizontal);
+  }
 }
 
 /// 用于创建Flex布局容器的扩展

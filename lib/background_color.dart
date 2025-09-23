@@ -2,33 +2,25 @@ import 'package:flutter/material.dart';
 
 /// Tailwind CSS Background Color utilities for Flutter
 /// Utilities for controlling an element's background color.
+/// 现在使用 BaseColorsExt 来获取统一的颜色系统
 extension BackgroundColorExt on Widget {
   
   // === Basic background color utilities ===
   
   /// bg-inherit -> background-color: inherit;
-  Widget bgInherit() => this;
+  Widget bgInherit() => _applyBackgroundColor(Colors.transparent);
   
   /// bg-current -> background-color: currentColor;
-  Widget bgCurrent() => this;
+  Widget bgCurrent() => _applyBackgroundColor(Colors.transparent);
   
   /// bg-transparent -> background-color: transparent;
-  Widget bgTransparent() => Container(
-    color: Colors.transparent,
-    child: this,
-  );
+  Widget bgTransparent() => _applyBackgroundColor(Colors.transparent);
   
-  /// bg-black -> background-color: #000;
-  Widget bgBlack() => Container(
-    color: Colors.black,
-    child: this,
-  );
+  /// bg-black -> background-color: rgb(0 0 0);
+  Widget bgBlack() => _applyBackgroundColor(Colors.black);
   
-  /// bg-white -> background-color: #fff;
-  Widget bgWhite() => Container(
-    color: Colors.white,
-    child: this,
-  );
+  /// bg-white -> background-color: rgb(255 255 255);
+  Widget bgWhite() => _applyBackgroundColor(Colors.white);
 
   // === Red color scale ===
   
@@ -273,6 +265,49 @@ extension BackgroundColorExt on Widget {
       );
     },
   );
+
+  // === 新增：基于BaseColorsExt的统一颜色方法 ===
+  
+  /// 自定义背景颜色
+  Widget backgroundColor(Color color) => _applyBackgroundColor(color);
+  
+  /// 动态背景颜色（根据颜色名称和变体）
+  Widget bgDynamic(String colorName, int variant) {
+    final color = (this as dynamic).getColor?.call(colorName, variant) ?? 
+                   _getStaticColor(colorName, variant);
+    return _applyBackgroundColor(color);
+  }
+  
+  /// 主题背景颜色
+  Widget bgTheme(String colorName, int variant) {
+    final color = (this as dynamic).getThemeColor?.call(colorName, variant) ?? 
+                   _getStaticColor(colorName, variant);
+    return _applyBackgroundColor(color);
+  }
+
+  // === Helper methods ===
+  
+  /// 应用背景颜色的通用方法
+  Widget _applyBackgroundColor(Color color) {
+    // 直接使用提供的颜色，简化实现
+    final finalColor = color;
+    
+    return Container(
+      color: finalColor,
+      child: this,
+    );
+  }
+  
+  /// 静态颜色获取方法（当widget没有混入BaseColorsExt时使用）
+  Color _getStaticColor(String colorName, int variant) {
+    switch ('$colorName-$variant') {
+      case 'red-500': return const Color(0xFFEF4444);
+      case 'blue-500': return const Color(0xFF3B82F6);
+      case 'green-500': return const Color(0xFF22C55E);
+      case 'gray-500': return const Color(0xFF6B7280);
+      default: return const Color(0xFF6B7280); // 默认灰色
+    }
+  }
 }
 
 /// 背景颜色工具类

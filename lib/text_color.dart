@@ -2,21 +2,25 @@ import 'package:flutter/material.dart';
 
 /// Tailwind CSS Text Color utilities for Flutter
 /// Utilities for controlling the text color of an element.
+/// 现在使用 BaseColorsExt 来获取统一的颜色系统
 extension TextColorExt on Widget {
   
   // === Basic colors ===
   
-  /// text-black -> color: #000000;
-  Widget textBlack() => DefaultTextStyle.merge(
-        style: const TextStyle(color: Colors.black),
-        child: this,
-      );
+  /// text-inherit -> color: inherit;
+  Widget textInherit() => _applyTextColor((this as dynamic).inheritColor ?? Colors.transparent);
   
-  /// text-white -> color: #ffffff;
-  Widget textWhite() => DefaultTextStyle.merge(
-        style: const TextStyle(color: Colors.white),
-        child: this,
-      );
+  /// text-current -> color: currentColor;
+  Widget textCurrent() => _applyTextColor((this as dynamic).currentColor ?? Colors.transparent);
+  
+  /// text-transparent -> color: transparent;
+  Widget textTransparent() => _applyTextColor((this as dynamic).transparentColor ?? Colors.transparent);
+  
+  /// text-black -> color: rgb(0 0 0);
+  Widget textBlack() => _applyTextColor((this as dynamic).blackColor ?? Colors.black);
+  
+  /// text-white -> color: rgb(255 255 255);
+  Widget textWhite() => _applyTextColor((this as dynamic).whiteColor ?? Colors.white);
 
   // === Gray colors ===
   
@@ -556,12 +560,6 @@ extension TextColorExt on Widget {
 
   // === Custom colors ===
   
-  /// Custom text color
-  Widget textColor(Color color) => DefaultTextStyle.merge(
-        style: TextStyle(color: color),
-        child: this,
-      );
-  
   /// Custom text color with opacity
   Widget textColorWithOpacity(Color color, double opacity) => DefaultTextStyle.merge(
         style: TextStyle(color: color.withOpacity(opacity)),
@@ -611,4 +609,47 @@ extension TextColorExt on Widget {
           );
         },
       );
+
+  // === 新增：基于BaseColorsExt的统一颜色方法 ===
+  
+  /// 自定义文字颜色
+  Widget textColor(Color color) => _applyTextColor(color);
+  
+  /// 动态文字颜色（根据颜色名称和变体）
+  Widget textDynamic(String colorName, int variant) {
+    final color = (this as dynamic).getColor?.call(colorName, variant) ?? 
+                   _getStaticColor(colorName, variant);
+    return _applyTextColor(color);
+  }
+  
+  /// 主题文字颜色
+  Widget textTheme(String colorName, int variant) {
+    final color = (this as dynamic).getThemeColor?.call(colorName, variant) ?? 
+                   _getStaticColor(colorName, variant);
+    return _applyTextColor(color);
+  }
+
+  // === Helper methods ===
+  
+  /// 应用文字颜色的通用方法
+  Widget _applyTextColor(Color color) {
+    // 如果widget混入了BaseColorsExt，应用自定义颜色转换
+    final finalColor = (this as dynamic).applyColorCustomization?.call(color) ?? color;
+    
+    return DefaultTextStyle.merge(
+      style: TextStyle(color: finalColor),
+      child: this,
+    );
+  }
+  
+  /// 静态颜色获取方法（当widget没有混入BaseColorsExt时使用）
+  Color _getStaticColor(String colorName, int variant) {
+    switch ('$colorName-$variant') {
+      case 'red-500': return const Color(0xFFEF4444);
+      case 'blue-500': return const Color(0xFF3B82F6);
+      case 'green-500': return const Color(0xFF22C55E);
+      case 'gray-500': return const Color(0xFF6B7280);
+      default: return const Color(0xFF6B7280); // 默认灰色
+    }
+  }
 }
