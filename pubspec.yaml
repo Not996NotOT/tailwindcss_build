@@ -7,7 +7,7 @@ issue_tracker: https://github.com/Not996NotOT/tailwindcss_build/issues
 documentation: https://pub.dev/documentation/tailwindcss_build/latest/
 
 environment:
-  sdk: '>=2.19.5 <3.0.0'
+  sdk: '>=2.19.5 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:

@@ -1,3 +1,42 @@
+## 0.3.0 - 2025-09-23
+
+### 📚 Package Enhancement & Documentation Overhaul
+
+#### ✨ Package Improvements
+- **Version Update**: Upgraded to v0.3.0 with complete package metadata
+- **MIT License**: Updated to MIT License with 2024 copyright
+- **Package Info**: Added comprehensive package description, repository links, and documentation URLs
+- **Pub.dev Ready**: Fully prepared for pub.dev publication with all required metadata
+
+#### 📖 Documentation Complete Rewrite
+- **English README**: Comprehensive English documentation with complete feature overview
+- **Chinese README**: Full simplified Chinese documentation (README_CN.md)
+- **Language Navigation**: Added language switching links between English and Chinese versions
+- **Feature Coverage**: Detailed documentation of all 80+ utility modules including:
+  - Layout & Positioning (Flexbox, Grid, Spacing, Sizing)
+  - Typography (Font Family, Size, Weight, Color, Alignment)
+  - Colors & Backgrounds (Complete Tailwind color palette)
+  - Borders & Effects (Width, Color, Style, Radius, Shadow)
+  - Filters & Transforms (Blur, Brightness, Rotate, Scale)
+  - Advanced Features (Widget Extensions, Accessibility, SVG)
+
+#### 🔧 Technical Enhancements
+- **Installation Guide**: Clear installation instructions with version 0.3.0
+- **Usage Examples**: Comprehensive code examples for all major features
+- **Best Practices**: Guidelines for responsive design and accessibility
+- **Advanced Configuration**: Custom themes and color blind support examples
+
+#### 🌈 Complete Feature Documentation
+- **80+ Utility Modules**: Full documentation of all available utilities
+- **Widget Extensions**: asRow(), asColumn(), asStack(), asWrap() conversion methods
+- **Accessibility**: WCAG compliance, color blind support, high contrast themes
+- **SVG Support**: Complete SVG styling and manipulation capabilities
+- **Responsive Design**: Mobile and desktop adaptive utilities
+
+This version represents a major milestone with production-ready documentation and package configuration, making it fully ready for public distribution and community adoption.
+
+---
+
 ## 0.2.8 - 2025-09-23
 
 ### 🎨 SVG & Accessibility 最终完善
