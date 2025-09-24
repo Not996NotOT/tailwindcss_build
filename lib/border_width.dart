@@ -31,8 +31,11 @@ extension BorderWidthExt on Widget {
   );
   
   /// border (default 1px) -> border-width: 1px;
-  Widget border() => Container(
-    decoration: BoxDecoration(border: Border.all(width: 1)),
+  Widget border({Color? color, double width = 1.0}) => Container(
+    decoration: BoxDecoration(border: Border.all(
+      color: color ?? Colors.black,
+      width: width,
+    )),
     child: this,
   );
 

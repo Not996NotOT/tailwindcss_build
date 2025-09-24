@@ -366,4 +366,151 @@ extension TextToContainerExt on Text {
       child: this,
     );
   }
+
+  // ===== Margin 边距扩展 =====
+  
+  /// 自定义margin
+  Container margin(EdgeInsetsGeometry margin) {
+    return Container(margin: margin, child: this);
+  }
+
+  /// 所有方向margin
+  Container m(double value) {
+    return Container(margin: EdgeInsets.all(value), child: this);
+  }
+
+  /// 水平margin
+  Container mx(double value) {
+    return Container(margin: EdgeInsets.symmetric(horizontal: value), child: this);
+  }
+
+  /// 垂直margin
+  Container my(double value) {
+    return Container(margin: EdgeInsets.symmetric(vertical: value), child: this);
+  }
+
+  /// 顶部margin
+  Container mt(double value) {
+    return Container(margin: EdgeInsets.only(top: value), child: this);
+  }
+
+  /// 右侧margin
+  Container mr(double value) {
+    return Container(margin: EdgeInsets.only(right: value), child: this);
+  }
+
+  /// 底部margin
+  Container mb(double value) {
+    return Container(margin: EdgeInsets.only(bottom: value), child: this);
+  }
+
+  /// 左侧margin
+  Container ml(double value) {
+    return Container(margin: EdgeInsets.only(left: value), child: this);
+  }
+
+  // ===== Tailwind标准数值 margin =====
+  Container m0() => m(0);
+  Container m1() => m(4);
+  Container m2() => m(8);
+  Container m3() => m(12);
+  Container m4() => m(16);
+  Container m5() => m(20);
+  Container m6() => m(24);
+  Container m8() => m(32);
+  Container m10() => m(40);
+  Container m12() => m(48);
+  Container m16() => m(64);
+  Container m20() => m(80);
+  Container m24() => m(96);
+  Container m32() => m(128);
+
+  // margin-top shortcuts
+  Container mt0() => mt(0);
+  Container mt1() => mt(4);
+  Container mt2() => mt(8);
+  Container mt3() => mt(12);
+  Container mt4() => mt(16);
+  Container mt5() => mt(20);
+  Container mt6() => mt(24);
+  Container mt8() => mt(32);
+
+  // margin-bottom shortcuts
+  Container mb0() => mb(0);
+  Container mb1() => mb(4);
+  Container mb2() => mb(8);
+  Container mb3() => mb(12);
+  Container mb4() => mb(16);
+  Container mb5() => mb(20);
+  Container mb6() => mb(24);
+  Container mb8() => mb(32);
+
+  // margin-left shortcuts
+  Container ml0() => ml(0);
+  Container ml1() => ml(4);
+  Container ml2() => ml(8);
+  Container ml3() => ml(12);
+  Container ml4() => ml(16);
+  Container ml5() => ml(20);
+  Container ml6() => ml(24);
+  Container ml8() => ml(32);
+
+  // margin-right shortcuts
+  Container mr0() => mr(0);
+  Container mr1() => mr(4);
+  Container mr2() => mr(8);
+  Container mr3() => mr(12);
+  Container mr4() => mr(16);
+  Container mr5() => mr(20);
+  Container mr6() => mr(24);
+  Container mr8() => mr(32);
+
+  // ===== Padding 内边距扩展 =====
+  
+  /// 自定义padding
+  Container padding(EdgeInsetsGeometry padding) {
+    return Container(padding: padding, child: this);
+  }
+
+  /// 所有方向padding
+  Container p(double value) {
+    return Container(padding: EdgeInsets.all(value), child: this);
+  }
+
+  /// 水平padding
+  Container px(double value) {
+    return Container(padding: EdgeInsets.symmetric(horizontal: value), child: this);
+  }
+
+  /// 垂直padding
+  Container py(double value) {
+    return Container(padding: EdgeInsets.symmetric(vertical: value), child: this);
+  }
+
+  /// 顶部padding
+  Container pt(double value) {
+    return Container(padding: EdgeInsets.only(top: value), child: this);
+  }
+
+  /// 右侧padding
+  Container pr(double value) {
+    return Container(padding: EdgeInsets.only(right: value), child: this);
+  }
+
+  /// 底部padding
+  Container pb(double value) {
+    return Container(padding: EdgeInsets.only(bottom: value), child: this);
+  }
+
+  /// 左侧padding
+  Container pl(double value) {
+    return Container(padding: EdgeInsets.only(left: value), child: this);
+  }
+
+  // ===== 颜色扩展 (为了链式调用) =====
+  
+  /// 自定义颜色
+  Text color(Color color) {
+    return textColor(color);
+  }
 }

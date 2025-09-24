@@ -9,6 +9,47 @@ extension ListWidgetExt on List<Widget> {
   Row asRow({
     MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
     CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
+    MainAxisSize mainAxisSize = MainAxisSize.min,
+    TextDirection? textDirection,
+    VerticalDirection verticalDirection = VerticalDirection.down,
+    TextBaseline? textBaseline,
+  }) {
+    return Row(
+      mainAxisAlignment: mainAxisAlignment,
+      crossAxisAlignment: crossAxisAlignment,
+      mainAxisSize: mainAxisSize,
+      textDirection: textDirection,
+      verticalDirection: verticalDirection,
+      textBaseline: textBaseline,
+      children: this,
+    );
+  }
+
+  /// 转换为安全的 Row，自动处理约束问题
+  Widget asSafeRow({
+    MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
+    CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
+    TextDirection? textDirection,
+    VerticalDirection verticalDirection = VerticalDirection.down,
+    TextBaseline? textBaseline,
+  }) {
+    return IntrinsicWidth(
+      child: Row(
+        mainAxisAlignment: mainAxisAlignment,
+        crossAxisAlignment: crossAxisAlignment,
+        mainAxisSize: MainAxisSize.min,
+        textDirection: textDirection,
+        verticalDirection: verticalDirection,
+        textBaseline: textBaseline,
+        children: this,
+      ),
+    );
+  }
+
+  /// 转换为弹性布局的 Row，适用于有界约束
+  Row asFlexRow({
+    MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
+    CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
     MainAxisSize mainAxisSize = MainAxisSize.max,
     TextDirection? textDirection,
     VerticalDirection verticalDirection = VerticalDirection.down,
@@ -112,6 +153,54 @@ extension ListWidgetExt on List<Widget> {
       addRepaintBoundaries: addRepaintBoundaries,
       addSemanticIndexes: addSemanticIndexes,
       children: this,
+    );
+  }
+
+  /// 转换为 SingleChildScrollView，支持滚动
+  SingleChildScrollView asScrollView({
+    Axis scrollDirection = Axis.vertical,
+    bool reverse = false,
+    EdgeInsetsGeometry? padding,
+    bool? primary,
+    ScrollPhysics? physics,
+    ScrollController? controller,
+    MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
+    CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
+  }) {
+    return SingleChildScrollView(
+      scrollDirection: scrollDirection,
+      reverse: reverse,
+      padding: padding,
+      primary: primary,
+      physics: physics,
+      controller: controller,
+      child: scrollDirection == Axis.vertical 
+        ? Column(
+            mainAxisAlignment: mainAxisAlignment,
+            crossAxisAlignment: crossAxisAlignment,
+            children: this,
+          )
+        : Row(
+            mainAxisAlignment: mainAxisAlignment,
+            crossAxisAlignment: crossAxisAlignment,
+            children: this,
+          ),
+    );
+  }
+
+  /// 转换为可滚动的 Column
+  SingleChildScrollView asScrollableColumn({
+    EdgeInsetsGeometry? padding,
+    MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
+    CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
+  }) {
+    return SingleChildScrollView(
+      padding: padding,
+      child: Column(
+        mainAxisAlignment: mainAxisAlignment,
+        crossAxisAlignment: crossAxisAlignment,
+        children: this,
+      ),
     );
   }
 }
@@ -325,6 +414,132 @@ extension WidgetConversionExt on Widget {
       child: this,
     );
   }
+
+  /// 转换为 SingleChildScrollView，支持滚动
+  SingleChildScrollView asScrollView({
+    Axis scrollDirection = Axis.vertical,
+    bool reverse = false,
+    EdgeInsetsGeometry? padding,
+    bool? primary,
+    ScrollPhysics? physics,
+    ScrollController? controller,
+  }) {
+    return SingleChildScrollView(
+      scrollDirection: scrollDirection,
+      reverse: reverse,
+      padding: padding,
+      primary: primary,
+      physics: physics,
+      controller: controller,
+      child: this,
+    );
+  }
+
+  /// 转换为 ScrollView，更简洁的调用
+  SingleChildScrollView asScrollable({
+    Axis scrollDirection = Axis.vertical,
+    EdgeInsetsGeometry? padding,
+  }) {
+    return SingleChildScrollView(
+      scrollDirection: scrollDirection,
+      padding: padding,
+      child: this,
+    );
+  }
+
+  // ===== 快捷样式方法 =====
+  
+  /// 设置背景色 - 简化调用
+  Container bg(Color color) {
+    return Container(
+      color: color,
+      child: this,
+    );
+  }
+
+  // 注意：rounded 方法已在 border_radius.dart 中定义，这里不重复定义
+
+  /// 设置复杂的 BoxDecoration，支持链式调用
+  Container boxDecoration({
+    Color? color,
+    DecorationImage? image,
+    Border? border,
+    BorderRadius? borderRadius,
+    List<BoxShadow>? boxShadow,
+    Gradient? gradient,
+    BlendMode? backgroundBlendMode,
+    BoxShape shape = BoxShape.rectangle,
+  }) {
+    return Container(
+      decoration: BoxDecoration(
+        color: color,
+        image: image,
+        border: border,
+        borderRadius: borderRadius,
+        boxShadow: boxShadow,
+        gradient: gradient,
+        backgroundBlendMode: backgroundBlendMode,
+        shape: shape,
+      ),
+      child: this,
+    );
+  }
+
+  // 注意：shadow 相关方法已在 box_shadow.dart 中定义，这里不重复定义
+
+  /// 动态圆角 - 根据位置智能设置
+  Container smartBorderRadius({
+    required bool isFirst,
+    required bool isLast,
+    double radius = 12.0,
+    Axis direction = Axis.vertical,
+  }) {
+    BorderRadius borderRadius;
+    
+    if (direction == Axis.vertical) {
+      borderRadius = BorderRadius.only(
+        topLeft: isFirst ? Radius.circular(radius) : Radius.zero,
+        topRight: isFirst ? Radius.circular(radius) : Radius.zero,
+        bottomLeft: isLast ? Radius.circular(radius) : Radius.zero,
+        bottomRight: isLast ? Radius.circular(radius) : Radius.zero,
+      );
+    } else {
+      borderRadius = BorderRadius.only(
+        topLeft: isFirst ? Radius.circular(radius) : Radius.zero,
+        bottomLeft: isFirst ? Radius.circular(radius) : Radius.zero,
+        topRight: isLast ? Radius.circular(radius) : Radius.zero,
+        bottomRight: isLast ? Radius.circular(radius) : Radius.zero,
+      );
+    }
+    
+    return Container(
+      decoration: BoxDecoration(borderRadius: borderRadius),
+      child: this,
+    );
+  }
+
+  /// 条件圆角 - 可控制每个角
+  Container conditionalBorderRadius({
+    bool topLeft = false,
+    bool topRight = false,
+    bool bottomLeft = false,
+    bool bottomRight = false,
+    double radius = 12.0,
+  }) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topLeft: topLeft ? Radius.circular(radius) : Radius.zero,
+          topRight: topRight ? Radius.circular(radius) : Radius.zero,
+          bottomLeft: bottomLeft ? Radius.circular(radius) : Radius.zero,
+          bottomRight: bottomRight ? Radius.circular(radius) : Radius.zero,
+        ),
+      ),
+      child: this,
+    );
+  }
+
+  // 注意：border, margin 和 padding 方法已在专门的扩展文件中定义，这里不重复定义
 }
 
 /// Icon 专用转换扩展

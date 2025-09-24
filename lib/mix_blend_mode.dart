@@ -132,8 +132,8 @@ extension MixBlendModeExt on Widget {
 
   // === Shorthand utilities (简化版本，常用的组合) ===
   
-  /// mb(BlendMode mode) -> mix-blend-mode: <mode>; (最简洁的自定义混合模式)
-  Widget mb(BlendMode mode, {Color? color}) => ColorFiltered(
+  /// mixBlend(BlendMode mode) -> mix-blend-mode: <mode>; (最简洁的自定义混合模式)
+  Widget mixBlend(BlendMode mode, {Color? color}) => ColorFiltered(
     colorFilter: ColorFilter.mode(color ?? Colors.transparent, mode),
     child: this,
   );

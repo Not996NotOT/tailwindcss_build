@@ -23,7 +23,7 @@ class WidgetConversionDemo extends StatelessWidget with BaseColorsExt {
             Icon(Icons.star, color: Colors.amber).icon2Xl(),
             Text('评分').textGray800().fontSemibold().ml2(),
             Text('4.8').textBlue600().fontBold().ml1(),
-          ].asRow().p4().bgWhite().rounded().shadow().m2(),
+          ].asRow().p4().bgWhite().roundedMd().shadow().m2(),
         ),
 
         // 2. asColumn() 演示  
@@ -33,7 +33,7 @@ class WidgetConversionDemo extends StatelessWidget with BaseColorsExt {
             Icon(Icons.person).iconBlue500().icon3Xl(),
             Text('用户名').textGray800().fontSemibold().mt2(),
             Text('在线状态').textGreen500().textSm().mt1(),
-          ].asColumn().p4().bgWhite().rounded().shadow().m2(),
+          ].asColumn().p4().bgWhite().roundedMd().shadow().m2(),
         ),
 
         // 3. asContainer() 演示
@@ -84,7 +84,7 @@ class WidgetConversionDemo extends StatelessWidget with BaseColorsExt {
           ].asWrap(
             spacing: 8,
             runSpacing: 8,
-          ).p4().bgGray100().rounded().m2(),
+          ).p4().bgGray100().roundedMd().m2(),
         ),
 
         // 6. asExpanded() 和 asFlexible() 演示
@@ -105,7 +105,7 @@ class WidgetConversionDemo extends StatelessWidget with BaseColorsExt {
                 .bgRed400()
                 .h12()
                 .asExpanded(flex: 1),
-          ].asRow().p4().bgWhite().rounded().shadow().m2(),
+          ].asRow().p4().bgWhite().roundedMd().shadow().m2(),
         ),
 
         // 7. asCenter() 和 asAlign() 演示
@@ -118,7 +118,7 @@ class WidgetConversionDemo extends StatelessWidget with BaseColorsExt {
                 .asCenter()
                 .bgCustom(Colors.yellow.shade100)
                 .p4()
-                .rounded()
+                .roundedMd()
                 .mb2(),
             Text('右对齐文本')
                 .textGreen600()
@@ -126,8 +126,8 @@ class WidgetConversionDemo extends StatelessWidget with BaseColorsExt {
                 .asAlign(alignment: Alignment.centerRight)
                 .bgCustom(Colors.blue.shade100)
                 .p4()
-                .rounded(),
-          ].asColumn().p4().bgWhite().rounded().shadow().m2(),
+                .roundedMd(),
+          ].asColumn().p4().bgWhite().roundedMd().shadow().m2(),
         ),
 
         // 8. 复杂组合演示
@@ -186,7 +186,7 @@ class WidgetConversionDemo extends StatelessWidget with BaseColorsExt {
                   .roundedLg()
                   .asExpanded(),
             ].asRow().mt4(),
-          ].asColumn().p4().bgWhite().rounded().shadow().m2(),
+          ].asColumn().p4().bgWhite().roundedMd().shadow().m2(),
         ),
 
       ].asListView()  // 🔥 使用 .asListView() 创建滚动列表 🔥

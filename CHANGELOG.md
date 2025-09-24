@@ -1,41 +1,41 @@
-## [2025-09-23] - 完整聊天应用示例
+## [2025-09-23] - Complete Chat Application Example
 
-### ✨ 新增功能
-- 📱 完整的聊天应用示例，展示 TailwindCSS Build 在实际项目中的应用
-- 🏠 实现了首页、聊天列表、聊天详情、朋友圈动态、个人中心五大核心页面
-- 🎨 支持深色/浅色主题模式切换，提供更好的用户体验
-- 🌍 完整的国际化支持（中文/英文），展示多语言应用开发
-- 📊 使用 MobX 进行状态管理，遵循最佳实践模式
-- 💬 实现聊天功能：消息发送、接收、时间显示、用户状态等
-- 📸 朋友圈功能：动态发布、点赞、评论、图片展示等
-- ⚙️ 个人设置页面：主题切换、语言选择、用户信息编辑等
-- 🔍 聊天搜索功能和未读消息计数
-- 🎯 完全使用 TailwindCSS Build 语法构建，展示链式调用的强大功能
+### ✨ New Features
+- 📱 Complete chat application example showcasing TailwindCSS Build in real-world projects
+- 🏠 Implemented five core pages: homepage, chat list, chat details, moments feed, and profile center
+- 🎨 Support for dark/light theme mode switching, providing better user experience
+- 🌍 Complete internationalization support (Chinese/English), demonstrating multilingual app development
+- 📊 State management using MobX, following best practice patterns
+- 💬 Chat functionality: message sending, receiving, time display, user status, etc.
+- 📸 Moments feature: post publishing, likes, comments, image display, etc.
+- ⚙️ Personal settings page: theme switching, language selection, user info editing, etc.
+- 🔍 Chat search functionality and unread message counter
+- 🎯 Built entirely with TailwindCSS Build syntax, showcasing the power of method chaining
 
-### 🚀 技术特色
-- 📈 大幅提升了项目的实用性和演示效果
-- 🏗️ 展示了 TailwindCSS Build 在复杂应用中的架构模式
-- 📱 验证了工具库在移动端适配的能力
-- 🎨 演示了深度链式调用和组件组合的最佳实践
-- 🔧 使用 MobX 实现响应式状态管理
-- 🌐 完整的国际化解决方案
+### 🚀 Technical Highlights
+- 📈 Significantly enhanced project practicality and demonstration effects
+- 🏗️ Showcased TailwindCSS Build architectural patterns in complex applications
+- 📱 Validated the toolkit's mobile adaptation capabilities
+- 🎨 Demonstrated best practices for deep method chaining and component composition
+- 🔧 Implemented responsive state management using MobX
+- 🌐 Complete internationalization solution
 
-### 📂 项目结构
+### 📂 Project Structure
 ```
 lib/chat/
-├── models/          # 数据模型
-├── stores/          # MobX状态管理
-├── pages/           # 页面组件
-├── l10n/            # 国际化
-└── utils/           # 工具类
+├── models/          # Data models
+├── stores/          # MobX state management
+├── pages/           # Page components
+├── l10n/            # Internationalization
+└── utils/           # Utility classes
 ```
 
-### 📱 页面功能
-- **HomePage**: 底部导航栏 + 页面路由
-- **ChatListPage**: 聊天列表 + 搜索 + 未读计数
-- **ChatDetailPage**: 消息气泡 + 输入框 + 实时发送
-- **MomentsPage**: 动态列表 + 点赞评论 + 图片展示
-- **ProfilePage**: 个人信息 + 设置页面 + 主题语言切换
+### 📱 Page Features
+- **HomePage**: Bottom navigation bar + page routing
+- **ChatListPage**: Chat list + search + unread counter
+- **ChatDetailPage**: Message bubbles + input box + real-time sending
+- **MomentsPage**: Dynamic list + likes/comments + image display
+- **ProfilePage**: Personal info + settings page + theme/language switching
 
 ---
 
@@ -80,51 +80,51 @@ This version represents a major milestone with production-ready documentation an
 
 ## 0.2.8 - 2025-09-23
 
-### 🎨 SVG & Accessibility 最终完善
+### 🎨 SVG & Accessibility Final Enhancement
 
-#### ✨ 新增功能模块
-- **svg-utilities**: 完整的SVG支持系统，包含fill、stroke、stroke-width等SVG样式控制
-- **accessibility-utilities**: 完整的无障碍性系统，包含forced-color-adjust和高级无障碍功能
+#### ✨ New Feature Modules
+- **svg-utilities**: Complete SVG support system including fill, stroke, stroke-width and other SVG style controls
+- **accessibility-utilities**: Complete accessibility system including forced-color-adjust and advanced accessibility features
 
-#### 🔧 SVG 功能特色
-- **填充颜色**: fill-none, fill-inherit, fill-current, fill-transparent 等基础控制
-- **完整色系**: 支持所有Tailwind颜色系统，从slate到rose的所有颜色和色阶
-- **描边颜色**: stroke-none, stroke-inherit, stroke-current 等描边颜色控制
-- **描边宽度**: stroke-0, stroke-1, stroke-2 描边宽度控制
-- **SVG组件**: svgIcon(), svgNetwork() SVG图像加载和颜色控制
-- **构建器模式**: SvgBuilder 类用于快速构建复杂SVG组件
+#### 🔧 SVG Feature Highlights
+- **Fill Colors**: Basic controls like fill-none, fill-inherit, fill-current, fill-transparent
+- **Complete Color System**: Support for all Tailwind color systems, from slate to rose with all color scales
+- **Stroke Colors**: Stroke color controls like stroke-none, stroke-inherit, stroke-current
+- **Stroke Width**: Stroke width controls like stroke-0, stroke-1, stroke-2
+- **SVG Components**: svgIcon(), svgNetwork() for SVG image loading and color control
+- **Builder Pattern**: SvgBuilder class for quickly building complex SVG components
 
-#### ♿ Accessibility 功能特色
-- **强制颜色**: forced-color-adjust-auto, forced-color-adjust-none 强制颜色调整
-- **高对比度**: highContrast() 高对比度模式支持
-- **暗色适配**: darkModeAdaptive() 暗色模式自动适配
-- **动画控制**: reduceMotion() 减少动画（尊重系统设置）
-- **屏幕阅读器**: screenReaderFriendly() 屏幕阅读器友好
-- **焦点增强**: enhancedFocus() 焦点可见性增强
-- **色盲友好**: colorBlindFriendly() 色盲用户友好设计
-- **字体自适应**: adaptiveFontSize() 字体大小自适应
-- **触摸目标**: minTouchTarget() 最小触摸目标尺寸确保
-- **键盘导航**: keyboardNavigable() 键盘导航支持
-- **动态字体**: dynamicFont() 动态字体支持
-- **系统主题**: systemThemeAdaptive() 系统主题适配
+#### ♿ Accessibility Feature Highlights
+- **Forced Colors**: forced-color-adjust-auto, forced-color-adjust-none for forced color adjustment
+- **High Contrast**: highContrast() high contrast mode support
+- **Dark Mode Adaptation**: darkModeAdaptive() automatic dark mode adaptation
+- **Animation Control**: reduceMotion() to reduce animations (respecting system settings)
+- **Screen Reader**: screenReaderFriendly() screen reader friendly
+- **Enhanced Focus**: enhancedFocus() enhanced focus visibility
+- **Color Blind Friendly**: colorBlindFriendly() color blind user friendly design
+- **Adaptive Font Size**: adaptiveFontSize() adaptive font sizing
+- **Touch Target**: minTouchTarget() ensuring minimum touch target size
+- **Keyboard Navigation**: keyboardNavigable() keyboard navigation support
+- **Dynamic Font**: dynamicFont() dynamic font support
+- **System Theme**: systemThemeAdaptive() system theme adaptation
 
-#### 🎨 无障碍辅助工具
-- **对比度检查**: AccessibilityChecker.calculateContrastRatio() 颜色对比度计算
-- **WCAG标准**: meetsWCAGAA(), meetsWCAGAAA() WCAG无障碍标准检查
-- **色盲滤镜**: 支持protanopia(红色盲)、deuteranopia(绿色盲)、tritanopia(蓝色盲)、monochromacy(全色盲)四种色盲类型滤镜
-- **无障碍主题**: AccessibilityTheme.highContrastTheme(), largeTextTheme() 预设无障碍主题
+#### 🎨 Accessibility Helper Tools
+- **Contrast Check**: AccessibilityChecker.calculateContrastRatio() for color contrast calculation
+- **WCAG Standards**: meetsWCAGAA(), meetsWCAGAAA() WCAG accessibility standard checks
+- **Color Blind Filters**: Support for protanopia(red), deuteranopia(green), tritanopia(blue), monochromacy(complete) color blindness filters
+- **Accessibility Themes**: AccessibilityTheme.highContrastTheme(), largeTextTheme() preset accessibility themes
 
-#### 📚 API 示例
+#### 📚 API Examples
 ```dart
-// SVG 样式控制
-Widget().fillRed500()           // 红色填充
-Widget().fillTransparent()      // 透明填充  
-Widget().strokeBlue500()        // 蓝色描边
-Widget().stroke2()              // 2px描边宽度
+// SVG Style Control
+Widget().fillRed500()           // Red fill
+Widget().fillTransparent()      // Transparent fill  
+Widget().strokeBlue500()        // Blue stroke
+Widget().stroke2()              // 2px stroke width
 Widget().customFill(Colors.purple)
 Widget().customStrokeWidth(3.0)
 
-// SVG 组件
+// SVG Components
 Widget().svgIcon(
   assetPath: 'assets/icon.svg',
   width: 24,
@@ -132,7 +132,7 @@ Widget().svgIcon(
   color: Colors.blue,
 )
 
-// SVG 构建器
+// SVG Builder
 SvgBuilder()
   .asset('assets/icon.svg')
   .size(32, 32)
@@ -140,7 +140,7 @@ SvgBuilder()
   .fit(BoxFit.contain)
   .build()
 
-// 无障碍功能
+// Accessibility Features
 Widget().highContrast(
   enabled: true,
   foregroundColor: Colors.black,
@@ -161,7 +161,7 @@ Widget().minTouchTarget(
   minHeight: 44.0,
 )
 
-// 无障碍检查
+// Accessibility Checks
 final ratio = AccessibilityChecker.calculateContrastRatio(
   Colors.black, 
   Colors.white,
@@ -171,15 +171,15 @@ final isAccessible = AccessibilityChecker.meetsWCAGAA(
   Colors.white,
 );
 
-// 无障碍主题
+// Accessibility Themes
 MaterialApp(
   theme: AccessibilityTheme.highContrastTheme(),
-  // 或
+  // or
   theme: AccessibilityTheme.largeTextTheme(scaleFactor: 1.5),
 )
 ```
 
-🎉 **重要里程碑**: 这个版本完成了Tailwind CSS在Flutter中的完整实现，包含所有主要功能模块：
+🎉 **Important Milestone**: This version completes the full implementation of Tailwind CSS in Flutter, including all major feature modules:
 - ✅ Layout (Flexbox, Grid, Spacing, Sizing)
 - ✅ Typography (Font, Text, Colors)  
 - ✅ Backgrounds (Colors, Images, Gradients)
@@ -195,155 +195,155 @@ MaterialApp(
 
 ## 0.2.7 - 2025-09-23
 
-### 🎯 Interactivity 交互系统完善
+### 🎯 Interactivity System Enhancement
 
-#### ✨ 新增功能模块
-- **interactivity**: 完整的CSS交互系统，包含cursor、pointer-events、user-select、scroll-behavior等交互功能
+#### ✨ New Feature Modules
+- **interactivity**: Complete CSS interaction system including cursor, pointer-events, user-select, scroll-behavior and other interactive features
 
-#### 🔧 Interactivity 功能特色
-- **重点颜色**: accent-color 支持auto、inherit、current、transparent等颜色控制
-- **外观样式**: appearance-none, appearance-auto 控制原生样式
-- **光标颜色**: caret-color 完整的光标颜色控制
-- **颜色方案**: color-scheme 支持normal、light、dark、light-dark模式
-- **光标样式**: 完整的cursor支持，包含pointer、text、move、help、resize等30+光标类型
-- **字段大小**: field-sizing-content, field-sizing-fixed 字段尺寸控制
-- **指针事件**: pointer-events-none, pointer-events-auto 指针事件控制
-- **尺寸调整**: resize-none, resize, resize-x, resize-y 尺寸调整控制
-- **滚动行为**: scroll-auto, scroll-smooth 滚动行为控制
-- **滚动边距**: scroll-margin 0-64完整边距控制，支持方向性控制
-- **滚动内边距**: scroll-padding 0-64完整内边距控制，支持方向性控制
-- **滚动对齐**: snap-start, snap-end, snap-center, snap-align-none 滚动对齐
-- **滚动停止**: snap-normal, snap-always 滚动停止控制
-- **滚动类型**: snap-x, snap-y, snap-both, snap-mandatory, snap-proximity 滚动类型
-- **触摸动作**: touch-auto到touch-manipulation 完整触摸动作控制
-- **用户选择**: select-none, select-text, select-all, select-auto 文本选择控制
-- **性能优化**: will-change-auto到will-change-transform 性能优化提示
+#### 🔧 Interactivity Feature Highlights
+- **Accent Color**: accent-color support for auto, inherit, current, transparent and other color controls
+- **Appearance**: appearance-none, appearance-auto for native style control
+- **Caret Color**: Complete caret-color control
+- **Color Scheme**: color-scheme support for normal, light, dark, light-dark modes
+- **Cursor Styles**: Complete cursor support including pointer, text, move, help, resize and 30+ cursor types
+- **Field Sizing**: field-sizing-content, field-sizing-fixed for field size control
+- **Pointer Events**: pointer-events-none, pointer-events-auto for pointer event control
+- **Resize**: resize-none, resize, resize-x, resize-y for resize control
+- **Scroll Behavior**: scroll-auto, scroll-smooth for scroll behavior control
+- **Scroll Margin**: scroll-margin 0-64 complete margin control with directional support
+- **Scroll Padding**: scroll-padding 0-64 complete padding control with directional support
+- **Scroll Snap**: snap-start, snap-end, snap-center, snap-align-none for scroll alignment
+- **Snap Stop**: snap-normal, snap-always for scroll stop control
+- **Snap Type**: snap-x, snap-y, snap-both, snap-mandatory, snap-proximity for scroll types
+- **Touch Action**: touch-auto to touch-manipulation for complete touch action control
+- **User Select**: select-none, select-text, select-all, select-auto for text selection control
+- **Performance**: will-change-auto to will-change-transform for performance optimization hints
 
-#### 🎨 高级交互功能
-- **拖拽系统**: draggable(), dragTarget() 完整拖拽支持
-- **手势检测**: longPressDetector(), doubleTapDetector() 手势识别
-- **悬停效果**: hoverEffect(), clickable() 交互反馈
-- **焦点管理**: focusDetector(), keyboardListener() 焦点和键盘
-- **语义支持**: semantics(), excludeSemantics(), mergeSemantics() 无障碍
-- **状态控制**: disabled(), loading() 组件状态管理
+#### 🎨 Advanced Interactive Features
+- **Drag System**: draggable(), dragTarget() for complete drag support
+- **Gesture Detection**: longPressDetector(), doubleTapDetector() for gesture recognition
+- **Hover Effects**: hoverEffect(), clickable() for interactive feedback
+- **Focus Management**: focusDetector(), keyboardListener() for focus and keyboard handling
+- **Semantic Support**: semantics(), excludeSemantics(), mergeSemantics() for accessibility
+- **State Control**: disabled(), loading() for component state management
 
-#### 📚 API 示例
+#### 📚 API Examples
 ```dart
-// 光标控制
-Widget().cursorPointer()      // 手型光标
-Widget().cursorText()         // 文本光标
-Widget().cursorMove()         // 移动光标
-Widget().cursorNotAllowed()   // 禁止光标
+// Cursor Control
+Widget().cursorPointer()      // Pointer cursor
+Widget().cursorText()         // Text cursor
+Widget().cursorMove()         // Move cursor
+Widget().cursorNotAllowed()   // Not allowed cursor
 Widget().customCursor(SystemMouseCursors.grab)
 
-// 指针事件
-Widget().pointerEventsNone()  // 禁用指针事件
-Widget().pointerEventsAuto()  // 启用指针事件
+// Pointer Events
+Widget().pointerEventsNone()  // Disable pointer events
+Widget().pointerEventsAuto()  // Enable pointer events
 
-// 用户选择
-Widget().selectNone()         // 禁止选择
-Widget().selectText()         // 允许文本选择
-Widget().selectAll()          // 允许全选
+// User Selection
+Widget().selectNone()         // Disable selection
+Widget().selectText()         // Allow text selection
+Widget().selectAll()          // Allow select all
 
-// 滚动控制
-Widget().scrollSmooth()       // 平滑滚动
-Widget().scrollM4()           // 滚动边距4
-Widget().scrollP8()           // 滚动内边距8
-Widget().snapCenter()         // 滚动对齐中心
+// Scroll Control
+Widget().scrollSmooth()       // Smooth scrolling
+Widget().scrollM4()           // Scroll margin 4
+Widget().scrollP8()           // Scroll padding 8
+Widget().snapCenter()         // Scroll snap center
 
-// 触摸控制
-Widget().touchPanX()          // X轴平移
-Widget().touchPanY()          // Y轴平移
-Widget().touchPinchZoom()     // 缩放手势
+// Touch Control
+Widget().touchPanX()          // X-axis pan
+Widget().touchPanY()          // Y-axis pan
+Widget().touchPinchZoom()     // Pinch zoom gesture
 
-// 高级交互
+// Advanced Interactions
 Widget().draggable(
   data: 'item',
-  onDragStarted: () => print('开始拖拽'),
+  onDragStarted: () => print('Drag started'),
 );
 
 Widget().dragTarget<String>(
-  onAccept: (data) => print('接收: $data'),
+  onAccept: (data) => print('Received: $data'),
 );
 
 Widget().clickable(
-  onTap: () => print('点击'),
+  onTap: () => print('Clicked'),
   cursor: SystemMouseCursors.click,
 );
 
 Widget().longPressDetector(
-  onLongPress: () => print('长按'),
+  onLongPress: () => print('Long pressed'),
 );
 
 Widget().hoverEffect(
   duration: Duration(milliseconds: 200),
 );
 
-// 语义支持
+// Semantic Support
 Widget().semantics(
-  label: '按钮',
-  hint: '点击执行操作',
+  label: 'Button',
+  hint: 'Tap to execute action',
   button: true,
-  onTap: () => print('语义点击'),
+  onTap: () => print('Semantic tap'),
 );
 
-// 状态控制
-Widget().disabled()           // 禁用状态
-Widget().loading(isLoading: true)  // 加载状态
+// State Control
+Widget().disabled()           // Disabled state
+Widget().loading(isLoading: true)  // Loading state
 ```
 
 ## 0.2.6 - 2025-09-23
 
-### 🔄 Transforms 变换系统完善
+### 🔄 Transforms System Enhancement
 
-#### ✨ 新增功能模块
-- **transforms**: 完整的CSS变换系统，包含rotate、scale、translate、skew、perspective等所有变换功能
+#### ✨ New Feature Modules
+- **transforms**: Complete CSS transform system including rotate, scale, translate, skew, perspective and all transform functions
 
-#### 🔧 Transforms 功能特色
-- **背面可见性**: backface-visible, backface-hidden 控制3D变换中背面显示
-- **透视效果**: perspective-250 到 perspective-1000 完整透视深度控制
-- **透视原点**: perspective-origin-center, perspective-origin-top等9个方向控制
-- **旋转变换**: rotate-0 到 rotate-180 正负双向旋转，支持1°到180°精确控制
-- **缩放变换**: scale-0 到 scale-150 完整缩放范围，支持整体、X轴、Y轴独立缩放
-- **倾斜变换**: skew-x/skew-y 支持1°到12°的X/Y轴倾斜变换
-- **平移变换**: translate-x/translate-y 支持像素值、rem值、百分比值完整控制
-- **变换原点**: origin-center到origin-top-left等9个原点位置
-- **变换样式**: transform-flat, transform-preserve-3d 3D变换样式控制
-- **自定义变换**: 支持自定义Matrix4、3D变换组合、翻转效果
+#### 🔧 Transforms Feature Highlights
+- **Backface Visibility**: backface-visible, backface-hidden for controlling backface display in 3D transforms
+- **Perspective Effects**: perspective-250 to perspective-1000 for complete perspective depth control
+- **Perspective Origin**: perspective-origin-center, perspective-origin-top and 9 directional controls
+- **Rotation Transform**: rotate-0 to rotate-180 bidirectional rotation with 1° to 180° precise control
+- **Scale Transform**: scale-0 to scale-150 complete scaling range with overall, X-axis, Y-axis independent scaling
+- **Skew Transform**: skew-x/skew-y supporting 1° to 12° X/Y axis skew transforms
+- **Translate Transform**: translate-x/translate-y supporting pixel, rem, percentage value complete control
+- **Transform Origin**: origin-center to origin-top-left and 9 origin positions
+- **Transform Style**: transform-flat, transform-preserve-3d for 3D transform style control
+- **Custom Transforms**: Support for custom Matrix4, 3D transform combinations, flip effects
 
-#### 📚 API 示例
+#### 📚 API Examples
 ```dart
-// 旋转变换
-Widget().rotate45()           // 45度旋转
-Widget().rotateNeg90()        // -90度旋转
-Widget().customRotate(30)     // 自定义30度旋转
+// Rotation Transform
+Widget().rotate45()           // 45 degree rotation
+Widget().rotateNeg90()        // -90 degree rotation
+Widget().customRotate(30)     // Custom 30 degree rotation
 
-// 缩放变换
-Widget().scale150()           // 150%缩放
-Widget().scaleX75()           // X轴75%缩放
-Widget().scaleY125()          // Y轴125%缩放
+// Scale Transform
+Widget().scale150()           // 150% scaling
+Widget().scaleX75()           // X-axis 75% scaling
+Widget().scaleY125()          // Y-axis 125% scaling
 Widget().customScale(scaleX: 1.2, scaleY: 0.8)
 
-// 平移变换
-Widget().translateX16()       // X轴16px平移
-Widget().translateYNeg24()    // Y轴-24px平移
-Widget().translateXHalf()     // X轴50%平移
+// Translate Transform
+Widget().translateX16()       // X-axis 16px translation
+Widget().translateYNeg24()    // Y-axis -24px translation
+Widget().translateXHalf()     // X-axis 50% translation
 Widget().customTranslate(20, -10)
 
-// 倾斜变换
-Widget().skewX12()            // X轴12度倾斜
-Widget().skewYNeg6()          // Y轴-6度倾斜
+// Skew Transform
+Widget().skewX12()            // X-axis 12 degree skew
+Widget().skewYNeg6()          // Y-axis -6 degree skew
 Widget().customSkew(skewX: 15, skewY: -5)
 
-// 透视效果
-Widget().perspective500()     // 500px透视
+// Perspective Effect
+Widget().perspective500()     // 500px perspective
 Widget().perspectiveOriginTop()
 
-// 变换原点
-Widget().originCenter()       // 中心原点
-Widget().originTopLeft()      // 左上角原点
+// Transform Origin
+Widget().originCenter()       // Center origin
+Widget().originTopLeft()      // Top-left origin
 
-// 3D变换组合
+// 3D Transform Combination
 Widget().transform3D(
   rotateX: 45,
   rotateY: 30,
@@ -351,47 +351,47 @@ Widget().transform3D(
   scaleX: 1.2,
 );
 
-// 翻转效果
-Widget().flipHorizontal()     // 水平翻转
-Widget().flipVertical()       // 垂直翻转
-Widget().flipDiagonal()       // 对角翻转
+// Flip Effects
+Widget().flipHorizontal()     // Horizontal flip
+Widget().flipVertical()       // Vertical flip
+Widget().flipDiagonal()       // Diagonal flip
 
-// 自定义矩阵变换
+// Custom Matrix Transform
 Widget().customTransform(Matrix4.identity()..rotateZ(0.5))
 ```
 
 ## 0.2.5 - 2025-09-23
 
-### 📊 Tables & 🎬 Transitions & Animation 系统完善
+### 📊 Tables & 🎬 Transitions & Animation System Enhancement
 
-#### ✨ 新增功能模块
-- **table-utilities**: 完整的CSS表格系统，包含border-collapse、border-spacing、table-layout、caption-side
-- **transition-animation**: 完整的过渡动画系统，包含transition-property、transition-duration、animation等
+#### ✨ New Feature Modules
+- **table-utilities**: Complete CSS table system including border-collapse, border-spacing, table-layout, caption-side
+- **transition-animation**: Complete transition animation system including transition-property, transition-duration, animation, etc.
 
-#### 🔧 Tables 功能特色
-- **边框控制**: border-collapse、border-separate 表格边框合并控制
-- **边框间距**: border-spacing-0 到 border-spacing-24 完整间距控制
-- **表格布局**: table-auto、table-fixed 表格布局模式
-- **标题位置**: caption-top、caption-bottom 表格标题位置控制
-- **表格构建器**: TableBuilder 类用于快速构建复杂表格
-- **单元格样式**: tableHeaderCell、tableDataCell 专用单元格样式
-- **边框样式**: tableWithFullBorder、tableWithOuterBorder 等快捷边框设置
+#### 🔧 Tables Feature Highlights
+- **Border Control**: border-collapse, border-separate for table border merging control
+- **Border Spacing**: border-spacing-0 to border-spacing-24 for complete spacing control
+- **Table Layout**: table-auto, table-fixed for table layout modes
+- **Caption Position**: caption-top, caption-bottom for table caption position control
+- **Table Builder**: TableBuilder class for quickly building complex tables
+- **Cell Styles**: tableHeaderCell, tableDataCell for specialized cell styles
+- **Border Styles**: tableWithFullBorder, tableWithOuterBorder and other quick border settings
 
-#### 🎬 Transitions & Animation 功能特色
-- **过渡属性**: transition-all, transition-colors, transition-opacity, transition-shadow, transition-transform
-- **过渡行为**: transition-behavior-normal, transition-behavior-allow-discrete
-- **过渡时间**: duration-75 到 duration-1000 完整时间控制
-- **缓动函数**: ease-linear, ease-in, ease-out, ease-in-out 时间函数
-- **过渡延迟**: delay-75 到 delay-1000 延迟控制
-- **预置动画**: animate-spin, animate-ping, animate-pulse, animate-bounce
-- **自定义动画**: fadeIn, fadeOut, slideIn, scaleIn, rotateIn 等扩展动画
-- **悬停效果**: hoverScale, hoverOpacity 交互动画
-- **动画管理**: AnimationManager 动画控制器管理类
-- **动画序列**: AnimationSequence 复杂动画序列构建
+#### 🎬 Transitions & Animation Feature Highlights
+- **Transition Properties**: transition-all, transition-colors, transition-opacity, transition-shadow, transition-transform
+- **Transition Behavior**: transition-behavior-normal, transition-behavior-allow-discrete
+- **Transition Duration**: duration-75 to duration-1000 for complete time control
+- **Easing Functions**: ease-linear, ease-in, ease-out, ease-in-out timing functions
+- **Transition Delay**: delay-75 to delay-1000 for delay control
+- **Preset Animations**: animate-spin, animate-ping, animate-pulse, animate-bounce
+- **Custom Animations**: fadeIn, fadeOut, slideIn, scaleIn, rotateIn and other extended animations
+- **Hover Effects**: hoverScale, hoverOpacity for interactive animations
+- **Animation Management**: AnimationManager animation controller management class
+- **Animation Sequence**: AnimationSequence for building complex animation sequences
 
-#### 📚 API 示例
+#### 📚 API Examples
 ```dart
-// Tables 表格
+// Tables
 TableBuilder()
   .addHeaderRow(['Name', 'Age', 'City'])
   .addDataRow([Text('John'), Text('25'), Text('NYC')])
@@ -401,26 +401,26 @@ TableBuilder()
   .borderSpacing4()
   .tableFixed();
 
-// 单元格样式
+// Cell Styles
 Text('Header').tableHeaderCell(backgroundColor: Colors.grey[200])
 Text('Data').tableDataCell(padding: EdgeInsets.all(12))
 
-// Transitions 过渡
+// Transitions
 Widget()
   .transitionAll(duration: Duration(milliseconds: 300))
   .duration500()
   .easeInOut()
   .delay100();
 
-// Animations 动画
-Widget().animateSpin()         // 旋转动画
-Widget().animatePulse()        // 脉冲动画
-Widget().animateBounce()       // 弹跳动画
-Widget().fadeIn()              // 淡入动画
-Widget().slideIn()             // 滑入动画
-Widget().scaleIn()             // 缩放动画
+// Animations
+Widget().animateSpin()         // Spin animation
+Widget().animatePulse()        // Pulse animation
+Widget().animateBounce()       // Bounce animation
+Widget().fadeIn()              // Fade in animation
+Widget().slideIn()             // Slide in animation
+Widget().scaleIn()             // Scale in animation
 
-// 自定义动画
+// Custom Animation
 Widget().customAnimation(
   animation: controller,
   builder: (context, child, value) => Transform.scale(
@@ -432,256 +432,256 @@ Widget().customAnimation(
 
 ## 0.2.4 - 2025-09-23
 
-### 🎨 Filters 滤镜系统完善
+### 🎨 Filters System Enhancement
 
-#### ✨ 新增功能模块
-- **filter**: 完整的CSS滤镜系统，包含blur、brightness、contrast、drop-shadow等所有滤镜效果
-- **backdrop-filter**: 背景滤镜系统，支持backdrop-blur、backdrop-brightness等背景滤镜效果
+#### ✨ New Feature Modules
+- **filter**: Complete CSS filter system including blur, brightness, contrast, drop-shadow and all filter effects
+- **backdrop-filter**: Backdrop filter system supporting backdrop-blur, backdrop-brightness and other backdrop filter effects
 
-#### 🔧 功能特色
-- **模糊滤镜**: blur-sm, blur, blur-md, blur-lg, blur-xl, blur-2xl, blur-3xl 完整模糊效果
-- **亮度滤镜**: brightness-0 到 brightness-200 完整亮度控制范围
-- **对比度滤镜**: contrast-0 到 contrast-200 完整对比度控制
-- **投影滤镜**: drop-shadow-sm 到 drop-shadow-2xl 多级投影效果
-- **色彩滤镜**: grayscale、hue-rotate、invert、saturate、sepia 完整色彩滤镜
-- **背景滤镜**: 完整的backdrop-filter支持，用于毛玻璃效果和背景模糊
-- **色相旋转**: hue-rotate-15, hue-rotate-30, hue-rotate-60, hue-rotate-90, hue-rotate-180
-- **饱和度控制**: saturate-0, saturate-50, saturate-100, saturate-150, saturate-200
-- **自定义滤镜**: 支持自定义ImageFilter和ColorFilter矩阵
+#### 🔧 Feature Highlights
+- **Blur Filters**: blur-sm, blur, blur-md, blur-lg, blur-xl, blur-2xl, blur-3xl for complete blur effects
+- **Brightness Filters**: brightness-0 to brightness-200 for complete brightness control range
+- **Contrast Filters**: contrast-0 to contrast-200 for complete contrast control
+- **Drop Shadow Filters**: drop-shadow-sm to drop-shadow-2xl for multi-level drop shadow effects
+- **Color Filters**: grayscale, hue-rotate, invert, saturate, sepia for complete color filtering
+- **Backdrop Filters**: Complete backdrop-filter support for frosted glass effects and background blur
+- **Hue Rotation**: hue-rotate-15, hue-rotate-30, hue-rotate-60, hue-rotate-90, hue-rotate-180
+- **Saturation Control**: saturate-0, saturate-50, saturate-100, saturate-150, saturate-200
+- **Custom Filters**: Support for custom ImageFilter and ColorFilter matrices
 
-#### 📚 API 示例
+#### 📚 API Examples
 ```dart
-// 模糊效果
-Widget().blur()           // 8px模糊
-Widget().blurLg()         // 16px模糊
-Widget().backdropBlur()   // 背景模糊
+// Blur Effects
+Widget().blur()           // 8px blur
+Widget().blurLg()         // 16px blur
+Widget().backdropBlur()   // Backdrop blur
 
-// 亮度对比度
-Widget().brightness150()  // 150%亮度
-Widget().contrast125()    // 125%对比度
+// Brightness/Contrast
+Widget().brightness150()  // 150% brightness
+Widget().contrast125()    // 125% contrast
 
-// 色彩滤镜  
-Widget().grayscale()      // 灰度效果
-Widget().sepia()          // 棕褐色效果
-Widget().hueRotate90()    // 90度色相旋转
-Widget().saturate150()    // 150%饱和度
+// Color Filters  
+Widget().grayscale()      // Grayscale effect
+Widget().sepia()          // Sepia effect
+Widget().hueRotate90()    // 90 degree hue rotation
+Widget().saturate150()    // 150% saturation
 
-// 投影效果
-Widget().dropShadow()     // 标准投影
-Widget().dropShadowLg()   // 大型投影
+// Drop Shadow Effects
+Widget().dropShadow()     // Standard drop shadow
+Widget().dropShadowLg()   // Large drop shadow
 
-// 反色效果
-Widget().invert()         // 反色滤镜
+// Invert Effects
+Widget().invert()         // Invert filter
 
-// 自定义滤镜
-Widget().customBlur(12, 12)        // 自定义模糊
-Widget().customBrightness(1.2)     // 自定义亮度
-Widget().f(ImageFilter.blur(...))  // 自定义滤镜
+// Custom Filters
+Widget().customBlur(12, 12)        // Custom blur
+Widget().customBrightness(1.2)     // Custom brightness
+Widget().f(ImageFilter.blur(...))  // Custom filter
 ```
 
 ## 0.2.3 - 2025-09-23
 
-### 🎨 Effects 效果系统完善
+### 🎨 Effects System Enhancement
 
-#### ✨ 新增功能模块
-- **box-shadow**: 盒子阴影控制工具类，包含 shadow-sm, shadow, shadow-md, shadow-lg, shadow-xl, shadow-2xl 等预设
-- **text-shadow**: 文字阴影控制工具类，支持多种阴影效果和颜色系统
-- **opacity**: 透明度控制工具类，支持 0-100 的完整透明度范围和动画效果
-- **mix-blend-mode**: 混合模式控制工具类，支持 multiply, screen, overlay, darken, lighten 等所有CSS混合模式
-- **background-blend-mode**: 背景混合模式控制工具类，控制背景图像与背景色的混合
-- **mask-utilities**: 遮罩功能集合，包含 mask-clip, mask-composite, mask-image 等完整遮罩系统
+#### ✨ New Feature Modules
+- **box-shadow**: Box shadow control utilities including shadow-sm, shadow, shadow-md, shadow-lg, shadow-xl, shadow-2xl presets
+- **text-shadow**: Text shadow control utilities supporting various shadow effects and color systems
+- **opacity**: Opacity control utilities supporting complete 0-100 opacity range and animation effects
+- **mix-blend-mode**: Blend mode control utilities supporting multiply, screen, overlay, darken, lighten and all CSS blend modes
+- **background-blend-mode**: Background blend mode control utilities for blending background images with background colors
+- **mask-utilities**: Mask feature collection including mask-clip, mask-composite, mask-image and complete masking system
 
-#### 🔧 功能特色
-- **完整阴影系统**: 从微妙的 shadow-sm 到强烈的 shadow-2xl，支持彩色阴影和自定义阴影
-- **文字特效**: 文字阴影、发光、轮廓、浮雕、雕刻等多种文字效果
-- **透明度控制**: 支持 0-100% 透明度，包含动画透明度和条件透明度
-- **混合模式**: 完整的 CSS 混合模式支持，包含颜色矩阵和滤镜效果
-- **遮罩系统**: 渐变遮罩、形状遮罩、文字遮罩等高级视觉效果
-- **Material Design**: 内置 Material Design 风格的 elevation 阴影系统
-- **Flutter优化**: 针对 Flutter 特性优化，使用 ShaderMask、ColorFiltered 等原生组件
+#### 🔧 Feature Highlights
+- **Complete Shadow System**: From subtle shadow-sm to strong shadow-2xl, supporting colored shadows and custom shadows
+- **Text Effects**: Text shadows, glow, outline, emboss, engrave and various text effects
+- **Opacity Control**: Support for 0-100% opacity including animated opacity and conditional opacity
+- **Blend Modes**: Complete CSS blend mode support including color matrices and filter effects
+- **Masking System**: Gradient masks, shape masks, text masks and advanced visual effects
+- **Material Design**: Built-in Material Design style elevation shadow system
+- **Flutter Optimized**: Optimized for Flutter features using native components like ShaderMask, ColorFiltered
 
-#### 📚 API 示例
+#### 📚 API Examples
 ```dart
-// 阴影效果
-Widget().shadow()           // 标准阴影
-Widget().shadowLg()         // 大型阴影  
-Widget().shadowBlue500()    // 蓝色阴影
-Widget().elevation4()       // Material Design阴影
+// Shadow Effects
+Widget().shadow()           // Standard shadow
+Widget().shadowLg()         // Large shadow  
+Widget().shadowBlue500()    // Blue shadow
+Widget().elevation4()       // Material Design shadow
 
-// 文字阴影
-Text("Hello").textShadow()     // 文字阴影
-Text("Glow").textGlow()        // 文字发光
-Text("Outline").textOutline()  // 文字轮廓
+// Text Shadow
+Text("Hello").textShadow()     // Text shadow
+Text("Glow").textGlow()        // Text glow
+Text("Outline").textOutline()  // Text outline
 
-// 透明度
-Widget().opacity50()        // 50% 透明度
-Widget().fadeIn()          // 淡入动画
-Widget().hideIf(condition) // 条件隐藏
+// Opacity
+Widget().opacity50()        // 50% opacity
+Widget().fadeIn()          // Fade in animation
+Widget().hideIf(condition) // Conditional hide
 
-// 混合模式
-Widget().mixBlendMultiply()  // 正片叠底
-Widget().sepia()            // 棕褐色效果
-Widget().duotoneBlue()      // 蓝色双色调
+// Blend Modes
+Widget().mixBlendMultiply()  // Multiply blend
+Widget().sepia()            // Sepia effect
+Widget().duotoneBlue()      // Blue duotone
 
-// 遮罩效果
-Widget().fadeEdgeMask()     // 边缘淡化
-Widget().circularMask()     // 圆形遮罩
-Widget().maskImageLinear()  // 线性渐变遮罩
+// Mask Effects
+Widget().fadeEdgeMask()     // Edge fade mask
+Widget().circularMask()     // Circular mask
+Widget().maskImageLinear()  // Linear gradient mask
 ```
 
 ## 0.2.2 - 2025-09-22
 
-### 🎨 Border & Outline 边框轮廓系统完善
+### 🎨 Border & Outline System Enhancement
 
-#### ✨ 新增功能模块
-- **border-width**: 边框宽度控制工具类，支持 border-0, border-2, border-4, border-8 等预设值
-- **border-color**: 边框颜色控制工具类，包含完整的 Tailwind CSS 颜色系统支持
-- **border-style**: 边框样式控制工具类，支持 solid, dashed, dotted, double 等样式
-- **outline-width**: 轮廓宽度控制工具类，使用 BoxShadow 模拟 outline 效果
-- **outline-color**: 轮廓颜色控制工具类，包含完整颜色系统和透明度支持
-- **outline-style**: 轮廓样式控制工具类，支持多种轮廓样式和动画效果
-- **outline-offset**: 轮廓偏移控制工具类，支持精确的偏移量控制
+#### ✨ New Feature Modules
+- **border-width**: Border width control utilities supporting border-0, border-2, border-4, border-8 and other preset values
+- **border-color**: Border color control utilities including complete Tailwind CSS color system support
+- **border-style**: Border style control utilities supporting solid, dashed, dotted, double and other styles
+- **outline-width**: Outline width control utilities using BoxShadow to simulate outline effects
+- **outline-color**: Outline color control utilities including complete color system and opacity support
+- **outline-style**: Outline style control utilities supporting various outline styles and animation effects
+- **outline-offset**: Outline offset control utilities supporting precise offset control
 
-#### 🔧 功能特色
-- **完整的方向支持**: 所有边框功能都支持 top/right/bottom/left 四个方向的独立控制
-- **逻辑属性支持**: 提供 start/end 逻辑属性，自动适配 LTR/RTL 文本方向
-- **色彩系统完整**: 支持 gray/red/blue/green 等色系的 50-900 色阶
-- **简化API设计**: 提供 bw(), bc(), bs(), ow(), oc() 等简化方法
-- **Flutter优化**: 针对 Flutter 平台特性进行优化，使用 Container 和 BoxShadow 实现
-- **Focus样式支持**: 专门的焦点状态轮廓样式，提升用户体验
-- **Ring效果**: 模拟 Tailwind CSS 的 ring 效果，支持现代化的轮廓设计
+#### 🔧 Feature Highlights
+- **Complete Directional Support**: All border functions support independent control of top/right/bottom/left directions
+- **Logical Property Support**: Provides start/end logical properties that automatically adapt to LTR/RTL text direction
+- **Complete Color System**: Supports 50-900 color scales for gray/red/blue/green and other color families
+- **Simplified API Design**: Provides simplified methods like bw(), bc(), bs(), ow(), oc()
+- **Flutter Optimized**: Optimized for Flutter platform features using Container and BoxShadow implementation
+- **Focus Style Support**: Dedicated focus state outline styles for enhanced user experience
+- **Ring Effects**: Simulates Tailwind CSS ring effects supporting modern outline design
 
-#### 📚 API 示例
+#### 📚 API Examples
 ```dart
-// 边框宽度
-Widget().border2()  // 2px边框
-Widget().borderT4() // 顶部4px边框
-Widget().bw(3)      // 自定义3px边框
+// Border Width
+Widget().border2()  // 2px border
+Widget().borderT4() // Top 4px border
+Widget().bw(3)      // Custom 3px border
 
-// 边框颜色  
-Widget().borderRed500()    // 红色边框
-Widget().borderTBlue500()  // 顶部蓝色边框
-Widget().bc(Colors.purple) // 自定义紫色边框
+// Border Color  
+Widget().borderRed500()    // Red border
+Widget().borderTBlue500()  // Top blue border
+Widget().bc(Colors.purple) // Custom purple border
 
-// 轮廓效果
-Widget().outline2()           // 2px轮廓
-Widget().outlineRed500()      // 红色轮廓  
-Widget().outlineOffset4()     // 4px偏移轮廓
-Widget().ringBlue500()        // 蓝色ring效果
+// Outline Effects
+Widget().outline2()           // 2px outline
+Widget().outlineRed500()      // Red outline  
+Widget().outlineOffset4()     // 4px offset outline
+Widget().ringBlue500()        // Blue ring effect
 ```
 
 ## 0.2.1 - 2025-09-21
 
-### 🎉 重大更新：完整示例项目重构
+### 🎉 Major Update: Complete Example Project Refactoring
 
-#### 📱 全新标签页示例应用
-- 重构示例项目为完整的TabBar应用，包含6个功能标签页
-- 创建美观的首页，展示所有功能概览和快速开始指南
-- 每个功能模块都有专门的演示页面和详细说明
+#### 📱 New Tabbed Example Application
+- Refactored example project into complete TabBar application with 6 functional tabs
+- Created beautiful homepage showcasing all feature overviews and quick start guide
+- Each feature module has dedicated demo page with detailed explanations
 
-#### 🎨 Border Radius 圆角系统完善
-- 完善 border_radius.dart 工具类，全面支持 Tailwind CSS border-radius 功能
-- 新增基础圆角工具类：roundedXs(), roundedSm(), roundedMd(), roundedLg(), roundedXl(), rounded2xl(), rounded3xl(), rounded4xl()
-- 新增特殊圆角工具类：roundedNone(), roundedFull()
-- 新增方向性圆角工具类：roundedT(), roundedR(), roundedB(), roundedL() 系列
-- 新增单个角圆角工具类：roundedTl(), roundedTr(), roundedBl(), roundedBr() 系列
-- 新增逻辑属性圆角工具类：roundedS(), roundedE(), roundedSs(), roundedSe(), roundedEs(), roundedEe() 系列（支持RTL）
-- 新增自定义圆角工具类：r(), rTop(), rBottom(), rLeft(), rRight(), rOnly() 等简化API
-- 新增常用圆角值快捷方法：r2(), r4(), r6(), r8(), r12(), r16(), r20(), r24(), r32()
+#### 🎨 Border Radius System Enhancement
+- Enhanced border_radius.dart utility class with complete Tailwind CSS border-radius functionality
+- Added basic border radius utilities: roundedXs(), roundedSm(), roundedMd(), roundedLg(), roundedXl(), rounded2xl(), rounded3xl(), rounded4xl()
+- Added special border radius utilities: roundedNone(), roundedFull()
+- Added directional border radius utilities: roundedT(), roundedR(), roundedB(), roundedL() series
+- Added individual corner border radius utilities: roundedTl(), roundedTr(), roundedBl(), roundedBr() series
+- Added logical property border radius utilities: roundedS(), roundedE(), roundedSs(), roundedSe(), roundedEs(), roundedEe() series (RTL support)
+- Added custom border radius utilities: r(), rTop(), rBottom(), rLeft(), rRight(), rOnly() and other simplified APIs
+- Added common border radius value shortcuts: r2(), r4(), r6(), r8(), r12(), r16(), r20(), r24(), r32()
 
-#### 📐 完整演示页面
-- **AspectRatioDemo**: 宽高比功能完整演示，包含实际应用场景
-- **BorderRadiusDemo**: 圆角功能全面展示，包含RTL支持和组合使用
-- **WidthDemo**: 宽度控制演示，包含响应式布局和表单设计
-- **HeightDemo**: 高度控制演示，包含界面布局和数据可视化
-- **ColorsDemo**: 颜色系统演示，包含配色指南和最佳实践
+#### 📐 Complete Demo Pages
+- **AspectRatioDemo**: Complete aspect ratio functionality demonstration including real-world application scenarios
+- **BorderRadiusDemo**: Comprehensive border radius showcase including RTL support and combined usage
+- **WidthDemo**: Width control demonstration including responsive layout and form design
+- **HeightDemo**: Height control demonstration including interface layout and data visualization
+- **ColorsDemo**: Color system demonstration including color scheme guides and best practices
 
-#### 🛠 技术改进
-- 在主文件中导出所有工具类扩展
-- 每个demo都穿插使用其他工具类，展示组合效果
-- 添加详细的使用说明和最佳实践建议
-- 优化代码结构和注释文档
+#### 🛠 Technical Improvements
+- Exported all utility class extensions in main file
+- Each demo incorporates other utility classes to showcase combined effects
+- Added detailed usage instructions and best practice recommendations
+- Optimized code structure and documentation comments
 
 ## 0.2.0
 
-- add select widget
+- Added select widget functionality
 
 ## 0.1.9
 
-- add single rounded
+- Added single corner rounded border radius support
 
 ## 0.1.8
 
-- fix boder property error
+- Fixed border property error
 
 ## 0.1.7
 
-- fix img flex1 bug
+- Fixed image flex1 bug
 
 ## 0.1.6
 
-- add example
-- add input focus event
-- fix grid and flex bug
+- Added comprehensive examples
+- Added input focus event handling
+- Fixed grid and flex layout bugs
 
 ## 0.1.5
 
-- fix text overflow and wrap
-- flx img auto size
+- Fixed text overflow and wrap issues
+- Enhanced image auto-sizing functionality
 
 ## 0.1.4
 
-- fix grid autoheight and gap
+- Fixed grid auto-height and gap spacing
 
 ## 0.1.3
 
-- add overflow-x and overflow-y
+- Added overflow-x and overflow-y controls
 
 ## 0.1.2
 
-- fix bug
+- General bug fixes
 
 ## 0.1.1
 
-- fix Input bug and add placeholder
+- Fixed Input widget bugs and added placeholder support
 
 ## 0.1.0
 
-- fix bug and add tabs
+- General bug fixes and added tabs functionality
 
 ## 0.0.9
 
-- fix flex layout center bug
+- Fixed flex layout center alignment bug
 
 ## 0.0.8
 
-- add img
+- Added image support
 
 ## 0.0.7
 
-- add relative
+- Added relative positioning
 
 ## 0.0.6
 
-- add input example
+- Added input widget examples
 
 ## 0.0.5
 
-- add border border-radius bg-gradient box-shadow
+- Added border, border-radius, background gradient, and box-shadow utilities
 
 ## 0.0.4
 
-- add textAlign grid grid-cols aspectRadio
+- Added text alignment, grid, grid-cols, and aspect ratio utilities
 
 ## 0.0.3
 
-- add lineHeight maxLine fontStyle
+- Added line height, max lines, and font style utilities
 
 ## 0.0.2
 
-- add font size example
-- add flex layout
+- Added font size examples
+- Added flex layout functionality
 
 ## 0.0.1
 
-- init
+- Initial release
