@@ -76,7 +76,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
-  tailwindcss_build: ^0.3.0
+  tailwindcss_build: ^0.3.1
 ```
 
 Then run:

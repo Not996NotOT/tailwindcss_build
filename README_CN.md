@@ -64,7 +64,7 @@
 
 ```yaml
 dependencies:
-  tailwindcss_build: ^0.3.0
+  tailwindcss_build: ^0.3.1
 ```
 
 然后运行：
