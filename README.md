@@ -46,17 +46,29 @@ A comprehensive Flutter package that brings the power and convenience of Tailwin
 
 ### Advanced Features
 - **Widget Extensions**: Convert widgets between types (`asRow`, `asColumn`, `asStack`, etc.)
-- **Flex Container**: Advanced flexbox container utilities
+- **Layout Conversion**: Smart layout utilities (`asSafeRow`, `asFlexRow`, `asScrollView`, etc.)
+- **Container Conversion**: Transform widgets to containers (`asContainer`, `asGestureDetector`, etc.)
+- **Flex Container**: Advanced flexbox container utilities with constraint handling
 - **Grid Systems**: Complete CSS Grid implementation
 - **Transitions**: Animation and transition utilities
 - **Interactivity**: Cursor, touch, and interaction utilities
 - **Accessibility**: WCAG compliance utilities, color blind support, high contrast themes
 - **SVG Support**: SVG styling and manipulation utilities
+- **Smart Decorations**: Intelligent border radius, shadows, and styling (`smartBorderRadius`, `conditionalBorderRadius`)
+- **Component Library**: Pre-built components like Accordion and Autocomplete
 
 ### Text & Icon Extensions
-- **Text Conversion**: Convert Text widgets to styled containers
-- **Icon Styling**: Style icons with Tailwind utilities
+- **Text Conversion**: Convert Text widgets to styled containers with margin/padding support
+- **Icon Styling**: Style icons with Tailwind utilities and transform to containers
 - **Custom Text Styles**: Advanced text styling with shadows and effects
+- **Text Centering**: Easy text alignment with `.textCenter()`, `.textLeft()`, `.textRight()`
+
+### Widget Conversion Extensions (`as` Syntax)
+- **Layout Conversion**: `asRow()`, `asColumn()`, `asStack()`, `asWrap()`
+- **Safe Layout**: `asSafeRow()` (handles unbounded constraints), `asFlexRow()` (bounded constraints)
+- **Container Conversion**: `asContainer()`, `asGestureDetector()`, `asScrollView()`
+- **Flex Conversion**: `asFlexible()`, `asExpanded()` with constraint awareness
+- **Smart Positioning**: Automatic constraint handling and layout optimization
 
 ## 📦 Installation
 
@@ -182,27 +194,189 @@ Text('Warning').textYellow500()
 Text('Info').textBlue500()
 ```
 
-### Advanced Features
+### Advanced Widget Conversion (`as` Syntax)
 
 ```dart
-// Widget conversion
+// Basic widget conversion
 List<Widget> widgets = [
   Icon(Icons.home),
   Text('Home'),
   Icon(Icons.arrow_forward),
 ];
 
-// Convert to Row
-Row homeRow = widgets.asRow().justifyBetween();
+// Convert to Row with various options
+Row basicRow = widgets.asRow();
+Row centeredRow = widgets.asRow(mainAxisAlignment: MainAxisAlignment.center);
 
-// Convert to Column  
-Column homeColumn = widgets.asColumn().itemsCenter();
+// Safe Row - handles unbounded constraints automatically
+Widget safeRow = widgets.asSafeRow(
+  crossAxisAlignment: CrossAxisAlignment.center,
+);
+
+// Flexible Row - for bounded constraints
+Row flexRow = widgets.asFlexRow(
+  mainAxisSize: MainAxisSize.max,
+  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+);
+
+// Convert to Column with alignment
+Column homeColumn = widgets.asColumn(
+  crossAxisAlignment: CrossAxisAlignment.stretch,
+  mainAxisAlignment: MainAxisAlignment.center,
+);
 
 // Convert to Stack
-Stack homeStack = widgets.asStack().center();
+Stack homeStack = widgets.asStack();
 
-// Convert to Wrap
-Wrap homeWrap = widgets.asWrap().spacingXl();
+// Convert to ScrollView
+Widget scrollable = widgets.asScrollView();
+
+// Convert single widget to container
+Widget container = Text('Hello').asContainer();
+
+// Convert to GestureDetector with tap handling
+Widget tappable = Container()
+  .w20()
+  .h20()
+  .bgBlue500()
+  .asGestureDetector(onTap: () => print('Tapped!'));
+
+// Convert to Flexible widget
+Widget flexible = Text('Flexible text').asFlexible();
+
+// Convert to Expanded widget  
+Widget expanded = Container().bgRed500().asExpanded();
+```
+
+### Smart Decoration System
+
+```dart
+// Intelligent border radius based on position
+Widget item = Container()
+  .w20()
+  .h20()
+  .smartBorderRadius(
+    isFirst: true,
+    isLast: false,
+    radius: 12.0,
+    direction: Axis.vertical,
+  );
+
+// Conditional border radius - control each corner
+Widget card = Container()
+  .wFull()
+  .h32()
+  .conditionalBorderRadius(
+    topLeft: true,
+    topRight: true,
+    bottomLeft: false,
+    bottomRight: false,
+    radius: 8.0,
+  );
+
+// Complex box decoration in one line
+Widget complexBox = Container()
+  .boxDecoration(
+    color: Colors.white,
+    borderRadius: BorderRadius.circular(12),
+    boxShadow: [BoxShadow(color: Colors.grey, blurRadius: 4)],
+    border: Border.all(color: Colors.blue),
+  );
+
+// Tailwind-style shadows
+Widget shadowed = Container()
+  .bgWhite()
+  .shadowMd()  // Medium shadow
+  .shadowLg()  // Large shadow
+  .shadow(    // Custom shadow
+    color: Colors.black26,
+    blurRadius: 8.0,
+    offset: Offset(0, 4),
+  );
+```
+
+### Pre-built Components
+
+```dart
+// Accordion Component (HeroUI-inspired)
+import 'package:tailwindcss_build/components/accordion.dart';
+
+TailwindAccordion(
+  children: [
+    TailwindAccordionItem(
+      title: 'What is TailwindCSS Build?',
+      content: Text('A Flutter package that brings Tailwind CSS utilities to Flutter.'),
+    ),
+    TailwindAccordionItem(
+      title: 'How to use it?',
+      subtitle: 'Getting started guide',
+      content: Text('Simply import the package and start using the utilities.'),
+    ),
+  ],
+  variant: AccordionVariant.shadow,
+  allowMultiple: false,
+)
+
+// Autocomplete Component (HeroUI-inspired)
+import 'package:tailwindcss_build/components/autocomplete.dart';
+
+TailwindAutocomplete<String>(
+  label: 'Programming Language',
+  placeholder: 'Select your favorite language',
+  description: 'Choose the programming language you use most',
+  items: [
+    AutocompleteItem(value: 'dart', label: 'Dart'),
+    AutocompleteItem(value: 'flutter', label: 'Flutter'),
+    AutocompleteItem(value: 'javascript', label: 'JavaScript'),
+  ],
+  size: AutocompleteSize.md,
+  color: AutocompleteColor.primary,
+  startContent: Icon(Icons.search),
+  onSelected: (value) => print('Selected: $value'),
+)
+
+// Chain Complex UI Building
+Widget buildProfileCard() {
+  return <Widget>[
+    // Header with avatar
+    <Widget>[
+      CircleAvatar(radius: 24, backgroundImage: AssetImage('avatar.jpg')),
+      <Widget>[
+        Text('John Doe').textLg().fontSemiBold().textGray900(),
+        Text('Software Engineer').textSm().textGray500(),
+      ].asColumn(crossAxisAlignment: CrossAxisAlignment.start).ml3(),
+    ].asSafeRow(crossAxisAlignment: CrossAxisAlignment.center),
+    
+    // Stats row
+    <Widget>[
+      _buildStat('Projects', '24'),
+      _buildStat('Followers', '1.2k'),
+      _buildStat('Following', '180'),
+    ].asRow(mainAxisAlignment: MainAxisAlignment.spaceEvenly).mt4(),
+    
+    // Action buttons
+    <Widget>[
+      Text('Follow').textWhite().fontMedium().px4().py2()
+        .bgBlue500().roundedLg()
+        .asGestureDetector(onTap: () => print('Follow')),
+      Text('Message').textBlue500().fontMedium().px4().py2()
+        .border(color: Colors.blue).roundedLg()
+        .asGestureDetector(onTap: () => print('Message')),
+    ].asSafeRow(mainAxisAlignment: MainAxisAlignment.spaceEvenly).mt4(),
+  ].asColumn(crossAxisAlignment: CrossAxisAlignment.stretch)
+    .p6()
+    .bgWhite()
+    .roundedXl()
+    .shadowLg()
+    .m4();
+}
+
+Widget _buildStat(String label, String value) {
+  return <Widget>[
+    Text(value).textXl().fontBold().textGray900(),
+    Text(label).textSm().textGray500(),
+  ].asColumn(crossAxisAlignment: CrossAxisAlignment.center);
+}
 ```
 
 ```dart
@@ -271,6 +445,34 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [GitHub Repository](https://github.com/Not996NotOT/tailwindcss_build)
 - [Pub.dev Package](https://pub.dev/packages/tailwindcss_build)
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+
+## ✨ Key Highlights
+
+### 🎯 **Smart `as` Syntax**
+- Revolutionary widget conversion system
+- Automatic constraint handling with `asSafeRow()` and `asFlexRow()`
+- Seamless layout transformation without breaking Flutter's constraint system
+
+### 🎨 **Intelligent Decorations**
+- `smartBorderRadius()` - Position-aware corner styling
+- `conditionalBorderRadius()` - Precise corner control
+- `boxDecoration()` - Complex styling in single chain calls
+
+### 🧩 **Component Library**
+- **Accordion**: HeroUI-inspired expandable content panels
+- **Autocomplete**: Feature-rich dropdown with search and filtering
+- Fully chainable with TailwindCSS Build syntax
+
+### 🔧 **Constraint-Safe Building**
+- Eliminates `RenderFlex` overflow errors
+- Automatic layout optimization
+- Unbounded constraint handling
+
+### 💡 **Developer Experience**
+- 100% chainable API
+- No nested widget trees
+- Tailwind CSS familiarity
+- Type-safe widget transformations
 
 ## 📝 Changelog
 
