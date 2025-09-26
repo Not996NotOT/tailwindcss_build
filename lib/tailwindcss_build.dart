@@ -41,6 +41,7 @@ export 'break_utilities.dart';
 // Colors
 export 'colors.dart';
 export 'columns.dart';
+export 'decoration.dart';
 export 'display.dart';
 // Filters
 export 'filter.dart';
@@ -59,6 +60,8 @@ export 'font_smoothing.dart';
 export 'font_style.dart';
 export 'font_weight.dart';
 export 'gap.dart';
+// 新增的链式调用扩展
+export 'gestures.dart';
 export 'grid_auto_flow.dart';
 export 'grid_auto_utilities.dart';
 export 'grid_column.dart';
@@ -94,11 +97,12 @@ export 'place_content.dart';
 export 'place_items.dart';
 export 'place_self.dart';
 export 'position.dart';
+export 'sizing.dart';
 export 'svg_utilities.dart';
 // Tables
 export 'table_utilities.dart';
 export 'text_align.dart';
-// export 'text_color.dart'; // 已被text_style_extensions.dart替代
+export 'text_color.dart';
 export 'text_decoration.dart';
 export 'text_extensions.dart' hide TextStyleExt; // Text转Container扩展
 export 'text_overflow.dart';

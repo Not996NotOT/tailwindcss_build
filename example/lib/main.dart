@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'components_home.dart';
+import 'component_test_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: 'Inter',
       ),
-      home: const ComponentsHome(),
+      home: const ComponentTestPage(),
       debugShowCheckedModeBanner: false,
     );
   }

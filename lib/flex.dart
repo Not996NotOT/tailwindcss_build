@@ -49,12 +49,12 @@ extension FlexExt on Widget {
 
   /// flex-col -> flex-direction: column;
   FlexContainer flexCol() {
-    return FlexContainer(child: this, direction: Axis.vertical);
+    return FlexContainer(direction: Axis.vertical, child: this);
   }
 
   /// flex-row -> flex-direction: row;
   FlexContainer flexRow() {
-    return FlexContainer(child: this, direction: Axis.horizontal);
+    return FlexContainer(direction: Axis.horizontal, child: this);
   }
 }
 

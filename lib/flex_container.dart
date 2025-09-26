@@ -50,11 +50,11 @@ extension FlexContainerAlignExt on FlexContainer {
   FlexContainer itemsCenter() {
     return FlexContainer(
       key: key,
-      child: child,
       direction: direction,
       mainAxisAlignment: mainAxisAlignment,
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisSize: mainAxisSize,
+      child: child,
     );
   }
 
@@ -62,11 +62,11 @@ extension FlexContainerAlignExt on FlexContainer {
   FlexContainer justifyCenter() {
     return FlexContainer(
       key: key,
-      child: child,
       direction: direction,
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: crossAxisAlignment,
       mainAxisSize: mainAxisSize,
+      child: child,
     );
   }
 
@@ -74,11 +74,11 @@ extension FlexContainerAlignExt on FlexContainer {
   FlexContainer justifyStart() {
     return FlexContainer(
       key: key,
-      child: child,
       direction: direction,
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: crossAxisAlignment,
       mainAxisSize: mainAxisSize,
+      child: child,
     );
   }
 
@@ -86,11 +86,11 @@ extension FlexContainerAlignExt on FlexContainer {
   FlexContainer justifyEnd() {
     return FlexContainer(
       key: key,
-      child: child,
       direction: direction,
       mainAxisAlignment: MainAxisAlignment.end,
       crossAxisAlignment: crossAxisAlignment,
       mainAxisSize: mainAxisSize,
+      child: child,
     );
   }
 
@@ -98,11 +98,11 @@ extension FlexContainerAlignExt on FlexContainer {
   FlexContainer justifyBetween() {
     return FlexContainer(
       key: key,
-      child: child,
       direction: direction,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: crossAxisAlignment,
       mainAxisSize: mainAxisSize,
+      child: child,
     );
   }
 
@@ -110,11 +110,11 @@ extension FlexContainerAlignExt on FlexContainer {
   FlexContainer justifyAround() {
     return FlexContainer(
       key: key,
-      child: child,
       direction: direction,
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: crossAxisAlignment,
       mainAxisSize: mainAxisSize,
+      child: child,
     );
   }
 
@@ -122,11 +122,11 @@ extension FlexContainerAlignExt on FlexContainer {
   FlexContainer justifyEvenly() {
     return FlexContainer(
       key: key,
-      child: child,
       direction: direction,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: crossAxisAlignment,
       mainAxisSize: mainAxisSize,
+      child: child,
     );
   }
 
@@ -134,11 +134,11 @@ extension FlexContainerAlignExt on FlexContainer {
   FlexContainer itemsStart() {
     return FlexContainer(
       key: key,
-      child: child,
       direction: direction,
       mainAxisAlignment: mainAxisAlignment,
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: mainAxisSize,
+      child: child,
     );
   }
 
@@ -146,11 +146,11 @@ extension FlexContainerAlignExt on FlexContainer {
   FlexContainer itemsEnd() {
     return FlexContainer(
       key: key,
-      child: child,
       direction: direction,
       mainAxisAlignment: mainAxisAlignment,
       crossAxisAlignment: CrossAxisAlignment.end,
       mainAxisSize: mainAxisSize,
+      child: child,
     );
   }
 
@@ -158,11 +158,11 @@ extension FlexContainerAlignExt on FlexContainer {
   FlexContainer itemsStretch() {
     return FlexContainer(
       key: key,
-      child: child,
       direction: direction,
       mainAxisAlignment: mainAxisAlignment,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       mainAxisSize: mainAxisSize,
+      child: child,
     );
   }
 
@@ -170,11 +170,11 @@ extension FlexContainerAlignExt on FlexContainer {
   FlexContainer itemsBaseline() {
     return FlexContainer(
       key: key,
-      child: child,
       direction: direction,
       mainAxisAlignment: mainAxisAlignment,
       crossAxisAlignment: CrossAxisAlignment.baseline,
       mainAxisSize: mainAxisSize,
+      child: child,
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'dart:math' as Math;
+import 'dart:math' as math;
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -356,8 +356,8 @@ extension MixBlendModeExt on Widget {
   /// hueRotate -> 色相旋转
   Widget hueRotate(double degrees) {
     final radians = degrees * (3.14159 / 180);
-    final cos = Math.cos(radians);
-    final sin = Math.sin(radians);
+    final cos = math.cos(radians);
+    final sin = math.sin(radians);
     
       final matrix = Float64List.fromList([
       0.213 + cos * 0.787 - sin * 0.213, 0.715 - cos * 0.715 - sin * 0.715, 0.072 - cos * 0.072 + sin * 0.928, 0, 0,

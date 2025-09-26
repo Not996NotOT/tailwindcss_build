@@ -368,3 +368,18 @@ class BackgroundColor {
     desktop: desktop,
   );
 }
+
+/// 动态颜色支持扩展
+extension DynamicBackgroundColorExt on Widget {
+  /// 动态背景颜色 - 支持任意Color对象
+  Widget bgColor(Color color) => Container(
+    color: color,
+    child: this,
+  );
+  
+  /// 动态背景颜色 - 带透明度
+  Widget bgColorWithOpacity(Color color, double opacity) => Container(
+    color: color.withValues(alpha: opacity),
+    child: this,
+  );
+}

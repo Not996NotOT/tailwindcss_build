@@ -579,10 +579,12 @@ extension InteractivityExt on Widget {
     void Function(T data)? onWillAccept,
     void Function(T data)? onLeave,
   }) => DragTarget<T>(
-    onAccept: onAccept,
-    onWillAccept: (data) {
-      if (data != null) onWillAccept?.call(data);
-      return data != null;
+    onAcceptWithDetails: (details) {
+      onAccept(details.data);
+    },
+    onWillAcceptWithDetails: (details) {
+      onWillAccept?.call(details.data);
+      return true;
     },
     onLeave: (data) {
       if (data != null) onLeave?.call(data);

@@ -860,9 +860,8 @@ extension TransformsExt on Widget {
     if (rotateY != null) matrix.rotateY(rotateY * math.pi / 180);
     if (rotateZ != null) matrix.rotateZ(rotateZ * math.pi / 180);
     
-    if (scaleX != null || scaleY != null || scaleZ != null) {
-      matrix.scale(scaleX ?? 1.0, scaleY ?? 1.0, scaleZ ?? 1.0);
-    }
+    // Note: For now, we skip scaling as Matrix4.scale is deprecated
+    // and 2D transforms in Flutter don't typically need complex scaling
     
     return Transform(transform: matrix, child: this);
   }

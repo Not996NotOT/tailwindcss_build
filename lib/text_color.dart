@@ -653,3 +653,18 @@ extension TextColorExt on Widget {
     }
   }
 }
+
+/// 动态文本颜色支持扩展
+extension DynamicTextColorExt on Widget {
+  /// 动态文本颜色 - 支持任意Color对象
+  Widget textColor(Color color) => DefaultTextStyle.merge(
+    style: TextStyle(color: color),
+    child: this,
+  );
+  
+  /// 动态文本颜色 - 带透明度
+  Widget textColorWithOpacity(Color color, double opacity) => DefaultTextStyle.merge(
+    style: TextStyle(color: color.withValues(alpha: opacity)),
+    child: this,
+  );
+}

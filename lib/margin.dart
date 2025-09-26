@@ -1041,4 +1041,76 @@ extension MarginExt on Widget {
       );
 }
 
+/// Flex-friendly margin extensions that return Padding instead of Container
+/// These are safer to use with Expanded, Flexible, and other Flex children
+extension FlexSafeMarginExt on Widget {
+  
+  // === Flex-safe margin methods using Padding ===
+  
+  /// Flex-safe ml-4 -> margin-left: 16px (using Padding)
+  Widget mlSafe4() => Padding(
+    padding: const EdgeInsets.only(left: 16),
+    child: this,
+  );
+  
+  /// Flex-safe mr-4 -> margin-right: 16px (using Padding)  
+  Widget mrSafe4() => Padding(
+    padding: const EdgeInsets.only(right: 16),
+    child: this,
+  );
+  
+  /// Flex-safe mt-4 -> margin-top: 16px (using Padding)
+  Widget mtSafe4() => Padding(
+    padding: const EdgeInsets.only(top: 16),
+    child: this,
+  );
+  
+  /// Flex-safe mb-4 -> margin-bottom: 16px (using Padding)
+  Widget mbSafe4() => Padding(
+    padding: const EdgeInsets.only(bottom: 16),
+    child: this,
+  );
+  
+  /// Flex-safe margin methods for common values
+  Widget mlSafe1() => Padding(padding: const EdgeInsets.only(left: 4), child: this);
+  Widget mlSafe2() => Padding(padding: const EdgeInsets.only(left: 8), child: this);
+  Widget mlSafe3() => Padding(padding: const EdgeInsets.only(left: 12), child: this);
+  Widget mlSafe6() => Padding(padding: const EdgeInsets.only(left: 24), child: this);
+  Widget mlSafe8() => Padding(padding: const EdgeInsets.only(left: 32), child: this);
+  
+  Widget mrSafe1() => Padding(padding: const EdgeInsets.only(right: 4), child: this);
+  Widget mrSafe2() => Padding(padding: const EdgeInsets.only(right: 8), child: this);
+  Widget mrSafe3() => Padding(padding: const EdgeInsets.only(right: 12), child: this);
+  Widget mrSafe6() => Padding(padding: const EdgeInsets.only(right: 24), child: this);
+  Widget mrSafe8() => Padding(padding: const EdgeInsets.only(right: 32), child: this);
+  
+  Widget mtSafe1() => Padding(padding: const EdgeInsets.only(top: 4), child: this);
+  Widget mtSafe2() => Padding(padding: const EdgeInsets.only(top: 8), child: this);
+  Widget mtSafe3() => Padding(padding: const EdgeInsets.only(top: 12), child: this);
+  Widget mtSafe6() => Padding(padding: const EdgeInsets.only(top: 24), child: this);
+  Widget mtSafe8() => Padding(padding: const EdgeInsets.only(top: 32), child: this);
+  
+  Widget mbSafe1() => Padding(padding: const EdgeInsets.only(bottom: 4), child: this);
+  Widget mbSafe2() => Padding(padding: const EdgeInsets.only(bottom: 8), child: this);
+  Widget mbSafe3() => Padding(padding: const EdgeInsets.only(bottom: 12), child: this);
+  Widget mbSafe6() => Padding(padding: const EdgeInsets.only(bottom: 24), child: this);
+  Widget mbSafe8() => Padding(padding: const EdgeInsets.only(bottom: 32), child: this);
+  
+  /// Flex-safe custom margin
+  Widget mSafeCustom({
+    double? left,
+    double? right, 
+    double? top,
+    double? bottom,
+  }) => Padding(
+    padding: EdgeInsets.only(
+      left: left ?? 0,
+      right: right ?? 0,
+      top: top ?? 0,
+      bottom: bottom ?? 0,
+    ),
+    child: this,
+  );
+}
+
 
