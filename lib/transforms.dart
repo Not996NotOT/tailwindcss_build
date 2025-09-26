@@ -853,7 +853,7 @@ extension TransformsExt on Widget {
     final matrix = Matrix4.identity();
     
     if (translateX != null || translateY != null || translateZ != null) {
-      matrix.translate(translateX ?? 0.0, translateY ?? 0.0, translateZ ?? 0.0);
+      matrix.setTranslationRaw(translateX ?? 0.0, translateY ?? 0.0, translateZ ?? 0.0);
     }
     
     if (rotateX != null) matrix.rotateX(rotateX * math.pi / 180);

@@ -162,14 +162,14 @@ extension JustifyContentExt on List<Widget> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: crossAxisAlignment,
         mainAxisSize: mainAxisSize,
-        children: this.map((child) => Expanded(child: child)).toList(),
+        children: map((child) => Expanded(child: child)).toList(),
       );
     } else {
       return Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: crossAxisAlignment,
         mainAxisSize: mainAxisSize,
-        children: this.map((child) => Expanded(child: child)).toList(),
+        children: map((child) => Expanded(child: child)).toList(),
       );
     }
   }
@@ -254,7 +254,7 @@ class JustifyContent {
 /// MainAxisAlignment的字符串扩展
 extension MainAxisAlignmentExt on String {
   MainAxisAlignment get mainAxisAlignment {
-    switch (this.toLowerCase()) {
+    switch (toLowerCase()) {
       case 'start': return MainAxisAlignment.start;
       case 'end': return MainAxisAlignment.end;
       case 'center': return MainAxisAlignment.center;

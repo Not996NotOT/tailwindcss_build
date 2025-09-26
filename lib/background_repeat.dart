@@ -146,7 +146,7 @@ extension BackgroundRepeatExt on Widget {
         alignment: alignment,
         fit: BoxFit.none,
         colorFilter: ColorFilter.mode(
-          Colors.white.withOpacity(opacity),
+          Colors.white.withValues(alpha: opacity),
           blendMode,
         ),
       ),
@@ -917,5 +917,6 @@ class BackgroundRepeat {
     backgroundImage: backgroundImage,
   );
 }
+
 
 

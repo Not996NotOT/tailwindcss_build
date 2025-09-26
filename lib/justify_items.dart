@@ -13,7 +13,7 @@ extension JustifyItemsExt on List<Widget> {
       crossAxisCount: 1,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      children: this.map((child) => Align(
+      children: map((child) => Align(
         alignment: Alignment.centerLeft,
         child: child,
       )).toList(),
@@ -27,7 +27,7 @@ extension JustifyItemsExt on List<Widget> {
       crossAxisCount: 1,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      children: this.map((child) => Align(
+      children: map((child) => Align(
         alignment: Alignment.centerRight,
         child: child,
       )).toList(),
@@ -41,7 +41,7 @@ extension JustifyItemsExt on List<Widget> {
       crossAxisCount: 1,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      children: this.map((child) => Align(
+      children: map((child) => Align(
         alignment: Alignment.center,
         child: child,
       )).toList(),
@@ -55,7 +55,7 @@ extension JustifyItemsExt on List<Widget> {
       crossAxisCount: 1,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      children: this.map((child) => SizedBox(
+      children: map((child) => SizedBox(
         width: double.infinity,
         child: child,
       )).toList(),
@@ -70,7 +70,7 @@ extension FlexJustifyItemsExt on List<Widget> {
   Widget rowJustifyItemsStart() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
-      children: this.map((child) => Align(
+      children: map((child) => Align(
         alignment: Alignment.centerLeft,
         child: child,
       )).toList(),
@@ -81,7 +81,7 @@ extension FlexJustifyItemsExt on List<Widget> {
   Widget rowJustifyItemsEnd() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
-      children: this.map((child) => Align(
+      children: map((child) => Align(
         alignment: Alignment.centerRight,
         child: child,
       )).toList(),
@@ -92,7 +92,7 @@ extension FlexJustifyItemsExt on List<Widget> {
   Widget rowJustifyItemsCenter() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
-      children: this.map((child) => Align(
+      children: map((child) => Align(
         alignment: Alignment.center,
         child: child,
       )).toList(),
@@ -102,7 +102,7 @@ extension FlexJustifyItemsExt on List<Widget> {
   /// 在Row中模拟justify-items-stretch
   Widget rowJustifyItemsStretch() {
     return Row(
-      children: this.map((child) => Expanded(child: child)).toList(),
+      children: map((child) => Expanded(child: child)).toList(),
     );
   }
   

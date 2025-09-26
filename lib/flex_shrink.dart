@@ -58,7 +58,7 @@ class FlexShrink {
 /// FlexFit的便捷扩展
 extension FlexFitExt on String {
   FlexFit get flexFit {
-    switch (this.toLowerCase()) {
+    switch (toLowerCase()) {
       case 'tight': return FlexFit.tight;
       case 'loose': return FlexFit.loose;
       default: return FlexFit.loose;

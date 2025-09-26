@@ -147,7 +147,7 @@ extension MixBlendModeExt on Widget {
     double opacity = 1.0,
   }) => Container(
     foregroundDecoration: BoxDecoration(
-      color: overlayColor?.withOpacity(opacity.clamp(0.0, 1.0)),
+      color: overlayColor?.withValues(alpha: opacity.clamp(0.0, 1.0)),
       backgroundBlendMode: blendMode,
     ),
     child: this,
@@ -181,7 +181,7 @@ extension MixBlendModeExt on Widget {
       this,
       Positioned.fill(
         child: Container(
-          color: color.withOpacity(opacity.clamp(0.0, 1.0)),
+          color: color.withValues(alpha: opacity.clamp(0.0, 1.0)),
         ),
       ),
     ],
@@ -201,7 +201,7 @@ extension MixBlendModeExt on Widget {
   /// grayscale -> 灰度效果
   Widget grayscale({double intensity = 1.0}) => ColorFiltered(
     colorFilter: ColorFilter.mode(
-      Colors.grey.withOpacity(intensity.clamp(0.0, 1.0)),
+      Colors.grey.withValues(alpha: intensity.clamp(0.0, 1.0)),
       BlendMode.saturation,
     ),
     child: this,
@@ -252,7 +252,7 @@ extension MixBlendModeExt on Widget {
       // 阴影色
       ColorFiltered(
         colorFilter: ColorFilter.mode(
-          shadowColor.withOpacity(intensity.clamp(0.0, 1.0)),
+          shadowColor.withValues(alpha: intensity.clamp(0.0, 1.0)),
           BlendMode.darken,
         ),
         child: this,
@@ -260,7 +260,7 @@ extension MixBlendModeExt on Widget {
       // 高光色
       ColorFiltered(
         colorFilter: ColorFilter.mode(
-          highlightColor.withOpacity(intensity.clamp(0.0, 1.0)),
+          highlightColor.withValues(alpha: intensity.clamp(0.0, 1.0)),
           BlendMode.lighten,
         ),
         child: this,

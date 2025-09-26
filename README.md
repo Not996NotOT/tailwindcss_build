@@ -1,6 +1,6 @@
 # Tailwind CSS Build for Flutter
 
-[English](./README.md) | [简体中文](./README_CN.md)
+[English](./README.md) | [简体中文](./README_CN.md) | [日本語](./README_JP.md)
 
 A comprehensive Flutter package that brings the power and convenience of Tailwind CSS utility classes to Flutter development. This library provides utility extensions for styling widgets with familiar Tailwind CSS class names, making it easy to build responsive and consistent UIs.
 

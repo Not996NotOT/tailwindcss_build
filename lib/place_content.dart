@@ -115,7 +115,7 @@ extension PlaceContentExt on List<Widget> {
       runAlignment: WrapAlignment.start,
       spacing: spacing,
       runSpacing: runSpacing,
-      children: this.map((child) => SizedBox(
+      children: map((child) => SizedBox(
         width: double.infinity,
         child: child,
       )).toList(),

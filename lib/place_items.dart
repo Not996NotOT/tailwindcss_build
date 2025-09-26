@@ -16,7 +16,7 @@ extension PlaceItemsExt on List<Widget> {
       return Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: this.map((child) => Align(
+        children: map((child) => Align(
           alignment: Alignment.topLeft,
           child: child,
         )).toList(),
@@ -25,7 +25,7 @@ extension PlaceItemsExt on List<Widget> {
       return Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: this.map((child) => Align(
+        children: map((child) => Align(
           alignment: Alignment.topLeft,
           child: child,
         )).toList(),
@@ -42,7 +42,7 @@ extension PlaceItemsExt on List<Widget> {
       return Row(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
-        children: this.map((child) => Align(
+        children: map((child) => Align(
           alignment: Alignment.bottomRight,
           child: child,
         )).toList(),
@@ -51,7 +51,7 @@ extension PlaceItemsExt on List<Widget> {
       return Column(
         mainAxisAlignment: MainAxisAlignment.end,
         crossAxisAlignment: CrossAxisAlignment.end,
-        children: this.map((child) => Align(
+        children: map((child) => Align(
           alignment: Alignment.bottomRight,
           child: child,
         )).toList(),
@@ -68,7 +68,7 @@ extension PlaceItemsExt on List<Widget> {
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: this.map((child) => Align(
+        children: map((child) => Align(
           alignment: Alignment.center,
           child: child,
         )).toList(),
@@ -77,7 +77,7 @@ extension PlaceItemsExt on List<Widget> {
       return Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: this.map((child) => Align(
+        children: map((child) => Align(
           alignment: Alignment.center,
           child: child,
         )).toList(),
@@ -93,12 +93,12 @@ extension PlaceItemsExt on List<Widget> {
     if (direction == Axis.horizontal) {
       return Row(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: this.map((child) => Expanded(child: child)).toList(),
+        children: map((child) => Expanded(child: child)).toList(),
       );
     } else {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: this.map((child) => SizedBox(
+        children: map((child) => SizedBox(
           width: double.infinity,
           child: child,
         )).toList(),
@@ -121,7 +121,7 @@ extension GridPlaceItemsExt on List<Widget> {
       crossAxisSpacing: spacing,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      children: this.map((child) => Align(
+      children: map((child) => Align(
         alignment: Alignment.topLeft,
         child: child,
       )).toList(),
@@ -139,7 +139,7 @@ extension GridPlaceItemsExt on List<Widget> {
       crossAxisSpacing: spacing,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      children: this.map((child) => Align(
+      children: map((child) => Align(
         alignment: Alignment.bottomRight,
         child: child,
       )).toList(),
@@ -157,7 +157,7 @@ extension GridPlaceItemsExt on List<Widget> {
       crossAxisSpacing: spacing,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      children: this.map((child) => Align(
+      children: map((child) => Align(
         alignment: Alignment.center,
         child: child,
       )).toList(),
@@ -175,7 +175,7 @@ extension GridPlaceItemsExt on List<Widget> {
       crossAxisSpacing: spacing,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      children: this.map((child) => SizedBox(
+      children: map((child) => SizedBox(
         width: double.infinity,
         height: double.infinity,
         child: child,

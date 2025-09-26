@@ -14,7 +14,7 @@ extension GridAutoColumnsExt on List<Widget> {
     return Wrap(
       spacing: spacing,
       runSpacing: runSpacing,
-      children: this.map((child) => IntrinsicWidth(child: child)).toList(),
+      children: map((child) => IntrinsicWidth(child: child)).toList(),
     );
   }
   
@@ -26,7 +26,7 @@ extension GridAutoColumnsExt on List<Widget> {
     return Wrap(
       spacing: spacing,
       runSpacing: runSpacing,
-      children: this.map((child) => IntrinsicWidth(child: child)).toList(),
+      children: map((child) => IntrinsicWidth(child: child)).toList(),
     );
   }
   
@@ -36,7 +36,7 @@ extension GridAutoColumnsExt on List<Widget> {
     double runSpacing = 0.0,
   }) {
     return Row(
-      children: this.map((child) => Expanded(child: child)).toList(),
+      children: map((child) => Expanded(child: child)).toList(),
     );
   }
   
@@ -46,7 +46,7 @@ extension GridAutoColumnsExt on List<Widget> {
     double runSpacing = 0.0,
   }) {
     return Row(
-      children: this.map((child) => Expanded(child: child)).toList(),
+      children: map((child) => Expanded(child: child)).toList(),
     );
   }
   
@@ -122,7 +122,7 @@ extension GridAutoRowsExt on List<Widget> {
     double spacing = 0.0,
   }) {
     return Column(
-      children: this.map((child) => IntrinsicHeight(child: child)).toList(),
+      children: map((child) => IntrinsicHeight(child: child)).toList(),
     );
   }
   
@@ -132,7 +132,7 @@ extension GridAutoRowsExt on List<Widget> {
     double spacing = 0.0,
   }) {
     return Column(
-      children: this.map((child) => IntrinsicHeight(child: child)).toList(),
+      children: map((child) => IntrinsicHeight(child: child)).toList(),
     );
   }
   
@@ -142,7 +142,7 @@ extension GridAutoRowsExt on List<Widget> {
     double spacing = 0.0,
   }) {
     return Column(
-      children: this.map((child) => Expanded(child: child)).toList(),
+      children: map((child) => Expanded(child: child)).toList(),
     );
   }
   
@@ -152,14 +152,14 @@ extension GridAutoRowsExt on List<Widget> {
     double spacing = 0.0,
   }) {
     return Column(
-      children: this.map((child) => Expanded(child: child)).toList(),
+      children: map((child) => Expanded(child: child)).toList(),
     );
   }
   
   /// 固定行高的Grid行
   Widget autoRowsFixed(double rowHeight) {
     return Column(
-      children: this.map((child) => SizedBox(
+      children: map((child) => SizedBox(
         height: rowHeight,
         child: child,
       )).toList(),
@@ -222,7 +222,7 @@ extension AdaptiveGridAutoExt on List<Widget> {
     double spacing = 0.0,
   }) {
     return Column(
-      children: this.map((child) => ConstrainedBox(
+      children: map((child) => ConstrainedBox(
         constraints: BoxConstraints(
           minHeight: minHeight,
           maxHeight: maxHeight,

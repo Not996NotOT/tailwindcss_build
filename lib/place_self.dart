@@ -160,7 +160,7 @@ extension ContainerPlaceSelfExt on Widget {
   
   /// 在指定尺寸的容器中应用place-self-stretch
   Widget placeSelfStretchInContainer({double? width, double? height}) {
-    return Container(
+    return SizedBox(
       width: width,
       height: height,
       child: SizedBox(

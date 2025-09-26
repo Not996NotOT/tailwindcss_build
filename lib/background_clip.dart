@@ -117,7 +117,7 @@ extension BackgroundClipExt on Widget {
           locale: text.locale,
           softWrap: text.softWrap,
           overflow: text.overflow,
-          textScaleFactor: text.textScaleFactor,
+          textScaler: text.textScaler,
           maxLines: text.maxLines,
           semanticsLabel: text.semanticsLabel,
           textWidthBasis: text.textWidthBasis,
@@ -131,7 +131,7 @@ extension BackgroundClipExt on Widget {
       shaderCallback: (bounds) => gradient.createShader(bounds),
       blendMode: blendMode,
       child: DefaultTextStyle.merge(
-        style: TextStyle(color: Colors.white).merge(textStyle),
+        style: const TextStyle(color: Colors.white).merge(textStyle),
         child: this,
       ),
     );
@@ -774,5 +774,6 @@ class BackgroundClip {
     );
   }
 }
+
 
 

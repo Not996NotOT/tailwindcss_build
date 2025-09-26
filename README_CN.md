@@ -1,6 +1,6 @@
 # Tailwind CSS Build for Flutter
 
-[English](./README.md) | [简体中文](./README_CN.md)
+[English](./README.md) | [简体中文](./README_CN.md) | [日本語](./README_JP.md)
 
 一个全面的 Flutter 包，将 Tailwind CSS 工具类的强大功能和便利性带到 Flutter 开发中。该库为 Widget 提供了熟悉的 Tailwind CSS 类名扩展，让您轻松构建响应式和一致的用户界面。
 

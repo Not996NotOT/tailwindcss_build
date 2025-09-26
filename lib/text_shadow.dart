@@ -15,7 +15,7 @@ extension TextShadowExt on Widget {
         style: (text.style ?? TextStyle()).copyWith(
           shadows: [
             Shadow(
-              color: Colors.black.withOpacity(0.05),
+              color: Colors.black.withValues(alpha: 0.05),
               blurRadius: 2,
               offset: Offset(0, 1),
             ),
@@ -28,7 +28,7 @@ extension TextShadowExt on Widget {
         locale: text.locale,
         softWrap: text.softWrap,
         overflow: text.overflow,
-        textScaleFactor: text.textScaleFactor,
+        textScaler: text.textScaler,
         maxLines: text.maxLines,
         semanticsLabel: text.semanticsLabel,
         textWidthBasis: text.textWidthBasis,
@@ -47,12 +47,12 @@ extension TextShadowExt on Widget {
         style: (text.style ?? TextStyle()).copyWith(
           shadows: [
             Shadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 3,
               offset: Offset(0, 1),
             ),
             Shadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 2,
               offset: Offset(0, 1),
             ),
@@ -65,7 +65,7 @@ extension TextShadowExt on Widget {
         locale: text.locale,
         softWrap: text.softWrap,
         overflow: text.overflow,
-        textScaleFactor: text.textScaleFactor,
+        textScaler: text.textScaler,
         maxLines: text.maxLines,
         semanticsLabel: text.semanticsLabel,
         textWidthBasis: text.textWidthBasis,
@@ -84,12 +84,12 @@ extension TextShadowExt on Widget {
         style: (text.style ?? TextStyle()).copyWith(
           shadows: [
             Shadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 6,
               offset: Offset(0, 4),
             ),
             Shadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 4,
               offset: Offset(0, 2),
             ),
@@ -102,7 +102,7 @@ extension TextShadowExt on Widget {
         locale: text.locale,
         softWrap: text.softWrap,
         overflow: text.overflow,
-        textScaleFactor: text.textScaleFactor,
+        textScaler: text.textScaler,
         maxLines: text.maxLines,
         semanticsLabel: text.semanticsLabel,
         textWidthBasis: text.textWidthBasis,
@@ -121,12 +121,12 @@ extension TextShadowExt on Widget {
         style: (text.style ?? TextStyle()).copyWith(
           shadows: [
             Shadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 15,
               offset: Offset(0, 10),
             ),
             Shadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 6,
               offset: Offset(0, 4),
             ),
@@ -139,7 +139,7 @@ extension TextShadowExt on Widget {
         locale: text.locale,
         softWrap: text.softWrap,
         overflow: text.overflow,
-        textScaleFactor: text.textScaleFactor,
+        textScaler: text.textScaler,
         maxLines: text.maxLines,
         semanticsLabel: text.semanticsLabel,
         textWidthBasis: text.textWidthBasis,
@@ -158,12 +158,12 @@ extension TextShadowExt on Widget {
         style: (text.style ?? TextStyle()).copyWith(
           shadows: [
             Shadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 25,
               offset: Offset(0, 20),
             ),
             Shadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 10,
               offset: Offset(0, 8),
             ),
@@ -176,7 +176,7 @@ extension TextShadowExt on Widget {
         locale: text.locale,
         softWrap: text.softWrap,
         overflow: text.overflow,
-        textScaleFactor: text.textScaleFactor,
+        textScaler: text.textScaler,
         maxLines: text.maxLines,
         semanticsLabel: text.semanticsLabel,
         textWidthBasis: text.textWidthBasis,
@@ -195,7 +195,7 @@ extension TextShadowExt on Widget {
         style: (text.style ?? TextStyle()).copyWith(
           shadows: [
             Shadow(
-              color: Colors.black.withOpacity(0.25),
+              color: Colors.black.withValues(alpha: 0.25),
               blurRadius: 50,
               offset: Offset(0, 25),
             ),
@@ -208,7 +208,7 @@ extension TextShadowExt on Widget {
         locale: text.locale,
         softWrap: text.softWrap,
         overflow: text.overflow,
-        textScaleFactor: text.textScaleFactor,
+        textScaler: text.textScaler,
         maxLines: text.maxLines,
         semanticsLabel: text.semanticsLabel,
         textWidthBasis: text.textWidthBasis,
@@ -232,7 +232,7 @@ extension TextShadowExt on Widget {
         locale: text.locale,
         softWrap: text.softWrap,
         overflow: text.overflow,
-        textScaleFactor: text.textScaleFactor,
+        textScaler: text.textScaler,
         maxLines: text.maxLines,
         semanticsLabel: text.semanticsLabel,
         textWidthBasis: text.textWidthBasis,
@@ -253,7 +253,7 @@ extension TextShadowExt on Widget {
         style: (text.style ?? TextStyle()).copyWith(
           shadows: [
             Shadow(
-              color: Colors.black.withOpacity(0.5),
+              color: Colors.black.withValues(alpha: 0.5),
               blurRadius: 4,
               offset: Offset(0, 2),
             ),
@@ -266,7 +266,7 @@ extension TextShadowExt on Widget {
         locale: text.locale,
         softWrap: text.softWrap,
         overflow: text.overflow,
-        textScaleFactor: text.textScaleFactor,
+        textScaler: text.textScaler,
         maxLines: text.maxLines,
         semanticsLabel: text.semanticsLabel,
         textWidthBasis: text.textWidthBasis,
@@ -285,7 +285,7 @@ extension TextShadowExt on Widget {
         style: (text.style ?? TextStyle()).copyWith(
           shadows: [
             Shadow(
-              color: Colors.white.withOpacity(0.8),
+              color: Colors.white.withValues(alpha: 0.8),
               blurRadius: 4,
               offset: Offset(0, 2),
             ),
@@ -298,7 +298,7 @@ extension TextShadowExt on Widget {
         locale: text.locale,
         softWrap: text.softWrap,
         overflow: text.overflow,
-        textScaleFactor: text.textScaleFactor,
+        textScaler: text.textScaler,
         maxLines: text.maxLines,
         semanticsLabel: text.semanticsLabel,
         textWidthBasis: text.textWidthBasis,
@@ -317,7 +317,7 @@ extension TextShadowExt on Widget {
         style: (text.style ?? TextStyle()).copyWith(
           shadows: [
             Shadow(
-              color: Color(0xff6b7280).withOpacity(0.5),
+              color: Color(0xff6b7280).withValues(alpha: 0.5),
               blurRadius: 4,
               offset: Offset(0, 2),
             ),
@@ -330,7 +330,7 @@ extension TextShadowExt on Widget {
         locale: text.locale,
         softWrap: text.softWrap,
         overflow: text.overflow,
-        textScaleFactor: text.textScaleFactor,
+        textScaler: text.textScaler,
         maxLines: text.maxLines,
         semanticsLabel: text.semanticsLabel,
         textWidthBasis: text.textWidthBasis,
@@ -349,7 +349,7 @@ extension TextShadowExt on Widget {
         style: (text.style ?? TextStyle()).copyWith(
           shadows: [
             Shadow(
-              color: Color(0xffef4444).withOpacity(0.5),
+              color: Color(0xffef4444).withValues(alpha: 0.5),
               blurRadius: 4,
               offset: Offset(0, 2),
             ),
@@ -362,7 +362,7 @@ extension TextShadowExt on Widget {
         locale: text.locale,
         softWrap: text.softWrap,
         overflow: text.overflow,
-        textScaleFactor: text.textScaleFactor,
+        textScaler: text.textScaler,
         maxLines: text.maxLines,
         semanticsLabel: text.semanticsLabel,
         textWidthBasis: text.textWidthBasis,
@@ -381,7 +381,7 @@ extension TextShadowExt on Widget {
         style: (text.style ?? TextStyle()).copyWith(
           shadows: [
             Shadow(
-              color: Color(0xff3b82f6).withOpacity(0.5),
+              color: Color(0xff3b82f6).withValues(alpha: 0.5),
               blurRadius: 4,
               offset: Offset(0, 2),
             ),
@@ -394,7 +394,7 @@ extension TextShadowExt on Widget {
         locale: text.locale,
         softWrap: text.softWrap,
         overflow: text.overflow,
-        textScaleFactor: text.textScaleFactor,
+        textScaler: text.textScaler,
         maxLines: text.maxLines,
         semanticsLabel: text.semanticsLabel,
         textWidthBasis: text.textWidthBasis,
@@ -413,7 +413,7 @@ extension TextShadowExt on Widget {
         style: (text.style ?? TextStyle()).copyWith(
           shadows: [
             Shadow(
-              color: Color(0xff22c55e).withOpacity(0.5),
+              color: Color(0xff22c55e).withValues(alpha: 0.5),
               blurRadius: 4,
               offset: Offset(0, 2),
             ),
@@ -426,7 +426,7 @@ extension TextShadowExt on Widget {
         locale: text.locale,
         softWrap: text.softWrap,
         overflow: text.overflow,
-        textScaleFactor: text.textScaleFactor,
+        textScaler: text.textScaler,
         maxLines: text.maxLines,
         semanticsLabel: text.semanticsLabel,
         textWidthBasis: text.textWidthBasis,
@@ -452,7 +452,7 @@ extension TextShadowExt on Widget {
         style: (text.style ?? TextStyle()).copyWith(
           shadows: [
             Shadow(
-              color: color.withOpacity(opacity),
+              color: color.withValues(alpha: opacity),
               blurRadius: blurRadius,
               offset: offset,
             ),
@@ -465,7 +465,7 @@ extension TextShadowExt on Widget {
         locale: text.locale,
         softWrap: text.softWrap,
         overflow: text.overflow,
-        textScaleFactor: text.textScaleFactor,
+        textScaler: text.textScaler,
         maxLines: text.maxLines,
         semanticsLabel: text.semanticsLabel,
         textWidthBasis: text.textWidthBasis,
@@ -489,7 +489,7 @@ extension TextShadowExt on Widget {
         locale: text.locale,
         softWrap: text.softWrap,
         overflow: text.overflow,
-        textScaleFactor: text.textScaleFactor,
+        textScaler: text.textScaler,
         maxLines: text.maxLines,
         semanticsLabel: text.semanticsLabel,
         textWidthBasis: text.textWidthBasis,
@@ -515,7 +515,7 @@ extension TextShadowExt on Widget {
         style: (text.style ?? TextStyle()).copyWith(
           shadows: [
             Shadow(
-              color: (color ?? Colors.black).withOpacity(opacity),
+              color: (color ?? Colors.black).withValues(alpha: opacity),
               blurRadius: blurRadius,
               offset: offset,
             ),
@@ -528,7 +528,7 @@ extension TextShadowExt on Widget {
         locale: text.locale,
         softWrap: text.softWrap,
         overflow: text.overflow,
-        textScaleFactor: text.textScaleFactor,
+        textScaler: text.textScaler,
         maxLines: text.maxLines,
         semanticsLabel: text.semanticsLabel,
         textWidthBasis: text.textWidthBasis,
@@ -553,7 +553,7 @@ extension TextShadowExt on Widget {
         style: (text.style ?? TextStyle()).copyWith(
           shadows: [
             Shadow(
-              color: (color ?? Colors.blue).withOpacity(opacity),
+              color: (color ?? Colors.blue).withValues(alpha: opacity),
               blurRadius: blurRadius,
               offset: Offset(0, 0),
             ),
@@ -566,7 +566,7 @@ extension TextShadowExt on Widget {
         locale: text.locale,
         softWrap: text.softWrap,
         overflow: text.overflow,
-        textScaleFactor: text.textScaleFactor,
+        textScaler: text.textScaler,
         maxLines: text.maxLines,
         semanticsLabel: text.semanticsLabel,
         textWidthBasis: text.textWidthBasis,
@@ -590,22 +590,22 @@ extension TextShadowExt on Widget {
           shadows: [
             // 创建四个方向的阴影来模拟轮廓
             Shadow(
-              color: (color ?? Colors.black).withOpacity(opacity),
+              color: (color ?? Colors.black).withValues(alpha: opacity),
               blurRadius: blurRadius,
               offset: Offset(-1, -1),
             ),
             Shadow(
-              color: (color ?? Colors.black).withOpacity(opacity),
+              color: (color ?? Colors.black).withValues(alpha: opacity),
               blurRadius: blurRadius,
               offset: Offset(1, -1),
             ),
             Shadow(
-              color: (color ?? Colors.black).withOpacity(opacity),
+              color: (color ?? Colors.black).withValues(alpha: opacity),
               blurRadius: blurRadius,
               offset: Offset(-1, 1),
             ),
             Shadow(
-              color: (color ?? Colors.black).withOpacity(opacity),
+              color: (color ?? Colors.black).withValues(alpha: opacity),
               blurRadius: blurRadius,
               offset: Offset(1, 1),
             ),
@@ -618,7 +618,7 @@ extension TextShadowExt on Widget {
         locale: text.locale,
         softWrap: text.softWrap,
         overflow: text.overflow,
-        textScaleFactor: text.textScaleFactor,
+        textScaler: text.textScaler,
         maxLines: text.maxLines,
         semanticsLabel: text.semanticsLabel,
         textWidthBasis: text.textWidthBasis,
@@ -643,13 +643,13 @@ extension TextShadowExt on Widget {
           shadows: [
             // 高光
             Shadow(
-              color: (highlightColor ?? Colors.white).withOpacity(opacity),
+              color: (highlightColor ?? Colors.white).withValues(alpha: opacity),
               blurRadius: blurRadius,
               offset: Offset(0, -1),
             ),
             // 阴影
             Shadow(
-              color: (shadowColor ?? Colors.black).withOpacity(opacity * 0.6),
+              color: (shadowColor ?? Colors.black).withValues(alpha: opacity * 0.6),
               blurRadius: blurRadius,
               offset: Offset(0, 1),
             ),
@@ -662,7 +662,7 @@ extension TextShadowExt on Widget {
         locale: text.locale,
         softWrap: text.softWrap,
         overflow: text.overflow,
-        textScaleFactor: text.textScaleFactor,
+        textScaler: text.textScaler,
         maxLines: text.maxLines,
         semanticsLabel: text.semanticsLabel,
         textWidthBasis: text.textWidthBasis,
@@ -687,13 +687,13 @@ extension TextShadowExt on Widget {
           shadows: [
             // 阴影（上方）
             Shadow(
-              color: (shadowColor ?? Colors.black).withOpacity(opacity * 0.6),
+              color: (shadowColor ?? Colors.black).withValues(alpha: opacity * 0.6),
               blurRadius: blurRadius,
               offset: Offset(0, -1),
             ),
             // 高光（下方）
             Shadow(
-              color: (highlightColor ?? Colors.white).withOpacity(opacity),
+              color: (highlightColor ?? Colors.white).withValues(alpha: opacity),
               blurRadius: blurRadius,
               offset: Offset(0, 1),
             ),
@@ -706,7 +706,7 @@ extension TextShadowExt on Widget {
         locale: text.locale,
         softWrap: text.softWrap,
         overflow: text.overflow,
-        textScaleFactor: text.textScaleFactor,
+        textScaler: text.textScaler,
         maxLines: text.maxLines,
         semanticsLabel: text.semanticsLabel,
         textWidthBasis: text.textWidthBasis,

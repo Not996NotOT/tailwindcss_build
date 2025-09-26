@@ -228,7 +228,7 @@ extension OpacityExt on Widget {
     assert(stops.length == opacities.length, 'stops and opacities must have the same length');
     
     final colors = opacities.map((opacity) => 
-      Colors.black.withOpacity(opacity.clamp(0.0, 1.0))
+      Colors.black.withValues(alpha: opacity.clamp(0.0, 1.0))
     ).toList();
     
     return ShaderMask(

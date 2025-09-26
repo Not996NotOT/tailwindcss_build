@@ -1,3 +1,41 @@
+## [2025-09-26] - Version 0.3.2 - Animation System Fixes & Documentation Enhancement
+
+### 🔧 Bug Fixes
+- 🎬 Fixed `AnimatedContainer` constructor syntax errors in transition_animation.dart
+- 🛠️ Corrected `_withDuration` method name and implementation
+- 📝 Resolved method naming conflicts in animation utilities
+- 🚀 Eliminated remaining constructor syntax issues
+
+### 📚 Documentation Improvements
+- 🌍 Added Japanese README (README_JP.md) for better international support
+- 🔗 Enhanced language navigation between English, Chinese, and Japanese docs
+- 📖 Improved documentation accessibility and user experience
+
+### ⚡ Performance Improvements
+- 🎯 Optimized animation helper methods for better performance
+- 💾 Cleaned up transition duration handling
+- 🔧 Enhanced animation method consistency
+
+---
+
+## [2025-09-26] - Version 0.3.1 - Static Analysis & Code Quality Improvements
+
+### 🔧 Code Quality Enhancements
+- 🚀 Resolved 472 static analysis issues to improve pub.dev scoring
+- 🔄 Replaced deprecated `withOpacity` calls with `withValues` for better precision
+- 📱 Updated deprecated `textScaleFactor` to use `textScaler` for modern text scaling
+- ⚡ Added `const` keywords to constructor invocations for better performance
+- 🧹 Fixed unnecessary `this.` qualifiers and other linting issues
+- 📦 Enhanced package compliance with pub.dev standards
+
+### 🎯 Performance Optimizations
+- 💾 Improved memory usage with const constructors
+- 🏃 Better rendering performance with optimized text scaling
+- 🎨 Enhanced color precision with new withValues API
+- 🔧 Reduced unnecessary rebuilds through code optimization
+
+---
+
 ## [2025-09-23] - Complete Chat Application Example
 
 ### ✨ New Features

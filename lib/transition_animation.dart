@@ -88,28 +88,28 @@ extension TransitionAnimationExt on Widget {
   Widget duration0() => _withDuration(Duration.zero);
   
   /// duration-75 -> transition-duration: 75ms;
-  Widget duration75() => _withDuration(Duration(milliseconds: 75));
+  Widget duration75() => _withDuration(const Duration(milliseconds: 75));
   
   /// duration-100 -> transition-duration: 100ms;
-  Widget duration100() => _withDuration(Duration(milliseconds: 100));
+  Widget duration100() => _withDuration(const Duration(milliseconds: 100));
   
   /// duration-150 -> transition-duration: 150ms;
-  Widget duration150() => _withDuration(Duration(milliseconds: 150));
+  Widget duration150() => _withDuration(const Duration(milliseconds: 150));
   
   /// duration-200 -> transition-duration: 200ms;
-  Widget duration200() => _withDuration(Duration(milliseconds: 200));
+  Widget duration200() => _withDuration(const Duration(milliseconds: 200));
   
   /// duration-300 -> transition-duration: 300ms;
-  Widget duration300() => _withDuration(Duration(milliseconds: 300));
+  Widget duration300() => _withDuration(const Duration(milliseconds: 300));
   
   /// duration-500 -> transition-duration: 500ms;
-  Widget duration500() => _withDuration(Duration(milliseconds: 500));
+  Widget duration500() => _withDuration(const Duration(milliseconds: 500));
   
   /// duration-700 -> transition-duration: 700ms;
-  Widget duration700() => _withDuration(Duration(milliseconds: 700));
+  Widget duration700() => _withDuration(const Duration(milliseconds: 700));
   
   /// duration-1000 -> transition-duration: 1000ms;
-  Widget duration1000() => _withDuration(Duration(milliseconds: 1000));
+  Widget duration1000() => _withDuration(const Duration(milliseconds: 1000));
 
   // === Transition Timing Function ===
   
@@ -131,28 +131,28 @@ extension TransitionAnimationExt on Widget {
   Widget delay0() => this;
   
   /// delay-75 -> transition-delay: 75ms;
-  Widget delay75() => _withDelay(Duration(milliseconds: 75));
+  Widget delay75() => _withDelay(const Duration(milliseconds: 75));
   
   /// delay-100 -> transition-delay: 100ms;
-  Widget delay100() => _withDelay(Duration(milliseconds: 100));
+  Widget delay100() => _withDelay(const Duration(milliseconds: 100));
   
   /// delay-150 -> transition-delay: 150ms;
-  Widget delay150() => _withDelay(Duration(milliseconds: 150));
+  Widget delay150() => _withDelay(const Duration(milliseconds: 150));
   
   /// delay-200 -> transition-delay: 200ms;
-  Widget delay200() => _withDelay(Duration(milliseconds: 200));
+  Widget delay200() => _withDelay(const Duration(milliseconds: 200));
   
   /// delay-300 -> transition-delay: 300ms;
-  Widget delay300() => _withDelay(Duration(milliseconds: 300));
+  Widget delay300() => _withDelay(const Duration(milliseconds: 300));
   
   /// delay-500 -> transition-delay: 500ms;
-  Widget delay500() => _withDelay(Duration(milliseconds: 500));
+  Widget delay500() => _withDelay(const Duration(milliseconds: 500));
   
   /// delay-700 -> transition-delay: 700ms;
-  Widget delay700() => _withDelay(Duration(milliseconds: 700));
+  Widget delay700() => _withDelay(const Duration(milliseconds: 700));
   
   /// delay-1000 -> transition-delay: 1000ms;
-  Widget delay1000() => _withDelay(Duration(milliseconds: 1000));
+  Widget delay1000() => _withDelay(const Duration(milliseconds: 1000));
 
   // === Animation ===
   
@@ -275,7 +275,7 @@ extension TransitionAnimationExt on Widget {
     onExit: (_) {},
     child: AnimatedContainer(
       duration: duration,
-      transform: Matrix4.identity()..scale(1.0),
+      transform: Matrix4.identity()..scale(1.0, 1.0, 1.0),
       child: this,
     ),
   );
@@ -302,7 +302,7 @@ extension TransitionAnimationExt on Widget {
   );
   
   Widget _withCurve(Curve curve) => AnimatedContainer(
-    duration: Duration(milliseconds: 300),
+    duration: const Duration(milliseconds: 300),
     curve: curve,
     child: this,
   );
@@ -447,7 +447,7 @@ class _SpinningWidgetState extends State<_SpinningWidget>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: Duration(seconds: 1),
+      duration: const Duration(seconds: 1),
       vsync: this,
     )..repeat();
   }
@@ -486,7 +486,7 @@ class _PingWidgetState extends State<_PingWidget>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: Duration(seconds: 1),
+      duration: const Duration(seconds: 1),
       vsync: this,
     )..repeat();
     _animation = Tween<double>(begin: 0.0, end: 1.0).animate(
@@ -536,7 +536,7 @@ class _PulseWidgetState extends State<_PulseWidget>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
       vsync: this,
     )..repeat(reverse: true);
     _animation = Tween<double>(begin: 0.5, end: 1.0).animate(
@@ -583,7 +583,7 @@ class _BounceWidgetState extends State<_BounceWidget>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: Duration(seconds: 1),
+      duration: const Duration(seconds: 1),
       vsync: this,
     )..repeat();
     _animation = Tween<double>(begin: 0.0, end: -20.0).animate(

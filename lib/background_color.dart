@@ -172,7 +172,7 @@ extension BackgroundColorExt on Widget {
   
   /// 带透明度的背景颜色
   Widget bgWithOpacity(Color color, double opacity) => Container(
-    color: color.withOpacity(opacity),
+    color: color.withValues(alpha: opacity),
     child: this,
   );
 

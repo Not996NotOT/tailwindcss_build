@@ -253,7 +253,7 @@ extension FilterExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.05),
+          color: Colors.black.withValues(alpha: 0.05),
           blurRadius: 1,
           offset: Offset(0, 1),
         ),
@@ -267,12 +267,12 @@ extension FilterExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.1),
+          color: Colors.black.withValues(alpha: 0.1),
           blurRadius: 2,
           offset: Offset(0, 1),
         ),
         BoxShadow(
-          color: Colors.black.withOpacity(0.06),
+          color: Colors.black.withValues(alpha: 0.06),
           blurRadius: 1,
           offset: Offset(0, 1),
         ),
@@ -286,12 +286,12 @@ extension FilterExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.07),
+          color: Colors.black.withValues(alpha: 0.07),
           blurRadius: 3,
           offset: Offset(0, 4),
         ),
         BoxShadow(
-          color: Colors.black.withOpacity(0.06),
+          color: Colors.black.withValues(alpha: 0.06),
           blurRadius: 2,
           offset: Offset(0, 2),
         ),
@@ -305,12 +305,12 @@ extension FilterExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.04),
+          color: Colors.black.withValues(alpha: 0.04),
           blurRadius: 8,
           offset: Offset(0, 10),
         ),
         BoxShadow(
-          color: Colors.black.withOpacity(0.1),
+          color: Colors.black.withValues(alpha: 0.1),
           blurRadius: 3,
           offset: Offset(0, 4),
         ),
@@ -324,12 +324,12 @@ extension FilterExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.03),
+          color: Colors.black.withValues(alpha: 0.03),
           blurRadius: 13,
           offset: Offset(0, 20),
         ),
         BoxShadow(
-          color: Colors.black.withOpacity(0.08),
+          color: Colors.black.withValues(alpha: 0.08),
           blurRadius: 5,
           offset: Offset(0, 8),
         ),
@@ -343,7 +343,7 @@ extension FilterExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.15),
+          color: Colors.black.withValues(alpha: 0.15),
           blurRadius: 25,
           offset: Offset(0, 25),
         ),

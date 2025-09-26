@@ -175,7 +175,7 @@ extension ContainerAlignSelfExt on Widget {
   
   /// 在指定尺寸的容器中应用self-stretch
   Widget selfStretchInContainer({double? width, double? height}) {
-    return Container(
+    return SizedBox(
       width: width,
       height: height,
       child: SizedBox(

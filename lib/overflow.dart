@@ -235,7 +235,7 @@ extension OverflowHandlingExt on Widget {
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
                 colors: [
-                  (color ?? Colors.white).withOpacity(0),
+                  (color ?? Colors.white).withValues(alpha: 0),
                   color ?? Colors.white,
                 ],
               ),

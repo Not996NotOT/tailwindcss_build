@@ -356,7 +356,7 @@ extension BackgroundImageExt on Widget {
         image: texture,
         fit: BoxFit.cover,
         colorFilter: ColorFilter.mode(
-          blendColor.withOpacity(opacity),
+          blendColor.withValues(alpha: opacity),
           blendMode,
         ),
       ),

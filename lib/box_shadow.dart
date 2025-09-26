@@ -11,7 +11,7 @@ extension BoxShadowExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.05),
+          color: Colors.black.withValues(alpha: 0.05),
           blurRadius: 2,
           offset: Offset(0, 1),
         ),
@@ -25,12 +25,12 @@ extension BoxShadowExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.1),
+          color: Colors.black.withValues(alpha: 0.1),
           blurRadius: 3,
           offset: Offset(0, 1),
         ),
         BoxShadow(
-          color: Colors.black.withOpacity(0.1),
+          color: Colors.black.withValues(alpha: 0.1),
           blurRadius: 2,
           offset: Offset(0, 1),
           spreadRadius: -1,
@@ -45,13 +45,13 @@ extension BoxShadowExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.1),
+          color: Colors.black.withValues(alpha: 0.1),
           blurRadius: 6,
           offset: Offset(0, 4),
           spreadRadius: -1,
         ),
         BoxShadow(
-          color: Colors.black.withOpacity(0.1),
+          color: Colors.black.withValues(alpha: 0.1),
           blurRadius: 4,
           offset: Offset(0, 2),
           spreadRadius: -2,
@@ -66,13 +66,13 @@ extension BoxShadowExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.1),
+          color: Colors.black.withValues(alpha: 0.1),
           blurRadius: 15,
           offset: Offset(0, 10),
           spreadRadius: -3,
         ),
         BoxShadow(
-          color: Colors.black.withOpacity(0.1),
+          color: Colors.black.withValues(alpha: 0.1),
           blurRadius: 6,
           offset: Offset(0, 4),
           spreadRadius: -4,
@@ -87,13 +87,13 @@ extension BoxShadowExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.1),
+          color: Colors.black.withValues(alpha: 0.1),
           blurRadius: 25,
           offset: Offset(0, 20),
           spreadRadius: -5,
         ),
         BoxShadow(
-          color: Colors.black.withOpacity(0.1),
+          color: Colors.black.withValues(alpha: 0.1),
           blurRadius: 10,
           offset: Offset(0, 8),
           spreadRadius: -6,
@@ -108,7 +108,7 @@ extension BoxShadowExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.25),
+          color: Colors.black.withValues(alpha: 0.25),
           blurRadius: 50,
           offset: Offset(0, 25),
           spreadRadius: -12,
@@ -126,7 +126,7 @@ extension BoxShadowExt on Widget {
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
         colors: [
-          Colors.black.withOpacity(0.05),
+          Colors.black.withValues(alpha: 0.05),
           Colors.transparent,
           Colors.transparent,
         ],
@@ -146,7 +146,7 @@ extension BoxShadowExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.5),
+          color: Colors.black.withValues(alpha: 0.5),
           blurRadius: 6,
           offset: Offset(0, 4),
           spreadRadius: -1,
@@ -161,7 +161,7 @@ extension BoxShadowExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Colors.white.withOpacity(0.5),
+          color: Colors.white.withValues(alpha: 0.5),
           blurRadius: 6,
           offset: Offset(0, 4),
           spreadRadius: -1,
@@ -176,7 +176,7 @@ extension BoxShadowExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff6b7280).withOpacity(0.5),
+          color: Color(0xff6b7280).withValues(alpha: 0.5),
           blurRadius: 6,
           offset: Offset(0, 4),
           spreadRadius: -1,
@@ -191,7 +191,7 @@ extension BoxShadowExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xffef4444).withOpacity(0.5),
+          color: Color(0xffef4444).withValues(alpha: 0.5),
           blurRadius: 6,
           offset: Offset(0, 4),
           spreadRadius: -1,
@@ -206,7 +206,7 @@ extension BoxShadowExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff3b82f6).withOpacity(0.5),
+          color: Color(0xff3b82f6).withValues(alpha: 0.5),
           blurRadius: 6,
           offset: Offset(0, 4),
           spreadRadius: -1,
@@ -221,7 +221,7 @@ extension BoxShadowExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff22c55e).withOpacity(0.5),
+          color: Color(0xff22c55e).withValues(alpha: 0.5),
           blurRadius: 6,
           offset: Offset(0, 4),
           spreadRadius: -1,
@@ -244,7 +244,7 @@ extension BoxShadowExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: color.withOpacity(opacity),
+          color: color.withValues(alpha: opacity),
           blurRadius: blurRadius,
           offset: offset,
           spreadRadius: spreadRadius,
@@ -273,7 +273,7 @@ extension BoxShadowExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: (color ?? Colors.black).withOpacity(opacity),
+          color: (color ?? Colors.black).withValues(alpha: opacity),
           blurRadius: blurRadius,
           offset: offset,
           spreadRadius: spreadRadius,
@@ -290,12 +290,12 @@ extension BoxShadowExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.12),
+          color: Colors.black.withValues(alpha: 0.12),
           blurRadius: 2,
           offset: Offset(0, 1),
         ),
         BoxShadow(
-          color: Colors.black.withOpacity(0.24),
+          color: Colors.black.withValues(alpha: 0.24),
           blurRadius: 1,
           offset: Offset(0, 1),
         ),
@@ -309,12 +309,12 @@ extension BoxShadowExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.16),
+          color: Colors.black.withValues(alpha: 0.16),
           blurRadius: 3,
           offset: Offset(0, 1),
         ),
         BoxShadow(
-          color: Colors.black.withOpacity(0.23),
+          color: Colors.black.withValues(alpha: 0.23),
           blurRadius: 3,
           offset: Offset(0, 3),
         ),
@@ -328,12 +328,12 @@ extension BoxShadowExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.19),
+          color: Colors.black.withValues(alpha: 0.19),
           blurRadius: 10,
           offset: Offset(0, 2),
         ),
         BoxShadow(
-          color: Colors.black.withOpacity(0.23),
+          color: Colors.black.withValues(alpha: 0.23),
           blurRadius: 6,
           offset: Offset(0, 6),
         ),
@@ -347,12 +347,12 @@ extension BoxShadowExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.19),
+          color: Colors.black.withValues(alpha: 0.19),
           blurRadius: 20,
           offset: Offset(0, 5),
         ),
         BoxShadow(
-          color: Colors.black.withOpacity(0.23),
+          color: Colors.black.withValues(alpha: 0.23),
           blurRadius: 16,
           offset: Offset(0, 8),
         ),
@@ -366,12 +366,12 @@ extension BoxShadowExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.19),
+          color: Colors.black.withValues(alpha: 0.19),
           blurRadius: 40,
           offset: Offset(0, 10),
         ),
         BoxShadow(
-          color: Colors.black.withOpacity(0.23),
+          color: Colors.black.withValues(alpha: 0.23),
           blurRadius: 32,
           offset: Offset(0, 16),
         ),
@@ -385,12 +385,12 @@ extension BoxShadowExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.19),
+          color: Colors.black.withValues(alpha: 0.19),
           blurRadius: 60,
           offset: Offset(0, 15),
         ),
         BoxShadow(
-          color: Colors.black.withOpacity(0.23),
+          color: Colors.black.withValues(alpha: 0.23),
           blurRadius: 48,
           offset: Offset(0, 24),
         ),
@@ -411,7 +411,7 @@ extension BoxShadowExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: (color ?? Colors.black).withOpacity(opacity),
+          color: (color ?? Colors.black).withValues(alpha: opacity),
           blurRadius: blurRadius,
           offset: offset,
         ),
@@ -430,7 +430,7 @@ extension BoxShadowExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: (color ?? Colors.black).withOpacity(opacity),
+          color: (color ?? Colors.black).withValues(alpha: opacity),
           blurRadius: blurRadius,
           offset: offset,
         ),
@@ -449,7 +449,7 @@ extension BoxShadowExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: (color ?? Colors.black).withOpacity(opacity),
+          color: (color ?? Colors.black).withValues(alpha: opacity),
           blurRadius: blurRadius,
           offset: offset,
         ),
@@ -469,7 +469,7 @@ extension BoxShadowExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: (color ?? Colors.blue).withOpacity(opacity),
+          color: (color ?? Colors.blue).withValues(alpha: opacity),
           blurRadius: blurRadius,
           offset: Offset(0, 0),
           spreadRadius: 2,
@@ -488,7 +488,7 @@ extension BoxShadowExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: (color ?? Colors.blue).withOpacity(opacity),
+          color: (color ?? Colors.blue).withValues(alpha: opacity),
           blurRadius: blurRadius,
           offset: Offset(0, 0),
           spreadRadius: 4,
@@ -507,7 +507,7 @@ extension BoxShadowExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: (color ?? Colors.blue).withOpacity(opacity),
+          color: (color ?? Colors.blue).withValues(alpha: opacity),
           blurRadius: blurRadius,
           offset: Offset(0, 0),
           spreadRadius: 6,

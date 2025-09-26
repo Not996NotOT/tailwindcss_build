@@ -30,7 +30,7 @@ extension OutlineColorExt on Widget {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Theme.of(context).textTheme.bodyLarge?.color?.withOpacity(0.5) ?? Colors.black.withOpacity(0.5),
+            color: Theme.of(context).textTheme.bodyLarge?.color?.withValues(alpha: 0.5) ?? Colors.black.withValues(alpha: 0.5),
             spreadRadius: width,
             blurRadius: 0,
             offset: Offset(0, 0),
@@ -63,7 +63,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Colors.black.withOpacity(0.5),
+          color: Colors.black.withValues(alpha: 0.5),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -78,7 +78,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Colors.white.withOpacity(0.8),
+          color: Colors.white.withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -95,7 +95,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xfff9fafb).withOpacity(0.8),
+          color: Color(0xfff9fafb).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -110,7 +110,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xfff3f4f6).withOpacity(0.8),
+          color: Color(0xfff3f4f6).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -125,7 +125,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xffe5e7eb).withOpacity(0.8),
+          color: Color(0xffe5e7eb).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -140,7 +140,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xffd1d5db).withOpacity(0.8),
+          color: Color(0xffd1d5db).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -155,7 +155,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff9ca3af).withOpacity(0.8),
+          color: Color(0xff9ca3af).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -170,7 +170,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff6b7280).withOpacity(0.8),
+          color: Color(0xff6b7280).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -185,7 +185,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff4b5563).withOpacity(0.8),
+          color: Color(0xff4b5563).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -200,7 +200,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff374151).withOpacity(0.8),
+          color: Color(0xff374151).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -215,7 +215,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff1f2937).withOpacity(0.8),
+          color: Color(0xff1f2937).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -230,7 +230,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff111827).withOpacity(0.8),
+          color: Color(0xff111827).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -247,7 +247,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xfffef2f2).withOpacity(0.8),
+          color: Color(0xfffef2f2).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -262,7 +262,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xfffee2e2).withOpacity(0.8),
+          color: Color(0xfffee2e2).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -277,7 +277,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xfffecaca).withOpacity(0.8),
+          color: Color(0xfffecaca).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -292,7 +292,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xfffca5a5).withOpacity(0.8),
+          color: Color(0xfffca5a5).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -307,7 +307,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xfff87171).withOpacity(0.8),
+          color: Color(0xfff87171).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -322,7 +322,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xffef4444).withOpacity(0.8),
+          color: Color(0xffef4444).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -337,7 +337,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xffdc2626).withOpacity(0.8),
+          color: Color(0xffdc2626).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -352,7 +352,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xffb91c1c).withOpacity(0.8),
+          color: Color(0xffb91c1c).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -367,7 +367,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff991b1b).withOpacity(0.8),
+          color: Color(0xff991b1b).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -382,7 +382,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff7f1d1d).withOpacity(0.8),
+          color: Color(0xff7f1d1d).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -399,7 +399,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xffeff6ff).withOpacity(0.8),
+          color: Color(0xffeff6ff).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -414,7 +414,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xffdbeafe).withOpacity(0.8),
+          color: Color(0xffdbeafe).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -429,7 +429,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xffbfdbfe).withOpacity(0.8),
+          color: Color(0xffbfdbfe).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -444,7 +444,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff93c5fd).withOpacity(0.8),
+          color: Color(0xff93c5fd).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -459,7 +459,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff60a5fa).withOpacity(0.8),
+          color: Color(0xff60a5fa).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -474,7 +474,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff3b82f6).withOpacity(0.8),
+          color: Color(0xff3b82f6).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -489,7 +489,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff2563eb).withOpacity(0.8),
+          color: Color(0xff2563eb).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -504,7 +504,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff1d4ed8).withOpacity(0.8),
+          color: Color(0xff1d4ed8).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -519,7 +519,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff1e40af).withOpacity(0.8),
+          color: Color(0xff1e40af).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -534,7 +534,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff1e3a8a).withOpacity(0.8),
+          color: Color(0xff1e3a8a).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -551,7 +551,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xfff0fdf4).withOpacity(0.8),
+          color: Color(0xfff0fdf4).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -566,7 +566,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xffdcfce7).withOpacity(0.8),
+          color: Color(0xffdcfce7).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -581,7 +581,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xffbbf7d0).withOpacity(0.8),
+          color: Color(0xffbbf7d0).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -596,7 +596,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff86efac).withOpacity(0.8),
+          color: Color(0xff86efac).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -611,7 +611,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff4ade80).withOpacity(0.8),
+          color: Color(0xff4ade80).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -626,7 +626,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff22c55e).withOpacity(0.8),
+          color: Color(0xff22c55e).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -641,7 +641,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff16a34a).withOpacity(0.8),
+          color: Color(0xff16a34a).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -656,7 +656,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff15803d).withOpacity(0.8),
+          color: Color(0xff15803d).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -671,7 +671,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff166534).withOpacity(0.8),
+          color: Color(0xff166534).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -686,7 +686,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff14532d).withOpacity(0.8),
+          color: Color(0xff14532d).withValues(alpha: 0.8),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -703,7 +703,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: color.withOpacity(opacity),
+          color: color.withValues(alpha: opacity),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -720,7 +720,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: color.withOpacity(opacity),
+          color: color.withValues(alpha: opacity),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -737,7 +737,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff6b7280).withOpacity(0.5),
+          color: Color(0xff6b7280).withValues(alpha: 0.5),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -752,7 +752,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xffef4444).withOpacity(0.5),
+          color: Color(0xffef4444).withValues(alpha: 0.5),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -767,7 +767,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff3b82f6).withOpacity(0.5),
+          color: Color(0xff3b82f6).withValues(alpha: 0.5),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -782,7 +782,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: Color(0xff22c55e).withOpacity(0.5),
+          color: Color(0xff22c55e).withValues(alpha: 0.5),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),
@@ -797,7 +797,7 @@ extension OutlineColorExt on Widget {
     decoration: BoxDecoration(
       boxShadow: [
         BoxShadow(
-          color: color.withOpacity(opacity),
+          color: color.withValues(alpha: opacity),
           spreadRadius: width,
           blurRadius: 0,
           offset: Offset(0, 0),

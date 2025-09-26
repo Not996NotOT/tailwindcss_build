@@ -245,7 +245,7 @@ class AlignItems {
 /// CrossAxisAlignment的字符串扩展
 extension CrossAxisAlignmentExt on String {
   CrossAxisAlignment get crossAxisAlignment {
-    switch (this.toLowerCase()) {
+    switch (toLowerCase()) {
       case 'start': return CrossAxisAlignment.start;
       case 'end': return CrossAxisAlignment.end;
       case 'center': return CrossAxisAlignment.center;

@@ -149,7 +149,7 @@ extension ContainerJustifySelfExt on Widget {
   
   /// 在指定宽度的容器中应用justify-self-stretch
   Widget justifySelfStretchInContainer({double? width, double? height}) {
-    return Container(
+    return SizedBox(
       width: width,
       height: height,
       child: SizedBox(

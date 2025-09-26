@@ -521,7 +521,7 @@ extension TextColorExt on Widget {
   /// text-opacity-0 -> color with 0% opacity
   Widget textOpacity0() => Builder(
         builder: (context) => DefaultTextStyle.merge(
-          style: TextStyle(color: (DefaultTextStyle.of(context).style.color ?? Colors.black).withOpacity(0)),
+          style: TextStyle(color: (DefaultTextStyle.of(context).style.color ?? Colors.black).withValues(alpha: 0)),
           child: this,
         ),
       );
@@ -529,7 +529,7 @@ extension TextColorExt on Widget {
   /// text-opacity-25 -> color with 25% opacity
   Widget textOpacity25() => Builder(
         builder: (context) => DefaultTextStyle.merge(
-          style: TextStyle(color: (DefaultTextStyle.of(context).style.color ?? Colors.black).withOpacity(0.25)),
+          style: TextStyle(color: (DefaultTextStyle.of(context).style.color ?? Colors.black).withValues(alpha: 0.25)),
           child: this,
         ),
       );
@@ -537,7 +537,7 @@ extension TextColorExt on Widget {
   /// text-opacity-50 -> color with 50% opacity
   Widget textOpacity50() => Builder(
         builder: (context) => DefaultTextStyle.merge(
-          style: TextStyle(color: (DefaultTextStyle.of(context).style.color ?? Colors.black).withOpacity(0.5)),
+          style: TextStyle(color: (DefaultTextStyle.of(context).style.color ?? Colors.black).withValues(alpha: 0.5)),
           child: this,
         ),
       );
@@ -545,7 +545,7 @@ extension TextColorExt on Widget {
   /// text-opacity-75 -> color with 75% opacity
   Widget textOpacity75() => Builder(
         builder: (context) => DefaultTextStyle.merge(
-          style: TextStyle(color: (DefaultTextStyle.of(context).style.color ?? Colors.black).withOpacity(0.75)),
+          style: TextStyle(color: (DefaultTextStyle.of(context).style.color ?? Colors.black).withValues(alpha: 0.75)),
           child: this,
         ),
       );
@@ -553,7 +553,7 @@ extension TextColorExt on Widget {
   /// text-opacity-100 -> color with 100% opacity
   Widget textOpacity100() => Builder(
         builder: (context) => DefaultTextStyle.merge(
-          style: TextStyle(color: (DefaultTextStyle.of(context).style.color ?? Colors.black).withOpacity(1.0)),
+          style: TextStyle(color: (DefaultTextStyle.of(context).style.color ?? Colors.black).withValues(alpha: 1.0)),
           child: this,
         ),
       );
@@ -562,7 +562,7 @@ extension TextColorExt on Widget {
   
   /// Custom text color with opacity
   Widget textColorWithOpacity(Color color, double opacity) => DefaultTextStyle.merge(
-        style: TextStyle(color: color.withOpacity(opacity)),
+        style: TextStyle(color: color.withValues(alpha: opacity)),
         child: this,
       );
   
