@@ -1,5 +1,6 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
-import 'dart:math' as Math;
 
 /// Tailwind CSS Accessibility utilities for Flutter
 /// Utilities for improving accessibility and forced color adjustments.
@@ -103,8 +104,8 @@ extension AccessibilityUtilitiesExt on Widget {
     double maxScale = 2.0,
   }) => Builder(
     builder: (context) {
-      final textScaleFactor = MediaQuery.of(context).textScaleFactor;
-      final scaledSize = baseFontSize * textScaleFactor.clamp(1.0, maxScale);
+      final textScaler = MediaQuery.of(context).textScaler;
+      final scaledSize = baseFontSize * textScaler.scale(1.0).clamp(1.0, maxScale);
       
       return DefaultTextStyle(
         style: TextStyle(fontSize: scaledSize),
@@ -132,7 +133,7 @@ extension AccessibilityUtilitiesExt on Widget {
     bool autofocus = false,
   }) => Focus(
     autofocus: autofocus,
-    onKey: (node, event) => KeyEventResult.ignored,
+    onKeyEvent: (node, event) => KeyEventResult.ignored,
     child: MouseRegion(
       onEnter: (_) => onEnter?.call(),
       onExit: (_) => onExit?.call(),
@@ -247,16 +248,16 @@ class AccessibilityChecker {
   
   /// 计算相对亮度
   static double _calculateLuminance(Color color) {
-    final r = _linearizeColorValue(color.red / 255.0);
-    final g = _linearizeColorValue(color.green / 255.0);
-    final b = _linearizeColorValue(color.blue / 255.0);
+    final r = _linearizeColorValue((color.r * 255.0).round() / 255.0);
+    final g = _linearizeColorValue((color.g * 255.0).round() / 255.0);
+    final b = _linearizeColorValue((color.b * 255.0).round() / 255.0);
     
     return 0.2126 * r + 0.7152 * g + 0.0722 * b;
   }
   
   /// 线性化颜色值
   static double _linearizeColorValue(double value) {
-    return value <= 0.03928 ? value / 12.92 : Math.pow((value + 0.055) / 1.055, 2.4).toDouble();
+    return value <= 0.03928 ? value / 12.92 : math.pow((value + 0.055) / 1.055, 2.4).toDouble();
   }
 }
 

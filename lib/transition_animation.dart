@@ -275,7 +275,7 @@ extension TransitionAnimationExt on Widget {
     onExit: (_) {},
     child: AnimatedContainer(
       duration: duration,
-      transform: Matrix4.identity()..scale(1.0, 1.0, 1.0),
+      transform: Matrix4.identity(),
       child: this,
     ),
   );
@@ -313,7 +313,7 @@ extension TransitionAnimationExt on Widget {
       if (snapshot.connectionState == ConnectionState.done) {
         return this;
       }
-      return SizedBox.shrink();
+      return const SizedBox.shrink();
     },
   );
   
@@ -321,7 +321,7 @@ extension TransitionAnimationExt on Widget {
 
 /// 动画控制器管理类
 class AnimationManager {
-  static Map<String, AnimationController> _controllers = {};
+  static final Map<String, AnimationController> _controllers = {};
   
   /// 创建动画控制器
   static AnimationController createController({
@@ -388,7 +388,7 @@ class TailwindAnimations {
 /// 动画序列构建器
 class AnimationSequence {
   final List<AnimationStep> _steps = [];
-  late AnimationController _controller;
+  late final AnimationController _controller;
   
   AnimationSequence(this._controller);
   
@@ -441,7 +441,7 @@ class _SpinningWidget extends StatefulWidget {
 
 class _SpinningWidgetState extends State<_SpinningWidget>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
+  late final AnimationController _controller;
   
   @override
   void initState() {
@@ -479,7 +479,7 @@ class _PingWidget extends StatefulWidget {
 
 class _PingWidgetState extends State<_PingWidget>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
+  late final AnimationController _controller;
   late Animation<double> _animation;
   
   @override
@@ -529,7 +529,7 @@ class _PulseWidget extends StatefulWidget {
 
 class _PulseWidgetState extends State<_PulseWidget>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
+  late final AnimationController _controller;
   late Animation<double> _animation;
   
   @override
@@ -576,7 +576,7 @@ class _BounceWidget extends StatefulWidget {
 
 class _BounceWidgetState extends State<_BounceWidget>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
+  late final AnimationController _controller;
   late Animation<double> _animation;
   
   @override
