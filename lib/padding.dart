@@ -145,7 +145,7 @@ extension PaddingExt on Widget {
   Widget px5() => Padding(padding: const EdgeInsets.symmetric(horizontal: 20), child: this);
   
   /// px-6 -> padding-inline: 24px;
-  Widget px6() => Padding(padding: const EdgeInsets.symmetric(horizontal: 24), child: this);
+  Widget px6() => _applyPadding(horizontal: 24);
   
   /// px-7 -> padding-inline: 28px;
   Widget px7() => Padding(padding: const EdgeInsets.symmetric(horizontal: 28), child: this);
@@ -239,7 +239,7 @@ extension PaddingExt on Widget {
   Widget py2_5() => Padding(padding: const EdgeInsets.symmetric(vertical: 10), child: this);
   
   /// py-3 -> padding-block: 12px;
-  Widget py3() => Padding(padding: const EdgeInsets.symmetric(vertical: 12), child: this);
+  Widget py3() => _applyPadding(vertical: 12);
   
   /// py-3.5 -> padding-block: 14px;
   Widget py3_5() => Padding(padding: const EdgeInsets.symmetric(vertical: 14), child: this);
@@ -1014,4 +1014,67 @@ extension PaddingExt on Widget {
         ),
         child: this,
       );
+
+  /// 通用内边距应用方法 - 与现有Container装饰集成
+  Widget _applyPadding({double? horizontal, double? vertical, double? all}) {
+    // 如果当前widget是Container，我们需要合并内边距
+    if (this is Container) {
+      final container = this as Container;
+      
+      // 获取现有的padding
+      EdgeInsetsGeometry? existingPadding = container.padding;
+      
+      // 计算新的padding
+      EdgeInsetsGeometry newPadding;
+      if (all != null) {
+        newPadding = EdgeInsets.all(all);
+      } else {
+        newPadding = EdgeInsets.symmetric(
+          horizontal: horizontal ?? 0,
+          vertical: vertical ?? 0,
+        );
+      }
+      
+      // 如果已有padding，需要合并
+      if (existingPadding != null) {
+        // 简单合并 - 这里可能需要更复杂的逻辑
+        if (existingPadding is EdgeInsets) {
+          final existing = existingPadding;
+          final newEdgeInsets = newPadding as EdgeInsets;
+          newPadding = EdgeInsets.only(
+            left: existing.left + newEdgeInsets.left,
+            top: existing.top + newEdgeInsets.top,
+            right: existing.right + newEdgeInsets.right,
+            bottom: existing.bottom + newEdgeInsets.bottom,
+          );
+        }
+      }
+      
+      // 重建Container
+      return Container(
+        alignment: container.alignment,
+        padding: newPadding,
+        margin: container.margin,
+        constraints: container.constraints,
+        transform: container.transform,
+        transformAlignment: container.transformAlignment,
+        decoration: container.decoration,
+        foregroundDecoration: container.foregroundDecoration,
+        child: container.child,
+      );
+    }
+    
+    // 对于非Container，使用传统的Padding
+    if (all != null) {
+      return Padding(padding: EdgeInsets.all(all), child: this);
+    } else {
+      return Padding(
+        padding: EdgeInsets.symmetric(
+          horizontal: horizontal ?? 0,
+          vertical: vertical ?? 0,
+        ),
+        child: this,
+      );
+    }
+  }
 }

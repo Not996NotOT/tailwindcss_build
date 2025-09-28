@@ -31,13 +31,61 @@ extension BorderWidthExt on Widget {
   );
   
   /// border (default 1px) -> border-width: 1px;
-  Widget border({Color? color, double width = 1.0}) => Container(
-    decoration: BoxDecoration(border: Border.all(
+  Widget border({Color? color, double width = 1.0}) {
+    return _applyBorder(Border.all(
       color: color ?? Colors.black,
       width: width,
-    )),
-    child: this,
-  );
+    ));
+  }
+
+  /// 通用边框应用方法 - 与现有装饰合并
+  Widget _applyBorder(Border border) {
+    // 如果当前widget是Container，我们需要合并装饰
+    if (this is Container) {
+      final container = this as Container;
+      
+      // 获取现有的decoration
+      Decoration? existingDecoration = container.decoration;
+      BoxDecoration? boxDecoration;
+      
+      if (existingDecoration is BoxDecoration) {
+        boxDecoration = existingDecoration;
+      }
+      
+      // 创建新的BoxDecoration，合并边框
+      final newDecoration = BoxDecoration(
+        color: boxDecoration?.color,
+        image: boxDecoration?.image,
+        border: border, // 使用新的边框
+        borderRadius: boxDecoration?.borderRadius,
+        gradient: boxDecoration?.gradient,
+        backgroundBlendMode: boxDecoration?.backgroundBlendMode,
+        shape: boxDecoration?.shape ?? BoxShape.rectangle,
+        boxShadow: boxDecoration?.boxShadow,
+      );
+      
+      // 重建Container
+      return Container(
+        alignment: container.alignment,
+        padding: container.padding,
+        margin: container.margin,
+        constraints: container.constraints,
+        transform: container.transform,
+        transformAlignment: container.transformAlignment,
+        decoration: newDecoration,
+        foregroundDecoration: container.foregroundDecoration,
+        child: container.child,
+      );
+    }
+    
+    // 对于非Container，直接包装
+    return Container(
+      decoration: BoxDecoration(
+        border: border,
+      ),
+      child: this,
+    );
+  }
 
   // === Side-specific border width utilities ===
   

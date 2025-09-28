@@ -61,10 +61,7 @@ extension BorderColorExt on Widget {
   );
   
   /// border-gray-300 -> border-color: #d1d5db;
-  Widget borderGray300() => Container(
-    decoration: BoxDecoration(border: Border.all(color: Color(0xffd1d5db))),
-    child: this,
-  );
+  Widget borderGray300() => _applyBorderColor(Color(0xffd1d5db));
   
   /// border-gray-400 -> border-color: #9ca3af;
   Widget borderGray400() => Container(
@@ -469,4 +466,70 @@ extension BorderColorExt on Widget {
     decoration: BoxDecoration(border: Border(right: BorderSide(color: color))),
     child: this,
   );
+
+  /// 通用边框颜色应用方法 - 与现有装饰合并
+  Widget _applyBorderColor(Color color) {
+    // 如果当前widget是Container，我们需要合并装饰
+    if (this is Container) {
+      final container = this as Container;
+      
+      // 获取现有的decoration
+      Decoration? existingDecoration = container.decoration;
+      BoxDecoration? boxDecoration;
+      
+      if (existingDecoration is BoxDecoration) {
+        boxDecoration = existingDecoration;
+      }
+      
+      // 获取现有的边框并更新颜色
+      Border? existingBorder = boxDecoration?.border as Border?;
+      Border newBorder;
+      
+      if (existingBorder != null) {
+        // 保持现有边框的宽度，只更新颜色
+        newBorder = Border(
+          top: BorderSide(color: color, width: existingBorder.top.width),
+          right: BorderSide(color: color, width: existingBorder.right.width),
+          bottom: BorderSide(color: color, width: existingBorder.bottom.width),
+          left: BorderSide(color: color, width: existingBorder.left.width),
+        );
+      } else {
+        // 如果没有现有边框，创建默认的1px边框
+        newBorder = Border.all(color: color, width: 1.0);
+      }
+      
+      // 创建新的BoxDecoration，合并边框颜色
+      final newDecoration = BoxDecoration(
+        color: boxDecoration?.color,
+        image: boxDecoration?.image,
+        border: newBorder,
+        borderRadius: boxDecoration?.borderRadius,
+        gradient: boxDecoration?.gradient,
+        backgroundBlendMode: boxDecoration?.backgroundBlendMode,
+        shape: boxDecoration?.shape ?? BoxShape.rectangle,
+        boxShadow: boxDecoration?.boxShadow,
+      );
+      
+      // 重建Container
+      return Container(
+        alignment: container.alignment,
+        padding: container.padding,
+        margin: container.margin,
+        constraints: container.constraints,
+        transform: container.transform,
+        transformAlignment: container.transformAlignment,
+        decoration: newDecoration,
+        foregroundDecoration: container.foregroundDecoration,
+        child: container.child,
+      );
+    }
+    
+    // 对于非Container，直接包装
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(color: color),
+      ),
+      child: this,
+    );
+  }
 }

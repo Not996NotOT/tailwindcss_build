@@ -1,3 +1,86 @@
+## [2025-09-28] - Version 0.4.0 - Builder Pattern Architecture & Complete Color System
+
+### 🏗️ Architecture Revolution
+- 🚀 **Builder Pattern Implementation**: Complete rewrite to builder pattern architecture for improved performance and chainability
+- 🎯 **ContainerBuilder**: New centralized container builder collecting all styling properties and building a single Container at the end
+- 📝 **TextBuilder**: New text builder for chainable text styling with comprehensive TailwindCSS support
+- 🔄 **FlexBuilder**: New flex layout builder separating layout concerns from visual styling
+- ⚡ **Performance Optimization**: Eliminated multiple Container nesting, dramatically improving widget tree efficiency
+
+### 🎨 Complete Color System Integration
+- 🌈 **TwColors Integration**: All background and border colors now use the complete TailwindCSS color system from colors.dart
+- 📊 **All Color Palettes**: Support for Gray, Slate, Zinc, Neutral, Stone, Red, Orange, Amber, Yellow, Lime, Green, Emerald, Teal, Cyan, Sky, Blue, Indigo, Violet, Purple, Fuchsia, Pink, Rose color families
+- 🎯 **Complete Color Ranges**: Each color family includes 50-950 variants (50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950)
+- 🔧 **Consistent API**: Background colors (bgBlue600()) and border colors (borderRed300()) using standardized TwColors
+
+### ✨ New Builder Pattern API
+```dart
+// New Container Builder Pattern
+Text('Hello World')
+    .asText()
+    .textWhite()
+    .fontBold()
+    .build()
+    .asContainer()
+    .px6()
+    .py3()
+    .bgBlue600()
+    .r8()
+    .shadow()
+    .build()
+
+// New Flex Builder Pattern
+[
+  Text('Item 1').build(),
+  Text('Item 2').build(),
+  Text('Item 3').build(),
+].asFlex()
+    .flexRow()
+    .justifyCenter()
+    .itemsCenter()
+    .asContainer()
+    .bgGray100()
+    .p4()
+    .r8()
+    .build()
+
+// Chainable Interactions
+Text('Button')
+    .asText()
+    .textWhite()
+    .fontMedium()
+    .build()
+    .asContainer()
+    .px6()
+    .py3()
+    .bgBlue600()
+    .r8()
+    .shadow()
+    .onTap(() => print('Clicked!'))
+```
+
+### 🔧 Breaking Changes & Migration
+- ⚠️ **API Changes**: Old `asContainer()` method deprecated, use new builder pattern
+- 🔄 **Method Renaming**: `asTextBuilder()` → `asText()`, `asContainerBuilder()` → `asContainer()`
+- 📦 **Import Changes**: Some conflicting extensions disabled to prioritize builder pattern
+- 🆕 **Height/Width**: `h()` and `w()` methods now integrated directly into ContainerBuilder
+
+### 📱 Enhanced Demo Application
+- 🎯 **Simplified Demos**: Clean, focused demos for Text, Container, Flex, and Button builders
+- 🖥️ **BottomNavigationBar**: New tabbed interface for better demo navigation
+- 📚 **Documentation**: Each demo showcases best practices and builder pattern usage
+- 🎨 **Real Examples**: Practical examples showing builder combinations and interactions
+
+### 🎯 Border System Enhancement
+- 📐 **Default Border**: `border()` method now accepts optional color parameter with gray-200 default
+- 🎨 **TailwindCSS Alignment**: Border behavior now matches official TailwindCSS specifications
+- 🔧 **Simplified API**: Consistent border methods across all color families
+
+### ⚠️ Pre-1.0.0 Notice
+This is a pre-1.0.0 release focusing on architectural improvements and builder pattern implementation. As we work toward the optimal solution, some APIs may be deprecated or changed in breaking ways. The current builder implementations (ContainerBuilder, TextBuilder, FlexBuilder) are production-ready and represent the future direction of this library.
+
+---
+
 ## [2025-09-26] - Version 0.3.2 - Animation System Fixes & Documentation Enhancement
 
 ### 🔧 Bug Fixes

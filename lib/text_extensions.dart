@@ -341,9 +341,11 @@ extension TextStyleExt on Text {
 
 /// Text转Container的扩展 - 让Text可以拥有容器特性
 extension TextToContainerExt on Text {
+  /// @deprecated 使用新的建造者模式 asContainer() 替代
   /// 将Text转换为Container，用于应用背景、尺寸等容器属性
   /// 这是专门为了支持类似头像这样需要背景和固定尺寸的Text组件
-  Container asContainer({
+  @Deprecated('Use the new builder pattern asContainer() instead. This will be removed in a future version.')
+  Container asLegacyContainer({
     double? width,
     double? height,
     Color? backgroundColor,

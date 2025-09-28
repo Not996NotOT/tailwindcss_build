@@ -1030,6 +1030,39 @@ extension BorderRadiusExt on Widget {
   
   // === Shorthand utilities (简化版本，常用的组合) ===
   
+  // === Numeric rounded shortcuts ===
+  Widget rounded0() => roundedNone();
+  Widget rounded1() => ClipRRect(borderRadius: BorderRadius.circular(1), child: this);
+  Widget rounded2() => ClipRRect(borderRadius: BorderRadius.circular(2), child: this);
+  Widget rounded3() => ClipRRect(borderRadius: BorderRadius.circular(3), child: this);
+  Widget rounded4() => ClipRRect(borderRadius: BorderRadius.circular(4), child: this);
+  Widget rounded5() => ClipRRect(borderRadius: BorderRadius.circular(5), child: this);
+  Widget rounded6() => ClipRRect(borderRadius: BorderRadius.circular(6), child: this);
+  Widget rounded7() => ClipRRect(borderRadius: BorderRadius.circular(7), child: this);
+  Widget rounded8() => ClipRRect(borderRadius: BorderRadius.circular(8), child: this);
+  Widget rounded9() => ClipRRect(borderRadius: BorderRadius.circular(9), child: this);
+  Widget rounded10() => ClipRRect(borderRadius: BorderRadius.circular(10), child: this);
+  Widget rounded11() => ClipRRect(borderRadius: BorderRadius.circular(11), child: this);
+  Widget rounded12() => ClipRRect(borderRadius: BorderRadius.circular(12), child: this);
+  Widget rounded14() => ClipRRect(borderRadius: BorderRadius.circular(14), child: this);
+  Widget rounded16() => ClipRRect(borderRadius: BorderRadius.circular(16), child: this);
+  Widget rounded20() => ClipRRect(borderRadius: BorderRadius.circular(20), child: this);
+  Widget rounded24() => ClipRRect(borderRadius: BorderRadius.circular(24), child: this);
+  Widget rounded28() => ClipRRect(borderRadius: BorderRadius.circular(28), child: this);
+  Widget rounded32() => ClipRRect(borderRadius: BorderRadius.circular(32), child: this);
+  Widget rounded36() => ClipRRect(borderRadius: BorderRadius.circular(36), child: this);
+  Widget rounded40() => ClipRRect(borderRadius: BorderRadius.circular(40), child: this);
+  Widget rounded44() => ClipRRect(borderRadius: BorderRadius.circular(44), child: this);
+  Widget rounded48() => ClipRRect(borderRadius: BorderRadius.circular(48), child: this);
+  Widget rounded52() => ClipRRect(borderRadius: BorderRadius.circular(52), child: this);
+  Widget rounded56() => ClipRRect(borderRadius: BorderRadius.circular(56), child: this);
+  Widget rounded60() => ClipRRect(borderRadius: BorderRadius.circular(60), child: this);
+  Widget rounded64() => ClipRRect(borderRadius: BorderRadius.circular(64), child: this);
+  Widget rounded72() => ClipRRect(borderRadius: BorderRadius.circular(72), child: this);
+  Widget rounded80() => ClipRRect(borderRadius: BorderRadius.circular(80), child: this);
+  Widget rounded96() => ClipRRect(borderRadius: BorderRadius.circular(96), child: this);
+  
+  
   /// r(double radius) -> border-radius: <radius>; (最简洁的自定义圆角)
   Widget r(double radius) => ClipRRect(borderRadius: BorderRadius.circular(radius), child: this);
   

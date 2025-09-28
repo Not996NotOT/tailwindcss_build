@@ -38,15 +38,16 @@ export 'border_width.dart';
 export 'box_shadow.dart';
 export 'box_utilities.dart';
 export 'break_utilities.dart';
+export 'button_extensions.dart'; // 按钮转换扩展
 // Colors
 export 'colors.dart';
 export 'columns.dart';
-export 'decoration.dart';
 export 'display.dart';
 // Filters
 export 'filter.dart';
 export 'flex.dart';
 export 'flex_basis.dart';
+export 'flex_builder.dart'; // 建造者模式的Flex构建器
 export 'flex_container.dart';
 export 'flex_direction.dart';
 export 'flex_grow.dart';
@@ -102,17 +103,20 @@ export 'svg_utilities.dart';
 // Tables
 export 'table_utilities.dart';
 export 'text_align.dart';
-export 'text_color.dart';
+export 'text_builder.dart'; // 建造者模式的Text构建器
+// export 'text_color.dart'; // 已被text_builder.dart替代
+// export 'text_color.dart'; // 已被text_style_extensions.dart替代
 export 'text_decoration.dart';
 export 'text_extensions.dart' hide TextStyleExt; // Text转Container扩展
 export 'text_overflow.dart';
 export 'text_shadow.dart';
-export 'text_style_extensions_final.dart';
+// export 'text_style_extensions_final.dart'; // 已被text_builder.dart替代
 export 'text_transform.dart';
 // Transforms
 export 'transforms.dart';
 // Transitions & Animation
 export 'transition_animation.dart';
+export 'utility_extensions.dart'; // 实用工具扩展（opacity, bgOpacity, bgGradient等）
 export 'visibility.dart' hide OpacityExt;
 export 'widget_extensions.dart'; // Widget转换扩展（asRow, asColumn等）
 export 'width.dart';

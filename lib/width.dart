@@ -109,6 +109,9 @@ extension WidthExt on Widget {
   
   /// w-96 -> width: 384px;
   Widget w96() => SizedBox(width: 384, child: this);
+  
+  /// w-100 -> width: 400px;
+  Widget w100() => SizedBox(width: 400, child: this);
 
   // === w-<fraction> utilities ===
   /// w-1/2 -> width: 50%;
@@ -456,4 +459,159 @@ extension WidthExt on Widget {
         height: size,
         child: this,
       );
+
+  // === Min width utilities ===
+  /// min-w-0 -> min-width: 0;
+  Widget minW0() => ConstrainedBox(constraints: BoxConstraints(minWidth: 0), child: this);
+  
+  /// min-w-px -> min-width: 1px;
+  Widget minWPx() => ConstrainedBox(constraints: BoxConstraints(minWidth: 1), child: this);
+  
+  /// min-w-0.5 -> min-width: 2px;
+  Widget minW0_5() => ConstrainedBox(constraints: BoxConstraints(minWidth: 2), child: this);
+  
+  /// min-w-1 -> min-width: 4px;
+  Widget minW1() => ConstrainedBox(constraints: BoxConstraints(minWidth: 4), child: this);
+  
+  /// min-w-1.5 -> min-width: 6px;
+  Widget minW1_5() => ConstrainedBox(constraints: BoxConstraints(minWidth: 6), child: this);
+  
+  /// min-w-2 -> min-width: 8px;
+  Widget minW2() => ConstrainedBox(constraints: BoxConstraints(minWidth: 8), child: this);
+  
+  /// min-w-2.5 -> min-width: 10px;
+  Widget minW2_5() => ConstrainedBox(constraints: BoxConstraints(minWidth: 10), child: this);
+  
+  /// min-w-3 -> min-width: 12px;
+  Widget minW3() => ConstrainedBox(constraints: BoxConstraints(minWidth: 12), child: this);
+  
+  /// min-w-3.5 -> min-width: 14px;
+  Widget minW3_5() => ConstrainedBox(constraints: BoxConstraints(minWidth: 14), child: this);
+  
+  /// min-w-4 -> min-width: 16px;
+  Widget minW4() => ConstrainedBox(constraints: BoxConstraints(minWidth: 16), child: this);
+  
+  /// min-w-5 -> min-width: 20px;
+  Widget minW5() => ConstrainedBox(constraints: BoxConstraints(minWidth: 20), child: this);
+  
+  /// min-w-6 -> min-width: 24px;
+  Widget minW6() => ConstrainedBox(constraints: BoxConstraints(minWidth: 24), child: this);
+  
+  /// min-w-7 -> min-width: 28px;
+  Widget minW7() => ConstrainedBox(constraints: BoxConstraints(minWidth: 28), child: this);
+  
+  /// min-w-8 -> min-width: 32px;
+  Widget minW8() => ConstrainedBox(constraints: BoxConstraints(minWidth: 32), child: this);
+  
+  /// min-w-9 -> min-width: 36px;
+  Widget minW9() => ConstrainedBox(constraints: BoxConstraints(minWidth: 36), child: this);
+  
+  /// min-w-10 -> min-width: 40px;
+  Widget minW10() => ConstrainedBox(constraints: BoxConstraints(minWidth: 40), child: this);
+  
+  /// min-w-11 -> min-width: 44px;
+  Widget minW11() => ConstrainedBox(constraints: BoxConstraints(minWidth: 44), child: this);
+  
+  /// min-w-12 -> min-width: 48px;
+  Widget minW12() => ConstrainedBox(constraints: BoxConstraints(minWidth: 48), child: this);
+  
+  /// min-w-14 -> min-width: 56px;
+  Widget minW14() => ConstrainedBox(constraints: BoxConstraints(minWidth: 56), child: this);
+  
+  /// min-w-16 -> min-width: 64px;
+  Widget minW16() => ConstrainedBox(constraints: BoxConstraints(minWidth: 64), child: this);
+  
+  /// min-w-20 -> min-width: 80px;
+  Widget minW20() => ConstrainedBox(constraints: BoxConstraints(minWidth: 80), child: this);
+  
+  /// min-w-24 -> min-width: 96px;
+  Widget minW24() => ConstrainedBox(constraints: BoxConstraints(minWidth: 96), child: this);
+  
+  /// min-w-full -> min-width: 100%;
+  Widget minWFull() => ConstrainedBox(constraints: BoxConstraints(minWidth: double.infinity), child: this);
+  
+  /// min-w-min -> min-width: min-content;
+  Widget minWMin() => IntrinsicWidth(child: this);
+  
+  /// min-w-max -> min-width: max-content;
+  Widget minWMax() => IntrinsicWidth(child: this);
+  
+  /// min-w-fit -> min-width: fit-content;
+  Widget minWFit() => IntrinsicWidth(child: this);
+  
+  /// 自定义最小宽度
+  Widget minWCustom(double minWidth) => ConstrainedBox(constraints: BoxConstraints(minWidth: minWidth), child: this);
+
+  // === Max width utilities ===
+  /// max-w-0 -> max-width: 0;
+  Widget maxW0() => ConstrainedBox(constraints: BoxConstraints(maxWidth: 0), child: this);
+  
+  /// max-w-none -> max-width: none;
+  Widget maxWNone() => this;
+  
+  /// max-w-xs -> max-width: 20rem (320px);
+  Widget maxWXs() => ConstrainedBox(constraints: BoxConstraints(maxWidth: 320), child: this);
+  
+  /// max-w-sm -> max-width: 24rem (384px);
+  Widget maxWSm() => ConstrainedBox(constraints: BoxConstraints(maxWidth: 384), child: this);
+  
+  /// max-w-md -> max-width: 28rem (448px);
+  Widget maxWMd() => ConstrainedBox(constraints: BoxConstraints(maxWidth: 448), child: this);
+  
+  /// max-w-lg -> max-width: 32rem (512px);
+  Widget maxWLg() => ConstrainedBox(constraints: BoxConstraints(maxWidth: 512), child: this);
+  
+  /// max-w-xl -> max-width: 36rem (576px);
+  Widget maxWXl() => ConstrainedBox(constraints: BoxConstraints(maxWidth: 576), child: this);
+  
+  /// max-w-2xl -> max-width: 42rem (672px);
+  Widget maxW2xl() => ConstrainedBox(constraints: BoxConstraints(maxWidth: 672), child: this);
+  
+  /// max-w-3xl -> max-width: 48rem (768px);
+  Widget maxW3xl() => ConstrainedBox(constraints: BoxConstraints(maxWidth: 768), child: this);
+  
+  /// max-w-4xl -> max-width: 56rem (896px);
+  Widget maxW4xl() => ConstrainedBox(constraints: BoxConstraints(maxWidth: 896), child: this);
+  
+  /// max-w-5xl -> max-width: 64rem (1024px);
+  Widget maxW5xl() => ConstrainedBox(constraints: BoxConstraints(maxWidth: 1024), child: this);
+  
+  /// max-w-6xl -> max-width: 72rem (1152px);
+  Widget maxW6xl() => ConstrainedBox(constraints: BoxConstraints(maxWidth: 1152), child: this);
+  
+  /// max-w-7xl -> max-width: 80rem (1280px);
+  Widget maxW7xl() => ConstrainedBox(constraints: BoxConstraints(maxWidth: 1280), child: this);
+  
+  /// max-w-full -> max-width: 100%;
+  Widget maxWFull() => ConstrainedBox(constraints: BoxConstraints(maxWidth: double.infinity), child: this);
+  
+  /// max-w-min -> max-width: min-content;
+  Widget maxWMin() => IntrinsicWidth(child: this);
+  
+  /// max-w-max -> max-width: max-content;
+  Widget maxWMax() => IntrinsicWidth(child: this);
+  
+  /// max-w-fit -> max-width: fit-content;
+  Widget maxWFit() => IntrinsicWidth(child: this);
+  
+  /// max-w-prose -> max-width: 65ch;
+  Widget maxWProse() => ConstrainedBox(constraints: BoxConstraints(maxWidth: 65 * 16), child: this);
+  
+  /// max-w-screen-sm -> max-width: 640px;
+  Widget maxWScreenSm() => ConstrainedBox(constraints: BoxConstraints(maxWidth: 640), child: this);
+  
+  /// max-w-screen-md -> max-width: 768px;
+  Widget maxWScreenMd() => ConstrainedBox(constraints: BoxConstraints(maxWidth: 768), child: this);
+  
+  /// max-w-screen-lg -> max-width: 1024px;
+  Widget maxWScreenLg() => ConstrainedBox(constraints: BoxConstraints(maxWidth: 1024), child: this);
+  
+  /// max-w-screen-xl -> max-width: 1280px;
+  Widget maxWScreenXl() => ConstrainedBox(constraints: BoxConstraints(maxWidth: 1280), child: this);
+  
+  /// max-w-screen-2xl -> max-width: 1536px;
+  Widget maxWScreen2xl() => ConstrainedBox(constraints: BoxConstraints(maxWidth: 1536), child: this);
+  
+  /// 自定义最大宽度
+  Widget maxWCustom(double maxWidth) => ConstrainedBox(constraints: BoxConstraints(maxWidth: maxWidth), child: this);
 }

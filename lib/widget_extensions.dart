@@ -208,7 +208,10 @@ extension ListWidgetExt on List<Widget> {
 /// Widget 转换扩展
 extension WidgetConversionExt on Widget {
   /// 转换为 Container，最基础的容器转换
-  Container asContainer({
+  /// @deprecated 使用新的建造者模式 asContainer() 替代
+  /// 旧版本的 asContainer 方法，已弃用
+  @Deprecated('Use the new builder pattern asContainer() instead. This will be removed in a future version.')
+  Container asLegacyContainer({
     AlignmentGeometry? alignment,
     EdgeInsetsGeometry? padding,
     Color? color,
@@ -540,6 +543,46 @@ extension WidgetConversionExt on Widget {
   }
 
   // 注意：border, margin 和 padding 方法已在专门的扩展文件中定义，这里不重复定义
+
+  /// 将单个Widget转换为Column（包装在列表中）
+  Column asColumn({
+    MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
+    CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
+    MainAxisSize mainAxisSize = MainAxisSize.min,
+    TextDirection? textDirection,
+    VerticalDirection verticalDirection = VerticalDirection.down,
+    TextBaseline? textBaseline,
+  }) {
+    return Column(
+      mainAxisAlignment: mainAxisAlignment,
+      crossAxisAlignment: crossAxisAlignment,
+      mainAxisSize: mainAxisSize,
+      textDirection: textDirection,
+      verticalDirection: verticalDirection,
+      textBaseline: textBaseline,
+      children: [this],
+    );
+  }
+
+  /// 将单个Widget转换为Row（包装在列表中）
+  Row asRow({
+    MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
+    CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
+    MainAxisSize mainAxisSize = MainAxisSize.min,
+    TextDirection? textDirection,
+    VerticalDirection verticalDirection = VerticalDirection.down,
+    TextBaseline? textBaseline,
+  }) {
+    return Row(
+      mainAxisAlignment: mainAxisAlignment,
+      crossAxisAlignment: crossAxisAlignment,
+      mainAxisSize: mainAxisSize,
+      textDirection: textDirection,
+      verticalDirection: verticalDirection,
+      textBaseline: textBaseline,
+      children: [this],
+    );
+  }
 }
 
 /// Icon 专用转换扩展
@@ -568,4 +611,5 @@ extension IconConversionExt on Icon {
       child: this,
     );
   }
+
 }

@@ -7,80 +7,122 @@ extension BoxShadowExt on Widget {
   // === Basic box shadow utilities ===
   
   /// shadow-sm -> box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  Widget shadowSm() => Container(
-    decoration: BoxDecoration(
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black.withValues(alpha: 0.05),
-          blurRadius: 2,
-          offset: Offset(0, 1),
-        ),
-      ],
-    ),
-    child: this,
-  );
+  Widget shadowSm() {
+    return _applyShadow([
+      BoxShadow(
+        color: Colors.black.withValues(alpha: 0.05),
+        blurRadius: 2,
+        offset: Offset(0, 1),
+      ),
+    ]);
+  }
   
   /// shadow -> box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-  Widget shadow() => Container(
-    decoration: BoxDecoration(
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black.withValues(alpha: 0.1),
-          blurRadius: 3,
-          offset: Offset(0, 1),
-        ),
-        BoxShadow(
-          color: Colors.black.withValues(alpha: 0.1),
-          blurRadius: 2,
-          offset: Offset(0, 1),
-          spreadRadius: -1,
-        ),
-      ],
-    ),
-    child: this,
-  );
+  Widget shadow() {
+    return _applyShadow([
+      BoxShadow(
+        color: Colors.black.withValues(alpha: 0.06),
+        blurRadius: 2,
+        offset: Offset(0, 1),
+      ),
+      BoxShadow(
+        color: Colors.black.withValues(alpha: 0.04),
+        blurRadius: 1,
+        offset: Offset(0, 1),
+        spreadRadius: -0.5,
+      ),
+    ]);
+  }
+
+  /// 通用阴影应用方法 - 需要完全重新设计
+  Widget _applyShadow(List<BoxShadow> shadows) {
+    // 对于Container，我们需要提取其decoration并合并阴影
+    if (this is Container) {
+      final container = this as Container;
+      
+      // 获取现有的decoration
+      Decoration? existingDecoration = container.decoration;
+      BoxDecoration? boxDecoration;
+      
+      if (existingDecoration is BoxDecoration) {
+        boxDecoration = existingDecoration;
+      }
+      
+      // 创建新的BoxDecoration，合并阴影
+      final newDecoration = BoxDecoration(
+        color: boxDecoration?.color,
+        image: boxDecoration?.image,
+        border: boxDecoration?.border,
+        borderRadius: boxDecoration?.borderRadius,
+        gradient: boxDecoration?.gradient,
+        backgroundBlendMode: boxDecoration?.backgroundBlendMode,
+        shape: boxDecoration?.shape ?? BoxShape.rectangle,
+        boxShadow: [
+          // 先添加现有阴影（如果有的话）
+          ...(boxDecoration?.boxShadow ?? []),
+          // 再添加新阴影
+          ...shadows,
+        ],
+      );
+      
+      // 重建Container但跳过width和height（它们是私有的）
+      return Container(
+        alignment: container.alignment,
+        padding: container.padding,
+        margin: container.margin,
+        constraints: container.constraints,
+        transform: container.transform,
+        transformAlignment: container.transformAlignment,
+        decoration: newDecoration,
+        foregroundDecoration: container.foregroundDecoration,
+        child: container.child,
+      );
+    }
+    
+    // 对于非Container，直接包装
+    return Container(
+      decoration: BoxDecoration(
+        boxShadow: shadows,
+      ),
+      child: this,
+    );
+  }
   
   /// shadow-md -> box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  Widget shadowMd() => Container(
-    decoration: BoxDecoration(
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black.withValues(alpha: 0.1),
-          blurRadius: 6,
-          offset: Offset(0, 4),
-          spreadRadius: -1,
-        ),
-        BoxShadow(
-          color: Colors.black.withValues(alpha: 0.1),
-          blurRadius: 4,
-          offset: Offset(0, 2),
-          spreadRadius: -2,
-        ),
-      ],
-    ),
-    child: this,
-  );
+  Widget shadowMd() {
+    return _applyShadow([
+      BoxShadow(
+        color: Colors.black.withValues(alpha: 0.1),
+        blurRadius: 6,
+        offset: Offset(0, 4),
+        spreadRadius: -1,
+      ),
+      BoxShadow(
+        color: Colors.black.withValues(alpha: 0.1),
+        blurRadius: 4,
+        offset: Offset(0, 2),
+        spreadRadius: -2,
+      ),
+    ]);
+  }
   
   /// shadow-lg -> box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  Widget shadowLg() => Container(
-    decoration: BoxDecoration(
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black.withValues(alpha: 0.1),
-          blurRadius: 15,
-          offset: Offset(0, 10),
-          spreadRadius: -3,
-        ),
-        BoxShadow(
-          color: Colors.black.withValues(alpha: 0.1),
-          blurRadius: 6,
-          offset: Offset(0, 4),
-          spreadRadius: -4,
-        ),
-      ],
-    ),
-    child: this,
-  );
+  Widget shadowLg() {
+    return _applyShadow([
+      BoxShadow(
+        color: Colors.black.withValues(alpha: 0.1),
+        blurRadius: 15,
+        offset: Offset(0, 10),
+        spreadRadius: -3,
+      ),
+      BoxShadow(
+        color: Colors.black.withValues(alpha: 0.1),
+        blurRadius: 6,
+        offset: Offset(0, 4),
+        spreadRadius: -4,
+      ),
+    ]);
+  }
   
   /// shadow-xl -> box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   Widget shadowXl() => Container(

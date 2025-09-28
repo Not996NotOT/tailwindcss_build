@@ -36,6 +36,45 @@ abstract class BaseStyles {
   static const Color gray900 = TwColors.gray900;
   static const Color gray950 = TwColors.gray950;
 
+  // 锌色系
+  static const Color zinc50 = TwColors.zinc50;
+  static const Color zinc100 = TwColors.zinc100;
+  static const Color zinc200 = TwColors.zinc200;
+  static const Color zinc300 = TwColors.zinc300;
+  static const Color zinc400 = TwColors.zinc400;
+  static const Color zinc500 = TwColors.zinc500;
+  static const Color zinc600 = TwColors.zinc600;
+  static const Color zinc700 = TwColors.zinc700;
+  static const Color zinc800 = TwColors.zinc800;
+  static const Color zinc900 = TwColors.zinc900;
+  static const Color zinc950 = TwColors.zinc950;
+
+  // 中性色系
+  static const Color neutral50 = TwColors.neutral50;
+  static const Color neutral100 = TwColors.neutral100;
+  static const Color neutral200 = TwColors.neutral200;
+  static const Color neutral300 = TwColors.neutral300;
+  static const Color neutral400 = TwColors.neutral400;
+  static const Color neutral500 = TwColors.neutral500;
+  static const Color neutral600 = TwColors.neutral600;
+  static const Color neutral700 = TwColors.neutral700;
+  static const Color neutral800 = TwColors.neutral800;
+  static const Color neutral900 = TwColors.neutral900;
+  static const Color neutral950 = TwColors.neutral950;
+
+  // 石头色系
+  static const Color stone50 = TwColors.stone50;
+  static const Color stone100 = TwColors.stone100;
+  static const Color stone200 = TwColors.stone200;
+  static const Color stone300 = TwColors.stone300;
+  static const Color stone400 = TwColors.stone400;
+  static const Color stone500 = TwColors.stone500;
+  static const Color stone600 = TwColors.stone600;
+  static const Color stone700 = TwColors.stone700;
+  static const Color stone800 = TwColors.stone800;
+  static const Color stone900 = TwColors.stone900;
+  static const Color stone950 = TwColors.stone950;
+
   // 红色系
   static const Color red50 = TwColors.red50;
   static const Color red100 = TwColors.red100;
