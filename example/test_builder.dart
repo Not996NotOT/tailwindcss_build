@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:tailwindcss_build/tailwindcss_build.dart';
 
 void main() {
-  runApp(TestBuilderApp());
+  runApp(const TestBuilderApp());
 }
 
 class TestBuilderApp extends StatelessWidget {
+  const TestBuilderApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Builder Test',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Builder Pattern Test'),
+          title: const Text('Builder Pattern Test'),
         ),
         body: Center(
           child: Column(
@@ -25,10 +27,10 @@ class TestBuilderApp extends StatelessWidget {
                   .fontBold()
                   .build(),
               
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               
               // 测试 ContainerBuilder
-              Text('Hello ContainerBuilder!')
+              const Text('Hello ContainerBuilder!')
                   .asContainer()
                   .px6()
                   .py3()
@@ -37,7 +39,7 @@ class TestBuilderApp extends StatelessWidget {
                   .shadow()
                   .build(),
               
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               
               // 测试 String 到 TextBuilder
               'Hello String to TextBuilder!'

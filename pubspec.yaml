@@ -1,6 +1,6 @@
 name: tailwindcss_build
 description: A comprehensive Flutter package that brings the power and convenience of Tailwind CSS utility classes to Flutter development.
-version: 0.4.0
+version: 0.4.1
 homepage: https://github.com/Not996NotOT/tailwindcss_build
 repository: https://github.com/Not996NotOT/tailwindcss_build
 issue_tracker: https://github.com/Not996NotOT/tailwindcss_build/issues

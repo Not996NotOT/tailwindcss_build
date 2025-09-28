@@ -9,22 +9,22 @@ class FlexDemo extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Flex Demo')
+        const Text('Flex Demo')
             .text2xl()
             .fontBold()
             .textGray900()
             .build(),
         
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         
         // Flex Direction
-        Text('Flex Direction')
+        const Text('Flex Direction')
             .textLg()
             .fontSemibold()
             .textGray800()
             .build(),
         
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         
         // flex-row 示例
         [
@@ -41,7 +41,7 @@ class FlexDemo extends StatelessWidget {
             .r8()
             .build(),
         
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         
         // flex-col 示例
         [
@@ -58,16 +58,16 @@ class FlexDemo extends StatelessWidget {
             .r8()
             .build(),
         
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         
         // Justify Content
-        Text('Justify Content (主轴)')
+        const Text('Justify Content (主轴)')
             .textLg()
             .fontSemibold()
             .textGray800()
             .build(),
         
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         
         // justify-center
         [
@@ -79,12 +79,12 @@ class FlexDemo extends StatelessWidget {
             .justifyCenter()
             .itemsCenter()
             .asContainer()
-            .backgroundColor(Color(0xFFF0FDF4)) // green-50
+            .backgroundColor(const Color(0xFFF0FDF4)) // green-50
             .p4()
             .r8()
             .build(),
         
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         
         // justify-between
         [
@@ -96,12 +96,12 @@ class FlexDemo extends StatelessWidget {
             .justifyBetween()
             .itemsCenter()
             .asContainer()
-            .backgroundColor(Color(0xFFFEFCE8)) // yellow-50
+            .backgroundColor(const Color(0xFFFEFCE8)) // yellow-50
             .p4()
             .r8()
             .build(),
         
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         
         // justify-around
         [
@@ -113,12 +113,12 @@ class FlexDemo extends StatelessWidget {
             .justifyAround()
             .itemsCenter()
             .asContainer()
-            .backgroundColor(Color(0xFFFAF5FF)) // purple-50
+            .backgroundColor(const Color(0xFFFAF5FF)) // purple-50
             .p4()
             .r8()
             .build(),
         
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         
         // justify-evenly
         [
@@ -130,21 +130,21 @@ class FlexDemo extends StatelessWidget {
             .justifyEvenly()
             .itemsCenter()
             .asContainer()
-            .backgroundColor(Color(0xFFFEF2F2)) // red-50
+            .backgroundColor(const Color(0xFFFEF2F2)) // red-50
             .p4()
             .r8()
             .build(),
         
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         
         // Align Items
-        Text('Align Items (交叉轴)')
+        const Text('Align Items (交叉轴)')
             .textLg()
             .fontSemibold()
             .textGray800()
             .build(),
         
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         
         // items-start
         [
@@ -162,7 +162,7 @@ class FlexDemo extends StatelessWidget {
             .h(100)
             .build(),
         
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         
         // items-center
         [
@@ -174,13 +174,13 @@ class FlexDemo extends StatelessWidget {
             .justifyCenter()
             .itemsCenter()
             .asContainer()
-            .backgroundColor(Color(0xFFF0FDF4)) // green-50
+            .backgroundColor(const Color(0xFFF0FDF4)) // green-50
             .p4()
             .r8()
             .h(100)
             .build(),
         
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         
         // items-end
         [
@@ -192,26 +192,26 @@ class FlexDemo extends StatelessWidget {
             .justifyCenter()
             .itemsEnd()
             .asContainer()
-            .backgroundColor(Color(0xFFFEFCE8)) // yellow-50
+            .backgroundColor(const Color(0xFFFEFCE8)) // yellow-50
             .p4()
             .r8()
             .h(100)
             .build(),
         
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         
         // 复合示例
-        Text('复合示例')
+        const Text('复合示例')
             .textLg()
             .fontSemibold()
             .textGray800()
             .build(),
         
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         
         // 卡片式布局
         [
-          Text('标题')
+          const Text('标题')
               .textWhite()
               .fontBold()
                .asContainer()
@@ -221,11 +221,11 @@ class FlexDemo extends StatelessWidget {
               .r6()
               .build(),
           
-          Text('内容区域')
+          const Text('内容区域')
               .textGray700()
               .build(),
           
-          Text('操作')
+          const Text('操作')
               .textBlue600()
               .fontMedium()
                .asContainer()
@@ -236,7 +236,7 @@ class FlexDemo extends StatelessWidget {
               .r4()
               .onTap(() {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Flex item clicked!')),
+                  const SnackBar(content: Text('Flex item clicked!')),
                 );
               }),
         ].asFlex()
@@ -252,15 +252,15 @@ class FlexDemo extends StatelessWidget {
             .shadow()
             .onTap(() {
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text('Flex container clicked!')),
+                const SnackBar(content: Text('Flex container clicked!')),
               );
             }),
         
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         
         // 垂直布局示例
         [
-          Text('Header')
+          const Text('Header')
               .textWhite()
               .fontBold()
                .asContainer()
@@ -270,7 +270,7 @@ class FlexDemo extends StatelessWidget {
               .r6()
               .build(),
           
-          Text('Main Content Area')
+          const Text('Main Content Area')
               .textGray700()
                .asContainer()
               .px4()
@@ -279,7 +279,7 @@ class FlexDemo extends StatelessWidget {
               .build(),
           
           [
-            Text('Cancel')
+            const Text('Cancel')
                 .textGray600()
                .asContainer()
                 .px4()
@@ -289,7 +289,7 @@ class FlexDemo extends StatelessWidget {
                 .r6()
                 .onTap(() {}),
             
-            Text('Confirm')
+            const Text('Confirm')
                 .textWhite()
                .asContainer()
                 .px4()

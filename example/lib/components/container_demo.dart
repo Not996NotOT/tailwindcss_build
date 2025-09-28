@@ -9,16 +9,16 @@ class ContainerDemo extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Container Demo')
+        const Text('Container Demo')
             .text2xl()
             .fontBold()
             .textGray900()
             .build(),
         
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         
         // 基础容器
-        Text('Simple Container')
+        const Text('Simple Container')
             .textWhite()
                 .fontMedium()
                 .asContainer()
@@ -28,10 +28,10 @@ class ContainerDemo extends StatelessWidget {
             .r6()
             .build(),
         
-        SizedBox(height: 12),
+        const SizedBox(height: 12),
         
         // 带阴影
-        Text('With Shadow')
+        const Text('With Shadow')
             .textWhite()
                 .fontMedium()
                 .asContainer()
@@ -42,10 +42,10 @@ class ContainerDemo extends StatelessWidget {
             .shadow()
             .build(),
         
-        SizedBox(height: 12),
+        const SizedBox(height: 12),
         
         // 带边框
-        Text('With Border')
+        const Text('With Border')
             .textGray700()
                 .fontMedium()
                 .asContainer()
@@ -57,14 +57,14 @@ class ContainerDemo extends StatelessWidget {
             .r6()
             .build(),
         
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         
         // 不同内边距
         Wrap(
           spacing: 12,
           runSpacing: 12,
           children: [
-            Text('px2 py1')
+            const Text('px2 py1')
                 .textWhite()
                 .asContainer()
                 .px2()
@@ -73,7 +73,7 @@ class ContainerDemo extends StatelessWidget {
                 .r4()
                 .build(),
             
-            Text('px4 py2')
+            const Text('px4 py2')
                 .textWhite()
                 .asContainer()
                 .px4()
@@ -82,7 +82,7 @@ class ContainerDemo extends StatelessWidget {
                 .r4()
                 .build(),
             
-            Text('px6 py3')
+            const Text('px6 py3')
                 .textWhite()
                 .asContainer()
                 .px6()
@@ -93,14 +93,14 @@ class ContainerDemo extends StatelessWidget {
           ],
         ),
         
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         
         // 不同圆角
         Wrap(
           spacing: 12,
           runSpacing: 12,
           children: [
-            Text('r4')
+            const Text('r4')
                 .textWhite()
                 .asContainer()
                 .px4()
@@ -109,7 +109,7 @@ class ContainerDemo extends StatelessWidget {
                 .r4()
                 .build(),
             
-            Text('r8')
+            const Text('r8')
                 .textWhite()
                 .asContainer()
                 .px4()
@@ -118,7 +118,7 @@ class ContainerDemo extends StatelessWidget {
                 .r8()
                 .build(),
             
-            Text('r12')
+            const Text('r12')
                 .textWhite()
                 .asContainer()
                 .px4()
@@ -129,10 +129,10 @@ class ContainerDemo extends StatelessWidget {
           ],
         ),
         
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         
         // 复合示例
-        Text('Complex Container')
+        const Text('Complex Container')
             .textGray800()
             .fontSemibold()
             .build()

@@ -61,9 +61,9 @@ class _MyHomePageState extends State<MyHomePage> {
         centerTitle: true,
       ),
       body: Container(
-        color: Color(0xFFF9FAFB), // gray-50
+        color: const Color(0xFFF9FAFB), // gray-50
         child: SingleChildScrollView(
-          padding: EdgeInsets.all(24),
+          padding: const EdgeInsets.all(24),
           child: _pages[_selectedIndex],
         ),
       ),
@@ -75,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
           });
         },
         selectedItemColor: Colors.blue[600],
-        unselectedItemColor: Color(0xFF9CA3AF), // gray-400
+        unselectedItemColor: const Color(0xFF9CA3AF), // gray-400
         backgroundColor: Colors.white,
         elevation: 8,
         type: BottomNavigationBarType.fixed,

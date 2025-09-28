@@ -9,28 +9,28 @@ class ButtonDemo extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Button Demo (Container + GestureDetector)')
+        const Text('Button Demo (Container + GestureDetector)')
             .text2xl()
             .fontBold()
             .textGray900()
             .build(),
         
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         
-        Text('基础按钮')
+        const Text('基础按钮')
             .textLg()
             .fontSemibold()
             .textGray800()
             .build(),
         
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         
         // 基础按钮
         Wrap(
           spacing: 12,
           runSpacing: 12,
           children: [
-            Text('Primary')
+            const Text('Primary')
                 .textWhite()
                 .fontMedium()
                          .asContainer()
@@ -41,7 +41,7 @@ class ButtonDemo extends StatelessWidget {
                 .shadow()
                 .onTap(() => _showMessage(context, 'Primary clicked!')),
             
-            Text('Secondary')
+            const Text('Secondary')
                 .textGray700()
                 .fontMedium()
                          .asContainer()
@@ -53,7 +53,7 @@ class ButtonDemo extends StatelessWidget {
                 .r8()
                 .onTap(() => _showMessage(context, 'Secondary clicked!')),
             
-            Text('Success')
+            const Text('Success')
                 .textWhite()
                 .fontMedium()
                          .asContainer()
@@ -64,7 +64,7 @@ class ButtonDemo extends StatelessWidget {
                 .shadow()
                 .onTap(() => _showMessage(context, 'Success clicked!')),
             
-            Text('Danger')
+            const Text('Danger')
                 .textWhite()
                 .fontMedium()
                          .asContainer()
@@ -77,21 +77,21 @@ class ButtonDemo extends StatelessWidget {
           ],
         ),
         
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         
-        Text('按钮大小')
+        const Text('按钮大小')
             .textLg()
             .fontSemibold()
             .textGray800()
             .build(),
         
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         
         // 不同大小
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Small')
+            const Text('Small')
                 .textWhite()
                 .textSm()
                 .fontMedium()
@@ -103,9 +103,9 @@ class ButtonDemo extends StatelessWidget {
                 .shadow()
                 .onTap(() => _showMessage(context, 'Small clicked!')),
             
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             
-            Text('Medium')
+            const Text('Medium')
                 .textWhite()
                 .fontMedium()
                          .asContainer()
@@ -116,9 +116,9 @@ class ButtonDemo extends StatelessWidget {
                 .shadow()
                 .onTap(() => _showMessage(context, 'Medium clicked!')),
             
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             
-            Text('Large')
+            const Text('Large')
                 .textWhite()
                 .textLg()
                 .fontMedium()
@@ -132,22 +132,22 @@ class ButtonDemo extends StatelessWidget {
           ],
         ),
         
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         
-        Text('按钮样式')
+        const Text('按钮样式')
             .textLg()
             .fontSemibold()
             .textGray800()
             .build(),
         
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         
         // 不同样式
         Wrap(
           spacing: 12,
           runSpacing: 12,
           children: [
-            Text('Solid')
+            const Text('Solid')
                 .textWhite()
                 .fontMedium()
                          .asContainer()
@@ -158,7 +158,7 @@ class ButtonDemo extends StatelessWidget {
                 .shadow()
                 .onTap(() => _showMessage(context, 'Solid clicked!')),
             
-            Text('Outline')
+            const Text('Outline')
                 .textPurple600()
                 .fontMedium()
                          .asContainer()
@@ -170,7 +170,7 @@ class ButtonDemo extends StatelessWidget {
                 .r8()
                 .onTap(() => _showMessage(context, 'Outline clicked!')),
             
-            Text('Ghost')
+            const Text('Ghost')
                 .textPurple600()
                 .fontMedium()
                          .asContainer()
@@ -180,7 +180,7 @@ class ButtonDemo extends StatelessWidget {
                 .r8()
                 .onTap(() => _showMessage(context, 'Ghost clicked!')),
             
-            Text('Text Only')
+            const Text('Text Only')
                 .textPurple600()
                 .fontMedium()
                          .asContainer()
@@ -190,18 +190,18 @@ class ButtonDemo extends StatelessWidget {
           ],
         ),
         
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         
-        Text('复杂按钮')
+        const Text('复杂按钮')
             .textLg()
             .fontSemibold()
             .textGray800()
             .build(),
         
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         
         // 复杂按钮
-        Text('🚀 Gradient-style Button')
+        const Text('🚀 Gradient-style Button')
             .textWhite()
             .fontSemibold()
                          .asContainer()
@@ -212,9 +212,9 @@ class ButtonDemo extends StatelessWidget {
             .shadowLg()
             .onTap(() => _showMessage(context, 'Gradient-style clicked!')),
         
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         
-        Text('⚠️ Warning Action')
+        const Text('⚠️ Warning Action')
             .textYellow800()
             .fontMedium()
                          .asContainer()
@@ -233,7 +233,7 @@ class ButtonDemo extends StatelessWidget {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        duration: Duration(seconds: 2),
+        duration: const Duration(seconds: 2),
       ),
     );
   }
