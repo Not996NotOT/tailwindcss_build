@@ -20,9 +20,18 @@ class ContainerBuilder {
   Decoration? _foregroundDecoration;
   Gradient? _gradient;
   BlendMode? _backgroundBlendMode;
-  BoxShape _shape = BoxShape.rectangle;
+  final BoxShape _shape = BoxShape.rectangle;
   double? _width;
   double? _height;
+  
+  // === 定位相关属性 ===
+  bool _isPositioned = false;
+  double? _positionTop;
+  double? _positionRight;
+  double? _positionBottom;
+  double? _positionLeft;
+  double? _positionWidth;
+  double? _positionHeight;
   
   ContainerBuilder(this.child);
   
@@ -119,6 +128,17 @@ class ContainerBuilder {
   // === 约束 ===
   ContainerBuilder constraints(BoxConstraints constraints) {
     _constraints = constraints;
+    return this;
+  }
+  
+  // === 位置 ===
+  ContainerBuilder transform(Matrix4 transform) {
+    _transform = transform;
+    return this;
+  }
+  
+  ContainerBuilder transformAlignment(AlignmentGeometry alignment) {
+    _transformAlignment = alignment;
     return this;
   }
   
@@ -603,7 +623,6 @@ class ContainerBuilder {
     _gradient = gradient;
     return this;
   }
-  
   /// 最终构建方法 - 一次性创建Container
   Widget build() {
     // 构建 BoxDecoration
@@ -625,7 +644,7 @@ class ContainerBuilder {
       );
     }
     
-    return Container(
+    Widget container = Container(
       width: _width,
       height: _height,
       alignment: _alignment,
@@ -638,6 +657,21 @@ class ContainerBuilder {
       foregroundDecoration: _foregroundDecoration,
       child: child,
     );
+    
+    // 如果需要定位，包装成Positioned
+    if (_isPositioned) {
+      return Positioned(
+        top: _positionTop,
+        right: _positionRight,
+        bottom: _positionBottom,
+        left: _positionLeft,
+        width: _positionWidth,
+        height: _positionHeight,
+        child: container,
+      );
+    }
+    
+    return container;
   }
 }
 
@@ -668,6 +702,64 @@ extension WidgetToContainerBuilder on Widget {
   @Deprecated('Use asContainer() instead. This will be removed in a future version.')
   ContainerBuilder asContainerBuilder() {
     return ContainerBuilder(this);
+  }
+}
+
+/// List<Widget> 的Stack扩展
+extension ListWidgetStackExtensions on List<Widget> {
+  /// asStack() -> 转换为Stack布局建造者
+  StackBuilder asStack({
+    AlignmentGeometry alignment = AlignmentDirectional.topStart,
+    TextDirection? textDirection,
+    StackFit fit = StackFit.loose,
+    Clip clipBehavior = Clip.hardEdge,
+  }) {
+    return StackBuilder(
+      children: this,
+      alignment: alignment,
+      textDirection: textDirection,
+      fit: fit,
+      clipBehavior: clipBehavior,
+    );
+  }
+}
+
+/// Stack建造者 - 专门处理Stack布局
+class StackBuilder {
+  final List<Widget> children;
+  final AlignmentGeometry alignment;
+  final TextDirection? textDirection;
+  final StackFit fit;
+  final Clip clipBehavior;
+  
+  StackBuilder({
+    required this.children,
+    this.alignment = AlignmentDirectional.topStart,
+    this.textDirection,
+    this.fit = StackFit.loose,
+    this.clipBehavior = Clip.hardEdge,
+  });
+  
+  /// relative -> 相对定位容器（就是普通的Stack）
+  Widget relative() {
+    return Stack(
+      alignment: alignment,
+      textDirection: textDirection,
+      fit: fit,
+      clipBehavior: clipBehavior,
+      children: children,
+    );
+  }
+  
+  /// 直接构建Stack
+  Widget build() {
+    return Stack(
+      alignment: alignment,
+      textDirection: textDirection,
+      fit: fit,
+      clipBehavior: clipBehavior,
+      children: children,
+    );
   }
 }
 
@@ -1108,12 +1200,12 @@ extension ContainerBuilderTailwindExtensions on ContainerBuilder {
     BoxShadow(
       color: Colors.black.withValues(alpha: 0.06),
       blurRadius: 2,
-      offset: Offset(0, 1),
+      offset: const Offset(0, 1),
     ),
     BoxShadow(
       color: Colors.black.withValues(alpha: 0.04),
       blurRadius: 1,
-      offset: Offset(0, 1),
+      offset: const Offset(0, 1),
       spreadRadius: -0.5,
     ),
   ]);
@@ -1122,7 +1214,7 @@ extension ContainerBuilderTailwindExtensions on ContainerBuilder {
     BoxShadow(
       color: Colors.black.withValues(alpha: 0.05),
       blurRadius: 1,
-      offset: Offset(0, 1),
+      offset: const Offset(0, 1),
     ),
   ]);
   
@@ -1130,13 +1222,13 @@ extension ContainerBuilderTailwindExtensions on ContainerBuilder {
     BoxShadow(
       color: Colors.black.withValues(alpha: 0.1),
       blurRadius: 6,
-      offset: Offset(0, 4),
+      offset: const Offset(0, 4),
       spreadRadius: -2,
     ),
     BoxShadow(
       color: Colors.black.withValues(alpha: 0.05),
       blurRadius: 4,
-      offset: Offset(0, 2),
+      offset: const Offset(0, 2),
       spreadRadius: -1,
     ),
   ]);
@@ -1145,13 +1237,13 @@ extension ContainerBuilderTailwindExtensions on ContainerBuilder {
     BoxShadow(
       color: Colors.black.withValues(alpha: 0.1),
       blurRadius: 15,
-      offset: Offset(0, 10),
+      offset: const Offset(0, 10),
       spreadRadius: -3,
     ),
     BoxShadow(
       color: Colors.black.withValues(alpha: 0.05),
       blurRadius: 6,
-      offset: Offset(0, 4),
+      offset: const Offset(0, 4),
       spreadRadius: -2,
     ),
   ]);
@@ -1173,6 +1265,417 @@ extension ContainerBuilderInteraction on ContainerBuilder {
       onTap: onTap,
       child: build(), // 自动调用build()
     );
+  }
+}
+
+/// ContainerBuilder 的Flex布局扩展 - TailwindCSS风格的flex类
+extension ContainerBuilderFlexExtensions on ContainerBuilder {
+  /// flex-1 -> Expanded(flex: 1)
+  Widget flex1() {
+    return Expanded(
+      flex: 1,
+      child: build(),
+    );
+  }
+  
+  /// flex-2 -> Expanded(flex: 2)
+  Widget flex2() {
+    return Expanded(
+      flex: 2,
+      child: build(),
+    );
+  }
+  
+  /// flex-3 -> Expanded(flex: 3)
+  Widget flex3() {
+    return Expanded(
+      flex: 3,
+      child: build(),
+    );
+  }
+  
+  /// flex-4 -> Expanded(flex: 4)
+  Widget flex4() {
+    return Expanded(
+      flex: 4,
+      child: build(),
+    );
+  }
+  
+  /// flex-5 -> Expanded(flex: 5)
+  Widget flex5() {
+    return Expanded(
+      flex: 5,
+      child: build(),
+    );
+  }
+  
+  /// flex-6 -> Expanded(flex: 6)
+  Widget flex6() {
+    return Expanded(
+      flex: 6,
+      child: build(),
+    );
+  }
+  
+  /// flex-auto -> Flexible(fit: FlexFit.loose)
+  Widget flexAuto() {
+    return Flexible(
+      fit: FlexFit.loose,
+      child: build(),
+    );
+  }
+  
+  /// flex-initial -> Flexible(fit: FlexFit.loose, flex: 0)
+  Widget flexInitial() {
+    return Flexible(
+      flex: 0,
+      fit: FlexFit.loose,
+      child: build(),
+    );
+  }
+  
+  /// flex-none -> 不使用flex，保持原有尺寸
+  Widget flexNone() {
+    return build();
+  }
+  
+  /// 自定义flex值 - flex(value)
+  Widget flex(int flexValue) {
+    return Expanded(
+      flex: flexValue,
+      child: build(),
+    );
+  }
+  
+  /// 自定义Flexible - flexible(flex, fit)
+  Widget flexible({int flex = 1, FlexFit fit = FlexFit.loose}) {
+    return Flexible(
+      flex: flex,
+      fit: fit,
+      child: build(),
+    );
+  }
+}
+
+/// ContainerBuilder 的Position布局扩展 - TailwindCSS风格的position类
+extension ContainerBuilderPositionExtensions on ContainerBuilder {
+  /// position() -> 设置为定位元素，启用绝对定位
+  ContainerBuilder position() {
+    _isPositioned = true;
+    return this;
+  }
+  
+  /// static -> 默认定位（不做任何处理）
+  Widget positionStatic() {
+    return build();
+  }
+  
+  /// relative -> 相对定位
+  Widget positionRelative() {
+    return build();
+  }
+  
+  /// absolute -> 绝对定位
+  Widget positionAbsolute({
+    double? top,
+    double? right,
+    double? bottom,
+    double? left,
+    double? width,
+    double? height,
+  }) {
+    _isPositioned = true;
+    _positionTop = top;
+    _positionRight = right;
+    _positionBottom = bottom;
+    _positionLeft = left;
+    _positionWidth = width;
+    _positionHeight = height;
+    return build();
+  }
+  
+  /// fixed -> 固定定位（在Stack中相对于Stack容器）
+  Widget positionFixed({
+    double? top,
+    double? right,
+    double? bottom,
+    double? left,
+    double? width,
+    double? height,
+  }) {
+    return Positioned(
+      top: top,
+      right: right,
+      bottom: bottom,
+      left: left,
+      width: width,
+      height: height,
+      child: build(),
+    );
+  }
+  
+  /// sticky -> 粘性定位（在SingleChildScrollView中实现）
+  Widget positionSticky() {
+    // Flutter中的粘性定位需要特殊处理，这里先返回普通构建
+    return build();
+  }
+  
+  // === TailwindCSS风格的定位简写 ===
+  
+  /// top-0 -> top: 0
+  ContainerBuilder top0() {
+    _positionTop = 0;
+    return this;
+  }
+  
+  /// top-1 -> top: 4px
+  ContainerBuilder top1() {
+    _positionTop = 4;
+    return this;
+  }
+  
+  /// top-2 -> top: 8px
+  ContainerBuilder top2() {
+    _positionTop = 8;
+    return this;
+  }
+  
+  /// top-4 -> top: 16px
+  ContainerBuilder top4() {
+    _positionTop = 16;
+    return this;
+  }
+  
+  /// top(double value) -> top: value
+  ContainerBuilder top(double value) {
+    _positionTop = value;
+    return this;
+  }
+  
+  /// right-0 -> right: 0
+  ContainerBuilder right0() {
+    _positionRight = 0;
+    return this;
+  }
+  
+  /// right-1 -> right: 4px
+  ContainerBuilder right1() {
+    _positionRight = 4;
+    return this;
+  }
+  
+  /// right-2 -> right: 8px
+  ContainerBuilder right2() {
+    _positionRight = 8;
+    return this;
+  }
+  
+  /// right-4 -> right: 16px
+  ContainerBuilder right4() {
+    _positionRight = 16;
+    return this;
+  }
+  
+  /// right(double value) -> right: value
+  ContainerBuilder right(double value) {
+    _positionRight = value;
+    return this;
+  }
+  
+  /// bottom-0 -> bottom: 0
+  ContainerBuilder bottom0() {
+    _positionBottom = 0;
+    return this;
+  }
+  
+  /// bottom-1 -> bottom: 4px
+  ContainerBuilder bottom1() {
+    _positionBottom = 4;
+    return this;
+  }
+  
+  /// bottom-2 -> bottom: 8px
+  ContainerBuilder bottom2() {
+    _positionBottom = 8;
+    return this;
+  }
+  
+  /// bottom-4 -> bottom: 16px
+  ContainerBuilder bottom4() {
+    _positionBottom = 16;
+    return this;
+  }
+  
+  /// bottom(double value) -> bottom: value
+  ContainerBuilder bottom(double value) {
+    _positionBottom = value;
+    return this;
+  }
+  
+  /// left-0 -> left: 0
+  ContainerBuilder left0() {
+    _positionLeft = 0;
+    return this;
+  }
+  
+  /// left-1 -> left: 4px
+  ContainerBuilder left1() {
+    _positionLeft = 4;
+    return this;
+  }
+  
+  /// left-2 -> left: 8px
+  ContainerBuilder left2() {
+    _positionLeft = 8;
+    return this;
+  }
+  
+  /// left-4 -> left: 16px
+  ContainerBuilder left4() {
+    _positionLeft = 16;
+    return this;
+  }
+  
+  /// left(double value) -> left: value
+  ContainerBuilder left(double value) {
+    _positionLeft = value;
+    return this;
+  }
+  
+  /// inset-0 -> top: 0, right: 0, bottom: 0, left: 0
+  ContainerBuilder inset0() {
+    _positionTop = 0;
+    _positionRight = 0;
+    _positionBottom = 0;
+    _positionLeft = 0;
+    return this;
+  }
+  
+  /// inset-1 -> top: 4px, right: 4px, bottom: 4px, left: 4px
+  ContainerBuilder inset1() {
+    _positionTop = 4;
+    _positionRight = 4;
+    _positionBottom = 4;
+    _positionLeft = 4;
+    return this;
+  }
+  
+  /// inset-2 -> top: 8px, right: 8px, bottom: 8px, left: 8px
+  ContainerBuilder inset2() {
+    _positionTop = 8;
+    _positionRight = 8;
+    _positionBottom = 8;
+    _positionLeft = 8;
+    return this;
+  }
+  
+  /// inset-4 -> top: 16px, right: 16px, bottom: 16px, left: 16px
+  ContainerBuilder inset4() {
+    _positionTop = 16;
+    _positionRight = 16;
+    _positionBottom = 16;
+    _positionLeft = 16;
+    return this;
+  }
+  
+  /// inset-x-0 -> left: 0, right: 0
+  ContainerBuilder insetX0() {
+    _positionLeft = 0;
+    _positionRight = 0;
+    return this;
+  }
+  
+  /// inset-x-1 -> left: 4px, right: 4px
+  ContainerBuilder insetX1() {
+    _positionLeft = 4;
+    _positionRight = 4;
+    return this;
+  }
+  
+  /// inset-x-2 -> left: 8px, right: 8px
+  ContainerBuilder insetX2() {
+    _positionLeft = 8;
+    _positionRight = 8;
+    return this;
+  }
+  
+  /// inset-y-0 -> top: 0, bottom: 0
+  ContainerBuilder insetY0() {
+    _positionTop = 0;
+    _positionBottom = 0;
+    return this;
+  }
+  
+  /// inset-y-1 -> top: 4px, bottom: 4px
+  ContainerBuilder insetY1() {
+    _positionTop = 4;
+    _positionBottom = 4;
+    return this;
+  }
+  
+  /// inset-y-2 -> top: 8px, bottom: 8px
+  ContainerBuilder insetY2() {
+    _positionTop = 8;
+    _positionBottom = 8;
+    return this;
+  }
+  
+  /// 自定义位置 - positioned(top, right, bottom, left)
+  ContainerBuilder positioned({
+    double? top,
+    double? right,
+    double? bottom,
+    double? left,
+    double? width,
+    double? height,
+  }) {
+    _positionTop = top;
+    _positionRight = right;
+    _positionBottom = bottom;
+    _positionLeft = left;
+    _positionWidth = width;
+    _positionHeight = height;
+    return this;
+  }
+}
+
+/// ContainerBuilder 的Z-Index扩展 - TailwindCSS风格的z-index类
+extension ContainerBuilderZIndexExtensions on ContainerBuilder {
+  /// z-0 -> z-index: 0 (在Stack中通过children顺序控制)
+  Widget z0() {
+    // Flutter中通过Stack的children顺序来控制层级，这里仅作为标记
+    return build();
+  }
+  
+  /// z-10 -> z-index: 10
+  Widget z10() {
+    return build();
+  }
+  
+  /// z-20 -> z-index: 20
+  Widget z20() {
+    return build();
+  }
+  
+  /// z-30 -> z-index: 30
+  Widget z30() {
+    return build();
+  }
+  
+  /// z-40 -> z-index: 40
+  Widget z40() {
+    return build();
+  }
+  
+  /// z-50 -> z-index: 50
+  Widget z50() {
+    return build();
+  }
+  
+  /// z-auto -> z-index: auto
+  Widget zAuto() {
+    return build();
   }
 }
 

@@ -12,7 +12,8 @@ class FlexBuilder {
   CrossAxisAlignment _crossAxisAlignment = CrossAxisAlignment.center;
   MainAxisSize _mainAxisSize = MainAxisSize.max;
   TextDirection? _textDirection;
-  VerticalDirection _verticalDirection = VerticalDirection.down;
+  final VerticalDirection _verticalDirection = VerticalDirection.down;
+  double? _gap; // gap间距
   
   FlexBuilder(this.children);
   
@@ -95,9 +96,33 @@ class FlexBuilder {
     return this;
   }
   
+  // === Gap 间距 ===
+  FlexBuilder gap(double gap) {
+    _gap = gap;
+    return this;
+  }
+  
+  // 常用gap尺寸 - 基于4的倍数（Tailwind标准）
+  FlexBuilder gap1() => gap(4.0);   // gap-1 = 4px
+  FlexBuilder gap2() => gap(8.0);   // gap-2 = 8px  
+  FlexBuilder gap3() => gap(12.0);  // gap-3 = 12px
+  FlexBuilder gap4() => gap(16.0);  // gap-4 = 16px
+  FlexBuilder gap5() => gap(20.0);  // gap-5 = 20px
+  FlexBuilder gap6() => gap(24.0);  // gap-6 = 24px
+  FlexBuilder gap8() => gap(32.0);  // gap-8 = 32px
+  FlexBuilder gap10() => gap(40.0); // gap-10 = 40px
+  FlexBuilder gap12() => gap(48.0); // gap-12 = 48px
+  FlexBuilder gap16() => gap(64.0); // gap-16 = 64px
+  FlexBuilder gap20() => gap(80.0); // gap-20 = 80px
+  FlexBuilder gap24() => gap(96.0); // gap-24 = 96px
+  FlexBuilder gap32() => gap(128.0); // gap-32 = 128px
+  
   
   /// 构建Flex组件 - 只负责布局，不含视觉样式
   Widget build() {
+    // 处理gap间距
+    List<Widget> childrenWithGap = _buildChildrenWithGap();
+    
     if (_direction == Axis.horizontal) {
       return Row(
         mainAxisAlignment: _mainAxisAlignment,
@@ -105,7 +130,7 @@ class FlexBuilder {
         mainAxisSize: _mainAxisSize,
         textDirection: _textDirection,
         verticalDirection: _verticalDirection,
-        children: children,
+        children: childrenWithGap,
       );
     } else {
       return Column(
@@ -114,9 +139,32 @@ class FlexBuilder {
         mainAxisSize: _mainAxisSize,
         textDirection: _textDirection,
         verticalDirection: _verticalDirection,
-        children: children,
+        children: childrenWithGap,
       );
     }
+  }
+  
+  /// 构建带间距的子组件列表
+  List<Widget> _buildChildrenWithGap() {
+    if (_gap == null || _gap! <= 0 || children.isEmpty) {
+      return children;
+    }
+    
+    List<Widget> result = [];
+    for (int i = 0; i < children.length; i++) {
+      result.add(children[i]);
+      
+      // 在非最后一个元素后添加间距
+      if (i < children.length - 1) {
+        if (_direction == Axis.horizontal) {
+          result.add(SizedBox(width: _gap));
+        } else {
+          result.add(SizedBox(height: _gap));
+        }
+      }
+    }
+    
+    return result;
   }
   
   /// 转换为ContainerBuilder，添加视觉样式

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'components/button_demo.dart';
 import 'components/container_demo.dart';
 import 'components/flex_demo.dart';
+import 'components/layout_demo.dart';
 import 'components/text_demo.dart';
 
 void main() {
@@ -40,6 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
     const TextDemo(),
     const ContainerDemo(),
     const FlexDemo(),
+    const LayoutDemo(),
     const ButtonDemo(),
   ];
 
@@ -47,6 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
     'Text Builder',
     'Container Builder',
     'Flex Builder',
+    'Layout Demo',
     'Button Demo',
   ];
 
@@ -91,6 +94,10 @@ class _MyHomePageState extends State<MyHomePage> {
           BottomNavigationBarItem(
             icon: Icon(Icons.view_week),
             label: 'Flex',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.layers),
+            label: 'Layout',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.smart_button),

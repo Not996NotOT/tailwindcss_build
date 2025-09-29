@@ -250,7 +250,7 @@ Container(
 
 ```yaml
 dependencies:
-  tailwindcss_build: ^0.4.0
+  tailwindcss_build: ^0.4.2
 ```
 
 ### インポート
@@ -372,6 +372,23 @@ Text('クリックしてください')
 ```
 
 </details>
+
+## 🌐 プラットフォームサポート
+
+### ✅ 完全対応プラットフォーム
+
+このパッケージはすべてのFlutterプラットフォームをサポートしています：
+
+- 📱 **Android** - モバイルアプリの完全サポート
+- 🍎 **iOS** - 完全なiOS互換性  
+- 🌐 **Web** - Webアプリケーションサポート
+- 🖥️ **Windows** - デスクトップWindowsアプリ
+- 🍎 **macOS** - デスクトップmacOSアプリ  
+- 🐧 **Linux** - デスクトップLinuxアプリ
+
+### 🎯 ゼロ設定要件
+
+すべてのプラットフォームで追加設定なしで動作します。
 
 ## 🎨 完全なカラーシステム
 
@@ -707,6 +724,216 @@ Text('テキスト')
     .shadow()           // 8. エフェクト
     .build()            // 9. 最終ビルド
 ```
+
+## 📖 APIリファレンス
+
+### 🏗️ コアビルダー
+
+<details>
+<summary><strong>TextBuilderメソッド</strong></summary>
+
+```dart
+// テキストサイズ
+.textXs()     .textSm()     .textBase()   .textLg()
+.textXl()     .text2xl()    .text3xl()    .text4xl()
+
+// フォントウェイト  
+.fontThin()   .fontLight()  .fontNormal() .fontMedium()
+.fontSemibold() .fontBold() .fontExtrabold() .fontBlack()
+
+// テキストカラー（すべてのTailwindCSSカラー）
+.textWhite()  .textBlack()  .textGray50() ... .textGray950()
+.textRed50()  ... .textRed950()  // すべてのカラーファミリー
+
+// テキスト配置
+.textLeft()   .textCenter() .textRight()  .textJustify()
+
+// テキスト装飾
+.underline()  .lineThrough() .noUnderline()
+.decorationSolid() .decorationDouble() .decorationDotted()
+
+// テキスト変換
+.uppercase()  .lowercase()  .capitalize()  .normalCase()
+
+// 行の高さと文字間隔
+.leadingNone() .leadingTight() .leadingSnug() .leadingNormal()
+.trackingTighter() .trackingTight() .trackingNormal() .trackingWide()
+```
+
+</details>
+
+<details>
+<summary><strong>ContainerBuilderメソッド</strong></summary>
+
+```dart
+// パディングとマージン
+.p0() .p1() .p2() .p3() .p4() ... .p96()
+.px0() .py0() .pl0() .pr0() .pt0() .pb0() // 方向別
+.m0() .m1() .m2() ... .m96() // マージンバリアント
+
+// 背景色（すべてのTailwindCSSカラー）
+.bgWhite() .bgBlack() .bgTransparent()
+.bgGray50() ... .bgGray950() // すべてのカラーファミリー
+
+// ボーダー
+.border() .borderT() .borderR() .borderB() .borderL()
+.border0() .border2() .border4() .border8() // 幅
+.borderSolid() .borderDashed() .borderDotted()
+
+// ボーダーカラー
+.borderGray50() ... .borderGray950() // すべてのカラーファミリー
+
+// ボーダー半径
+.r0() .r1() .r2() .r3() .r4() .r6() .r8() .r12() .r16() .r20() .r24()
+.rFull() .rNone()
+
+// シャドウ
+.shadow() .shadowSm() .shadowMd() .shadowLg() .shadowXl() .shadow2xl()
+.shadowInner() .shadowNone()
+
+// サイズ
+.w0() .w1() ... .w96() .wAuto() .wFull() .wScreen()
+.h0() .h1() ... .h96() .hAuto() .hFull() .hScreen()
+
+// ポジション
+.position() .top0() .right0() .bottom0() .left0()
+.inset0() // すべての方向
+
+// インタラクション
+.onTap(() {}) .onDoubleTap(() {}) .onLongPress(() {})
+```
+
+</details>
+
+<details>
+<summary><strong>FlexBuilderメソッド</strong></summary>
+
+```dart
+// 方向
+.flexRow() .flexCol()
+
+// 主軸配置  
+.justifyStart() .justifyEnd() .justifyCenter()
+.justifyBetween() .justifyAround() .justifyEvenly()
+
+// 交差軸配置
+.itemsStart() .itemsEnd() .itemsCenter()
+.itemsStretch() .itemsBaseline()
+
+// Flexプロパティ
+.flex1() .flex2() .flex3() // 固定flex値
+.flexAuto() .flexNone() .flex(int) // カスタムflex
+
+// ギャップ（子要素間の間隔）
+.gap1() .gap2() .gap3() .gap4() .gap6() .gap8() .gap12() .gap16()
+.gap(double) // カスタムギャップ値
+```
+
+</details>
+
+### 🔗 メソッドチェーン
+
+すべてのビルダーは流暢なメソッドチェーンをサポートしています：
+```dart
+Text('こんにちは')
+    .asText()        // TextBuilderに変換
+    .textBlue600()   // テキストスタイル
+    .fontBold()      // 追加テキストスタイル
+    .asContainer()   // ContainerBuilderに変換  
+    .px6()           // コンテナスタイル
+    .py3()           // 追加コンテナスタイル
+    .bgWhite()       // 背景
+    .r8()            // ボーダー半径
+    .shadow()        // ドロップシャドウ
+    .onTap(() {})    // インタラクション
+    // 使用時に.build()が自動的に呼ばれます
+```
+
+## ❓ よくある質問
+
+<details>
+<summary><strong>なぜ直接ウィジェットスタイルではなくビルダーパターンを使うのですか？</strong></summary>
+
+1. **パフォーマンス**：ネストしたコンテナではなく単一の最適化されたウィジェットを作成
+2. **可読性**：CSSクラスのように読める自己文書化コード
+3. **タイプセーフティ**：完全なコンパイル時チェックとIntelliSenseサポート
+4. **保守性**：すべてのスタイリングニーズに対する一貫したAPI
+5. **メモリ効率**：ウィジェットツリーの深度を削減
+
+</details>
+
+<details>
+<summary><strong>他のFlutterスタイリングソリューションとの比較は？</strong></summary>
+
+| 機能 | TailwindCSS Build | 従来のFlutter | その他のパッケージ |
+|---------|-------------------|-------------------|----------------|
+| コード長 | 70%短縮 | 冗長 | 様々 |
+| パフォーマンス | 単一ウィジェット | ネストしたコンテナ | 様々 |
+| 学習曲線 | TailwindCSS知識 | Flutterウィジェット | パッケージ固有 |
+| タイプセーフティ | 完全 | 完全 | 様々 |
+| カスタマイズ性 | 高 | 高 | 限定的 |
+
+</details>
+
+<details>
+<summary><strong>従来のFlutterウィジェットとビルダーを混在できますか？</strong></summary>
+
+はい！ビルダーは既存のFlutterコードとシームレスに動作するよう設計されています：
+
+```dart
+Column(
+  children: [
+    // 従来のFlutter
+    Container(
+      padding: EdgeInsets.all(16),
+      child: Text('従来'),
+    ),
+    
+    // TailwindCSS Build
+    Text('モダン')
+        .asText()
+        .textBlue600()
+        .asContainer()
+        .p4()
+        .bgGray100()
+        .build(),
+  ],
+)
+```
+
+</details>
+
+<details>
+<summary><strong>既存のテーマとスタイリングで動作しますか？</strong></summary>
+
+はい！ビルダーはFlutterのテーマシステムを尊重し、以下と組み合わせることができます：
+- Material Designテーマ
+- カスタムテーマ
+- ダーク/ライトモード
+- カスタムカラースキーム
+
+</details>
+
+<details>
+<summary><strong>レスポンシブデザインはどう扱いますか？</strong></summary>
+
+Flutterのビルトインレスポンシブツールをビルダーと一緒に使用：
+
+```dart
+LayoutBuilder(
+  builder: (context, constraints) {
+    if (constraints.maxWidth > 600) {
+      // デスクトップレイアウト
+      return [widgets].asFlex().flexRow().build();
+    } else {
+      // モバイルレイアウト  
+      return [widgets].asFlex().flexCol().build();
+    }
+  },
+)
+```
+
+</details>
 
 ## 🔄 マイグレーションガイド
 

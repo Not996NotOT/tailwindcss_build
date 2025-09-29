@@ -43,7 +43,7 @@ class TestBuilderApp extends StatelessWidget {
               
               // 测试 String 到 TextBuilder
               'Hello String to TextBuilder!'
-                  .asTextBuilder()
+                  .asText()
                   .textGreen600()
                   .textLg()
                   .fontMedium()

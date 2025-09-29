@@ -43,6 +43,32 @@ class FlexDemo extends StatelessWidget {
         
         const SizedBox(height: 8),
         
+        // flex-row with gap4 示例  
+        const Text('Flex Row with Gap')
+            .textBase()
+            .fontMedium()
+            .textGray700()
+            .build(),
+            
+        const SizedBox(height: 4),
+        
+        [
+          _buildFlexItem('1'),
+          _buildFlexItem('2'), 
+          _buildFlexItem('3'),
+        ].asFlex()
+            .flexRow()
+            .justifyStart()
+            .itemsCenter()
+            .gap4() // 添加 gap4 间距
+            .asContainer()
+            .bgBlue50()
+            .p4()
+            .r8()
+            .build(),
+        
+        const SizedBox(height: 8),
+        
         // flex-col 示例
         [
           _buildFlexItem('A'),
@@ -53,7 +79,59 @@ class FlexDemo extends StatelessWidget {
             .justifyStart()
             .itemsStart()
             .asContainer()
-            .bgBlue50()
+            .bgGray100()
+            .p4()
+            .r8()
+            .build(),
+            
+        const SizedBox(height: 8),
+        
+        // flex-col with gap2 示例
+        const Text('Flex Column with Gap')
+            .textBase()
+            .fontMedium()
+            .textGray700()
+            .build(),
+            
+        const SizedBox(height: 4),
+        
+        [
+          _buildFlexItem('A'),
+          _buildFlexItem('B'),
+          _buildFlexItem('C'),
+        ].asFlex()
+            .flexCol()
+            .justifyStart()
+            .itemsStart()
+            .gap2() // 添加 gap2 间距
+            .asContainer()
+            .bgGreen50()
+            .p4()
+            .r8()
+            .build(),
+        
+        const SizedBox(height: 8),
+        
+        // flex with custom gap 示例
+        const Text('Flex with Custom Gap (30px)')
+            .textBase()
+            .fontMedium()
+            .textGray700()
+            .build(),
+            
+        const SizedBox(height: 4),
+        
+        [
+          _buildFlexItem('1'),
+          _buildFlexItem('2'),
+          _buildFlexItem('3'),
+        ].asFlex()
+            .flexRow()
+            .justifyCenter()
+            .itemsCenter()
+            .gap(30.0) // 自定义30px间距
+            .asContainer()
+            .bgPurple50()
             .p4()
             .r8()
             .build(),

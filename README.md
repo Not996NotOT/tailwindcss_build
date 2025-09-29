@@ -250,7 +250,7 @@ Container(
 
 ```yaml
 dependencies:
-  tailwindcss_build: ^0.4.0
+  tailwindcss_build: ^0.4.2
 ```
 
 ### Import
@@ -372,6 +372,23 @@ Text('Click Me')
 ```
 
 </details>
+
+## 🌐 Platform Support
+
+### ✅ Fully Supported Platforms
+
+This package supports all Flutter platforms:
+
+- 📱 **Android** - Full support for mobile apps
+- 🍎 **iOS** - Complete iOS compatibility  
+- 🌐 **Web** - Web application support
+- 🖥️ **Windows** - Desktop Windows apps
+- 🍎 **macOS** - Desktop macOS apps  
+- 🐧 **Linux** - Desktop Linux apps
+
+### 🎯 Zero Configuration Required
+
+Works out of the box on all platforms with no additional setup needed.
 
 ## 🎨 Complete Color System
 
@@ -707,6 +724,216 @@ Text('Text')
     .shadow()           // 8. Effects
     .build()            // 9. Final build
 ```
+
+## 📖 API Reference
+
+### 🏗️ Core Builders
+
+<details>
+<summary><strong>TextBuilder Methods</strong></summary>
+
+```dart
+// Text Sizes
+.textXs()     .textSm()     .textBase()   .textLg()
+.textXl()     .text2xl()    .text3xl()    .text4xl()
+
+// Font Weights  
+.fontThin()   .fontLight()  .fontNormal() .fontMedium()
+.fontSemibold() .fontBold() .fontExtrabold() .fontBlack()
+
+// Text Colors (all TailwindCSS colors)
+.textWhite()  .textBlack()  .textGray50() ... .textGray950()
+.textRed50()  ... .textRed950()  // All color families
+
+// Text Alignment
+.textLeft()   .textCenter() .textRight()  .textJustify()
+
+// Text Decoration
+.underline()  .lineThrough() .noUnderline()
+.decorationSolid() .decorationDouble() .decorationDotted()
+
+// Text Transform
+.uppercase()  .lowercase()  .capitalize()  .normalCase()
+
+// Line Height & Letter Spacing
+.leadingNone() .leadingTight() .leadingSnug() .leadingNormal()
+.trackingTighter() .trackingTight() .trackingNormal() .trackingWide()
+```
+
+</details>
+
+<details>
+<summary><strong>ContainerBuilder Methods</strong></summary>
+
+```dart
+// Padding & Margin
+.p0() .p1() .p2() .p3() .p4() ... .p96()
+.px0() .py0() .pl0() .pr0() .pt0() .pb0() // Directional
+.m0() .m1() .m2() ... .m96() // Margin variants
+
+// Background Colors (all TailwindCSS colors)
+.bgWhite() .bgBlack() .bgTransparent()
+.bgGray50() ... .bgGray950() // All color families
+
+// Border
+.border() .borderT() .borderR() .borderB() .borderL()
+.border0() .border2() .border4() .border8() // Widths
+.borderSolid() .borderDashed() .borderDotted()
+
+// Border Colors
+.borderGray50() ... .borderGray950() // All color families
+
+// Border Radius
+.r0() .r1() .r2() .r3() .r4() .r6() .r8() .r12() .r16() .r20() .r24()
+.rFull() .rNone()
+
+// Shadows
+.shadow() .shadowSm() .shadowMd() .shadowLg() .shadowXl() .shadow2xl()
+.shadowInner() .shadowNone()
+
+// Size
+.w0() .w1() ... .w96() .wAuto() .wFull() .wScreen()
+.h0() .h1() ... .h96() .hAuto() .hFull() .hScreen()
+
+// Position
+.position() .top0() .right0() .bottom0() .left0()
+.inset0() // All directions
+
+// Interactions
+.onTap(() {}) .onDoubleTap(() {}) .onLongPress(() {})
+```
+
+</details>
+
+<details>
+<summary><strong>FlexBuilder Methods</strong></summary>
+
+```dart
+// Direction
+.flexRow() .flexCol()
+
+// Main Axis Alignment  
+.justifyStart() .justifyEnd() .justifyCenter()
+.justifyBetween() .justifyAround() .justifyEvenly()
+
+// Cross Axis Alignment
+.itemsStart() .itemsEnd() .itemsCenter()
+.itemsStretch() .itemsBaseline()
+
+// Flex Properties
+.flex1() .flex2() .flex3() // Fixed flex values
+.flexAuto() .flexNone() .flex(int) // Custom flex
+
+// Gap (spacing between children)
+.gap1() .gap2() .gap3() .gap4() .gap6() .gap8() .gap12() .gap16()
+.gap(double) // Custom gap value
+```
+
+</details>
+
+### 🔗 Method Chaining
+
+All builders support fluent method chaining:
+```dart
+Text('Hello')
+    .asText()        // Convert to TextBuilder
+    .textBlue600()   // Text styling
+    .fontBold()      // More text styling
+    .asContainer()   // Convert to ContainerBuilder  
+    .px6()           // Container styling
+    .py3()           // More container styling
+    .bgWhite()       // Background
+    .r8()            // Border radius
+    .shadow()        // Drop shadow
+    .onTap(() {})    // Interaction
+    // .build() called automatically when used
+```
+
+## ❓ FAQ
+
+<details>
+<summary><strong>Why use builder pattern instead of direct widget styling?</strong></summary>
+
+1. **Performance**: Creates single optimized widgets instead of nested containers
+2. **Readability**: Self-documenting code that reads like CSS classes
+3. **Type Safety**: Full compile-time checking and IntelliSense support
+4. **Maintainability**: Consistent API across all styling needs
+5. **Memory Efficiency**: Reduced widget tree depth
+
+</details>
+
+<details>
+<summary><strong>How does this compare to other Flutter styling solutions?</strong></summary>
+
+| Feature | TailwindCSS Build | Traditional Flutter | Other Packages |
+|---------|-------------------|-------------------|----------------|
+| Code Length | 70% shorter | Verbose | Varies |
+| Performance | Single widgets | Nested containers | Varies |
+| Learning Curve | TailwindCSS knowledge | Flutter widgets | Package-specific |
+| Type Safety | Full | Full | Varies |
+| Customization | High | High | Limited |
+
+</details>
+
+<details>
+<summary><strong>Can I mix traditional Flutter widgets with builders?</strong></summary>
+
+Yes! Builders are designed to work seamlessly with existing Flutter code:
+
+```dart
+Column(
+  children: [
+    // Traditional Flutter
+    Container(
+      padding: EdgeInsets.all(16),
+      child: Text('Traditional'),
+    ),
+    
+    // TailwindCSS Build
+    Text('Modern')
+        .asText()
+        .textBlue600()
+        .asContainer()
+        .p4()
+        .bgGray100()
+        .build(),
+  ],
+)
+```
+
+</details>
+
+<details>
+<summary><strong>Does this work with existing themes and styling?</strong></summary>
+
+Yes! The builders respect Flutter's theme system and can be combined with:
+- Material Design themes
+- Custom themes
+- Dark/Light mode
+- Custom color schemes
+
+</details>
+
+<details>
+<summary><strong>How do I handle responsive design?</strong></summary>
+
+Use Flutter's built-in responsive tools with builders:
+
+```dart
+LayoutBuilder(
+  builder: (context, constraints) {
+    if (constraints.maxWidth > 600) {
+      // Desktop layout
+      return [widgets].asFlex().flexRow().build();
+    } else {
+      // Mobile layout  
+      return [widgets].asFlex().flexCol().build();
+    }
+  },
+)
+```
+
+</details>
 
 ## 🔄 Migration Guide
 

@@ -250,7 +250,7 @@ Container(
 
 ```yaml
 dependencies:
-  tailwindcss_build: ^0.4.0
+  tailwindcss_build: ^0.4.2
 ```
 
 ### 导入
@@ -372,6 +372,23 @@ Text('点击我')
 ```
 
 </details>
+
+## 🌐 平台支持
+
+### ✅ 完全支持的平台
+
+此包支持所有 Flutter 平台：
+
+- 📱 **Android** - 完全支持移动应用
+- 🍎 **iOS** - 完整的 iOS 兼容性  
+- 🌐 **Web** - Web 应用程序支持
+- 🖥️ **Windows** - 桌面 Windows 应用
+- 🍎 **macOS** - 桌面 macOS 应用  
+- 🐧 **Linux** - 桌面 Linux 应用
+
+### 🎯 零配置要求
+
+在所有平台上开箱即用，无需额外设置。
 
 ## 🎨 完整颜色系统
 
@@ -707,6 +724,216 @@ Text('文本')
     .shadow()           // 8. 效果
     .build()            // 9. 最终构建
 ```
+
+## 📖 API 参考
+
+### 🏗️ 核心建造者
+
+<details>
+<summary><strong>TextBuilder 方法</strong></summary>
+
+```dart
+// 文本大小
+.textXs()     .textSm()     .textBase()   .textLg()
+.textXl()     .text2xl()    .text3xl()    .text4xl()
+
+// 字体重量  
+.fontThin()   .fontLight()  .fontNormal() .fontMedium()
+.fontSemibold() .fontBold() .fontExtrabold() .fontBlack()
+
+// 文本颜色（所有 TailwindCSS 颜色）
+.textWhite()  .textBlack()  .textGray50() ... .textGray950()
+.textRed50()  ... .textRed950()  // 所有颜色族
+
+// 文本对齐
+.textLeft()   .textCenter() .textRight()  .textJustify()
+
+// 文本装饰
+.underline()  .lineThrough() .noUnderline()
+.decorationSolid() .decorationDouble() .decorationDotted()
+
+// 文本变换
+.uppercase()  .lowercase()  .capitalize()  .normalCase()
+
+// 行高和字符间距
+.leadingNone() .leadingTight() .leadingSnug() .leadingNormal()
+.trackingTighter() .trackingTight() .trackingNormal() .trackingWide()
+```
+
+</details>
+
+<details>
+<summary><strong>ContainerBuilder 方法</strong></summary>
+
+```dart
+// 内边距和外边距
+.p0() .p1() .p2() .p3() .p4() ... .p96()
+.px0() .py0() .pl0() .pr0() .pt0() .pb0() // 方向性
+.m0() .m1() .m2() ... .m96() // 外边距变体
+
+// 背景色（所有 TailwindCSS 颜色）
+.bgWhite() .bgBlack() .bgTransparent()
+.bgGray50() ... .bgGray950() // 所有颜色族
+
+// 边框
+.border() .borderT() .borderR() .borderB() .borderL()
+.border0() .border2() .border4() .border8() // 宽度
+.borderSolid() .borderDashed() .borderDotted()
+
+// 边框颜色
+.borderGray50() ... .borderGray950() // 所有颜色族
+
+// 边框圆角
+.r0() .r1() .r2() .r3() .r4() .r6() .r8() .r12() .r16() .r20() .r24()
+.rFull() .rNone()
+
+// 阴影
+.shadow() .shadowSm() .shadowMd() .shadowLg() .shadowXl() .shadow2xl()
+.shadowInner() .shadowNone()
+
+// 尺寸
+.w0() .w1() ... .w96() .wAuto() .wFull() .wScreen()
+.h0() .h1() ... .h96() .hAuto() .hFull() .hScreen()
+
+// 定位
+.position() .top0() .right0() .bottom0() .left0()
+.inset0() // 所有方向
+
+// 交互
+.onTap(() {}) .onDoubleTap(() {}) .onLongPress(() {})
+```
+
+</details>
+
+<details>
+<summary><strong>FlexBuilder 方法</strong></summary>
+
+```dart
+// 方向
+.flexRow() .flexCol()
+
+// 主轴对齐  
+.justifyStart() .justifyEnd() .justifyCenter()
+.justifyBetween() .justifyAround() .justifyEvenly()
+
+// 交叉轴对齐
+.itemsStart() .itemsEnd() .itemsCenter()
+.itemsStretch() .itemsBaseline()
+
+// Flex 属性
+.flex1() .flex2() .flex3() // 固定 flex 值
+.flexAuto() .flexNone() .flex(int) // 自定义 flex
+
+// 间距（子元素之间的间距）
+.gap1() .gap2() .gap3() .gap4() .gap6() .gap8() .gap12() .gap16()
+.gap(double) // 自定义间距值
+```
+
+</details>
+
+### 🔗 方法链式调用
+
+所有建造者都支持流畅的方法链式调用：
+```dart
+Text('你好')
+    .asText()        // 转换为 TextBuilder
+    .textBlue600()   // 文本样式
+    .fontBold()      // 更多文本样式
+    .asContainer()   // 转换为 ContainerBuilder  
+    .px6()           // 容器样式
+    .py3()           // 更多容器样式
+    .bgWhite()       // 背景
+    .r8()            // 边框圆角
+    .shadow()        // 投影
+    .onTap(() {})    // 交互
+    // 使用时自动调用 .build()
+```
+
+## ❓ 常见问题
+
+<details>
+<summary><strong>为什么使用建造者模式而不是直接组件样式？</strong></summary>
+
+1. **性能**：创建单个优化组件而不是嵌套容器
+2. **可读性**：自文档化代码，读起来像 CSS 类
+3. **类型安全**：完整的编译时检查和 IntelliSense 支持
+4. **可维护性**：所有样式需求的一致 API
+5. **内存效率**：减少组件树深度
+
+</details>
+
+<details>
+<summary><strong>与其他 Flutter 样式解决方案相比如何？</strong></summary>
+
+| 特性 | TailwindCSS Build | 传统 Flutter | 其他包 |
+|---------|-------------------|-------------------|----------------|
+| 代码长度 | 减少 70% | 冗长 | 各异 |
+| 性能 | 单个组件 | 嵌套容器 | 各异 |
+| 学习曲线 | TailwindCSS 知识 | Flutter 组件 | 包特定 |
+| 类型安全 | 完整 | 完整 | 各异 |
+| 自定义性 | 高 | 高 | 有限 |
+
+</details>
+
+<details>
+<summary><strong>可以将传统 Flutter 组件与建造者混合使用吗？</strong></summary>
+
+可以！建造者设计为与现有 Flutter 代码无缝配合：
+
+```dart
+Column(
+  children: [
+    // 传统 Flutter
+    Container(
+      padding: EdgeInsets.all(16),
+      child: Text('传统'),
+    ),
+    
+    // TailwindCSS Build
+    Text('现代')
+        .asText()
+        .textBlue600()
+        .asContainer()
+        .p4()
+        .bgGray100()
+        .build(),
+  ],
+)
+```
+
+</details>
+
+<details>
+<summary><strong>是否兼容现有主题和样式？</strong></summary>
+
+是的！建造者尊重 Flutter 的主题系统，可以与以下配合使用：
+- Material Design 主题
+- 自定义主题
+- 深色/浅色模式
+- 自定义颜色方案
+
+</details>
+
+<details>
+<summary><strong>如何处理响应式设计？</strong></summary>
+
+使用 Flutter 的内置响应式工具与建造者：
+
+```dart
+LayoutBuilder(
+  builder: (context, constraints) {
+    if (constraints.maxWidth > 600) {
+      // 桌面布局
+      return [widgets].asFlex().flexRow().build();
+    } else {
+      // 移动布局  
+      return [widgets].asFlex().flexCol().build();
+    }
+  },
+)
+```
+
+</details>
 
 ## 🔄 迁移指南
 

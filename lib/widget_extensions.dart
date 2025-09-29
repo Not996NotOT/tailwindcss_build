@@ -111,7 +111,7 @@ extension ListWidgetExt on List<Widget> {
   }
 
   /// 转换为 Stack，支持重叠布局
-  Stack asStack({
+  Stack asStackWidget({
     AlignmentGeometry alignment = AlignmentDirectional.topStart,
     TextDirection? textDirection,
     StackFit fit = StackFit.loose,
