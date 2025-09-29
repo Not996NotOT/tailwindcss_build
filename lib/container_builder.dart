@@ -365,13 +365,13 @@ class ContainerBuilder {
     return this;
   }
   
-  /// h(double height) -> height: <value>; (自定义高度 - 简洁版)
+  /// h(double height) -> height: value; (自定义高度 - 简洁版)
   ContainerBuilder h(double heightValue) {
     _height = heightValue;
     return this;
   }
   
-  /// h-[<value>] -> height: <value>; (自定义高度)
+  /// h-[value] -> height: value; (自定义高度)
   ContainerBuilder hCustom(double heightValue) {
     _height = heightValue;
     return this;
@@ -606,13 +606,13 @@ class ContainerBuilder {
     return this;
   }
   
-  /// w(double width) -> width: <value>; (自定义宽度 - 简洁版)
+  /// w(double width) -> width: value; (自定义宽度 - 简洁版)
   ContainerBuilder w(double widthValue) {
     _width = widthValue;
     return this;
   }
   
-  /// w-[<value>] -> width: <value>; (自定义宽度)
+  /// w-[value] -> width: value; (自定义宽度)
   ContainerBuilder wCustom(double widthValue) {
     _width = widthValue;
     return this;
