@@ -238,11 +238,11 @@ Container(
 
 ### 🧩 3つのコアビルダー
 
-| ビルダー | 目的 | 使用方法 |
-|---------|---------|-------|
-| **TextBuilder** | テキストスタイリングとタイポグラフィ | `Text('Hello').asText().textBlue600().fontBold().build()` |
-| **ContainerBuilder** | レイアウト、スペーシング、視覚効果 | `.asContainer().px6().py3().bgWhite().r8().shadow().build()` |
-| **FlexBuilder** | レイアウト管理（行/列） | `[widgets].asFlex().flexRow().justifyCenter().asContainer().build()` |
+| ビルダー | 目的 | 機能特性 | 使用方法 |
+|---------|---------|----------|-------|
+| **TextBuilder** | テキストスタイリングとタイポグラフィ | 装飾、変換、オーバーフロー制御 | `Text('Hello').asText().textBlue600().underline().decorationRed500().build()` |
+| **ContainerBuilder** | レイアウト、スペーシング、視覚効果 | 完全なポジションシステム | `.asContainer().px6().py3().bgWhite().positionAbsolute(top: 10, left: 20).build()` |
+| **FlexBuilder** | レイアウト管理（行/列） | Flexプロパティとギャップ制御 | `[widgets].asFlex().flexRow().justifyCenter().gap4().asContainer().build()` |
 
 ## 🚀 クイックスタート
 
@@ -250,7 +250,7 @@ Container(
 
 ```yaml
 dependencies:
-  tailwindcss_build: ^0.4.2
+  tailwindcss_build: ^0.4.3
 ```
 
 ### インポート
@@ -262,7 +262,7 @@ import 'package:tailwindcss_build/tailwindcss_build.dart';
 ### 基本的な使用パターン
 
 <details>
-<summary><strong>📝 テキストスタイリング</strong></summary>
+<summary><strong>📝 高度なテキストスタイリング</strong></summary>
 
 ```dart
 // 基本的なテキストスタイリング
@@ -273,19 +273,36 @@ Text('Hello World')
     .fontBold()       // 重み
     .build()
 
-// 文字列から直接
-'Hello World'
+// 高度なテキスト装飾
+Text('スタイル化テキスト')
     .asText()
-    .textWhite()
-    .fontMedium()
-    .textCenter()
+    .textRed600()
+    .underline()               // 下線装飾
+    .decorationBlue500()       // 装飾色
+    .decorationDotted()        // 装飾スタイル
+    .decoration2()             // 装飾の厚さ
+    .build()
+
+// テキスト変換
+Text('変換してください')
+    .asText()
+    .uppercase()               // 大文字変換
+    .trackingWide()           // 文字間隔
+    .leadingLoose()           // 行高
+    .build()
+
+// テキストオーバーフロー制御
+Text('非常に長いテキストがオーバーフローする可能性が...')
+    .asText()
+    .truncate()               // 省略記号オーバーフロー
+    .maxLines(2)             // 最大行数
     .build()
 ```
 
 </details>
 
 <details>
-<summary><strong>🎯 コンテナスタイリング</strong></summary>
+<summary><strong>🎯 高度なコンテナスタイリング</strong></summary>
 
 ```dart
 // 基本的なコンテナ
@@ -299,16 +316,42 @@ Text('コンテンツ')
     .shadow()        // ドロップシャドウ
     .build()
 
-// テキストビルダーから直接
-Text('スタイル付きテキスト')
+// ポジションレイアウト
+Text('配置された要素')
     .asText()
     .textWhite()
     .fontMedium()
-    .asContainer()   // テキストを自動ビルドしてコンテナにラップ
+    .asContainer()
     .px4()
     .py2()
     .bgRed500()
     .r6()
+    .positionAbsolute(     // 絶対配置
+      top: 20,
+      right: 10,
+      width: 200,
+    )
+
+// Tailwindスタイルの配置
+Text('固定要素')
+    .asContainer()
+    .px6()
+    .py3()
+    .bgBlue600()
+    .top0()              // top: 0
+    .right4()            // right: 16px
+    .insetX2()           // left: 8px, right: 8px
+    .positionFixed()
+
+// 組み合わせ配置
+Widget()
+    .asContainer()
+    .position()          // 配置を有効化
+    .top(50)            // カスタムtop値
+    .left0()            // 左端
+    .w64()              // 幅制御
+    .h32()              // 高さ制御
+    .bgGreen500()
     .build()
 ```
 
@@ -748,16 +791,34 @@ Text('テキスト')
 // テキスト配置
 .textLeft()   .textCenter() .textRight()  .textJustify()
 
-// テキスト装飾
-.underline()  .lineThrough() .noUnderline()
+// テキスト装飾ライン
+.underline()  .overline()   .lineThrough() .noUnderline()
+.underlineLineThrough()  .underlineOverline()  .allDecorations()
+
+// テキスト装飾スタイル
 .decorationSolid() .decorationDouble() .decorationDotted()
+.decorationDashed() .decorationWavy()
+
+// テキスト装飾の厚さ
+.decoration0() .decoration1() .decoration2() .decoration4() .decoration8()
+.decorationAuto() .decorationFromFont() .decorationCustom(3.5)
+
+// テキスト装飾カラー（完全なTailwindCSSパレット）
+.decorationRed500() .decorationBlue600() .decorationGreen700()
+.decorationPurple500() .decorationYellow400() // すべてのカラーファミリー
 
 // テキスト変換
 .uppercase()  .lowercase()  .capitalize()  .normalCase()
 
+// テキストオーバーフローと折り返し
+.truncate()   .textEllipsis() .textClip()
+.textWrap()   .textNowrap()   .textBalance()  .textPretty()
+
 // 行の高さと文字間隔
 .leadingNone() .leadingTight() .leadingSnug() .leadingNormal()
+.leadingRelaxed() .leadingLoose()
 .trackingTighter() .trackingTight() .trackingNormal() .trackingWide()
+.trackingWider() .trackingWidest()
 ```
 
 </details>
@@ -795,9 +856,27 @@ Text('テキスト')
 .w0() .w1() ... .w96() .wAuto() .wFull() .wScreen()
 .h0() .h1() ... .h96() .hAuto() .hFull() .hScreen()
 
-// ポジション
-.position() .top0() .right0() .bottom0() .left0()
-.inset0() // すべての方向
+// ポジションシステム
+.position()              // ポジションを有効化
+.positionStatic()        // デフォルトポジション
+.positionRelative()      // 相対ポジション
+.positionAbsolute()      // 絶対ポジション
+.positionFixed()         // 固定ポジション
+.positionSticky()        // スティッキーポジション
+
+// ポジション値（Tailwindスタイル）
+.top0() .top1() .top2() .top4() .top(50)    // トップポジション
+.right0() .right1() .right2() .right4() .right(30)  // 右ポジション
+.bottom0() .bottom1() .bottom2() .bottom4() .bottom(20) // ボトムポジション
+.left0() .left1() .left2() .left4() .left(10)  // 左ポジション
+
+// Insetショートカット
+.inset0() .inset1() .inset2() .inset4()     // すべての方向
+.insetX0() .insetX1() .insetX2()            // 水平（左+右）
+.insetY0() .insetY1() .insetY2()            // 垂直（上+下）
+
+// カスタムポジショニング
+.positioned(top: 20, left: 10, width: 200, height: 100)
 
 // インタラクション
 .onTap(() {}) .onDoubleTap(() {}) .onLongPress(() {})

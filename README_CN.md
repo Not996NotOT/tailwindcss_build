@@ -238,11 +238,11 @@ Container(
 
 ### 🧩 三个核心建造者
 
-| 建造者 | 用途 | 使用方式 |
-|---------|---------|-------|
-| **TextBuilder** | 文本样式和排版 | `Text('Hello').asText().textBlue600().fontBold().build()` |
-| **ContainerBuilder** | 布局、间距和视觉效果 | `.asContainer().px6().py3().bgWhite().r8().shadow().build()` |
-| **FlexBuilder** | 布局管理（行/列） | `[widgets].asFlex().flexRow().justifyCenter().asContainer().build()` |
+| 建造者 | 用途 | 功能特性 | 使用方式 |
+|---------|---------|----------|-------|
+| **TextBuilder** | 文本样式和排版 | 装饰、变换、溢出控制 | `Text('Hello').asText().textBlue600().underline().decorationRed500().build()` |
+| **ContainerBuilder** | 布局、间距和视觉效果 | 完整定位系统 | `.asContainer().px6().py3().bgWhite().positionAbsolute(top: 10, left: 20).build()` |
+| **FlexBuilder** | 布局管理（行/列） | Flex属性和间距控制 | `[widgets].asFlex().flexRow().justifyCenter().gap4().asContainer().build()` |
 
 ## 🚀 快速开始
 
@@ -250,7 +250,7 @@ Container(
 
 ```yaml
 dependencies:
-  tailwindcss_build: ^0.4.2
+  tailwindcss_build: ^0.4.3
 ```
 
 ### 导入
@@ -262,7 +262,7 @@ import 'package:tailwindcss_build/tailwindcss_build.dart';
 ### 基本使用模式
 
 <details>
-<summary><strong>📝 文本样式</strong></summary>
+<summary><strong>📝 高级文本样式</strong></summary>
 
 ```dart
 // 基本文本样式
@@ -273,19 +273,36 @@ Text('Hello World')
     .fontBold()       // 字重
     .build()
 
-// 直接从字符串开始
-'Hello World'
+// 高级文本装饰
+Text('样式化文本')
     .asText()
-    .textWhite()
-    .fontMedium()
-    .textCenter()
+    .textRed600()
+    .underline()               // 下划线装饰
+    .decorationBlue500()       // 装饰颜色
+    .decorationDotted()        // 装饰样式
+    .decoration2()             // 装饰厚度
+    .build()
+
+// 文本变换
+Text('变换我')
+    .asText()
+    .uppercase()               // 大写变换
+    .trackingWide()           // 字符间距
+    .leadingLoose()           // 行高
+    .build()
+
+// 文本溢出控制
+Text('很长的文本可能会溢出...')
+    .asText()
+    .truncate()               // 省略号溢出
+    .maxLines(2)             // 最大行数
     .build()
 ```
 
 </details>
 
 <details>
-<summary><strong>🎯 容器样式</strong></summary>
+<summary><strong>🎯 高级容器样式</strong></summary>
 
 ```dart
 // 基本容器
@@ -299,16 +316,42 @@ Text('内容')
     .shadow()        // 阴影
     .build()
 
-// 直接从文本建造者
-Text('样式化文本')
+// 定位布局
+Text('定位元素')
     .asText()
     .textWhite()
     .fontMedium()
-    .asContainer()   // 自动构建文本并包装在容器中
+    .asContainer()
     .px4()
     .py2()
     .bgRed500()
     .r6()
+    .positionAbsolute(     // 绝对定位
+      top: 20,
+      right: 10,
+      width: 200,
+    )
+
+// Tailwind风格定位
+Text('固定元素')
+    .asContainer()
+    .px6()
+    .py3()
+    .bgBlue600()
+    .top0()              // top: 0
+    .right4()            // right: 16px
+    .insetX2()           // left: 8px, right: 8px
+    .positionFixed()
+
+// 组合定位
+Widget()
+    .asContainer()
+    .position()          // 启用定位
+    .top(50)            // 自定义top值
+    .left0()            // 左边缘
+    .w64()              // 宽度控制
+    .h32()              // 高度控制
+    .bgGreen500()
     .build()
 ```
 
@@ -748,16 +791,34 @@ Text('文本')
 // 文本对齐
 .textLeft()   .textCenter() .textRight()  .textJustify()
 
-// 文本装饰
-.underline()  .lineThrough() .noUnderline()
+// 文本装饰线
+.underline()  .overline()   .lineThrough() .noUnderline()
+.underlineLineThrough()  .underlineOverline()  .allDecorations()
+
+// 文本装饰样式
 .decorationSolid() .decorationDouble() .decorationDotted()
+.decorationDashed() .decorationWavy()
+
+// 文本装饰厚度
+.decoration0() .decoration1() .decoration2() .decoration4() .decoration8()
+.decorationAuto() .decorationFromFont() .decorationCustom(3.5)
+
+// 文本装饰颜色（完整 TailwindCSS 调色板）
+.decorationRed500() .decorationBlue600() .decorationGreen700()
+.decorationPurple500() .decorationYellow400() // 所有颜色族
 
 // 文本变换
 .uppercase()  .lowercase()  .capitalize()  .normalCase()
 
+// 文本溢出和换行
+.truncate()   .textEllipsis() .textClip()
+.textWrap()   .textNowrap()   .textBalance()  .textPretty()
+
 // 行高和字符间距
 .leadingNone() .leadingTight() .leadingSnug() .leadingNormal()
+.leadingRelaxed() .leadingLoose()
 .trackingTighter() .trackingTight() .trackingNormal() .trackingWide()
+.trackingWider() .trackingWidest()
 ```
 
 </details>
@@ -795,9 +856,27 @@ Text('文本')
 .w0() .w1() ... .w96() .wAuto() .wFull() .wScreen()
 .h0() .h1() ... .h96() .hAuto() .hFull() .hScreen()
 
-// 定位
-.position() .top0() .right0() .bottom0() .left0()
-.inset0() // 所有方向
+// 定位系统
+.position()              // 启用定位
+.positionStatic()        // 默认定位
+.positionRelative()      // 相对定位
+.positionAbsolute()      // 绝对定位
+.positionFixed()         // 固定定位
+.positionSticky()        // 粘性定位
+
+// 定位值（Tailwind风格）
+.top0() .top1() .top2() .top4() .top(50)    // 顶部定位
+.right0() .right1() .right2() .right4() .right(30)  // 右侧定位
+.bottom0() .bottom1() .bottom2() .bottom4() .bottom(20) // 底部定位
+.left0() .left1() .left2() .left4() .left(10)  // 左侧定位
+
+// Inset 快捷方式
+.inset0() .inset1() .inset2() .inset4()     // 所有方向
+.insetX0() .insetX1() .insetX2()            // 水平（左 + 右）
+.insetY0() .insetY1() .insetY2()            // 垂直（上 + 下）
+
+// 自定义定位
+.positioned(top: 20, left: 10, width: 200, height: 100)
 
 // 交互
 .onTap(() {}) .onDoubleTap(() {}) .onLongPress(() {})

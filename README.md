@@ -238,11 +238,11 @@ Container(
 
 ### 🧩 Three Core Builders
 
-| Builder | Purpose | Usage |
-|---------|---------|-------|
-| **TextBuilder** | Text styling & typography | `Text('Hello').asText().textBlue600().fontBold().build()` |
-| **ContainerBuilder** | Layout, spacing & visual effects | `.asContainer().px6().py3().bgWhite().r8().shadow().build()` |
-| **FlexBuilder** | Layout management (Row/Column) | `[widgets].asFlex().flexRow().justifyCenter().asContainer().build()` |
+| Builder | Purpose | Features | Usage |
+|---------|---------|----------|-------|
+| **TextBuilder** | Text styling & typography | Decoration, Transform, Overflow control | `Text('Hello').asText().textBlue600().underline().decorationRed500().build()` |
+| **ContainerBuilder** | Layout, spacing & visual effects | Complete Position system | `.asContainer().px6().py3().bgWhite().positionAbsolute(top: 10, left: 20).build()` |
+| **FlexBuilder** | Layout management (Row/Column) | Flex properties and gap control | `[widgets].asFlex().flexRow().justifyCenter().gap4().asContainer().build()` |
 
 ## 🚀 Quick Start
 
@@ -250,7 +250,7 @@ Container(
 
 ```yaml
 dependencies:
-  tailwindcss_build: ^0.4.2
+  tailwindcss_build: ^0.4.3
 ```
 
 ### Import
@@ -262,7 +262,7 @@ import 'package:tailwindcss_build/tailwindcss_build.dart';
 ### Basic Usage Patterns
 
 <details>
-<summary><strong>📝 Text Styling</strong></summary>
+<summary><strong>📝 Advanced Text Styling</strong></summary>
 
 ```dart
 // Basic text styling
@@ -273,19 +273,36 @@ Text('Hello World')
     .fontBold()       // Weight
     .build()
 
-// From string directly
-'Hello World'
+// Advanced text decorations
+Text('Styled Text')
     .asText()
-    .textWhite()
-    .fontMedium()
-    .textCenter()
+    .textRed600()
+    .underline()               // Underline decoration
+    .decorationBlue500()       // Decoration color
+    .decorationDotted()        // Decoration style
+    .decoration2()             // Decoration thickness
+    .build()
+
+// Text transformations
+Text('transform me')
+    .asText()
+    .uppercase()               // TEXT TRANSFORM
+    .trackingWide()           // Letter spacing
+    .leadingLoose()           // Line height
+    .build()
+
+// Text overflow control
+Text('Very long text that might overflow...')
+    .asText()
+    .truncate()               // Ellipsis overflow
+    .maxLines(2)             // Max lines
     .build()
 ```
 
 </details>
 
 <details>
-<summary><strong>🎯 Container Styling</strong></summary>
+<summary><strong>🎯 Advanced Container Styling</strong></summary>
 
 ```dart
 // Basic container
@@ -299,16 +316,42 @@ Text('Content')
     .shadow()        // Drop shadow
     .build()
 
-// Direct from text builder
-Text('Styled Text')
+// Position layouts
+Text('Positioned Element')
     .asText()
     .textWhite()
     .fontMedium()
-    .asContainer()   // Auto-builds text and wraps in container
+    .asContainer()
     .px4()
     .py2()
     .bgRed500()
     .r6()
+    .positionAbsolute(     // Absolute positioning
+      top: 20,
+      right: 10,
+      width: 200,
+    )
+
+// Tailwind-style positioning
+Text('Fixed Element')
+    .asContainer()
+    .px6()
+    .py3()
+    .bgBlue600()
+    .top0()              // top: 0
+    .right4()            // right: 16px
+    .insetX2()           // left: 8px, right: 8px
+    .positionFixed()
+
+// Combined positioning
+Widget()
+    .asContainer()
+    .position()          // Enable positioning
+    .top(50)            // Custom top value
+    .left0()            // Left edge
+    .w64()              // Width control
+    .h32()              // Height control
+    .bgGreen500()
     .build()
 ```
 
@@ -748,16 +791,34 @@ Text('Text')
 // Text Alignment
 .textLeft()   .textCenter() .textRight()  .textJustify()
 
-// Text Decoration
-.underline()  .lineThrough() .noUnderline()
+// Text Decoration Line
+.underline()  .overline()   .lineThrough() .noUnderline()
+.underlineLineThrough()  .underlineOverline()  .allDecorations()
+
+// Text Decoration Style
 .decorationSolid() .decorationDouble() .decorationDotted()
+.decorationDashed() .decorationWavy()
+
+// Text Decoration Thickness
+.decoration0() .decoration1() .decoration2() .decoration4() .decoration8()
+.decorationAuto() .decorationFromFont() .decorationCustom(3.5)
+
+// Text Decoration Colors (Full TailwindCSS palette)
+.decorationRed500() .decorationBlue600() .decorationGreen700()
+.decorationPurple500() .decorationYellow400() // All color families
 
 // Text Transform
 .uppercase()  .lowercase()  .capitalize()  .normalCase()
 
+// Text Overflow & Wrap
+.truncate()   .textEllipsis() .textClip()
+.textWrap()   .textNowrap()   .textBalance()  .textPretty()
+
 // Line Height & Letter Spacing
 .leadingNone() .leadingTight() .leadingSnug() .leadingNormal()
+.leadingRelaxed() .leadingLoose()
 .trackingTighter() .trackingTight() .trackingNormal() .trackingWide()
+.trackingWider() .trackingWidest()
 ```
 
 </details>
@@ -795,9 +856,27 @@ Text('Text')
 .w0() .w1() ... .w96() .wAuto() .wFull() .wScreen()
 .h0() .h1() ... .h96() .hAuto() .hFull() .hScreen()
 
-// Position
-.position() .top0() .right0() .bottom0() .left0()
-.inset0() // All directions
+// Position System
+.position()              // Enable positioning
+.positionStatic()        // Default positioning
+.positionRelative()      // Relative positioning
+.positionAbsolute()      // Absolute positioning
+.positionFixed()         // Fixed positioning
+.positionSticky()        // Sticky positioning
+
+// Position Values (Tailwind-style)
+.top0() .top1() .top2() .top4() .top(50)    // Top positioning
+.right0() .right1() .right2() .right4() .right(30)  // Right positioning
+.bottom0() .bottom1() .bottom2() .bottom4() .bottom(20) // Bottom positioning
+.left0() .left1() .left2() .left4() .left(10)  // Left positioning
+
+// Inset Shortcuts
+.inset0() .inset1() .inset2() .inset4()     // All directions
+.insetX0() .insetX1() .insetX2()            // Horizontal (left + right)
+.insetY0() .insetY1() .insetY2()            // Vertical (top + bottom)
+
+// Custom Positioning
+.positioned(top: 20, left: 10, width: 200, height: 100)
 
 // Interactions
 .onTap(() {}) .onDoubleTap(() {}) .onLongPress(() {})
@@ -936,6 +1015,7 @@ LayoutBuilder(
 </details>
 
 ## 🔄 Migration Guide
+
 
 ### From 0.3.x to 0.4.0
 
