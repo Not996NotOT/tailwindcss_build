@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 /// Widget转换扩展 - 让各种组件可以转换为其他组件并支持TailwindCSS Build链式调用
 /// 让Flutter开发更接近TailwindCSS的体验
 
-/// List<Widget> 转换扩展
+/// List&lt;Widget&gt; 转换扩展
 extension ListWidgetExt on List<Widget> {
   /// 转换为 Row，支持 TailwindCSS Build 链式调用
   Row asRow({

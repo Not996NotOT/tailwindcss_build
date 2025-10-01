@@ -23,6 +23,10 @@ class ContainerBuilder {
   final BoxShape _shape = BoxShape.rectangle;
   double? _width;
   double? _height;
+  double? _minWidth;
+  double? _maxWidth;
+  double? _minHeight;
+  double? _maxHeight;
   
   // === 定位相关属性 ===
   bool _isPositioned = false;
@@ -143,478 +147,1831 @@ class ContainerBuilder {
   }
   
   // === Height 方法 - 建造者模式 ===
-  /// h-0 -> height: 0;
+  /// h-0 -->gt; height: 0;
   ContainerBuilder h0() {
     _height = 0;
     return this;
   }
   
-  /// h-px -> height: 1px;
+  /// h-px -->gt; height: 1px;
   ContainerBuilder hPx() {
     _height = 1;
     return this;
   }
   
-  /// h-0.5 -> height: 2px;
+  /// h-0.5 -->gt; height: 2px;
   ContainerBuilder h0_5() {
     _height = 2;
     return this;
   }
   
-  /// h-1 -> height: 4px;
+  /// h-1 -->gt; height: 4px;
   ContainerBuilder h1() {
     _height = 4;
     return this;
   }
   
-  /// h-1.5 -> height: 6px;
+  /// h-1.5 -->gt; height: 6px;
   ContainerBuilder h1_5() {
     _height = 6;
     return this;
   }
   
-  /// h-2 -> height: 8px;
+  /// h-2 -->gt; height: 8px;
   ContainerBuilder h2() {
     _height = 8;
     return this;
   }
   
-  /// h-2.5 -> height: 10px;
+  /// h-2.5 -->gt; height: 10px;
   ContainerBuilder h2_5() {
     _height = 10;
     return this;
   }
   
-  /// h-3 -> height: 12px;
+  /// h-3 -->gt; height: 12px;
   ContainerBuilder h3() {
     _height = 12;
     return this;
   }
   
-  /// h-3.5 -> height: 14px;
+  /// h-3.5 -->gt; height: 14px;
   ContainerBuilder h3_5() {
     _height = 14;
     return this;
   }
   
-  /// h-4 -> height: 16px;
+  /// h-4 -->gt; height: 16px;
   ContainerBuilder h4() {
     _height = 16;
     return this;
   }
   
-  /// h-5 -> height: 20px;
+  /// h-5 -->gt; height: 20px;
   ContainerBuilder h5() {
     _height = 20;
     return this;
   }
   
-  /// h-6 -> height: 24px;
+  /// h-6 -->gt; height: 24px;
   ContainerBuilder h6() {
     _height = 24;
     return this;
   }
   
-  /// h-7 -> height: 28px;
+  /// h-7 -->gt; height: 28px;
   ContainerBuilder h7() {
     _height = 28;
     return this;
   }
   
-  /// h-8 -> height: 32px;
+  /// h-8 -->gt; height: 32px;
   ContainerBuilder h8() {
     _height = 32;
     return this;
   }
   
-  /// h-9 -> height: 36px;
+  /// h-9 -->gt; height: 36px;
   ContainerBuilder h9() {
     _height = 36;
     return this;
   }
   
-  /// h-10 -> height: 40px;
+  /// h-10 -->gt; height: 40px;
   ContainerBuilder h10() {
     _height = 40;
     return this;
   }
   
-  /// h-11 -> height: 44px;
+  /// h-11 -->gt; height: 44px;
   ContainerBuilder h11() {
     _height = 44;
     return this;
   }
   
-  /// h-12 -> height: 48px;
+  /// h-12 -->gt; height: 48px;
   ContainerBuilder h12() {
     _height = 48;
     return this;
   }
   
-  /// h-14 -> height: 56px;
+  /// h-14 -->gt; height: 56px;
   ContainerBuilder h14() {
     _height = 56;
     return this;
   }
   
-  /// h-16 -> height: 64px;
+  /// h-16 -->gt; height: 64px;
   ContainerBuilder h16() {
     _height = 64;
     return this;
   }
   
-  /// h-20 -> height: 80px;
+  /// h-20 -->gt; height: 80px;
   ContainerBuilder h20() {
     _height = 80;
     return this;
   }
   
-  /// h-24 -> height: 96px;
+  /// h-24 -->gt; height: 96px;
   ContainerBuilder h24() {
     _height = 96;
     return this;
   }
   
-  /// h-28 -> height: 112px;
+  /// h-28 -->gt; height: 112px;
   ContainerBuilder h28() {
     _height = 112;
     return this;
   }
   
-  /// h-32 -> height: 128px;
+  /// h-32 -->gt; height: 128px;
   ContainerBuilder h32() {
     _height = 128;
     return this;
   }
   
-  /// h-36 -> height: 144px;
+  /// h-36 -->gt; height: 144px;
   ContainerBuilder h36() {
     _height = 144;
     return this;
   }
   
-  /// h-40 -> height: 160px;
+  /// h-40 -->gt; height: 160px;
   ContainerBuilder h40() {
     _height = 160;
     return this;
   }
   
-  /// h-44 -> height: 176px;
+  /// h-44 -->gt; height: 176px;
   ContainerBuilder h44() {
     _height = 176;
     return this;
   }
   
-  /// h-48 -> height: 192px;
+  /// h-48 -->gt; height: 192px;
   ContainerBuilder h48() {
     _height = 192;
     return this;
   }
   
-  /// h-52 -> height: 208px;
+  /// h-52 -->gt; height: 208px;
   ContainerBuilder h52() {
     _height = 208;
     return this;
   }
   
-  /// h-56 -> height: 224px;
+  /// h-56 -->gt; height: 224px;
   ContainerBuilder h56() {
     _height = 224;
     return this;
   }
   
-  /// h-60 -> height: 240px;
+  /// h-60 -->gt; height: 240px;
   ContainerBuilder h60() {
     _height = 240;
     return this;
   }
   
-  /// h-64 -> height: 256px;
+  /// h-64 -->gt; height: 256px;
   ContainerBuilder h64() {
     _height = 256;
     return this;
   }
   
-  /// h-72 -> height: 288px;
+  /// h-72 -->gt; height: 288px;
   ContainerBuilder h72() {
     _height = 288;
     return this;
   }
   
-  /// h-80 -> height: 320px;
+  /// h-80 -->gt; height: 320px;
   ContainerBuilder h80() {
     _height = 320;
     return this;
   }
   
-  /// h-96 -> height: 384px;
+  /// h-96 -->gt; height: 384px;
   ContainerBuilder h96() {
     _height = 384;
     return this;
   }
   
-  /// h-auto -> height: auto; (使用内容高度，不设置高度)
+  /// h-auto -->gt; height: auto; (使用内容高度，不设置高度)
   ContainerBuilder hAuto() {
     _height = null;
     return this;
   }
   
-  /// h-full -> height: 100%;
+  /// h-full -->gt; height: 100%;
   ContainerBuilder hFull() {
     _height = double.infinity;
     return this;
   }
   
-  /// h(double height) -> height: value; (自定义高度 - 简洁版)
+  /// h(double height) -->gt; height: value; (自定义高度 - 简洁版)
   ContainerBuilder h(double heightValue) {
     _height = heightValue;
     return this;
   }
   
-  /// h-[value] -> height: value; (自定义高度)
+  /// h-[value] -->gt; height: value; (自定义高度)
   ContainerBuilder hCustom(double heightValue) {
     _height = heightValue;
     return this;
   }
   
   // === Width 方法 - 建造者模式 ===
-  /// w-0 -> width: 0;
+  /// w-0 -->gt; width: 0;
   ContainerBuilder w0() {
     _width = 0;
     return this;
   }
   
-  /// w-px -> width: 1px;
+  /// w-px -->gt; width: 1px;
   ContainerBuilder wPx() {
     _width = 1;
     return this;
   }
   
-  /// w-0.5 -> width: 2px;
+  /// w-0.5 -->gt; width: 2px;
   ContainerBuilder w0_5() {
     _width = 2;
     return this;
   }
   
-  /// w-1 -> width: 4px;
+  /// w-1 -->gt; width: 4px;
   ContainerBuilder w1() {
     _width = 4;
     return this;
   }
   
-  /// w-1.5 -> width: 6px;
+  /// w-1.5 -->gt; width: 6px;
   ContainerBuilder w1_5() {
     _width = 6;
     return this;
   }
   
-  /// w-2 -> width: 8px;
+  /// w-2 -->gt; width: 8px;
   ContainerBuilder w2() {
     _width = 8;
     return this;
   }
   
-  /// w-2.5 -> width: 10px;
+  /// w-2.5 -->gt; width: 10px;
   ContainerBuilder w2_5() {
     _width = 10;
     return this;
   }
   
-  /// w-3 -> width: 12px;
+  /// w-3 -->gt; width: 12px;
   ContainerBuilder w3() {
     _width = 12;
     return this;
   }
   
-  /// w-3.5 -> width: 14px;
+  /// w-3.5 -->gt; width: 14px;
   ContainerBuilder w3_5() {
     _width = 14;
     return this;
   }
   
-  /// w-4 -> width: 16px;
+  /// w-4 -->gt; width: 16px;
   ContainerBuilder w4() {
     _width = 16;
     return this;
   }
   
-  /// w-5 -> width: 20px;
+  /// w-5 -->gt; width: 20px;
   ContainerBuilder w5() {
     _width = 20;
     return this;
   }
   
-  /// w-6 -> width: 24px;
+  /// w-6 -->gt; width: 24px;
   ContainerBuilder w6() {
     _width = 24;
     return this;
   }
   
-  /// w-7 -> width: 28px;
+  /// w-7 -->gt; width: 28px;
   ContainerBuilder w7() {
     _width = 28;
     return this;
   }
   
-  /// w-8 -> width: 32px;
+  /// w-8 -->gt; width: 32px;
   ContainerBuilder w8() {
     _width = 32;
     return this;
   }
   
-  /// w-9 -> width: 36px;
+  /// w-9 -->gt; width: 36px;
   ContainerBuilder w9() {
     _width = 36;
     return this;
   }
   
-  /// w-10 -> width: 40px;
+  /// w-10 -->gt; width: 40px;
   ContainerBuilder w10() {
     _width = 40;
     return this;
   }
   
-  /// w-11 -> width: 44px;
+  /// w-11 -->gt; width: 44px;
   ContainerBuilder w11() {
     _width = 44;
     return this;
   }
   
-  /// w-12 -> width: 48px;
+  /// w-12 -->gt; width: 48px;
   ContainerBuilder w12() {
     _width = 48;
     return this;
   }
   
-  /// w-14 -> width: 56px;
+  /// w-14 -->gt; width: 56px;
   ContainerBuilder w14() {
     _width = 56;
     return this;
   }
   
-  /// w-16 -> width: 64px;
+  /// w-16 -->gt; width: 64px;
   ContainerBuilder w16() {
     _width = 64;
     return this;
   }
   
-  /// w-20 -> width: 80px;
+  /// w-20 -->gt; width: 80px;
   ContainerBuilder w20() {
     _width = 80;
     return this;
   }
   
-  /// w-24 -> width: 96px;
+  /// w-24 -->gt; width: 96px;
   ContainerBuilder w24() {
     _width = 96;
     return this;
   }
   
-  /// w-28 -> width: 112px;
+  /// w-28 -->gt; width: 112px;
   ContainerBuilder w28() {
     _width = 112;
     return this;
   }
   
-  /// w-32 -> width: 128px;
+  /// w-32 -->gt; width: 128px;
   ContainerBuilder w32() {
     _width = 128;
     return this;
   }
   
-  /// w-36 -> width: 144px;
+  /// w-36 -->gt; width: 144px;
   ContainerBuilder w36() {
     _width = 144;
     return this;
   }
   
-  /// w-40 -> width: 160px;
+  /// w-40 -->gt; width: 160px;
   ContainerBuilder w40() {
     _width = 160;
     return this;
   }
   
-  /// w-44 -> width: 176px;
+  /// w-44 -->gt; width: 176px;
   ContainerBuilder w44() {
     _width = 176;
     return this;
   }
   
-  /// w-48 -> width: 192px;
+  /// w-48 -->gt; width: 192px;
   ContainerBuilder w48() {
     _width = 192;
     return this;
   }
   
-  /// w-52 -> width: 208px;
+  /// w-52 -->gt; width: 208px;
   ContainerBuilder w52() {
     _width = 208;
     return this;
   }
   
-  /// w-56 -> width: 224px;
+  /// w-56 -->gt; width: 224px;
   ContainerBuilder w56() {
     _width = 224;
     return this;
   }
   
-  /// w-60 -> width: 240px;
+  /// w-60 -->gt; width: 240px;
   ContainerBuilder w60() {
     _width = 240;
     return this;
   }
   
-  /// w-64 -> width: 256px;
+  /// w-64 -->gt; width: 256px;
   ContainerBuilder w64() {
     _width = 256;
     return this;
   }
   
-  /// w-72 -> width: 288px;
+  /// w-72 -->gt; width: 288px;
   ContainerBuilder w72() {
     _width = 288;
     return this;
   }
   
-  /// w-80 -> width: 320px;
+  /// w-80 -->gt; width: 320px;
   ContainerBuilder w80() {
     _width = 320;
     return this;
   }
   
-  /// w-96 -> width: 384px;
+  /// w-96 -->gt; width: 384px;
   ContainerBuilder w96() {
     _width = 384;
     return this;
   }
   
-  /// w-100 -> width: 400px;
+  /// w-100 -->gt; width: 400px;
   ContainerBuilder w100() {
     _width = 400;
     return this;
   }
   
-  /// w-auto -> width: auto; (使用内容宽度，不设置宽度)
+  /// w-auto -->gt; width: auto; (使用内容宽度，不设置宽度)
   ContainerBuilder wAuto() {
     _width = null;
     return this;
   }
   
-  /// w-full -> width: 100%;
+  /// w-full -->gt; width: 100%;
   ContainerBuilder wFull() {
     _width = double.infinity;
     return this;
   }
   
-  /// w(double width) -> width: value; (自定义宽度 - 简洁版)
+  /// w(double width) -->gt; width: value; (自定义宽度 - 简洁版)
   ContainerBuilder w(double widthValue) {
     _width = widthValue;
     return this;
   }
   
-  /// w-[value] -> width: value; (自定义宽度)
+  /// w-[value] -->gt; width: value; (自定义宽度)
   ContainerBuilder wCustom(double widthValue) {
     _width = widthValue;
+    return this;
+  }
+
+  // === Min-Width 方法 - 建造者模式 ===
+  /// min-w-0 -->gt; min-width: 0;
+  ContainerBuilder minW0() {
+    _minWidth = 0;
+    return this;
+  }
+  
+  /// min-w-px -->gt; min-width: 1px;
+  ContainerBuilder minWPx() {
+    _minWidth = 1;
+    return this;
+  }
+  
+  /// min-w-0.5 -->gt; min-width: 2px;
+  ContainerBuilder minW0_5() {
+    _minWidth = 2;
+    return this;
+  }
+  
+  /// min-w-1 -->gt; min-width: 4px;
+  ContainerBuilder minW1() {
+    _minWidth = 4;
+    return this;
+  }
+  
+  /// min-w-1.5 -->gt; min-width: 6px;
+  ContainerBuilder minW1_5() {
+    _minWidth = 6;
+    return this;
+  }
+  
+  /// min-w-2 -->gt; min-width: 8px;
+  ContainerBuilder minW2() {
+    _minWidth = 8;
+    return this;
+  }
+  
+  /// min-w-2.5 -->gt; min-width: 10px;
+  ContainerBuilder minW2_5() {
+    _minWidth = 10;
+    return this;
+  }
+  
+  /// min-w-3 -->gt; min-width: 12px;
+  ContainerBuilder minW3() {
+    _minWidth = 12;
+    return this;
+  }
+  
+  /// min-w-3.5 -->gt; min-width: 14px;
+  ContainerBuilder minW3_5() {
+    _minWidth = 14;
+    return this;
+  }
+  
+  /// min-w-4 -->gt; min-width: 16px;
+  ContainerBuilder minW4() {
+    _minWidth = 16;
+    return this;
+  }
+  
+  /// min-w-5 -->gt; min-width: 20px;
+  ContainerBuilder minW5() {
+    _minWidth = 20;
+    return this;
+  }
+  
+  /// min-w-6 -->gt; min-width: 24px;
+  ContainerBuilder minW6() {
+    _minWidth = 24;
+    return this;
+  }
+  
+  /// min-w-7 -->gt; min-width: 28px;
+  ContainerBuilder minW7() {
+    _minWidth = 28;
+    return this;
+  }
+  
+  /// min-w-8 -->gt; min-width: 32px;
+  ContainerBuilder minW8() {
+    _minWidth = 32;
+    return this;
+  }
+  
+  /// min-w-9 -->gt; min-width: 36px;
+  ContainerBuilder minW9() {
+    _minWidth = 36;
+    return this;
+  }
+  
+  /// min-w-10 -->gt; min-width: 40px;
+  ContainerBuilder minW10() {
+    _minWidth = 40;
+    return this;
+  }
+  
+  /// min-w-11 -->gt; min-width: 44px;
+  ContainerBuilder minW11() {
+    _minWidth = 44;
+    return this;
+  }
+  
+  /// min-w-12 -->gt; min-width: 48px;
+  ContainerBuilder minW12() {
+    _minWidth = 48;
+    return this;
+  }
+  
+  /// min-w-14 -->gt; min-width: 56px;
+  ContainerBuilder minW14() {
+    _minWidth = 56;
+    return this;
+  }
+  
+  /// min-w-16 -->gt; min-width: 64px;
+  ContainerBuilder minW16() {
+    _minWidth = 64;
+    return this;
+  }
+  
+  /// min-w-20 -->gt; min-width: 80px;
+  ContainerBuilder minW20() {
+    _minWidth = 80;
+    return this;
+  }
+  
+  /// min-w-24 -->gt; min-width: 96px;
+  ContainerBuilder minW24() {
+    _minWidth = 96;
+    return this;
+  }
+  
+  /// min-w-28 -->gt; min-width: 112px;
+  ContainerBuilder minW28() {
+    _minWidth = 112;
+    return this;
+  }
+  
+  /// min-w-32 -->gt; min-width: 128px;
+  ContainerBuilder minW32() {
+    _minWidth = 128;
+    return this;
+  }
+  
+  /// min-w-36 -->gt; min-width: 144px;
+  ContainerBuilder minW36() {
+    _minWidth = 144;
+    return this;
+  }
+  
+  /// min-w-40 -->gt; min-width: 160px;
+  ContainerBuilder minW40() {
+    _minWidth = 160;
+    return this;
+  }
+  
+  /// min-w-44 -->gt; min-width: 176px;
+  ContainerBuilder minW44() {
+    _minWidth = 176;
+    return this;
+  }
+  
+  /// min-w-48 -->gt; min-width: 192px;
+  ContainerBuilder minW48() {
+    _minWidth = 192;
+    return this;
+  }
+  
+  /// min-w-52 -->gt; min-width: 208px;
+  ContainerBuilder minW52() {
+    _minWidth = 208;
+    return this;
+  }
+  
+  /// min-w-56 -->gt; min-width: 224px;
+  ContainerBuilder minW56() {
+    _minWidth = 224;
+    return this;
+  }
+  
+  /// min-w-60 -->gt; min-width: 240px;
+  ContainerBuilder minW60() {
+    _minWidth = 240;
+    return this;
+  }
+  
+  /// min-w-64 -->gt; min-width: 256px;
+  ContainerBuilder minW64() {
+    _minWidth = 256;
+    return this;
+  }
+  
+  /// min-w-72 -->gt; min-width: 288px;
+  ContainerBuilder minW72() {
+    _minWidth = 288;
+    return this;
+  }
+  
+  /// min-w-80 -->gt; min-width: 320px;
+  ContainerBuilder minW80() {
+    _minWidth = 320;
+    return this;
+  }
+  
+  /// min-w-96 -->gt; min-width: 384px;
+  ContainerBuilder minW96() {
+    _minWidth = 384;
+    return this;
+  }
+  
+  /// min-w-auto -->gt; min-width: auto; (使用内容宽度，不设置最小宽度)
+  ContainerBuilder minWAuto() {
+    _minWidth = null;
+    return this;
+  }
+  
+  /// min-w-full -->gt; min-width: 100%;
+  ContainerBuilder minWFull() {
+    _minWidth = double.infinity;
+    return this;
+  }
+  
+  /// min-w-screen -->gt; min-width: 100vw;
+  ContainerBuilder minWScreen() {
+    _minWidth = double.infinity; // 在Flutter中通过MediaQuery获取屏幕宽度
+    return this;
+  }
+  
+  /// min-w-min -->gt; min-width: min-content;
+  ContainerBuilder minWMin() {
+    _minWidth = 0; // Flutter中通过IntrinsicWidth实现
+    return this;
+  }
+  
+  /// min-w-max -->gt; min-width: max-content;
+  ContainerBuilder minWMax() {
+    _minWidth = 0; // Flutter中通过IntrinsicWidth实现
+    return this;
+  }
+  
+  /// min-w-fit -->gt; min-width: fit-content;
+  ContainerBuilder minWFit() {
+    _minWidth = 0; // Flutter中通过IntrinsicWidth实现
+    return this;
+  }
+  
+  /// min-w(double minWidth) -->gt; min-width: value; (自定义最小宽度 - 简洁版)
+  ContainerBuilder minW(double minWidthValue) {
+    _minWidth = minWidthValue;
+    return this;
+  }
+  
+  /// min-w-[value] -->gt; min-width: value; (自定义最小宽度)
+  ContainerBuilder minWCustom(double minWidthValue) {
+    _minWidth = minWidthValue;
+    return this;
+  }
+
+  // === Max-Width 方法 - 建造者模式 ===
+  /// max-w-0 -->gt; max-width: 0;
+  ContainerBuilder maxW0() {
+    _maxWidth = 0;
+    return this;
+  }
+  
+  /// max-w-px -->gt; max-width: 1px;
+  ContainerBuilder maxWPx() {
+    _maxWidth = 1;
+    return this;
+  }
+  
+  /// max-w-0.5 -->gt; max-width: 2px;
+  ContainerBuilder maxW0_5() {
+    _maxWidth = 2;
+    return this;
+  }
+  
+  /// max-w-1 -->gt; max-width: 4px;
+  ContainerBuilder maxW1() {
+    _maxWidth = 4;
+    return this;
+  }
+  
+  /// max-w-1.5 -->gt; max-width: 6px;
+  ContainerBuilder maxW1_5() {
+    _maxWidth = 6;
+    return this;
+  }
+  
+  /// max-w-2 -->gt; max-width: 8px;
+  ContainerBuilder maxW2() {
+    _maxWidth = 8;
+    return this;
+  }
+  
+  /// max-w-2.5 -->gt; max-width: 10px;
+  ContainerBuilder maxW2_5() {
+    _maxWidth = 10;
+    return this;
+  }
+  
+  /// max-w-3 -->gt; max-width: 12px;
+  ContainerBuilder maxW3() {
+    _maxWidth = 12;
+    return this;
+  }
+  
+  /// max-w-3.5 -->gt; max-width: 14px;
+  ContainerBuilder maxW3_5() {
+    _maxWidth = 14;
+    return this;
+  }
+  
+  /// max-w-4 -->gt; max-width: 16px;
+  ContainerBuilder maxW4() {
+    _maxWidth = 16;
+    return this;
+  }
+  
+  /// max-w-5 -->gt; max-width: 20px;
+  ContainerBuilder maxW5() {
+    _maxWidth = 20;
+    return this;
+  }
+  
+  /// max-w-6 -->gt; max-width: 24px;
+  ContainerBuilder maxW6() {
+    _maxWidth = 24;
+    return this;
+  }
+  
+  /// max-w-7 -->gt; max-width: 28px;
+  ContainerBuilder maxW7() {
+    _maxWidth = 28;
+    return this;
+  }
+  
+  /// max-w-8 -->gt; max-width: 32px;
+  ContainerBuilder maxW8() {
+    _maxWidth = 32;
+    return this;
+  }
+  
+  /// max-w-9 -->gt; max-width: 36px;
+  ContainerBuilder maxW9() {
+    _maxWidth = 36;
+    return this;
+  }
+  
+  /// max-w-10 -->gt; max-width: 40px;
+  ContainerBuilder maxW10() {
+    _maxWidth = 40;
+    return this;
+  }
+  
+  /// max-w-11 -->gt; max-width: 44px;
+  ContainerBuilder maxW11() {
+    _maxWidth = 44;
+    return this;
+  }
+  
+  /// max-w-12 -->gt; max-width: 48px;
+  ContainerBuilder maxW12() {
+    _maxWidth = 48;
+    return this;
+  }
+  
+  /// max-w-14 -->gt; max-width: 56px;
+  ContainerBuilder maxW14() {
+    _maxWidth = 56;
+    return this;
+  }
+  
+  /// max-w-16 -->gt; max-width: 64px;
+  ContainerBuilder maxW16() {
+    _maxWidth = 64;
+    return this;
+  }
+  
+  /// max-w-20 -->gt; max-width: 80px;
+  ContainerBuilder maxW20() {
+    _maxWidth = 80;
+    return this;
+  }
+  
+  /// max-w-24 -->gt; max-width: 96px;
+  ContainerBuilder maxW24() {
+    _maxWidth = 96;
+    return this;
+  }
+  
+  /// max-w-28 -->gt; max-width: 112px;
+  ContainerBuilder maxW28() {
+    _maxWidth = 112;
+    return this;
+  }
+  
+  /// max-w-32 -->gt; max-width: 128px;
+  ContainerBuilder maxW32() {
+    _maxWidth = 128;
+    return this;
+  }
+  
+  /// max-w-36 -->gt; max-width: 144px;
+  ContainerBuilder maxW36() {
+    _maxWidth = 144;
+    return this;
+  }
+  
+  /// max-w-40 -->gt; max-width: 160px;
+  ContainerBuilder maxW40() {
+    _maxWidth = 160;
+    return this;
+  }
+  
+  /// max-w-44 -->gt; max-width: 176px;
+  ContainerBuilder maxW44() {
+    _maxWidth = 176;
+    return this;
+  }
+  
+  /// max-w-48 -->gt; max-width: 192px;
+  ContainerBuilder maxW48() {
+    _maxWidth = 192;
+    return this;
+  }
+  
+  /// max-w-52 -->gt; max-width: 208px;
+  ContainerBuilder maxW52() {
+    _maxWidth = 208;
+    return this;
+  }
+  
+  /// max-w-56 -->gt; max-width: 224px;
+  ContainerBuilder maxW56() {
+    _maxWidth = 224;
+    return this;
+  }
+  
+  /// max-w-60 -->gt; max-width: 240px;
+  ContainerBuilder maxW60() {
+    _maxWidth = 240;
+    return this;
+  }
+  
+  /// max-w-64 -->gt; max-width: 256px;
+  ContainerBuilder maxW64() {
+    _maxWidth = 256;
+    return this;
+  }
+  
+  /// max-w-72 -->gt; max-width: 288px;
+  ContainerBuilder maxW72() {
+    _maxWidth = 288;
+    return this;
+  }
+  
+  /// max-w-80 -->gt; max-width: 320px;
+  ContainerBuilder maxW80() {
+    _maxWidth = 320;
+    return this;
+  }
+  
+  /// max-w-96 -->gt; max-width: 384px;
+  ContainerBuilder maxW96() {
+    _maxWidth = 384;
+    return this;
+  }
+  
+  /// max-w-auto -->gt; max-width: auto; (使用内容宽度，不设置最大宽度)
+  ContainerBuilder maxWAuto() {
+    _maxWidth = null;
+    return this;
+  }
+  
+  /// max-w-full -->gt; max-width: 100%;
+  ContainerBuilder maxWFull() {
+    _maxWidth = double.infinity;
+    return this;
+  }
+  
+  /// max-w-screen -->gt; max-width: 100vw;
+  ContainerBuilder maxWScreen() {
+    _maxWidth = double.infinity; // 在Flutter中通过MediaQuery获取屏幕宽度
+    return this;
+  }
+  
+  /// max-w-min -->gt; max-width: min-content;
+  ContainerBuilder maxWMin() {
+    _maxWidth = 0; // Flutter中通过IntrinsicWidth实现
+    return this;
+  }
+  
+  /// max-w-max -->gt; max-width: max-content;
+  ContainerBuilder maxWMax() {
+    _maxWidth = 0; // Flutter中通过IntrinsicWidth实现
+    return this;
+  }
+  
+  /// max-w-fit -->gt; max-width: fit-content;
+  ContainerBuilder maxWFit() {
+    _maxWidth = 0; // Flutter中通过IntrinsicWidth实现
+    return this;
+  }
+  
+  /// max-w(double maxWidth) -->gt; max-width: value; (自定义最大宽度 - 简洁版)
+  ContainerBuilder maxW(double maxWidthValue) {
+    _maxWidth = maxWidthValue;
+    return this;
+  }
+  
+  /// max-w-[value] -->gt; max-width: value; (自定义最大宽度)
+  ContainerBuilder maxWCustom(double maxWidthValue) {
+    _maxWidth = maxWidthValue;
+    return this;
+  }
+
+  // === Min-Height 方法 - 建造者模式 ===
+  /// min-h-0 -->gt; min-height: 0;
+  ContainerBuilder minH0() {
+    _minHeight = 0;
+    return this;
+  }
+  
+  /// min-h-px -->gt; min-height: 1px;
+  ContainerBuilder minHPx() {
+    _minHeight = 1;
+    return this;
+  }
+  
+  /// min-h-0.5 -->gt; min-height: 2px;
+  ContainerBuilder minH0_5() {
+    _minHeight = 2;
+    return this;
+  }
+  
+  /// min-h-1 -->gt; min-height: 4px;
+  ContainerBuilder minH1() {
+    _minHeight = 4;
+    return this;
+  }
+  
+  /// min-h-1.5 -->gt; min-height: 6px;
+  ContainerBuilder minH1_5() {
+    _minHeight = 6;
+    return this;
+  }
+  
+  /// min-h-2 -->gt; min-height: 8px;
+  ContainerBuilder minH2() {
+    _minHeight = 8;
+    return this;
+  }
+  
+  /// min-h-2.5 -->gt; min-height: 10px;
+  ContainerBuilder minH2_5() {
+    _minHeight = 10;
+    return this;
+  }
+  
+  /// min-h-3 -->gt; min-height: 12px;
+  ContainerBuilder minH3() {
+    _minHeight = 12;
+    return this;
+  }
+  
+  /// min-h-3.5 -->gt; min-height: 14px;
+  ContainerBuilder minH3_5() {
+    _minHeight = 14;
+    return this;
+  }
+  
+  /// min-h-4 -->gt; min-height: 16px;
+  ContainerBuilder minH4() {
+    _minHeight = 16;
+    return this;
+  }
+  
+  /// min-h-5 -->gt; min-height: 20px;
+  ContainerBuilder minH5() {
+    _minHeight = 20;
+    return this;
+  }
+  
+  /// min-h-6 -->gt; min-height: 24px;
+  ContainerBuilder minH6() {
+    _minHeight = 24;
+    return this;
+  }
+  
+  /// min-h-7 -->gt; min-height: 28px;
+  ContainerBuilder minH7() {
+    _minHeight = 28;
+    return this;
+  }
+  
+  /// min-h-8 -->gt; min-height: 32px;
+  ContainerBuilder minH8() {
+    _minHeight = 32;
+    return this;
+  }
+  
+  /// min-h-9 -->gt; min-height: 36px;
+  ContainerBuilder minH9() {
+    _minHeight = 36;
+    return this;
+  }
+  
+  /// min-h-10 -->gt; min-height: 40px;
+  ContainerBuilder minH10() {
+    _minHeight = 40;
+    return this;
+  }
+  
+  /// min-h-11 -->gt; min-height: 44px;
+  ContainerBuilder minH11() {
+    _minHeight = 44;
+    return this;
+  }
+  
+  /// min-h-12 -->gt; min-height: 48px;
+  ContainerBuilder minH12() {
+    _minHeight = 48;
+    return this;
+  }
+  
+  /// min-h-14 -->gt; min-height: 56px;
+  ContainerBuilder minH14() {
+    _minHeight = 56;
+    return this;
+  }
+  
+  /// min-h-16 -->gt; min-height: 64px;
+  ContainerBuilder minH16() {
+    _minHeight = 64;
+    return this;
+  }
+  
+  /// min-h-20 -->gt; min-height: 80px;
+  ContainerBuilder minH20() {
+    _minHeight = 80;
+    return this;
+  }
+  
+  /// min-h-24 -->gt; min-height: 96px;
+  ContainerBuilder minH24() {
+    _minHeight = 96;
+    return this;
+  }
+  
+  /// min-h-28 -->gt; min-height: 112px;
+  ContainerBuilder minH28() {
+    _minHeight = 112;
+    return this;
+  }
+  
+  /// min-h-32 -->gt; min-height: 128px;
+  ContainerBuilder minH32() {
+    _minHeight = 128;
+    return this;
+  }
+  
+  /// min-h-36 -->gt; min-height: 144px;
+  ContainerBuilder minH36() {
+    _minHeight = 144;
+    return this;
+  }
+  
+  /// min-h-40 -->gt; min-height: 160px;
+  ContainerBuilder minH40() {
+    _minHeight = 160;
+    return this;
+  }
+  
+  /// min-h-44 -->gt; min-height: 176px;
+  ContainerBuilder minH44() {
+    _minHeight = 176;
+    return this;
+  }
+  
+  /// min-h-48 -->gt; min-height: 192px;
+  ContainerBuilder minH48() {
+    _minHeight = 192;
+    return this;
+  }
+  
+  /// min-h-52 -->gt; min-height: 208px;
+  ContainerBuilder minH52() {
+    _minHeight = 208;
+    return this;
+  }
+  
+  /// min-h-56 -->gt; min-height: 224px;
+  ContainerBuilder minH56() {
+    _minHeight = 224;
+    return this;
+  }
+  
+  /// min-h-60 -->gt; min-height: 240px;
+  ContainerBuilder minH60() {
+    _minHeight = 240;
+    return this;
+  }
+  
+  /// min-h-64 -->gt; min-height: 256px;
+  ContainerBuilder minH64() {
+    _minHeight = 256;
+    return this;
+  }
+  
+  /// min-h-72 -->gt; min-height: 288px;
+  ContainerBuilder minH72() {
+    _minHeight = 288;
+    return this;
+  }
+  
+  /// min-h-80 -->gt; min-height: 320px;
+  ContainerBuilder minH80() {
+    _minHeight = 320;
+    return this;
+  }
+  
+  /// min-h-96 -->gt; min-height: 384px;
+  ContainerBuilder minH96() {
+    _minHeight = 384;
+    return this;
+  }
+  
+  /// min-h-auto -->gt; min-height: auto; (使用内容高度，不设置最小高度)
+  ContainerBuilder minHAuto() {
+    _minHeight = null;
+    return this;
+  }
+  
+  /// min-h-full -->gt; min-height: 100%;
+  ContainerBuilder minHFull() {
+    _minHeight = double.infinity;
+    return this;
+  }
+  
+  /// min-h-screen -->gt; min-height: 100vh;
+  ContainerBuilder minHScreen() {
+    _minHeight = double.infinity; // 在Flutter中通过MediaQuery获取屏幕高度
+    return this;
+  }
+  
+  /// min-h-min -->gt; min-height: min-content;
+  ContainerBuilder minHMin() {
+    _minHeight = 0; // Flutter中通过IntrinsicHeight实现
+    return this;
+  }
+  
+  /// min-h-max -->gt; min-height: max-content;
+  ContainerBuilder minHMax() {
+    _minHeight = 0; // Flutter中通过IntrinsicHeight实现
+    return this;
+  }
+  
+  /// min-h-fit -->gt; min-height: fit-content;
+  ContainerBuilder minHFit() {
+    _minHeight = 0; // Flutter中通过IntrinsicHeight实现
+    return this;
+  }
+  
+  /// min-h(double minHeight) -->gt; min-height: value; (自定义最小高度 - 简洁版)
+  ContainerBuilder minH(double minHeightValue) {
+    _minHeight = minHeightValue;
+    return this;
+  }
+  
+  /// min-h-[value] -->gt; min-height: value; (自定义最小高度)
+  ContainerBuilder minHCustom(double minHeightValue) {
+    _minHeight = minHeightValue;
+    return this;
+  }
+
+  // === Max-Height 方法 - 建造者模式 ===
+  /// max-h-0 -->gt; max-height: 0;
+  ContainerBuilder maxH0() {
+    _maxHeight = 0;
+    return this;
+  }
+  
+  /// max-h-px -->gt; max-height: 1px;
+  ContainerBuilder maxHPx() {
+    _maxHeight = 1;
+    return this;
+  }
+  
+  /// max-h-0.5 -->gt; max-height: 2px;
+  ContainerBuilder maxH0_5() {
+    _maxHeight = 2;
+    return this;
+  }
+  
+  /// max-h-1 -->gt; max-height: 4px;
+  ContainerBuilder maxH1() {
+    _maxHeight = 4;
+    return this;
+  }
+  
+  /// max-h-1.5 -->gt; max-height: 6px;
+  ContainerBuilder maxH1_5() {
+    _maxHeight = 6;
+    return this;
+  }
+  
+  /// max-h-2 -->gt; max-height: 8px;
+  ContainerBuilder maxH2() {
+    _maxHeight = 8;
+    return this;
+  }
+  
+  /// max-h-2.5 -->gt; max-height: 10px;
+  ContainerBuilder maxH2_5() {
+    _maxHeight = 10;
+    return this;
+  }
+  
+  /// max-h-3 -->gt; max-height: 12px;
+  ContainerBuilder maxH3() {
+    _maxHeight = 12;
+    return this;
+  }
+  
+  /// max-h-3.5 -->gt; max-height: 14px;
+  ContainerBuilder maxH3_5() {
+    _maxHeight = 14;
+    return this;
+  }
+  
+  /// max-h-4 -->gt; max-height: 16px;
+  ContainerBuilder maxH4() {
+    _maxHeight = 16;
+    return this;
+  }
+  
+  /// max-h-5 -->gt; max-height: 20px;
+  ContainerBuilder maxH5() {
+    _maxHeight = 20;
+    return this;
+  }
+  
+  /// max-h-6 -->gt; max-height: 24px;
+  ContainerBuilder maxH6() {
+    _maxHeight = 24;
+    return this;
+  }
+  
+  /// max-h-7 -->gt; max-height: 28px;
+  ContainerBuilder maxH7() {
+    _maxHeight = 28;
+    return this;
+  }
+  
+  /// max-h-8 -->gt; max-height: 32px;
+  ContainerBuilder maxH8() {
+    _maxHeight = 32;
+    return this;
+  }
+  
+  /// max-h-9 -->gt; max-height: 36px;
+  ContainerBuilder maxH9() {
+    _maxHeight = 36;
+    return this;
+  }
+  
+  /// max-h-10 -->gt; max-height: 40px;
+  ContainerBuilder maxH10() {
+    _maxHeight = 40;
+    return this;
+  }
+  
+  /// max-h-11 -->gt; max-height: 44px;
+  ContainerBuilder maxH11() {
+    _maxHeight = 44;
+    return this;
+  }
+  
+  /// max-h-12 -->gt; max-height: 48px;
+  ContainerBuilder maxH12() {
+    _maxHeight = 48;
+    return this;
+  }
+  
+  /// max-h-14 -->gt; max-height: 56px;
+  ContainerBuilder maxH14() {
+    _maxHeight = 56;
+    return this;
+  }
+  
+  /// max-h-16 -->gt; max-height: 64px;
+  ContainerBuilder maxH16() {
+    _maxHeight = 64;
+    return this;
+  }
+  
+  /// max-h-20 -->gt; max-height: 80px;
+  ContainerBuilder maxH20() {
+    _maxHeight = 80;
+    return this;
+  }
+  
+  /// max-h-24 -->gt; max-height: 96px;
+  ContainerBuilder maxH24() {
+    _maxHeight = 96;
+    return this;
+  }
+  
+  /// max-h-28 -->gt; max-height: 112px;
+  ContainerBuilder maxH28() {
+    _maxHeight = 112;
+    return this;
+  }
+  
+  /// max-h-32 -->gt; max-height: 128px;
+  ContainerBuilder maxH32() {
+    _maxHeight = 128;
+    return this;
+  }
+  
+  /// max-h-36 -->gt; max-height: 144px;
+  ContainerBuilder maxH36() {
+    _maxHeight = 144;
+    return this;
+  }
+  
+  /// max-h-40 -->gt; max-height: 160px;
+  ContainerBuilder maxH40() {
+    _maxHeight = 160;
+    return this;
+  }
+  
+  /// max-h-44 -->gt; max-height: 176px;
+  ContainerBuilder maxH44() {
+    _maxHeight = 176;
+    return this;
+  }
+  
+  /// max-h-48 -->gt; max-height: 192px;
+  ContainerBuilder maxH48() {
+    _maxHeight = 192;
+    return this;
+  }
+  
+  /// max-h-52 -->gt; max-height: 208px;
+  ContainerBuilder maxH52() {
+    _maxHeight = 208;
+    return this;
+  }
+  
+  /// max-h-56 -->gt; max-height: 224px;
+  ContainerBuilder maxH56() {
+    _maxHeight = 224;
+    return this;
+  }
+  
+  /// max-h-60 -->gt; max-height: 240px;
+  ContainerBuilder maxH60() {
+    _maxHeight = 240;
+    return this;
+  }
+  
+  /// max-h-64 -->gt; max-height: 256px;
+  ContainerBuilder maxH64() {
+    _maxHeight = 256;
+    return this;
+  }
+  
+  /// max-h-72 -->gt; max-height: 288px;
+  ContainerBuilder maxH72() {
+    _maxHeight = 288;
+    return this;
+  }
+  
+  /// max-h-80 -->gt; max-height: 320px;
+  ContainerBuilder maxH80() {
+    _maxHeight = 320;
+    return this;
+  }
+  
+  /// max-h-96 -->gt; max-height: 384px;
+  ContainerBuilder maxH96() {
+    _maxHeight = 384;
+    return this;
+  }
+  
+  /// max-h-auto -->gt; max-height: auto; (使用内容高度，不设置最大高度)
+  ContainerBuilder maxHAuto() {
+    _maxHeight = null;
+    return this;
+  }
+  
+  /// max-h-full -->gt; max-height: 100%;
+  ContainerBuilder maxHFull() {
+    _maxHeight = double.infinity;
+    return this;
+  }
+  
+  /// max-h-screen -->gt; max-height: 100vh;
+  ContainerBuilder maxHScreen() {
+    _maxHeight = double.infinity; // 在Flutter中通过MediaQuery获取屏幕高度
+    return this;
+  }
+  
+  /// max-h-min -->gt; max-height: min-content;
+  ContainerBuilder maxHMin() {
+    _maxHeight = 0; // Flutter中通过IntrinsicHeight实现
+    return this;
+  }
+  
+  /// max-h-max -->gt; max-height: max-content;
+  ContainerBuilder maxHMax() {
+    _maxHeight = 0; // Flutter中通过IntrinsicHeight实现
+    return this;
+  }
+  
+  /// max-h-fit -->gt; max-height: fit-content;
+  ContainerBuilder maxHFit() {
+    _maxHeight = 0; // Flutter中通过IntrinsicHeight实现
+    return this;
+  }
+  
+  /// max-h(double maxHeight) -->gt; max-height: value; (自定义最大高度 - 简洁版)
+  ContainerBuilder maxH(double maxHeightValue) {
+    _maxHeight = maxHeightValue;
+    return this;
+  }
+  
+  /// max-h-[value] -->gt; max-height: value; (自定义最大高度)
+  ContainerBuilder maxHCustom(double maxHeightValue) {
+    _maxHeight = maxHeightValue;
+    return this;
+  }
+
+  // === 容器尺寸方法 - 建造者模式 ===
+  // Min-Width 容器尺寸
+  /// min-w-3xs -&gt; min-width: 16rem (256px);
+  ContainerBuilder minW3xs() {
+    _minWidth = 256;
+    return this;
+  }
+  
+  /// min-w-2xs -&gt; min-width: 18rem (288px);
+  ContainerBuilder minW2xs() {
+    _minWidth = 288;
+    return this;
+  }
+  
+  /// min-w-xs -->gt; min-width: 20rem (320px);
+  ContainerBuilder minWxs() {
+    _minWidth = 320;
+    return this;
+  }
+  
+  /// min-w-sm -->gt; min-width: 24rem (384px);
+  ContainerBuilder minWsm() {
+    _minWidth = 384;
+    return this;
+  }
+  
+  /// min-w-md -->gt; min-width: 28rem (448px);
+  ContainerBuilder minWmd() {
+    _minWidth = 448;
+    return this;
+  }
+  
+  /// min-w-lg -->gt; min-width: 32rem (512px);
+  ContainerBuilder minWlg() {
+    _minWidth = 512;
+    return this;
+  }
+  
+  /// min-w-xl -->gt; min-width: 36rem (576px);
+  ContainerBuilder minWxl() {
+    _minWidth = 576;
+    return this;
+  }
+  
+  /// min-w-2xl -->gt; min-width: 42rem (672px);
+  ContainerBuilder minW2xl() {
+    _minWidth = 672;
+    return this;
+  }
+  
+  /// min-w-3xl -->gt; min-width: 48rem (768px);
+  ContainerBuilder minW3xl() {
+    _minWidth = 768;
+    return this;
+  }
+  
+  /// min-w-4xl -->gt; min-width: 56rem (896px);
+  ContainerBuilder minW4xl() {
+    _minWidth = 896;
+    return this;
+  }
+  
+  /// min-w-5xl -->gt; min-width: 64rem (1024px);
+  ContainerBuilder minW5xl() {
+    _minWidth = 1024;
+    return this;
+  }
+  
+  /// min-w-6xl -->gt; min-width: 72rem (1152px);
+  ContainerBuilder minW6xl() {
+    _minWidth = 1152;
+    return this;
+  }
+  
+  /// min-w-7xl -->gt; min-width: 80rem (1280px);
+  ContainerBuilder minW7xl() {
+    _minWidth = 1280;
+    return this;
+  }
+
+  // Max-Width 容器尺寸
+  /// max-w-3xs -->gt; max-width: 16rem (256px);
+  ContainerBuilder maxW3xs() {
+    _maxWidth = 256;
+    return this;
+  }
+  
+  /// max-w-2xs -->gt; max-width: 18rem (288px);
+  ContainerBuilder maxW2xs() {
+    _maxWidth = 288;
+    return this;
+  }
+  
+  /// max-w-xs -->gt; max-width: 20rem (320px);
+  ContainerBuilder maxWxs() {
+    _maxWidth = 320;
+    return this;
+  }
+  
+  /// max-w-sm -->gt; max-width: 24rem (384px);
+  ContainerBuilder maxWsm() {
+    _maxWidth = 384;
+    return this;
+  }
+  
+  /// max-w-md -->gt; max-width: 28rem (448px);
+  ContainerBuilder maxWmd() {
+    _maxWidth = 448;
+    return this;
+  }
+  
+  /// max-w-lg -->gt; max-width: 32rem (512px);
+  ContainerBuilder maxWlg() {
+    _maxWidth = 512;
+    return this;
+  }
+  
+  /// max-w-xl -->gt; max-width: 36rem (576px);
+  ContainerBuilder maxWxl() {
+    _maxWidth = 576;
+    return this;
+  }
+  
+  /// max-w-2xl -->gt; max-width: 42rem (672px);
+  ContainerBuilder maxW2xl() {
+    _maxWidth = 672;
+    return this;
+  }
+  
+  /// max-w-3xl -->gt; max-width: 48rem (768px);
+  ContainerBuilder maxW3xl() {
+    _maxWidth = 768;
+    return this;
+  }
+  
+  /// max-w-4xl -->gt; max-width: 56rem (896px);
+  ContainerBuilder maxW4xl() {
+    _maxWidth = 896;
+    return this;
+  }
+  
+  /// max-w-5xl -->gt; max-width: 64rem (1024px);
+  ContainerBuilder maxW5xl() {
+    _maxWidth = 1024;
+    return this;
+  }
+  
+  /// max-w-6xl -->gt; max-width: 72rem (1152px);
+  ContainerBuilder maxW6xl() {
+    _maxWidth = 1152;
+    return this;
+  }
+  
+  /// max-w-7xl -->gt; max-width: 80rem (1280px);
+  ContainerBuilder maxW7xl() {
+    _maxWidth = 1280;
+    return this;
+  }
+
+  // Min-Height 容器尺寸
+  /// min-h-3xs -->gt; min-height: 16rem (256px);
+  ContainerBuilder minH3xs() {
+    _minHeight = 256;
+    return this;
+  }
+  
+  /// min-h-2xs -->gt; min-height: 18rem (288px);
+  ContainerBuilder minH2xs() {
+    _minHeight = 288;
+    return this;
+  }
+  
+  /// min-h-xs -->gt; min-height: 20rem (320px);
+  ContainerBuilder minHxs() {
+    _minHeight = 320;
+    return this;
+  }
+  
+  /// min-h-sm -->gt; min-height: 24rem (384px);
+  ContainerBuilder minHsm() {
+    _minHeight = 384;
+    return this;
+  }
+  
+  /// min-h-md -->gt; min-height: 28rem (448px);
+  ContainerBuilder minHmd() {
+    _minHeight = 448;
+    return this;
+  }
+  
+  /// min-h-lg -->gt; min-height: 32rem (512px);
+  ContainerBuilder minHlg() {
+    _minHeight = 512;
+    return this;
+  }
+  
+  /// min-h-xl -->gt; min-height: 36rem (576px);
+  ContainerBuilder minHxl() {
+    _minHeight = 576;
+    return this;
+  }
+  
+  /// min-h-2xl -->gt; min-height: 42rem (672px);
+  ContainerBuilder minH2xl() {
+    _minHeight = 672;
+    return this;
+  }
+  
+  /// min-h-3xl -->gt; min-height: 48rem (768px);
+  ContainerBuilder minH3xl() {
+    _minHeight = 768;
+    return this;
+  }
+  
+  /// min-h-4xl -->gt; min-height: 56rem (896px);
+  ContainerBuilder minH4xl() {
+    _minHeight = 896;
+    return this;
+  }
+  
+  /// min-h-5xl -->gt; min-height: 64rem (1024px);
+  ContainerBuilder minH5xl() {
+    _minHeight = 1024;
+    return this;
+  }
+  
+  /// min-h-6xl -->gt; min-height: 72rem (1152px);
+  ContainerBuilder minH6xl() {
+    _minHeight = 1152;
+    return this;
+  }
+  
+  /// min-h-7xl -->gt; min-height: 80rem (1280px);
+  ContainerBuilder minH7xl() {
+    _minHeight = 1280;
+    return this;
+  }
+
+  // Max-Height 容器尺寸
+  /// max-h-3xs -->gt; max-height: 16rem (256px);
+  ContainerBuilder maxH3xs() {
+    _maxHeight = 256;
+    return this;
+  }
+  
+  /// max-h-2xs -->gt; max-height: 18rem (288px);
+  ContainerBuilder maxH2xs() {
+    _maxHeight = 288;
+    return this;
+  }
+  
+  /// max-h-xs -->gt; max-height: 20rem (320px);
+  ContainerBuilder maxHxs() {
+    _maxHeight = 320;
+    return this;
+  }
+  
+  /// max-h-sm -->gt; max-height: 24rem (384px);
+  ContainerBuilder maxHsm() {
+    _maxHeight = 384;
+    return this;
+  }
+  
+  /// max-h-md -->gt; max-height: 28rem (448px);
+  ContainerBuilder maxHmd() {
+    _maxHeight = 448;
+    return this;
+  }
+  
+  /// max-h-lg -->gt; max-height: 32rem (512px);
+  ContainerBuilder maxHlg() {
+    _maxHeight = 512;
+    return this;
+  }
+  
+  /// max-h-xl -->gt; max-height: 36rem (576px);
+  ContainerBuilder maxHxl() {
+    _maxHeight = 576;
+    return this;
+  }
+  
+  /// max-h-2xl -->gt; max-height: 42rem (672px);
+  ContainerBuilder maxH2xl() {
+    _maxHeight = 672;
+    return this;
+  }
+  
+  /// max-h-3xl -->gt; max-height: 48rem (768px);
+  ContainerBuilder maxH3xl() {
+    _maxHeight = 768;
+    return this;
+  }
+  
+  /// max-h-4xl -->gt; max-height: 56rem (896px);
+  ContainerBuilder maxH4xl() {
+    _maxHeight = 896;
+    return this;
+  }
+  
+  /// max-h-5xl -->gt; max-height: 64rem (1024px);
+  ContainerBuilder maxH5xl() {
+    _maxHeight = 1024;
+    return this;
+  }
+  
+  /// max-h-6xl -->gt; max-height: 72rem (1152px);
+  ContainerBuilder maxH6xl() {
+    _maxHeight = 1152;
+    return this;
+  }
+  
+  /// max-h-7xl -->gt; max-height: 80rem (1280px);
+  ContainerBuilder maxH7xl() {
+    _maxHeight = 1280;
     return this;
   }
   
@@ -644,13 +2001,24 @@ class ContainerBuilder {
       );
     }
     
+    // 构建约束
+    BoxConstraints? constraints = _constraints;
+    if (_minWidth != null || _maxWidth != null || _minHeight != null || _maxHeight != null) {
+      constraints = BoxConstraints(
+        minWidth: _minWidth ?? (constraints?.minWidth ?? 0),
+        maxWidth: _maxWidth ?? (constraints?.maxWidth ?? double.infinity),
+        minHeight: _minHeight ?? (constraints?.minHeight ?? 0),
+        maxHeight: _maxHeight ?? (constraints?.maxHeight ?? double.infinity),
+      );
+    }
+    
     Widget container = Container(
       width: _width,
       height: _height,
       alignment: _alignment,
       padding: _padding,
       margin: _margin,
-      constraints: _constraints,
+      constraints: constraints,
       transform: _transform,
       transformAlignment: _transformAlignment,
       decoration: decoration,
@@ -705,7 +2073,7 @@ extension WidgetToContainerBuilder on Widget {
   }
 }
 
-/// List<Widget> 的Stack扩展
+/// List&lt;Widget&gt; 的Stack扩展
 extension ListWidgetStackExtensions on List<Widget> {
   /// asStack() -> 转换为Stack布局建造者
   StackBuilder asStack({
@@ -740,7 +2108,7 @@ class StackBuilder {
     this.clipBehavior = Clip.hardEdge,
   });
   
-  /// relative -> 相对定位容器（就是普通的Stack）
+  /// relative -->gt; 相对定位容器（就是普通的Stack）
   Widget relative() {
     return Stack(
       alignment: alignment,
@@ -1270,7 +2638,7 @@ extension ContainerBuilderInteraction on ContainerBuilder {
 
 /// ContainerBuilder 的Flex布局扩展 - TailwindCSS风格的flex类
 extension ContainerBuilderFlexExtensions on ContainerBuilder {
-  /// flex-1 -> Expanded(flex: 1)
+  /// flex-1 -->gt; Expanded(flex: 1)
   Widget flex1() {
     return Expanded(
       flex: 1,
@@ -1278,7 +2646,7 @@ extension ContainerBuilderFlexExtensions on ContainerBuilder {
     );
   }
   
-  /// flex-2 -> Expanded(flex: 2)
+  /// flex-2 -->gt; Expanded(flex: 2)
   Widget flex2() {
     return Expanded(
       flex: 2,
@@ -1286,7 +2654,7 @@ extension ContainerBuilderFlexExtensions on ContainerBuilder {
     );
   }
   
-  /// flex-3 -> Expanded(flex: 3)
+  /// flex-3 -->gt; Expanded(flex: 3)
   Widget flex3() {
     return Expanded(
       flex: 3,
@@ -1294,7 +2662,7 @@ extension ContainerBuilderFlexExtensions on ContainerBuilder {
     );
   }
   
-  /// flex-4 -> Expanded(flex: 4)
+  /// flex-4 -->gt; Expanded(flex: 4)
   Widget flex4() {
     return Expanded(
       flex: 4,
@@ -1302,7 +2670,7 @@ extension ContainerBuilderFlexExtensions on ContainerBuilder {
     );
   }
   
-  /// flex-5 -> Expanded(flex: 5)
+  /// flex-5 -->gt; Expanded(flex: 5)
   Widget flex5() {
     return Expanded(
       flex: 5,
@@ -1310,7 +2678,7 @@ extension ContainerBuilderFlexExtensions on ContainerBuilder {
     );
   }
   
-  /// flex-6 -> Expanded(flex: 6)
+  /// flex-6 -->gt; Expanded(flex: 6)
   Widget flex6() {
     return Expanded(
       flex: 6,
@@ -1318,7 +2686,7 @@ extension ContainerBuilderFlexExtensions on ContainerBuilder {
     );
   }
   
-  /// flex-auto -> Flexible(fit: FlexFit.loose)
+  /// flex-auto -->gt; Flexible(fit: FlexFit.loose)
   Widget flexAuto() {
     return Flexible(
       fit: FlexFit.loose,
@@ -1326,7 +2694,7 @@ extension ContainerBuilderFlexExtensions on ContainerBuilder {
     );
   }
   
-  /// flex-initial -> Flexible(fit: FlexFit.loose, flex: 0)
+  /// flex-initial -->gt; Flexible(fit: FlexFit.loose, flex: 0)
   Widget flexInitial() {
     return Flexible(
       flex: 0,
@@ -1335,7 +2703,7 @@ extension ContainerBuilderFlexExtensions on ContainerBuilder {
     );
   }
   
-  /// flex-none -> 不使用flex，保持原有尺寸
+  /// flex-none -->gt; 不使用flex，保持原有尺寸
   Widget flexNone() {
     return build();
   }
@@ -1360,23 +2728,23 @@ extension ContainerBuilderFlexExtensions on ContainerBuilder {
 
 /// ContainerBuilder 的Position布局扩展 - TailwindCSS风格的position类
 extension ContainerBuilderPositionExtensions on ContainerBuilder {
-  /// position() -> 设置为定位元素，启用绝对定位
+  /// position() -->gt; 设置为定位元素，启用绝对定位
   ContainerBuilder position() {
     _isPositioned = true;
     return this;
   }
   
-  /// static -> 默认定位（不做任何处理）
+  /// static -->gt; 默认定位（不做任何处理）
   Widget positionStatic() {
     return build();
   }
   
-  /// relative -> 相对定位
+  /// relative -->gt; 相对定位
   Widget positionRelative() {
     return build();
   }
   
-  /// absolute -> 绝对定位
+  /// absolute -->gt; 绝对定位
   Widget positionAbsolute({
     double? top,
     double? right,
@@ -1395,7 +2763,7 @@ extension ContainerBuilderPositionExtensions on ContainerBuilder {
     return build();
   }
   
-  /// fixed -> 固定定位（在Stack中相对于Stack容器）
+  /// fixed -->gt; 固定定位（在Stack中相对于Stack容器）
   Widget positionFixed({
     double? top,
     double? right,
@@ -1415,7 +2783,7 @@ extension ContainerBuilderPositionExtensions on ContainerBuilder {
     );
   }
   
-  /// sticky -> 粘性定位（在SingleChildScrollView中实现）
+  /// sticky -->gt; 粘性定位（在SingleChildScrollView中实现）
   Widget positionSticky() {
     // Flutter中的粘性定位需要特殊处理，这里先返回普通构建
     return build();
@@ -1423,127 +2791,127 @@ extension ContainerBuilderPositionExtensions on ContainerBuilder {
   
   // === TailwindCSS风格的定位简写 ===
   
-  /// top-0 -> top: 0
+  /// top-0 -->gt; top: 0
   ContainerBuilder top0() {
     _positionTop = 0;
     return this;
   }
   
-  /// top-1 -> top: 4px
+  /// top-1 -->gt; top: 4px
   ContainerBuilder top1() {
     _positionTop = 4;
     return this;
   }
   
-  /// top-2 -> top: 8px
+  /// top-2 -->gt; top: 8px
   ContainerBuilder top2() {
     _positionTop = 8;
     return this;
   }
   
-  /// top-4 -> top: 16px
+  /// top-4 -->gt; top: 16px
   ContainerBuilder top4() {
     _positionTop = 16;
     return this;
   }
   
-  /// top(double value) -> top: value
+  /// top(double value) -->gt; top: value
   ContainerBuilder top(double value) {
     _positionTop = value;
     return this;
   }
   
-  /// right-0 -> right: 0
+  /// right-0 -->gt; right: 0
   ContainerBuilder right0() {
     _positionRight = 0;
     return this;
   }
   
-  /// right-1 -> right: 4px
+  /// right-1 -->gt; right: 4px
   ContainerBuilder right1() {
     _positionRight = 4;
     return this;
   }
   
-  /// right-2 -> right: 8px
+  /// right-2 -->gt; right: 8px
   ContainerBuilder right2() {
     _positionRight = 8;
     return this;
   }
   
-  /// right-4 -> right: 16px
+  /// right-4 -->gt; right: 16px
   ContainerBuilder right4() {
     _positionRight = 16;
     return this;
   }
   
-  /// right(double value) -> right: value
+  /// right(double value) -->gt; right: value
   ContainerBuilder right(double value) {
     _positionRight = value;
     return this;
   }
   
-  /// bottom-0 -> bottom: 0
+  /// bottom-0 -->gt; bottom: 0
   ContainerBuilder bottom0() {
     _positionBottom = 0;
     return this;
   }
   
-  /// bottom-1 -> bottom: 4px
+  /// bottom-1 -->gt; bottom: 4px
   ContainerBuilder bottom1() {
     _positionBottom = 4;
     return this;
   }
   
-  /// bottom-2 -> bottom: 8px
+  /// bottom-2 -->gt; bottom: 8px
   ContainerBuilder bottom2() {
     _positionBottom = 8;
     return this;
   }
   
-  /// bottom-4 -> bottom: 16px
+  /// bottom-4 -->gt; bottom: 16px
   ContainerBuilder bottom4() {
     _positionBottom = 16;
     return this;
   }
   
-  /// bottom(double value) -> bottom: value
+  /// bottom(double value) -->gt; bottom: value
   ContainerBuilder bottom(double value) {
     _positionBottom = value;
     return this;
   }
   
-  /// left-0 -> left: 0
+  /// left-0 -->gt; left: 0
   ContainerBuilder left0() {
     _positionLeft = 0;
     return this;
   }
   
-  /// left-1 -> left: 4px
+  /// left-1 -->gt; left: 4px
   ContainerBuilder left1() {
     _positionLeft = 4;
     return this;
   }
   
-  /// left-2 -> left: 8px
+  /// left-2 -->gt; left: 8px
   ContainerBuilder left2() {
     _positionLeft = 8;
     return this;
   }
   
-  /// left-4 -> left: 16px
+  /// left-4 -->gt; left: 16px
   ContainerBuilder left4() {
     _positionLeft = 16;
     return this;
   }
   
-  /// left(double value) -> left: value
+  /// left(double value) -->gt; left: value
   ContainerBuilder left(double value) {
     _positionLeft = value;
     return this;
   }
   
-  /// inset-0 -> top: 0, right: 0, bottom: 0, left: 0
+  /// inset-0 -->gt; top: 0, right: 0, bottom: 0, left: 0
   ContainerBuilder inset0() {
     _positionTop = 0;
     _positionRight = 0;
@@ -1552,7 +2920,7 @@ extension ContainerBuilderPositionExtensions on ContainerBuilder {
     return this;
   }
   
-  /// inset-1 -> top: 4px, right: 4px, bottom: 4px, left: 4px
+  /// inset-1 -->gt; top: 4px, right: 4px, bottom: 4px, left: 4px
   ContainerBuilder inset1() {
     _positionTop = 4;
     _positionRight = 4;
@@ -1561,7 +2929,7 @@ extension ContainerBuilderPositionExtensions on ContainerBuilder {
     return this;
   }
   
-  /// inset-2 -> top: 8px, right: 8px, bottom: 8px, left: 8px
+  /// inset-2 -->gt; top: 8px, right: 8px, bottom: 8px, left: 8px
   ContainerBuilder inset2() {
     _positionTop = 8;
     _positionRight = 8;
@@ -1570,7 +2938,7 @@ extension ContainerBuilderPositionExtensions on ContainerBuilder {
     return this;
   }
   
-  /// inset-4 -> top: 16px, right: 16px, bottom: 16px, left: 16px
+  /// inset-4 -->gt; top: 16px, right: 16px, bottom: 16px, left: 16px
   ContainerBuilder inset4() {
     _positionTop = 16;
     _positionRight = 16;
@@ -1579,42 +2947,42 @@ extension ContainerBuilderPositionExtensions on ContainerBuilder {
     return this;
   }
   
-  /// inset-x-0 -> left: 0, right: 0
+  /// inset-x-0 -->gt; left: 0, right: 0
   ContainerBuilder insetX0() {
     _positionLeft = 0;
     _positionRight = 0;
     return this;
   }
   
-  /// inset-x-1 -> left: 4px, right: 4px
+  /// inset-x-1 -->gt; left: 4px, right: 4px
   ContainerBuilder insetX1() {
     _positionLeft = 4;
     _positionRight = 4;
     return this;
   }
   
-  /// inset-x-2 -> left: 8px, right: 8px
+  /// inset-x-2 -->gt; left: 8px, right: 8px
   ContainerBuilder insetX2() {
     _positionLeft = 8;
     _positionRight = 8;
     return this;
   }
   
-  /// inset-y-0 -> top: 0, bottom: 0
+  /// inset-y-0 -->gt; top: 0, bottom: 0
   ContainerBuilder insetY0() {
     _positionTop = 0;
     _positionBottom = 0;
     return this;
   }
   
-  /// inset-y-1 -> top: 4px, bottom: 4px
+  /// inset-y-1 -->gt; top: 4px, bottom: 4px
   ContainerBuilder insetY1() {
     _positionTop = 4;
     _positionBottom = 4;
     return this;
   }
   
-  /// inset-y-2 -> top: 8px, bottom: 8px
+  /// inset-y-2 -->gt; top: 8px, bottom: 8px
   ContainerBuilder insetY2() {
     _positionTop = 8;
     _positionBottom = 8;
@@ -1642,38 +3010,38 @@ extension ContainerBuilderPositionExtensions on ContainerBuilder {
 
 /// ContainerBuilder 的Z-Index扩展 - TailwindCSS风格的z-index类
 extension ContainerBuilderZIndexExtensions on ContainerBuilder {
-  /// z-0 -> z-index: 0 (在Stack中通过children顺序控制)
+  /// z-0 -->gt; z-index: 0 (在Stack中通过children顺序控制)
   Widget z0() {
     // Flutter中通过Stack的children顺序来控制层级，这里仅作为标记
     return build();
   }
   
-  /// z-10 -> z-index: 10
+  /// z-10 -->gt; z-index: 10
   Widget z10() {
     return build();
   }
   
-  /// z-20 -> z-index: 20
+  /// z-20 -->gt; z-index: 20
   Widget z20() {
     return build();
   }
   
-  /// z-30 -> z-index: 30
+  /// z-30 -->gt; z-index: 30
   Widget z30() {
     return build();
   }
   
-  /// z-40 -> z-index: 40
+  /// z-40 -->gt; z-index: 40
   Widget z40() {
     return build();
   }
   
-  /// z-50 -> z-index: 50
+  /// z-50 -->gt; z-index: 50
   Widget z50() {
     return build();
   }
   
-  /// z-auto -> z-index: auto
+  /// z-auto -->gt; z-index: auto
   Widget zAuto() {
     return build();
   }

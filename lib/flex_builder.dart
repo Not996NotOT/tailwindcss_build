@@ -173,9 +173,9 @@ class FlexBuilder {
   }
 }
 
-/// List<Widget> 到 FlexBuilder 的转换扩展
+/// List&lt;Widget&gt; 到 FlexBuilder 的转换扩展
 extension ListWidgetToFlexBuilder on List<Widget> {
-  /// 将 List<Widget> 转换为 FlexBuilder，开始Flex布局链式调用
+  /// 将 List&lt;Widget&gt; 转换为 FlexBuilder，开始Flex布局链式调用
   FlexBuilder asFlex() {
     return FlexBuilder(this);
   }

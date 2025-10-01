@@ -131,6 +131,214 @@ class ContainerDemo extends StatelessWidget {
         
         const SizedBox(height: 16),
         
+        // 尺寸约束示例
+        const Text('Size Constraints Demo')
+            .textLg()
+            .fontBold()
+            .textGray900()
+            .build(),
+        
+        const SizedBox(height: 12),
+        
+        // Min-Width 示例
+        const Text('Min-Width Examples')
+            .textBase()
+            .fontSemibold()
+            .textGray700()
+            .build(),
+        
+        const SizedBox(height: 8),
+        
+        Wrap(
+          spacing: 12,
+          runSpacing: 12,
+          children: [
+            const Text('min-w-32')
+                .textWhite()
+                .asContainer()
+                .px4()
+                .py2()
+                .bgBlue500()
+                .minW32()
+                .r4()
+                .build(),
+            
+            const Text('min-w-48')
+                .textWhite()
+                .asContainer()
+                .px4()
+                .py2()
+                .bgBlue500()
+                .minW48()
+                .r4()
+                .build(),
+            
+            const Text('min-w-64')
+                .textWhite()
+                .asContainer()
+                .px4()
+                .py2()
+                .bgBlue500()
+                .minW64()
+                .r4()
+                .build(),
+          ],
+        ),
+        
+        const SizedBox(height: 12),
+        
+        // Max-Width 示例
+        const Text('Max-Width Examples')
+            .textBase()
+            .fontSemibold()
+            .textGray700()
+            .build(),
+        
+        const SizedBox(height: 8),
+        
+        Column(
+          children: [
+            const Text('max-w-sm (384px)')
+                .textWhite()
+                .asContainer()
+                .px4()
+                .py2()
+                .bgGreen500()
+                .maxWsm()
+                .r4()
+                .build(),
+            
+            const SizedBox(height: 8),
+            
+            const Text('max-w-md (448px)')
+                .textWhite()
+                .asContainer()
+                .px4()
+                .py2()
+                .bgGreen500()
+                .maxWmd()
+                .r4()
+                .build(),
+            
+            const SizedBox(height: 8),
+            
+            const Text('max-w-lg (512px)')
+                .textWhite()
+                .asContainer()
+                .px4()
+                .py2()
+                .bgGreen500()
+                .maxWlg()
+                .r4()
+                .build(),
+          ],
+        ),
+        
+        const SizedBox(height: 12),
+        
+        // Min-Height 示例
+        const Text('Min-Height Examples')
+            .textBase()
+            .fontSemibold()
+            .textGray700()
+            .build(),
+        
+        const SizedBox(height: 8),
+        
+        Row(
+          children: [
+            const Text('min-h-16')
+                .textWhite()
+                .asContainer()
+                .px4()
+                .py2()
+                .bgPurple500()
+                .minH16()
+                .r4()
+                .build(),
+            
+            const SizedBox(width: 12),
+            
+            const Text('min-h-24')
+                .textWhite()
+                .asContainer()
+                .px4()
+                .py2()
+                .bgPurple500()
+                .minH24()
+                .r4()
+                .build(),
+            
+            const SizedBox(width: 12),
+            
+            const Text('min-h-32')
+                .textWhite()
+                .asContainer()
+                .px4()
+                .py2()
+                .bgPurple500()
+                .minH32()
+                .r4()
+                .build(),
+          ],
+        ),
+        
+        const SizedBox(height: 12),
+        
+        // Max-Height 示例
+        const Text('Max-Height Examples')
+            .textBase()
+            .fontSemibold()
+            .textGray700()
+            .build(),
+        
+        const SizedBox(height: 8),
+        
+        SizedBox(
+          height: 200,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const Text('max-h-16 (64px)')
+                    .textWhite()
+                    .asContainer()
+                    .px4()
+                    .py2()
+                    .bgRed500()
+                    .maxH16()
+                    .r4()
+                    .build(),
+                
+                const SizedBox(height: 8),
+                
+                const Text('max-h-24 (96px)')
+                    .textWhite()
+                    .asContainer()
+                    .px4()
+                    .py2()
+                    .bgRed500()
+                    .maxH24()
+                    .r4()
+                    .build(),
+                
+                const SizedBox(height: 8),
+                
+                const Text('max-h-32 (128px)')
+                    .textWhite()
+                    .asContainer()
+                    .px4()
+                    .py2()
+                    .bgRed500()
+                    .maxH32()
+                    .r4()
+                    .build(),
+              ],
+            ),
+          ),
+        ),
+        
+        const SizedBox(height: 16),
+        
         // 复合示例
         const Text('Complex Container')
             .textGray800()

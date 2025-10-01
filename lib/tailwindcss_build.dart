@@ -1,12 +1,11 @@
-/// Tailwind CSS for Flutter
-/// 
-/// A comprehensive Flutter package that brings the power and convenience 
-/// of Tailwind CSS utility classes to Flutter development.
-/// 
-/// This library provides Builder pattern utilities for styling widgets with 
-/// familiar Tailwind CSS class names, making it easy to build responsive
-/// and consistent UIs.
-library tailwindcss_build;
+// Tailwind CSS for Flutter
+// 
+// A comprehensive Flutter package that brings the power and convenience 
+// of Tailwind CSS utility classes to Flutter development.
+// 
+// This library provides Builder pattern utilities for styling widgets with 
+// familiar Tailwind CSS class names, making it easy to build responsive
+// and consistent UIs.
 
 // Colors
 export 'base_colors.dart';

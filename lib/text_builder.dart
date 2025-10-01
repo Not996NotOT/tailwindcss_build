@@ -285,12 +285,12 @@ extension TextBuilderTailwindExtensions on TextBuilder {
   /// decoration-8: text-decoration-thickness: 8px;
   TextBuilder decoration8() => decorationThickness(8.0);
   
-  /// decoration-[<value>]: text-decoration-thickness: <value>;
+  /// decoration-[&lt;value&gt;]: text-decoration-thickness: &lt;value&gt;;
   /// 自定义厚度值，接受任意数值
   /// 用法: decorationCustom(3.5) 设置 3.5px 厚度
   TextBuilder decorationCustom(double value) => decorationThickness(value);
   
-  /// decoration-(length:<custom-property>): text-decoration-thickness: var(<custom-property>);
+  /// decoration-(length:&lt;custom-property&gt;): text-decoration-thickness: var(&lt;custom-property&gt;);
   /// ❌ 不支持：Flutter 不支持 CSS 自定义属性和 var() 语法
   /// 这个功能在 Flutter 中无法实现，因为 Flutter 没有 CSS 变量系统
   
@@ -299,14 +299,14 @@ extension TextBuilderTailwindExtensions on TextBuilder {
   /// Flutter 的 TextStyle 没有提供控制下划线偏移的API
   /// 以下方法仅作为占位符，实际无法改变下划线位置
   
-  /// underline-offset-<number>: text-underline-offset: <number>px;
+  /// underline-offset-&lt;number&gt;: text-underline-offset: &lt;number&gt;px;
   /// ❌ 不支持：Flutter 无法控制下划线偏移
   TextBuilder underlineOffsetCustom(double offset) {
     // Flutter 不支持下划线偏移，此方法无实际效果
     return this;
   }
   
-  /// -underline-offset-<number>: text-underline-offset: calc(<number>px * -1);
+  /// -underline-offset-&lt;number&gt;: text-underline-offset: calc(&lt;number&gt;px * -1);
   /// ❌ 不支持：Flutter 无法控制下划线偏移
   TextBuilder underlineOffsetNegative(double offset) {
     // Flutter 不支持下划线偏移，此方法无实际效果
@@ -467,7 +467,7 @@ extension TextBuilderTailwindExtensions on TextBuilder {
   /// Flutter 没有直接的文本首行缩进支持，以下方法仅作为占位符
   /// 可以通过在文本前添加空格来模拟，但这不是真正的 CSS text-indent
   
-  /// indent-<number>: text-indent: calc(var(--spacing) * <number>);
+  /// indent-&lt;number&gt;: text-indent: calc(var(--spacing) * &lt;number&gt;);
   /// ❌ 不支持：Flutter 无法设置首行缩进
   TextBuilder indentCustom(int spacing) {
     // Flutter 不支持 text-indent，此方法无实际效果
@@ -475,7 +475,7 @@ extension TextBuilderTailwindExtensions on TextBuilder {
     return this;
   }
   
-  /// -indent-<number>: text-indent: calc(var(--spacing) * -<number>);
+  /// -indent-&lt;number&gt;: text-indent: calc(var(--spacing) * -&lt;number&gt;);
   /// ❌ 不支持：Flutter 无法设置负的首行缩进
   TextBuilder indentNegative(int spacing) {
     // Flutter 不支持负缩进，此方法无实际效果

@@ -1,3 +1,93 @@
+## [2025-10-01] - Version 0.4.4 - Complete Size Constraints System & Enhanced Documentation
+
+### 📐 Complete Size Constraints Implementation
+- 🚀 **Min-Width Support**: Added complete min-width system with `min-w-0` to `min-w-96`, `min-w-auto`, `min-w-full`, `min-w-screen`, `min-w-min`, `min-w-max`, `min-w-fit`
+- 📏 **Max-Width Support**: Added complete max-width system with `max-w-0` to `max-w-96`, `max-w-auto`, `max-w-full`, `max-w-screen`, `max-w-min`, `max-w-max`, `max-w-fit`
+- 📐 **Min-Height Support**: Added complete min-height system with `min-h-0` to `min-h-96`, `min-h-auto`, `min-h-full`, `min-h-screen`, `min-h-min`, `min-h-max`, `min-h-fit`
+- 📏 **Max-Height Support**: Added complete max-height system with `max-h-0` to `max-h-96`, `max-h-auto`, `max-h-full`, `max-h-screen`, `max-h-min`, `max-h-max`, `max-h-fit`
+
+### 🏗️ Container Scale System
+- 📦 **Container Min-Width**: Added `min-w-3xs` to `min-w-7xl` (16rem to 80rem) for responsive container sizing
+- 📦 **Container Max-Width**: Added `max-w-3xs` to `max-w-7xl` (16rem to 80rem) for responsive container sizing
+- 📦 **Container Min-Height**: Added `min-h-3xs` to `min-h-7xl` (16rem to 80rem) for responsive container sizing
+- 📦 **Container Max-Height**: Added `max-h-3xs` to `max-h-7xl` (16rem to 80rem) for responsive container sizing
+
+### 🎯 Advanced Constraint Features
+- ⚡ **Custom Values**: Added `minW(value)`, `maxW(value)`, `minH(value)`, `maxH(value)` for custom constraint values
+- 🔧 **Custom Methods**: Added `minWCustom()`, `maxWCustom()`, `minHCustom()`, `maxHCustom()` for explicit custom values
+- 📱 **Viewport Support**: Added `minWScreen()`, `maxWScreen()`, `minHScreen()`, `maxHScreen()` for viewport-based sizing
+- 🎨 **Content Sizing**: Added `minWMin()`, `minWMax()`, `minWFit()`, `maxWMin()`, `maxWMax()`, `maxWFit()` for content-based sizing
+
+### 🏗️ Technical Implementation
+- 🔧 **BoxConstraints Integration**: Enhanced ContainerBuilder to properly handle min/max width and height constraints
+- ⚡ **Performance Optimized**: All constraints are applied through Flutter's native BoxConstraints system
+- 🛡️ **Backward Compatible**: All existing width and height methods continue to work unchanged
+- 📱 **Cross-Platform**: Full support across all Flutter platforms (Android, iOS, Web, Windows, macOS, Linux)
+
+### 📚 Enhanced Demo Application
+- 🎯 **Size Constraints Demo**: Added comprehensive demo showcasing all new size constraint methods
+- 📐 **Visual Examples**: Interactive examples showing min-width, max-width, min-height, and max-height effects
+- 🎨 **Container Scale Demo**: Examples demonstrating container scale sizing (3xs to 7xl)
+- 📱 **Responsive Examples**: Showcasing how constraints work in different screen sizes
+
+### 📖 Documentation Enhancements
+- 📚 **Complete README Update**: Added comprehensive Size Constraints System documentation
+- 🎯 **Position Layout Documentation**: Added detailed Position Layout System documentation with examples
+- 📐 **API Reference**: Updated API reference with all new size constraint methods
+- 🎨 **Code Examples**: Added practical examples for size constraints and positioning
+- 📱 **Best Practices**: Included best practices for responsive design with constraints
+
+### 📖 API Examples
+```dart
+// Min-Width Examples
+Text('Content').asContainer()
+    .minW32()        // min-width: 128px
+    .minW48()        // min-width: 192px
+    .minWFull()      // min-width: 100%
+    .minWScreen()    // min-width: 100vw
+    .build()
+
+// Max-Width Examples
+Text('Content').asContainer()
+    .maxWsm()        // max-width: 384px
+    .maxWmd()        // max-width: 448px
+    .maxWlg()        // max-width: 512px
+    .maxWFull()      // max-width: 100%
+    .build()
+
+// Min-Height Examples
+Text('Content').asContainer()
+    .minH16()        // min-height: 64px
+    .minH24()        // min-height: 96px
+    .minHFull()      // min-height: 100%
+    .minHScreen()    // min-height: 100vh
+    .build()
+
+// Max-Height Examples
+Text('Content').asContainer()
+    .maxH32()        // max-height: 128px
+    .maxH48()        // max-height: 192px
+    .maxHFull()      // max-height: 100%
+    .maxHScreen()    // max-height: 100vh
+    .build()
+
+// Container Scale Examples
+Text('Content').asContainer()
+    .minWsm()        // min-width: 24rem (384px)
+    .maxWlg()        // max-width: 32rem (512px)
+    .minHmd()        // min-height: 28rem (448px)
+    .maxHxl()        // max-height: 36rem (576px)
+    .build()
+
+// Custom Values
+Text('Content').asContainer()
+    .minW(200)       // min-width: 200px
+    .maxW(600)       // max-width: 600px
+    .minH(100)       // min-height: 100px
+    .maxH(400)       // max-height: 400px
+    .build()
+```
+
 ## [2025-09-30] - Version 0.4.3 - Position Layout & Advanced Text Enhancements
 
 ### 🎯 Position Layout System

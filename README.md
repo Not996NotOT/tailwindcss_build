@@ -250,7 +250,7 @@ Container(
 
 ```yaml
 dependencies:
-  tailwindcss_build: ^0.4.3
+  tailwindcss_build: ^0.4.4
 ```
 
 ### Import
@@ -496,6 +496,342 @@ Works out of the box on all platforms with no additional setup needed.
 ```
 
 </details>
+
+## 📐 Size Constraints System (NEW in v0.4.4)
+
+### 🎯 Complete Size Control
+
+TailwindCSS Build now includes comprehensive size constraints support, giving you precise control over element dimensions:
+
+<details>
+<summary><strong>📏 Min/Max Width Examples</strong></summary>
+
+```dart
+// Min-Width Examples
+Text('Content')
+    .asContainer()
+    .minW32()        // min-width: 128px
+    .minW48()        // min-width: 192px
+    .minWFull()      // min-width: 100%
+    .minWScreen()    // min-width: 100vw
+    .build()
+
+// Max-Width Examples
+Text('Content')
+    .asContainer()
+    .maxWsm()        // max-width: 384px
+    .maxWmd()        // max-width: 448px
+    .maxWlg()        // max-width: 512px
+    .maxWFull()      // max-width: 100%
+    .build()
+
+// Container Scale Sizes
+Text('Responsive Content')
+    .asContainer()
+    .minWsm()        // min-width: 24rem (384px)
+    .maxWlg()        // max-width: 32rem (512px)
+    .build()
+```
+
+</details>
+
+<details>
+<summary><strong>📐 Min/Max Height Examples</strong></summary>
+
+```dart
+// Min-Height Examples
+Text('Content')
+    .asContainer()
+    .minH16()        // min-height: 64px
+    .minH24()        // min-height: 96px
+    .minHFull()      // min-height: 100%
+    .minHScreen()    // min-height: 100vh
+    .build()
+
+// Max-Height Examples
+Text('Scrollable Content')
+    .asContainer()
+    .maxH32()        // max-height: 128px
+    .maxH48()        // max-height: 192px
+    .maxHFull()      // max-height: 100%
+    .maxHScreen()    // max-height: 100vh
+    .build()
+
+// Container Scale Heights
+Text('Responsive Height')
+    .asContainer()
+    .minHmd()        // min-height: 28rem (448px)
+    .maxHxl()        // max-height: 36rem (576px)
+    .build()
+```
+
+</details>
+
+<details>
+<summary><strong>🎨 Advanced Constraint Combinations</strong></summary>
+
+```dart
+// Complex Size Constraints
+Text('Flexible Content')
+    .asContainer()
+    .minW(200)       // min-width: 200px
+    .maxW(600)       // max-width: 600px
+    .minH(100)       // min-height: 100px
+    .maxH(400)       // max-height: 400px
+    .bgBlue50()
+    .p4()
+    .r8()
+    .build()
+
+// Responsive Card with Constraints
+Text('Card Content')
+    .asContainer()
+    .minWsm()        // min-width: 24rem
+    .maxW2xl()       // max-width: 42rem
+    .minH32()        // min-height: 128px
+    .maxH96()        // max-height: 384px
+    .bgWhite()
+    .p6()
+    .r12()
+    .shadowLg()
+    .build()
+
+// Content-based Sizing
+Text('Auto-sizing Content')
+    .asContainer()
+    .minWMin()       // min-width: min-content
+    .maxWMax()       // max-width: max-content
+    .minHFit()       // min-height: fit-content
+    .maxHFit()       // max-height: fit-content
+    .bgGreen50()
+    .p4()
+    .r6()
+    .build()
+```
+
+</details>
+
+### 🏗️ Technical Implementation
+
+- **BoxConstraints Integration**: All constraints use Flutter's native BoxConstraints system
+- **Performance Optimized**: Single Container with merged constraints
+- **Cross-Platform**: Works on all Flutter platforms (Android, iOS, Web, Windows, macOS, Linux)
+- **Type Safe**: Full compile-time checking and IntelliSense support
+
+## 🎯 Position Layout System
+
+### 📐 Complete Positioning Control
+
+TailwindCSS Build includes a comprehensive positioning system that mirrors TailwindCSS positioning utilities:
+
+<details>
+<summary><strong>🎯 Position Types</strong></summary>
+
+```dart
+// Static Positioning (Default)
+Text('Static Element')
+    .asContainer()
+    .positionStatic()
+    .bgBlue500()
+    .p4()
+    .build()
+
+// Relative Positioning
+Text('Relative Element')
+    .asContainer()
+    .positionRelative()
+    .bgGreen500()
+    .p4()
+    .build()
+
+// Absolute Positioning
+Text('Absolute Element')
+    .asContainer()
+    .positionAbsolute(
+      top: 20,
+      left: 10,
+      width: 200,
+      height: 100,
+    )
+    .bgRed500()
+    .p4()
+    .build()
+
+// Fixed Positioning
+Text('Fixed Element')
+    .asContainer()
+    .positionFixed(
+      top: 0,
+      right: 0,
+      width: 100,
+      height: 50,
+    )
+    .bgPurple500()
+    .p4()
+    .build()
+
+// Sticky Positioning
+Text('Sticky Element')
+    .asContainer()
+    .positionSticky()
+    .bgYellow500()
+    .p4()
+    .build()
+```
+
+</details>
+
+<details>
+<summary><strong>📏 Tailwind-style Position Values</strong></summary>
+
+```dart
+// Top Positioning
+Text('Top Positioned')
+    .asContainer()
+    .top0()           // top: 0
+    .top1()           // top: 4px
+    .top2()           // top: 8px
+    .top4()           // top: 16px
+    .top(50)          // top: 50px (custom value)
+    .positionAbsolute()
+    .bgBlue500()
+    .build()
+
+// Right Positioning
+Text('Right Positioned')
+    .asContainer()
+    .right0()         // right: 0
+    .right1()         // right: 4px
+    .right2()         // right: 8px
+    .right4()         // right: 16px
+    .right(30)        // right: 30px (custom value)
+    .positionAbsolute()
+    .bgGreen500()
+    .build()
+
+// Bottom Positioning
+Text('Bottom Positioned')
+    .asContainer()
+    .bottom0()        // bottom: 0
+    .bottom1()        // bottom: 4px
+    .bottom2()        // bottom: 8px
+    .bottom4()        // bottom: 16px
+    .bottom(20)       // bottom: 20px (custom value)
+    .positionAbsolute()
+    .bgRed500()
+    .build()
+
+// Left Positioning
+Text('Left Positioned')
+    .asContainer()
+    .left0()          // left: 0
+    .left1()          // left: 4px
+    .left2()          // left: 8px
+    .left4()          // left: 16px
+    .left(10)         // left: 10px (custom value)
+    .positionAbsolute()
+    .bgPurple500()
+    .build()
+```
+
+</details>
+
+<details>
+<summary><strong>⚡ Inset Shortcuts</strong></summary>
+
+```dart
+// All Directions
+Text('Inset All')
+    .asContainer()
+    .inset0()         // top: 0, right: 0, bottom: 0, left: 0
+    .inset1()         // top: 4px, right: 4px, bottom: 4px, left: 4px
+    .inset2()         // top: 8px, right: 8px, bottom: 8px, left: 8px
+    .inset4()         // top: 16px, right: 16px, bottom: 16px, left: 16px
+    .positionAbsolute()
+    .bgBlue500()
+    .build()
+
+// Horizontal (X-axis)
+Text('Inset X')
+    .asContainer()
+    .insetX0()        // left: 0, right: 0
+    .insetX1()        // left: 4px, right: 4px
+    .insetX2()        // left: 8px, right: 8px
+    .positionAbsolute()
+    .bgGreen500()
+    .build()
+
+// Vertical (Y-axis)
+Text('Inset Y')
+    .asContainer()
+    .insetY0()        // top: 0, bottom: 0
+    .insetY1()        // top: 4px, bottom: 4px
+    .insetY2()        // top: 8px, bottom: 8px
+    .positionAbsolute()
+    .bgRed500()
+    .build()
+```
+
+</details>
+
+<details>
+<summary><strong>🎨 Advanced Position Combinations</strong></summary>
+
+```dart
+// Complex Positioning
+Text('Complex Positioned')
+    .asContainer()
+    .position()       // Enable positioning
+    .top(50)          // Custom top value
+    .left0()          // Left edge
+    .w64()            // Width control
+    .h32()            // Height control
+    .bgOrange500()
+    .p4()
+    .r8()
+    .build()
+
+// Responsive Positioning
+Text('Responsive Positioned')
+    .asContainer()
+    .positionAbsolute(
+      top: 20,
+      right: 10,
+      width: 200,
+      height: 100,
+    )
+    .bgIndigo500()
+    .p4()
+    .r8()
+    .shadowLg()
+    .build()
+
+// Custom Positioned Helper
+Text('Custom Positioned')
+    .asContainer()
+    .positioned(
+      top: 30,
+      right: 20,
+      bottom: 10,
+      left: 15,
+      width: 300,
+      height: 150,
+    )
+    .bgPink500()
+    .p6()
+    .r12()
+    .build()
+```
+
+</details>
+
+### 🏗️ Position System Features
+
+- **TailwindCSS Compatible**: Matches official TailwindCSS positioning syntax
+- **Flutter Optimized**: Uses native Positioned widget for absolute/fixed positioning
+- **Type Safe**: Full compile-time checking for position values
+- **Flexible**: Supports both preset values and custom positioning
+- **Performance**: Efficient widget tree with minimal nesting
 
 ## 📚 Advanced Examples
 
@@ -855,6 +1191,33 @@ Text('Text')
 // Size
 .w0() .w1() ... .w96() .wAuto() .wFull() .wScreen()
 .h0() .h1() ... .h96() .hAuto() .hFull() .hScreen()
+
+// Size Constraints (NEW in v0.4.4)
+// Min-Width
+.minW0() .minW1() ... .minW96() .minWAuto() .minWFull() .minWScreen()
+.minWMin() .minWMax() .minWFit() .minW(double) .minWCustom(double)
+
+// Max-Width  
+.maxW0() .maxW1() ... .maxW96() .maxWAuto() .maxWFull() .maxWScreen()
+.maxWMin() .maxWMax() .maxWFit() .maxW(double) .maxWCustom(double)
+
+// Min-Height
+.minH0() .minH1() ... .minH96() .minHAuto() .minHFull() .minHScreen()
+.minHMin() .minHMax() .minHFit() .minH(double) .minHCustom(double)
+
+// Max-Height
+.maxH0() .maxH1() ... .maxH96() .maxHAuto() .maxHFull() .maxHScreen()
+.maxHMin() .maxHMax() .maxHFit() .maxH(double) .maxHCustom(double)
+
+// Container Scale Sizes
+.minW3xs() .minW2xs() .minWxs() .minWsm() .minWmd() .minWlg() .minWxl()
+.minW2xl() .minW3xl() .minW4xl() .minW5xl() .minW6xl() .minW7xl()
+.maxW3xs() .maxW2xs() .maxWxs() .maxWsm() .maxWmd() .maxWlg() .maxWxl()
+.maxW2xl() .maxW3xl() .maxW4xl() .maxW5xl() .maxW6xl() .maxW7xl()
+.minH3xs() .minH2xs() .minHxs() .minHsm() .minHmd() .minHlg() .minHxl()
+.minH2xl() .minH3xl() .minH4xl() .minH5xl() .minH6xl() .minH7xl()
+.maxH3xs() .maxH2xs() .maxHxs() .maxHsm() .maxHmd() .maxHlg() .maxHxl()
+.maxH2xl() .maxH3xl() .maxH4xl() .maxH5xl() .maxH6xl() .maxH7xl()
 
 // Position System
 .position()              // Enable positioning
