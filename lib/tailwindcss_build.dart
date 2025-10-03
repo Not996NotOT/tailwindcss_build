@@ -14,6 +14,7 @@ export 'colors.dart';
 // Core Builder Classes - 建造者模式核心类
 export 'container_builder.dart'; // Container 建造者模式
 export 'flex_builder.dart';      // Flex 建造者模式  
+export 'scroll_builder.dart';    // Scroll 建造者模式 - overflow
 export 'text_builder.dart';      // Text 建造者模式
 // Widget 转换扩展 - 支持链式调用
-export 'widget_extensions.dart'; // Widget转换扩展（asRow, asColumn等）
+// export 'widget_extensions.dart'; // Widget转换扩展（已弃用，使用 Builder 模式代替）

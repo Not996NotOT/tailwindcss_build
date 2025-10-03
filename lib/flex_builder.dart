@@ -179,8 +179,306 @@ extension ListWidgetToFlexBuilder on List<Widget> {
   FlexBuilder asFlex() {
     return FlexBuilder(this);
   }
+  
+  /// 将 List&lt;Widget&gt; 转换为 RowBuilder (水平布局)
+  RowBuilder asRow() {
+    return RowBuilder(this);
+  }
+  
+  /// 将 List&lt;Widget&gt; 转换为 ColumnBuilder (垂直布局)
+  ColumnBuilder asColumn() {
+    return ColumnBuilder(this);
+  }
 }
 
+
+/// Row 建造者 - 专门处理 Row 布局
+class RowBuilder {
+  final List<Widget> children;
+  
+  // 收集的Row布局属性
+  MainAxisAlignment _mainAxisAlignment = MainAxisAlignment.start;
+  CrossAxisAlignment _crossAxisAlignment = CrossAxisAlignment.center;
+  MainAxisSize _mainAxisSize = MainAxisSize.max;
+  TextDirection? _textDirection;
+  final VerticalDirection _verticalDirection = VerticalDirection.down;
+  double? _gap; // gap间距
+  
+  RowBuilder(this.children);
+  
+  // === Justify Content (Main Axis) ===
+  RowBuilder justifyStart() {
+    _mainAxisAlignment = MainAxisAlignment.start;
+    return this;
+  }
+  
+  RowBuilder justifyEnd() {
+    _mainAxisAlignment = MainAxisAlignment.end;
+    return this;
+  }
+  
+  RowBuilder justifyCenter() {
+    _mainAxisAlignment = MainAxisAlignment.center;
+    return this;
+  }
+  
+  RowBuilder justifyBetween() {
+    _mainAxisAlignment = MainAxisAlignment.spaceBetween;
+    return this;
+  }
+  
+  RowBuilder justifyAround() {
+    _mainAxisAlignment = MainAxisAlignment.spaceAround;
+    return this;
+  }
+  
+  RowBuilder justifyEvenly() {
+    _mainAxisAlignment = MainAxisAlignment.spaceEvenly;
+    return this;
+  }
+  
+  // === Align Items (Cross Axis) ===
+  RowBuilder itemsStart() {
+    _crossAxisAlignment = CrossAxisAlignment.start;
+    return this;
+  }
+  
+  RowBuilder itemsEnd() {
+    _crossAxisAlignment = CrossAxisAlignment.end;
+    return this;
+  }
+  
+  RowBuilder itemsCenter() {
+    _crossAxisAlignment = CrossAxisAlignment.center;
+    return this;
+  }
+  
+  RowBuilder itemsStretch() {
+    _crossAxisAlignment = CrossAxisAlignment.stretch;
+    return this;
+  }
+  
+  RowBuilder itemsBaseline() {
+    _crossAxisAlignment = CrossAxisAlignment.baseline;
+    return this;
+  }
+  
+  // === Row Size ===
+  RowBuilder rowShrink() {
+    _mainAxisSize = MainAxisSize.min;
+    return this;
+  }
+  
+  RowBuilder rowGrow() {
+    _mainAxisSize = MainAxisSize.max;
+    return this;
+  }
+  
+  // === Gap 间距 ===
+  RowBuilder gap(double gap) {
+    _gap = gap;
+    return this;
+  }
+  
+  // 常用gap尺寸
+  RowBuilder gap1() => gap(4.0);
+  RowBuilder gap2() => gap(8.0);
+  RowBuilder gap3() => gap(12.0);
+  RowBuilder gap4() => gap(16.0);
+  RowBuilder gap5() => gap(20.0);
+  RowBuilder gap6() => gap(24.0);
+  RowBuilder gap8() => gap(32.0);
+  
+  /// 构建Row组件
+  Widget build() {
+    List<Widget> childrenWithGap = _buildChildrenWithGap();
+    
+    return Row(
+      mainAxisAlignment: _mainAxisAlignment,
+      crossAxisAlignment: _crossAxisAlignment,
+      mainAxisSize: _mainAxisSize,
+      textDirection: _textDirection,
+      verticalDirection: _verticalDirection,
+      children: childrenWithGap,
+    );
+  }
+  
+  /// 构建带间距的子组件列表
+  List<Widget> _buildChildrenWithGap() {
+    if (_gap == null || _gap! <= 0 || children.isEmpty) {
+      return children;
+    }
+    
+    List<Widget> result = [];
+    for (int i = 0; i < children.length; i++) {
+      result.add(children[i]);
+      
+      // 在非最后一个元素后添加间距
+      if (i < children.length - 1) {
+        result.add(SizedBox(width: _gap));
+      }
+    }
+    
+    return result;
+  }
+  
+  /// 转换为ContainerBuilder
+  ContainerBuilder asContainer() {
+    return ContainerBuilder(build());
+  }
+  
+  /// 添加点击事件
+  Widget onTap(VoidCallback? onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: build(),
+    );
+  }
+}
+
+/// Column 建造者 - 专门处理 Column 布局
+class ColumnBuilder {
+  final List<Widget> children;
+  
+  // 收集的Column布局属性
+  MainAxisAlignment _mainAxisAlignment = MainAxisAlignment.start;
+  CrossAxisAlignment _crossAxisAlignment = CrossAxisAlignment.center;
+  MainAxisSize _mainAxisSize = MainAxisSize.max;
+  TextDirection? _textDirection;
+  final VerticalDirection _verticalDirection = VerticalDirection.down;
+  double? _gap; // gap间距
+  
+  ColumnBuilder(this.children);
+  
+  // === Justify Content (Main Axis) ===
+  ColumnBuilder justifyStart() {
+    _mainAxisAlignment = MainAxisAlignment.start;
+    return this;
+  }
+  
+  ColumnBuilder justifyEnd() {
+    _mainAxisAlignment = MainAxisAlignment.end;
+    return this;
+  }
+  
+  ColumnBuilder justifyCenter() {
+    _mainAxisAlignment = MainAxisAlignment.center;
+    return this;
+  }
+  
+  ColumnBuilder justifyBetween() {
+    _mainAxisAlignment = MainAxisAlignment.spaceBetween;
+    return this;
+  }
+  
+  ColumnBuilder justifyAround() {
+    _mainAxisAlignment = MainAxisAlignment.spaceAround;
+    return this;
+  }
+  
+  ColumnBuilder justifyEvenly() {
+    _mainAxisAlignment = MainAxisAlignment.spaceEvenly;
+    return this;
+  }
+  
+  // === Align Items (Cross Axis) ===
+  ColumnBuilder itemsStart() {
+    _crossAxisAlignment = CrossAxisAlignment.start;
+    return this;
+  }
+  
+  ColumnBuilder itemsEnd() {
+    _crossAxisAlignment = CrossAxisAlignment.end;
+    return this;
+  }
+  
+  ColumnBuilder itemsCenter() {
+    _crossAxisAlignment = CrossAxisAlignment.center;
+    return this;
+  }
+  
+  ColumnBuilder itemsStretch() {
+    _crossAxisAlignment = CrossAxisAlignment.stretch;
+    return this;
+  }
+  
+  ColumnBuilder itemsBaseline() {
+    _crossAxisAlignment = CrossAxisAlignment.baseline;
+    return this;
+  }
+  
+  // === Column Size ===
+  ColumnBuilder columnShrink() {
+    _mainAxisSize = MainAxisSize.min;
+    return this;
+  }
+  
+  ColumnBuilder columnGrow() {
+    _mainAxisSize = MainAxisSize.max;
+    return this;
+  }
+  
+  // === Gap 间距 ===
+  ColumnBuilder gap(double gap) {
+    _gap = gap;
+    return this;
+  }
+  
+  // 常用gap尺寸
+  ColumnBuilder gap1() => gap(4.0);
+  ColumnBuilder gap2() => gap(8.0);
+  ColumnBuilder gap3() => gap(12.0);
+  ColumnBuilder gap4() => gap(16.0);
+  ColumnBuilder gap5() => gap(20.0);
+  ColumnBuilder gap6() => gap(24.0);
+  ColumnBuilder gap8() => gap(32.0);
+  
+  /// 构建Column组件
+  Widget build() {
+    List<Widget> childrenWithGap = _buildChildrenWithGap();
+    
+    return Column(
+      mainAxisAlignment: _mainAxisAlignment,
+      crossAxisAlignment: _crossAxisAlignment,
+      mainAxisSize: _mainAxisSize,
+      textDirection: _textDirection,
+      verticalDirection: _verticalDirection,
+      children: childrenWithGap,
+    );
+  }
+  
+  /// 构建带间距的子组件列表
+  List<Widget> _buildChildrenWithGap() {
+    if (_gap == null || _gap! <= 0 || children.isEmpty) {
+      return children;
+    }
+    
+    List<Widget> result = [];
+    for (int i = 0; i < children.length; i++) {
+      result.add(children[i]);
+      
+      // 在非最后一个元素后添加间距
+      if (i < children.length - 1) {
+        result.add(SizedBox(height: _gap));
+      }
+    }
+    
+    return result;
+  }
+  
+  /// 转换为ContainerBuilder
+  ContainerBuilder asContainer() {
+    return ContainerBuilder(build());
+  }
+  
+  /// 添加点击事件
+  Widget onTap(VoidCallback? onTap) {
+    return GestureDetector(
+      onTap: onTap,
+      child: build(),
+    );
+  }
+}
 
 /// 为 FlexBuilder 添加交互扩展
 extension FlexBuilderInteraction on FlexBuilder {
