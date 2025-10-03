@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vector_math/vector_math_64.dart' as vm;
 
 import 'colors.dart';
 
@@ -28,6 +29,9 @@ class ContainerBuilder {
   double? _minHeight;
   double? _maxHeight;
   
+  // === Z-Index 相关属性 ===
+  int? _zIndex;
+  
   // === 定位相关属性 ===
   bool _isPositioned = false;
   double? _positionTop;
@@ -38,6 +42,13 @@ class ContainerBuilder {
   double? _positionHeight;
   
   ContainerBuilder(this.child);
+  
+  // === Z-Index 方法 ===
+  /// 设置 z-index 值
+  ContainerBuilder zIndex(int value) {
+    _zIndex = value;
+    return this;
+  }
   
   // === 背景色 ===
   ContainerBuilder backgroundColor(Color color) {
@@ -2026,6 +2037,14 @@ class ContainerBuilder {
       child: child,
     );
     
+    // 如果设置了 z-index，使用 Transform 来模拟层级
+    if (_zIndex != null) {
+      container = Transform(
+        transform: Matrix4.identity()..setTranslation(vm.Vector3(0.0, 0.0, _zIndex!.toDouble())),
+        child: container,
+      );
+    }
+    
     // 如果需要定位，包装成Positioned
     if (_isPositioned) {
       return Positioned(
@@ -2998,6 +3017,7 @@ extension ContainerBuilderPositionExtensions on ContainerBuilder {
     double? width,
     double? height,
   }) {
+    _isPositioned = true;
     _positionTop = top;
     _positionRight = right;
     _positionBottom = bottom;
@@ -3010,40 +3030,97 @@ extension ContainerBuilderPositionExtensions on ContainerBuilder {
 
 /// ContainerBuilder 的Z-Index扩展 - TailwindCSS风格的z-index类
 extension ContainerBuilderZIndexExtensions on ContainerBuilder {
-  /// z-0 -->gt; z-index: 0 (在Stack中通过children顺序控制)
-  Widget z0() {
-    // Flutter中通过Stack的children顺序来控制层级，这里仅作为标记
-    return build();
+  /// z-0 -> z-index: 0
+  ContainerBuilder z0() {
+    return zIndex(0);
   }
   
-  /// z-10 -->gt; z-index: 10
-  Widget z10() {
-    return build();
+  /// z-10 -> z-index: 10
+  ContainerBuilder z10() {
+    return zIndex(10);
   }
   
-  /// z-20 -->gt; z-index: 20
-  Widget z20() {
-    return build();
+  /// z-20 -> z-index: 20
+  ContainerBuilder z20() {
+    return zIndex(20);
   }
   
-  /// z-30 -->gt; z-index: 30
-  Widget z30() {
-    return build();
+  /// z-30 -> z-index: 30
+  ContainerBuilder z30() {
+    return zIndex(30);
   }
   
-  /// z-40 -->gt; z-index: 40
-  Widget z40() {
-    return build();
+  /// z-40 -> z-index: 40
+  ContainerBuilder z40() {
+    return zIndex(40);
   }
   
-  /// z-50 -->gt; z-index: 50
-  Widget z50() {
-    return build();
+  /// z-50 -> z-index: 50
+  ContainerBuilder z50() {
+    return zIndex(50);
   }
   
-  /// z-auto -->gt; z-index: auto
-  Widget zAuto() {
-    return build();
+  /// z-auto -> z-index: auto (默认值，不设置transform)
+  ContainerBuilder zAuto() {
+    _zIndex = null;
+    return this;
+  }
+  
+  // 扩展更多 z-index 值
+  
+  /// z-1 -> z-index: 1
+  ContainerBuilder z1() {
+    return zIndex(1);
+  }
+  
+  /// z-2 -> z-index: 2
+  ContainerBuilder z2() {
+    return zIndex(2);
+  }
+  
+  /// z-3 -> z-index: 3
+  ContainerBuilder z3() {
+    return zIndex(3);
+  }
+  
+  /// z-4 -> z-index: 4
+  ContainerBuilder z4() {
+    return zIndex(4);
+  }
+  
+  /// z-5 -> z-index: 5
+  ContainerBuilder z5() {
+    return zIndex(5);
+  }
+  
+  /// z-negative-50 -> z-index: -50
+  ContainerBuilder zNegative50() {
+    return zIndex(-50);
+  }
+  
+  /// z-negative-40 -> z-index: -40
+  ContainerBuilder zNegative40() {
+    return zIndex(-40);
+  }
+  
+  /// z-negative-30 -> z-index: -30
+  ContainerBuilder zNegative30() {
+    return zIndex(-30);
+  }
+  
+  /// z-negative-20 -> z-index: -20
+  ContainerBuilder zNegative20() {
+    return zIndex(-20);
+  }
+  
+  /// z-negative-10 -> z-index: -10
+  ContainerBuilder zNegative10() {
+    return zIndex(-10);
+  }
+  
+  /// z-negative-1 -> z-index: -1
+  ContainerBuilder zNegative1() {
+    return zIndex(-1);
   }
 }
 

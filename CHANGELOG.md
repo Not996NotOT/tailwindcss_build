@@ -1,41 +1,88 @@
+## [2025-10-03] - Version 0.4.6 - Z-Index System & Enhanced Overflow Implementation
+
+### 🎯 Z-Index Layout System
+- 🚀 **Complete Z-Index Support**: Added full TailwindCSS-style z-index system for layer control
+- 📐 **Z-Index Methods**: Implemented `z0()`, `z1()`, `z2()`, `z3()`, `z4()`, `z5()`, `z10()`, `z20()`, `z30()`, `z40()`, `z50()`
+- 🔧 **Negative Z-Index**: Added `zNegative1()`, `zNegative10()`, `zNegative20()`, `zNegative30()`, `zNegative40()`, `zNegative50()`
+- ⚡ **Custom Z-Index**: Added `zIndex(value)` for custom z-index values
+- 🎨 **Z-Auto Support**: Implemented `zAuto()` for automatic z-index behavior
+- 🛠️ **Transform Integration**: Z-index implemented using Flutter's Transform widget for proper layering
+
+### 📖 Z-Index API Examples
+```dart
+// Basic Z-Index Usage
+Text('Background').asContainer()
+    .z0()
+    .bgRed500()
+    .build()
+
+Text('Foreground').asContainer()
+    .z10()
+    .bgBlue500()
+    .build()
+
+// Negative Z-Index
+Text('Behind').asContainer()
+    .zNegative10()
+    .bgGray500()
+    .build()
+
+// Custom Z-Index Values
+Text('Custom Layer').asContainer()
+    .zIndex(999)
+    .bgGreen500()
+    .build()
+
+// Combined with other styles
+Text('Layered Content').asContainer()
+    .z50()
+    .p4()
+    .bgWhite()
+    .shadow()
+    .rounded8()
+    .build()
+```
+
+---
+
 ## [2025-10-03] - Version 0.4.5 - Overflow & Scroll System Implementation
 
-### 🎯 新增 Overflow 功能模块
-- 🚀 **ScrollBuilder 建造者模式**: 全新的滚动和溢出控制建造者类
-- 📜 **Overflow 基础方法**: 实现 `overflow-auto`, `overflow-hidden`, `overflow-clip`, `overflow-visible`, `overflow-scroll`
-- ↔️ **Overflow X 轴控制**: 实现 `overflow-x-auto`, `overflow-x-hidden`, `overflow-x-clip`, `overflow-x-visible`, `overflow-x-scroll`
-- ↕️ **Overflow Y 轴控制**: 实现 `overflow-y-auto`, `overflow-y-hidden`, `overflow-y-clip`, `overflow-y-visible`, `overflow-y-scroll`
+### 🎯 New Overflow Feature Module
+- 🚀 **ScrollBuilder Pattern**: Brand new scroll and overflow control builder class
+- 📜 **Basic Overflow Methods**: Implemented `overflow-auto`, `overflow-hidden`, `overflow-clip`, `overflow-visible`, `overflow-scroll`
+- ↔️ **Overflow X-Axis Control**: Implemented `overflow-x-auto`, `overflow-x-hidden`, `overflow-x-clip`, `overflow-x-visible`, `overflow-x-scroll`
+- ↕️ **Overflow Y-Axis Control**: Implemented `overflow-y-auto`, `overflow-y-hidden`, `overflow-y-clip`, `overflow-y-visible`, `overflow-y-scroll`
 
-### 🏗️ 滚动功能特性
-- 📦 **单向滚动支持**: 通过 SingleChildScrollView 实现水平或垂直滚动
-- 🔄 **双向滚动支持**: 自动嵌套 SingleChildScrollView 实现双向滚动
-- ✂️ **裁剪行为控制**: 通过 ClipBehavior 和 ClipRect 控制内容溢出显示
-- ⚡ **滚动物理效果**: 支持自定义 ScrollPhysics 和 ScrollController
-- 📐 **内边距支持**: 支持为滚动视图添加 padding
+### 🏗️ Scroll Feature Capabilities
+- 📦 **Single Direction Scroll Support**: Horizontal or vertical scrolling via SingleChildScrollView
+- 🔄 **Bidirectional Scroll Support**: Automatic nested SingleChildScrollView for bidirectional scrolling
+- ✂️ **Clipping Behavior Control**: Content overflow display control via ClipBehavior and ClipRect
+- ⚡ **Scroll Physics Effects**: Support for custom ScrollPhysics and ScrollController
+- 📐 **Padding Support**: Support for adding padding to scroll views
 
-### 🎨 Widget 扩展
-- 🔗 **链式调用支持**: 所有 Widget 都可以通过 `asScrollView()` 转换为 ScrollBuilder
-- 🎯 **ContainerBuilder 集成**: ScrollBuilder 可以无缝转换为 ContainerBuilder 继续链式调用
-- 👆 **交互扩展**: ScrollBuilder 支持 `onTap()` 等交互方法
+### 🎨 Widget Extensions
+- 🔗 **Chaining Support**: All Widgets can be converted to ScrollBuilder via `asScrollView()`
+- 🎯 **ContainerBuilder Integration**: ScrollBuilder can seamlessly convert to ContainerBuilder for continued chaining
+- 👆 **Interaction Extensions**: ScrollBuilder supports `onTap()` and other interaction methods
 
-### 📚 完整示例应用
-- 🎯 **OverflowDemo 组件**: 创建了完整的 overflow 功能演示组件
-- 📐 **实际应用场景**: 横向卡片列表、聊天消息滚动等实际使用示例
-- 🎨 **组合使用展示**: 展示了 overflow 与其他 builder 的组合使用方法
+### 📚 Complete Example Application
+- 🎯 **OverflowDemo Component**: Created complete overflow functionality demo component
+- 📐 **Real-world Use Cases**: Horizontal card lists, chat message scrolling and other practical examples
+- 🎨 **Combined Usage Display**: Showcases combined usage of overflow with other builders
 
-### 📖 API 使用示例
+### 📖 API Usage Examples
 ```dart
-// Overflow Visible - 允许内容溢出
+// Overflow Visible - Allow content overflow
 Widget().asScrollView()
     .overflowVisible()
     .build()
 
-// Overflow Hidden - 隐藏溢出内容
+// Overflow Hidden - Hide overflow content
 Widget().asScrollView()
     .overflowHidden()
     .build()
 
-// Overflow X Scroll - 水平滚动
+// Overflow X Scroll - Horizontal scrolling
 Row(children: [...])
     .asFlex()
     .build()
@@ -43,7 +90,7 @@ Row(children: [...])
     .overflowXScroll()
     .build()
 
-// Overflow Y Scroll - 垂直滚动
+// Overflow Y Scroll - Vertical scrolling
 Column(children: [...])
     .asFlex()
     .flexCol()
@@ -52,13 +99,13 @@ Column(children: [...])
     .overflowYScroll()
     .build()
 
-// Overflow Auto - 双向滚动
+// Overflow Auto - Bidirectional scrolling
 Container(...)
     .asScrollView()
     .overflowAuto()
     .build()
 
-// 链式调用组合
+// Chained method combinations
 Row(children: [...])
     .asFlex()
     .gap2()
@@ -73,11 +120,11 @@ Row(children: [...])
     .build()
 ```
 
-### 🛠️ 技术实现
-- 🔧 **ScrollBuilder 类**: 专门处理 overflow 和滚动行为的建造者类
-- ⚡ **性能优化**: 根据不同场景选择最优的 Widget 组合（SingleChildScrollView / ClipRect）
-- 🛡️ **向后兼容**: 所有新增功能不影响现有 API
-- 📱 **跨平台支持**: 完整支持所有 Flutter 平台（Android, iOS, Web, Windows, macOS, Linux）
+### 🛠️ Technical Implementation
+- 🔧 **ScrollBuilder Class**: Specialized builder class for handling overflow and scroll behavior
+- ⚡ **Performance Optimization**: Optimal Widget combinations based on different scenarios (SingleChildScrollView / ClipRect)
+- 🛡️ **Backward Compatibility**: All new features do not affect existing APIs
+- 📱 **Cross-platform Support**: Full support for all Flutter platforms (Android, iOS, Web, Windows, macOS, Linux)
 
 ---
 

@@ -4,7 +4,9 @@ import 'components/button_demo.dart';
 import 'components/container_demo.dart';
 import 'components/flex_demo.dart';
 import 'components/layout_demo.dart';
+import 'components/overflow_demo.dart';
 import 'components/text_demo.dart';
+import 'components/zindex_demo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -43,6 +45,8 @@ class _MyHomePageState extends State<MyHomePage> {
     const FlexDemo(),
     const LayoutDemo(),
     const ButtonDemo(),
+    const OverflowDemo(),
+    const ZIndexDemo(),
   ];
 
   final List<String> _pageTitles = [
@@ -51,6 +55,8 @@ class _MyHomePageState extends State<MyHomePage> {
     'Flex Builder',
     'Layout Demo',
     'Button Demo',
+    'Overflow Demo',
+    'Z-Index Demo',
   ];
 
   @override
@@ -62,16 +68,31 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(_pageTitles[_selectedIndex]),
         elevation: 0,
         centerTitle: true,
+        actions: [
+          PopupMenuButton<int>(
+            icon: const Icon(Icons.more_vert),
+            onSelected: (index) {
+              setState(() {
+                _selectedIndex = index;
+              });
+            },
+            itemBuilder: (context) => _pageTitles
+                .asMap()
+                .entries
+                .map((entry) => PopupMenuItem<int>(
+                      value: entry.key,
+                      child: Text(entry.value),
+                    ))
+                .toList(),
+          ),
+        ],
       ),
       body: Container(
         color: const Color(0xFFF9FAFB), // gray-50
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(24),
-          child: _pages[_selectedIndex],
-        ),
+        child: _pages[_selectedIndex],
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedIndex,
+        currentIndex: _selectedIndex > 4 ? 4 : _selectedIndex,
         onTap: (index) {
           setState(() {
             _selectedIndex = index;
@@ -100,8 +121,8 @@ class _MyHomePageState extends State<MyHomePage> {
             label: 'Layout',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.smart_button),
-            label: 'Button',
+            icon: Icon(Icons.more_horiz),
+            label: 'More',
           ),
         ],
       ),
