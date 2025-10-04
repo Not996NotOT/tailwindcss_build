@@ -2,6 +2,44 @@ import 'package:flutter/material.dart';
 
 import 'container_builder.dart';
 
+/// Widget扩展，用于为子组件添加order属性
+extension WidgetOrderExtension on Widget {
+  /// 设置组件的order值（用于Flex布局排序）
+  OrderedWidget order(int order) {
+    return OrderedWidget(order: order, child: this);
+  }
+}
+
+/// 包装Widget并携带order信息的容器
+class OrderedWidget extends StatelessWidget {
+  final Widget child;
+  final int order;
+  
+  const OrderedWidget({
+    super.key,
+    required this.order,
+    required this.child,
+  });
+  
+  @override
+  Widget build(BuildContext context) {
+    return child;
+  }
+}
+
+/// 内部辅助类，用于排序时保持原始索引信息
+class _IndexedWidget {
+  final Widget widget;
+  final int order;
+  final int originalIndex;
+  
+  _IndexedWidget({
+    required this.widget,
+    required this.order,
+    required this.originalIndex,
+  });
+}
+
 /// Flex 建造者 - 只负责Flex布局属性，不包含视觉样式
 class FlexBuilder {
   final List<Widget> children;
@@ -120,8 +158,9 @@ class FlexBuilder {
   
   /// 构建Flex组件 - 只负责布局，不含视觉样式
   Widget build() {
-    // 处理gap间距
-    List<Widget> childrenWithGap = _buildChildrenWithGap();
+    // 先处理order排序，再处理gap间距
+    List<Widget> orderedChildren = _buildOrderedChildren();
+    List<Widget> childrenWithGap = _buildChildrenWithGap(orderedChildren);
     
     if (_direction == Axis.horizontal) {
       return Row(
@@ -144,18 +183,57 @@ class FlexBuilder {
     }
   }
   
+  /// 构建按order排序的子组件列表
+  List<Widget> _buildOrderedChildren() {
+    if (children.isEmpty) return children;
+    
+    // 创建带索引的列表，用于保持原始顺序
+    List<_IndexedWidget> indexedWidgets = [];
+    
+    for (int i = 0; i < children.length; i++) {
+      Widget child = children[i];
+      int order = 0; // 默认order为0
+      
+      // 检查是否是OrderedWidget
+      if (child is OrderedWidget) {
+        order = child.order;
+        child = child.child; // 获取实际的子组件
+      }
+      
+      indexedWidgets.add(_IndexedWidget(
+        widget: child,
+        order: order,
+        originalIndex: i,
+      ));
+    }
+    
+    // 按order排序，如果order相同则按原始索引排序
+    indexedWidgets.sort((a, b) {
+      int orderComparison = a.order.compareTo(b.order);
+      if (orderComparison != 0) {
+        return orderComparison;
+      }
+      return a.originalIndex.compareTo(b.originalIndex);
+    });
+    
+    // 返回排序后的Widget列表
+    return indexedWidgets.map((indexed) => indexed.widget).toList();
+  }
+  
   /// 构建带间距的子组件列表
-  List<Widget> _buildChildrenWithGap() {
-    if (_gap == null || _gap! <= 0 || children.isEmpty) {
-      return children;
+  List<Widget> _buildChildrenWithGap([List<Widget>? childrenList]) {
+    List<Widget> targetChildren = childrenList ?? children;
+    
+    if (_gap == null || _gap! <= 0 || targetChildren.isEmpty) {
+      return targetChildren;
     }
     
     List<Widget> result = [];
-    for (int i = 0; i < children.length; i++) {
-      result.add(children[i]);
+    for (int i = 0; i < targetChildren.length; i++) {
+      result.add(targetChildren[i]);
       
       // 在非最后一个元素后添加间距
-      if (i < children.length - 1) {
+      if (i < targetChildren.length - 1) {
         if (_direction == Axis.horizontal) {
           result.add(SizedBox(width: _gap));
         } else {
@@ -291,7 +369,9 @@ class RowBuilder {
   
   /// 构建Row组件
   Widget build() {
-    List<Widget> childrenWithGap = _buildChildrenWithGap();
+    // 先处理order排序，再处理gap间距
+    List<Widget> orderedChildren = _buildOrderedChildren();
+    List<Widget> childrenWithGap = _buildChildrenWithGap(orderedChildren);
     
     return Row(
       mainAxisAlignment: _mainAxisAlignment,
@@ -303,18 +383,57 @@ class RowBuilder {
     );
   }
   
+  /// 构建按order排序的子组件列表
+  List<Widget> _buildOrderedChildren() {
+    if (children.isEmpty) return children;
+    
+    // 创建带索引的列表，用于保持原始顺序
+    List<_IndexedWidget> indexedWidgets = [];
+    
+    for (int i = 0; i < children.length; i++) {
+      Widget child = children[i];
+      int order = 0; // 默认order为0
+      
+      // 检查是否是OrderedWidget
+      if (child is OrderedWidget) {
+        order = child.order;
+        child = child.child; // 获取实际的子组件
+      }
+      
+      indexedWidgets.add(_IndexedWidget(
+        widget: child,
+        order: order,
+        originalIndex: i,
+      ));
+    }
+    
+    // 按order排序，如果order相同则按原始索引排序
+    indexedWidgets.sort((a, b) {
+      int orderComparison = a.order.compareTo(b.order);
+      if (orderComparison != 0) {
+        return orderComparison;
+      }
+      return a.originalIndex.compareTo(b.originalIndex);
+    });
+    
+    // 返回排序后的Widget列表
+    return indexedWidgets.map((indexed) => indexed.widget).toList();
+  }
+  
   /// 构建带间距的子组件列表
-  List<Widget> _buildChildrenWithGap() {
-    if (_gap == null || _gap! <= 0 || children.isEmpty) {
-      return children;
+  List<Widget> _buildChildrenWithGap([List<Widget>? childrenList]) {
+    List<Widget> targetChildren = childrenList ?? children;
+    
+    if (_gap == null || _gap! <= 0 || targetChildren.isEmpty) {
+      return targetChildren;
     }
     
     List<Widget> result = [];
-    for (int i = 0; i < children.length; i++) {
-      result.add(children[i]);
+    for (int i = 0; i < targetChildren.length; i++) {
+      result.add(targetChildren[i]);
       
       // 在非最后一个元素后添加间距
-      if (i < children.length - 1) {
+      if (i < targetChildren.length - 1) {
         result.add(SizedBox(width: _gap));
       }
     }
@@ -435,7 +554,9 @@ class ColumnBuilder {
   
   /// 构建Column组件
   Widget build() {
-    List<Widget> childrenWithGap = _buildChildrenWithGap();
+    // 先处理order排序，再处理gap间距
+    List<Widget> orderedChildren = _buildOrderedChildren();
+    List<Widget> childrenWithGap = _buildChildrenWithGap(orderedChildren);
     
     return Column(
       mainAxisAlignment: _mainAxisAlignment,
@@ -447,18 +568,57 @@ class ColumnBuilder {
     );
   }
   
+  /// 构建按order排序的子组件列表
+  List<Widget> _buildOrderedChildren() {
+    if (children.isEmpty) return children;
+    
+    // 创建带索引的列表，用于保持原始顺序
+    List<_IndexedWidget> indexedWidgets = [];
+    
+    for (int i = 0; i < children.length; i++) {
+      Widget child = children[i];
+      int order = 0; // 默认order为0
+      
+      // 检查是否是OrderedWidget
+      if (child is OrderedWidget) {
+        order = child.order;
+        child = child.child; // 获取实际的子组件
+      }
+      
+      indexedWidgets.add(_IndexedWidget(
+        widget: child,
+        order: order,
+        originalIndex: i,
+      ));
+    }
+    
+    // 按order排序，如果order相同则按原始索引排序
+    indexedWidgets.sort((a, b) {
+      int orderComparison = a.order.compareTo(b.order);
+      if (orderComparison != 0) {
+        return orderComparison;
+      }
+      return a.originalIndex.compareTo(b.originalIndex);
+    });
+    
+    // 返回排序后的Widget列表
+    return indexedWidgets.map((indexed) => indexed.widget).toList();
+  }
+  
   /// 构建带间距的子组件列表
-  List<Widget> _buildChildrenWithGap() {
-    if (_gap == null || _gap! <= 0 || children.isEmpty) {
-      return children;
+  List<Widget> _buildChildrenWithGap([List<Widget>? childrenList]) {
+    List<Widget> targetChildren = childrenList ?? children;
+    
+    if (_gap == null || _gap! <= 0 || targetChildren.isEmpty) {
+      return targetChildren;
     }
     
     List<Widget> result = [];
-    for (int i = 0; i < children.length; i++) {
-      result.add(children[i]);
+    for (int i = 0; i < targetChildren.length; i++) {
+      result.add(targetChildren[i]);
       
       // 在非最后一个元素后添加间距
-      if (i < children.length - 1) {
+      if (i < targetChildren.length - 1) {
         result.add(SizedBox(height: _gap));
       }
     }

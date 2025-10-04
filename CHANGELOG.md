@@ -1,3 +1,161 @@
+## [2025-10-04] - Version 0.4.7 - Example Application Overflow Fix & Flex Order System & Grid Builder System
+
+### 🚀 New Features
+- ✨ **Flex Order System**: Added complete order functionality for Flex, Row, and Column builders
+- 🔄 **Widget Order Extension**: Added `.order(int)` extension method for all widgets to control flex item ordering
+- 📐 **Order Sorting Logic**: Implemented intelligent order sorting that preserves original indices for equal order values
+- 🎯 **Tailwind CSS Alignment**: Order system follows Tailwind CSS specifications with default order value of 0
+- 🏗️ **Builder Pattern Integration**: Seamlessly integrated with existing FlexBuilder, RowBuilder, and ColumnBuilder
+
+### 🎨 Grid Builder System
+- 🚀 **Complete Grid Builder**: Added comprehensive GridBuilder class following Tailwind CSS grid specifications
+- 📐 **Grid Template Columns**: Implemented `grid-cols-1` to `grid-cols-12` with custom template support
+- 📏 **Grid Template Rows**: Implemented `grid-rows-1` to `grid-rows-12` with custom template support  
+- 🎯 **Grid Column Control**: Added `col-span`, `col-start`, `col-end` functionality for precise column positioning
+- 📊 **Grid Row Control**: Added `row-span`, `row-start`, `row-end` functionality for precise row positioning
+- 🔄 **Grid Auto Flow**: Implemented `grid-flow-row`, `grid-flow-col` with dense variants
+- ⚡ **Grid Auto Sizing**: Added `auto-cols` and `auto-rows` with auto, min, max, fr options
+- 📐 **Grid Gap System**: Complete gap system with `gap`, `gap-x`, `gap-y` and all Tailwind gap sizes
+- 🎨 **Grid Alignment**: Full alignment system with `justify-content`, `align-content`, `justify-items`, `align-items`
+- 🎯 **Place Shortcuts**: Added `place-content` and `place-items` shorthand methods
+
+### 🎨 Grid API Examples
+```dart
+// Basic Grid Layout
+[
+  Text('Item 1'),
+  Text('Item 2'),
+  Text('Item 3'),
+  Text('Item 4'),
+].asGrid()
+    .gridCols2()
+    .gap4()
+    .build()
+
+// Grid Column Spanning
+Text('Header').colSpan(3),
+Text('Sidebar').rowSpan(2),
+Text('Content').colSpan(2),
+
+// Grid Positioning
+Text('Positioned').gridArea(
+  colStart: 2,
+  rowStart: 1,
+  colSpan: 2,
+  rowSpan: 1,
+),
+
+// Grid Alignment
+[...items].asGrid()
+    .gridCols3()
+    .placeItemsCenter()
+    .justifyBetween()
+    .gap6()
+    .build()
+
+// Complex Grid Layout
+[
+  Text('Header').colSpan(3),
+  Text('Nav').rowSpan(2),
+  Text('Main').colSpan(2),
+  Text('Aside'),
+  Text('Footer').colSpan(3),
+].asGrid()
+    .gridCols3()
+    .gridRows3()
+    .gap4()
+    .build()
+```
+
+### 🔧 Grid Technical Implementation
+- 🏗️ **GridItemWidget Class**: Wrapper class to carry grid positioning information
+- 📊 **Intelligent Layout Engine**: Automatically chooses between simple GridView and complex Column/Row layout
+- ⚡ **Performance Optimized**: Complex positioning only when needed, simple GridView for basic layouts
+- 🎯 **Matrix-based Positioning**: Advanced matrix system for handling complex grid positioning and spanning
+- 🛡️ **Backward Compatible**: All existing layouts continue to work unchanged
+- 📱 **Flutter Optimized**: Uses native Flutter widgets for optimal performance
+
+### 📚 Demo Application Enhancement
+- 🎯 **Grid Demo Page**: Added comprehensive grid functionality demonstration
+- 📐 **Visual Examples**: Multiple examples showing all grid features in action
+- 🎨 **Real-world Layouts**: Card layouts, dashboard layouts, and responsive grids
+- 💡 **Educational Content**: Clear explanations and practical usage examples
+- 🔄 **Interactive Examples**: Working examples of grid positioning, spanning, and alignment
+
+### 🎯 Flex Order API
+```dart
+// Basic Order Usage
+[
+  Text('First').order(1),   // Will appear second
+  Text('Second').order(-1), // Will appear first  
+  Text('Third').order(0),   // Will appear in middle (default)
+].asFlex()
+    .flexRow()
+    .build()
+
+// Complex Order Example
+[
+  Text('A').order(2),   // Last
+  Text('B').order(-1),  // First
+  Text('C').order(0),   // Second
+  Text('D').order(1),   // Third
+].asRow()
+    .justifyCenter()
+    .gap4()
+    .build()
+
+// Column with Order
+[
+  Text('Bottom').order(3),
+  Text('Top').order(1),
+  Text('Middle').order(2),
+].asColumn()
+    .itemsStart()
+    .gap2()
+    .build()
+```
+
+### 📚 Demo Application Enhancement
+- 🎯 **Order Demo Section**: Added comprehensive order functionality demonstration in FlexDemo
+- 📐 **Visual Examples**: Multiple examples showing order effects in both row and column layouts
+- 🎨 **Color-coded Examples**: Different colored components to clearly show order changes
+- 💡 **Educational Content**: Clear explanations of how order values affect component positioning
+
+### 🔧 Technical Implementation
+- 🏗️ **OrderedWidget Class**: Internal wrapper class to carry order information with widgets
+- 📊 **_IndexedWidget Helper**: Maintains original index information for stable sorting
+- ⚡ **Performance Optimized**: Order processing only occurs when OrderedWidget is detected
+- 🛡️ **Backward Compatible**: All existing flex layouts continue to work unchanged
+- 🎯 **Gap Integration**: Order sorting happens before gap processing for correct spacing
+
+### 🐛 Bug Fixes
+- 🔧 **RenderFlex Overflow Fix**: Fixed RenderFlex overflow errors in all demo pages that were causing bottom pixel overflow
+- 📱 **ScrollView Integration**: Added SingleChildScrollView wrapper to all demo components (TextDemo, ContainerDemo, FlexDemo, LayoutDemo, ButtonDemo)
+- 🎯 **Responsive Layout**: Ensured all demo pages are now properly scrollable and work correctly on different screen sizes
+- ⚡ **Performance**: Improved rendering performance by eliminating overflow exceptions and warnings
+
+### 🏗️ Technical Improvements
+- 📐 **Layout Consistency**: All demo pages now use consistent SingleChildScrollView + padding pattern
+- 🛡️ **Error Prevention**: Eliminated "RenderFlex overflowed by X pixels on the bottom" errors across the entire example application
+- 📱 **Mobile Friendly**: Enhanced mobile experience with proper scrolling behavior
+- 🎨 **UI Polish**: Maintained existing styling while fixing layout issues
+
+### 📚 Demo Application Enhancements
+- ✅ **TextDemo**: Fixed overflow with SingleChildScrollView wrapper
+- ✅ **ContainerDemo**: Fixed overflow with SingleChildScrollView wrapper  
+- ✅ **FlexDemo**: Fixed overflow with SingleChildScrollView wrapper
+- ✅ **LayoutDemo**: Fixed overflow with SingleChildScrollView wrapper
+- ✅ **ButtonDemo**: Fixed overflow with SingleChildScrollView wrapper
+- ✅ **OverflowDemo**: Already had proper scrolling (uses Scaffold)
+- ✅ **ZIndexDemo**: Already had proper scrolling (uses Scaffold)
+
+### 🔧 Code Quality
+- 📝 **Consistent Pattern**: All demo components now follow the same scrollable layout pattern
+- 🧹 **Clean Structure**: Maintained clean widget tree structure while adding necessary scrolling
+- 🎯 **User Experience**: Improved overall user experience by eliminating layout errors
+
+---
+
 ## [2025-10-03] - Version 0.4.6 - Z-Index System & Enhanced Overflow Implementation
 
 ### 🎯 Z-Index Layout System
