@@ -7,9 +7,11 @@ class LayoutDemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
         // === Stack定位示例 ===
         _buildStackExample(),
         
@@ -17,7 +19,8 @@ class LayoutDemo extends StatelessWidget {
         
         // === Flex布局示例 ===
         _buildFlexExample(),
-      ],
+        ],
+      ),
     );
   }
 

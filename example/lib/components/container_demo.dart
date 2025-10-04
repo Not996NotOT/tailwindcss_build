@@ -6,9 +6,11 @@ class ContainerDemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
         const Text('Container Demo')
             .text2xl()
             .fontBold()
@@ -353,7 +355,8 @@ class ContainerDemo extends StatelessWidget {
             .r12()
             .shadowMd()
             .build(),
-      ],
+        ],
+      ),
     );
   }
 }

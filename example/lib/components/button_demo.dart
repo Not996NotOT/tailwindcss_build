@@ -6,9 +6,11 @@ class ButtonDemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
         const Text('Button Demo (Container + GestureDetector)')
             .text2xl()
             .fontBold()
@@ -225,7 +227,8 @@ class ButtonDemo extends StatelessWidget {
             .borderYellow400()
             .r8()
             .onTap(() => _showMessage(context, 'Warning clicked!')),
-      ],
+        ],
+      ),
     );
   }
   

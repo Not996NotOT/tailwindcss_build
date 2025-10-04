@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'components/button_demo.dart';
 import 'components/container_demo.dart';
 import 'components/flex_demo.dart';
+import 'components/grid_demo.dart';
 import 'components/layout_demo.dart';
 import 'components/overflow_demo.dart';
 import 'components/text_demo.dart';
@@ -43,6 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
     const TextDemo(),
     const ContainerDemo(),
     const FlexDemo(),
+    const GridDemo(),
     const LayoutDemo(),
     const ButtonDemo(),
     const OverflowDemo(),
@@ -53,6 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
     'Text Builder',
     'Container Builder',
     'Flex Builder',
+    'Grid Builder',
     'Layout Demo',
     'Button Demo',
     'Overflow Demo',
@@ -117,8 +120,8 @@ class _MyHomePageState extends State<MyHomePage> {
             label: 'Flex',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.layers),
-            label: 'Layout',
+            icon: Icon(Icons.grid_view),
+            label: 'Grid',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.more_horiz),

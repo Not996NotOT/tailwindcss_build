@@ -6,9 +6,11 @@ class FlexDemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
         const Text('Flex Demo')
             .text2xl()
             .fontBold()
@@ -278,6 +280,120 @@ class FlexDemo extends StatelessWidget {
         
         const SizedBox(height: 16),
         
+        // Order 演示
+        const Text('Order (排序)')
+            .textLg()
+            .fontSemibold()
+            .textGray800()
+            .build(),
+        
+        const SizedBox(height: 8),
+        
+        // 原始顺序
+        const Text('原始顺序: 1, 2, 3')
+            .textBase()
+            .fontMedium()
+            .textGray700()
+            .build(),
+            
+        const SizedBox(height: 4),
+        
+        [
+          _buildFlexItem('1'),
+          _buildFlexItem('2'),
+          _buildFlexItem('3'),
+        ].asFlex()
+            .flexRow()
+            .justifyStart()
+            .itemsCenter()
+            .gap4()
+            .asContainer()
+            .bgGray100()
+            .p4()
+            .r8()
+            .build(),
+        
+        const SizedBox(height: 8),
+        
+        // 使用order重新排序: 3, 1, 2
+        const Text('使用order排序: 3(order:-1), 1(order:0), 2(order:1)')
+            .textBase()
+            .fontMedium()
+            .textGray700()
+            .build(),
+            
+        const SizedBox(height: 4),
+        
+        [
+          _buildFlexItem('1').order(0), // order为0，默认位置
+          _buildFlexItem('2').order(1), // order为1，排在后面
+          _buildFlexItem('3').order(-1), // order为-1，排在最前面
+        ].asFlex()
+            .flexRow()
+            .justifyStart()
+            .itemsCenter()
+            .gap4()
+            .asContainer()
+            .bgBlue50()
+            .p4()
+            .r8()
+            .build(),
+        
+        const SizedBox(height: 8),
+        
+        // 复杂order示例
+        const Text('复杂order示例: A(order:2), B(order:-1), C(order:0), D(order:1)')
+            .textBase()
+            .fontMedium()
+            .textGray700()
+            .build(),
+            
+        const SizedBox(height: 4),
+        
+        [
+          _buildFlexItem('A', color: Colors.red).order(2),   // 最后
+          _buildFlexItem('B', color: Colors.green).order(-1), // 最前
+          _buildFlexItem('C', color: Colors.blue).order(0),   // 第二
+          _buildFlexItem('D', color: Colors.orange).order(1), // 第三
+        ].asFlex()
+            .flexRow()
+            .justifyStart()
+            .itemsCenter()
+            .gap4()
+            .asContainer()
+            .bgPurple50()
+            .p4()
+            .r8()
+            .build(),
+        
+        const SizedBox(height: 8),
+        
+        // 垂直布局order示例
+        const Text('垂直布局order示例')
+            .textBase()
+            .fontMedium()
+            .textGray700()
+            .build(),
+            
+        const SizedBox(height: 4),
+        
+        [
+          _buildFlexItem('第一个', color: Colors.red).order(3),
+          _buildFlexItem('第二个', color: Colors.green).order(1),
+          _buildFlexItem('第三个', color: Colors.blue).order(2),
+        ].asFlex()
+            .flexCol()
+            .justifyStart()
+            .itemsStart()
+            .gap2()
+            .asContainer()
+            .bgYellow50()
+            .p4()
+            .r8()
+            .build(),
+
+        const SizedBox(height: 16),
+        
         // 复合示例
         const Text('复合示例')
             .textLg()
@@ -391,18 +507,19 @@ class FlexDemo extends StatelessWidget {
             .r12()
             .shadow()
             .build(),
-      ],
+        ],
+      ),
     );
   }
   
-  Widget _buildFlexItem(String text, {double? height}) {
+  Widget _buildFlexItem(String text, {double? height, Color? color}) {
     return Text(text)
         .textWhite()
         .fontBold()
                .asContainer()
         .px4()
         .py2()
-        .bgBlue500()
+        .backgroundColor(color ?? Colors.blue.shade500)
         .r4()
             .h(height ?? 40)
         .build();

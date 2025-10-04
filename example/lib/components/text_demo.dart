@@ -6,9 +6,11 @@ class TextDemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
         const Text('Text Demo')
             .text2xl()
             .fontBold()
@@ -156,7 +158,8 @@ class TextDemo extends StatelessWidget {
             .textOrange600()
             .fontSemibold()
             .build(),
-      ],
+        ],
+      ),
     );
   }
 }
