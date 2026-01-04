@@ -12,7 +12,266 @@ Transform your Flutter development with the power and elegance of Tailwind CSS u
 
 **Important**: This package is in active development toward version 1.0.0. We may introduce breaking changes, deprecate APIs, or make architectural improvements to provide the best possible solution.
 
-**Current Status**: The builder pattern implementations (ContainerBuilder, TextBuilder, FlexBuilder) in v0.4.0 are production-ready and represent the future direction of this library.
+**Current Status**: The builder pattern implementations (ContainerBuilder, TextBuilder, FlexBuilder, GridBuilder, ScrollBuilder) in v0.4.7 are production-ready and represent the future direction of this library.
+
+## 📊 Implementation Status
+
+### ✅ Fully Implemented (280+ features)
+
+**Core Builders:**
+- ✅ **ContainerBuilder**: Complete container styling (width, height, padding, margin, border, borderRadius, shadow, z-index, position, aspect ratio, RTL support)
+- ✅ **FlexBuilder**: Complete Flexbox layout (direction, justify, align, gap, flex-grow/shrink, order, wrap, space between, divide between)
+- ✅ **GridBuilder**: Complete Grid layout (columns, rows, gap, justify, align, span, start/end, auto-flow)
+- ✅ **TextBuilder**: Complete text styling (size, weight, color, decoration, transform, overflow, line-height, letter-spacing)
+- ✅ **ScrollBuilder**: Complete overflow control (auto, hidden, clip, visible, scroll, overscroll behavior)
+
+**Layout Features:**
+- ✅ Container, Aspect Ratio, Display (block, flex, grid, hidden)
+- ✅ Position (static, relative, absolute, fixed, sticky) with RTL support
+- ✅ Overflow (all variants: auto, hidden, clip, visible, scroll)
+- ✅ Overscroll Behavior (auto, contain, none)
+- ✅ Z-Index (z-0 through z-50, z-auto)
+
+**Flexbox & Grid:**
+- ✅ Flex Direction (row, col)
+- ✅ Flex Wrap (wrap, nowrap)
+- ✅ Flex Properties (flex-1, flex-auto, flex-none, flex-grow, flex-shrink)
+- ✅ Order
+- ✅ Justify Content (start, end, center, between, around, evenly)
+- ✅ Align Items (start, end, center, baseline, stretch)
+- ✅ Gap (all sizes)
+- ✅ Grid Template Columns/Rows (1-12, none, subgrid, custom)
+- ✅ Grid Column/Row Span (col-span, row-span, col-start, col-end, row-start, row-end)
+- ✅ Grid Auto Flow (row, col, row-dense, col-dense)
+- ✅ Grid Auto Columns/Rows (auto, min, max, fr)
+- ✅ Grid Justify/Align (all variants)
+
+**Spacing:**
+- ✅ Padding (all directions, RTL support with padding-start/end)
+- ✅ Margin (all directions, RTL support with margin-start/end)
+- ✅ Space Between Children (space-x, space-y with reverse support)
+- ✅ Divide Between Children (divide-x, divide-y with color and width control)
+
+**Sizing:**
+- ✅ Width (w-0 through w-96, w-auto, w-full, w-screen, w-px, w-0.5, custom)
+- ✅ Height (h-0 through h-96, h-auto, h-full, h-screen, h-px, h-0.5, custom)
+- ✅ Min Width (min-w-0 through min-w-96, min-w-auto, min-w-full, min-w-screen, min-w-min, min-w-max, min-w-fit)
+- ✅ Min Height (min-h-0 through min-h-96, min-h-auto, min-h-full, min-h-screen)
+- ✅ Max Width (max-w-0 through max-w-96, max-w-full, max-w-screen)
+- ✅ Max Height (max-h-0 through max-h-96, max-h-full, max-h-screen)
+
+**Typography:**
+- ✅ Font Size (text-xs through text-9xl, custom)
+- ✅ Font Weight (thin, extralight, light, normal, medium, semibold, bold, extrabold, black)
+- ✅ Font Style (italic, not-italic)
+- ✅ Letter Spacing (tracking-tighter through tracking-widest)
+- ✅ Line Height (leading-none through leading-loose)
+- ✅ Line Clamp (maxLines)
+- ✅ Text Align (left, center, right, justify)
+- ✅ Text Color (all TailwindCSS color families: 21 families × 11 shades = 231 colors)
+- ✅ Text Decoration Line (underline, overline, line-through, no-underline)
+- ✅ Text Decoration Style (solid, double, dotted, dashed, wavy)
+- ✅ Text Decoration Thickness (decoration-0 through decoration-8, auto, from-font)
+- ✅ Text Decoration Colors (all TailwindCSS colors)
+- ✅ Text Transform (uppercase, lowercase, capitalize, normal-case)
+- ✅ Text Overflow (truncate, text-ellipsis, text-clip)
+- ✅ Text Wrap (text-wrap, text-nowrap)
+
+**Backgrounds:**
+- ✅ Background Color (all TailwindCSS color families: 21 families × 11 shades = 231 colors)
+
+**Borders:**
+- ✅ Border Radius (rounded-sm through rounded-2xl, rounded-full, rounded-none, individual corners, RTL support with rounded-s/rounded-e)
+- ✅ Border Width (border, border-t, border-r, border-b, border-l, border-x, border-y, RTL support with border-s/border-e)
+- ✅ Border Color (all TailwindCSS color families)
+- ✅ Border None
+
+**Effects:**
+- ✅ Box Shadow (shadow-sm through shadow-2xl, shadow-inner, shadow-none, custom)
+- ✅ Text Shadow
+- ✅ Opacity (opacity-0 through opacity-100)
+
+**Interactivity:**
+- ✅ Pointer Events (pointer-events-none, pointer-events-auto)
+- ✅ Gesture Handlers (onTap, onDoubleTap, onLongPress)
+
+**Arbitrary Values:**
+- ✅ Custom values (wCustom(), hCustom(), etc.)
+
+### ⚠️ Partially Implemented (142+ features)
+
+**Layout:**
+- ⚠️ Box Sizing (indirectly controlled through BoxConstraints)
+- ⚠️ Display (inline, inline-block, inline-flex, inline-grid, table - requires specific widgets)
+- ⚠️ Object Fit (requires Image widget)
+- ⚠️ Object Position (requires Image widget)
+
+**Typography:**
+- ⚠️ Font Family (requires font configuration)
+- ⚠️ Text Wrap (text-balance, text-pretty - not supported by Flutter)
+- ⚠️ White Space (limited support, requires maxLines)
+- ⚠️ Word Break (limited support)
+- ⚠️ Overflow Wrap (handled automatically by Flutter)
+
+**Spacing:**
+- ⚠️ Divide Style (divide-dashed, divide-dotted - Flutter limitation, uses solid instead)
+
+**Backgrounds:**
+- ⚠️ Background Opacity (requires Color.withOpacity())
+- ⚠️ Background Image (requires DecorationImage)
+- ⚠️ Background Position (requires Alignment)
+- ⚠️ Background Size (requires BoxFit)
+- ⚠️ Background Repeat (requires ImageRepeat)
+- ⚠️ Background Clip (requires Clip)
+- ⚠️ Background Gradient (requires Gradient)
+- ⚠️ Background Blend Mode (requires BlendMode)
+
+**Borders:**
+- ⚠️ Border Opacity (requires Color.withOpacity())
+- ⚠️ Border Style (border-dashed, border-dotted, border-double - requires custom painting)
+- ⚠️ Outline (requires InputDecoration)
+- ⚠️ Ring (requires BoxShadow simulation)
+
+**Effects:**
+- ⚠️ Mix Blend Mode (requires BlendMode)
+- ⚠️ Background Blend Mode (requires BlendMode)
+
+**Filters:**
+- ⚠️ Blur (requires ImageFilter.blur)
+- ⚠️ Brightness, Contrast, Grayscale, Hue Rotate, Invert, Saturate, Sepia (requires ColorFilter)
+- ⚠️ Backdrop Filter (requires BackdropFilter widget)
+
+**Tables:**
+- ⚠️ Border Collapse (default Flutter Table behavior)
+- ⚠️ Border Spacing (requires Table border)
+- ⚠️ Table Layout (handled automatically by Flutter)
+
+**Transitions & Animation:**
+- ⚠️ Transition Property (requires AnimatedContainer)
+- ⚠️ Transition Duration (requires Duration)
+- ⚠️ Transition Timing Function (requires Curve)
+- ⚠️ Transition Delay (requires Future.delayed)
+- ⚠️ Animation (requires AnimationController)
+
+**Transforms:**
+- ⚠️ Rotate (requires Transform.rotate)
+- ⚠️ Scale (requires Transform.scale)
+- ⚠️ Skew (requires Transform)
+- ⚠️ Translate (requires Transform.translate)
+- ⚠️ Transform Origin (requires Alignment)
+
+**Interactivity:**
+- ⚠️ Cursor (Flutter Web only, requires MouseCursor)
+- ⚠️ User Select (requires SelectableText)
+- ⚠️ Scroll Behavior (requires ScrollPhysics)
+- ⚠️ Scroll Margin/Padding (requires padding implementation)
+- ⚠️ Scroll Snap (requires PageView)
+- ⚠️ Touch Action (requires GestureDetector)
+- ⚠️ Caret Color (requires TextField cursorColor)
+- ⚠️ Color Scheme (requires Theme)
+
+**SVG:**
+- ⚠️ Fill, Stroke, Stroke Width (requires CustomPaint)
+
+**Pseudo-class Variants:**
+- ⚠️ Hover (requires InkWell, GestureDetector)
+- ⚠️ Focus (requires FocusNode)
+- ⚠️ Active (requires GestureDetector)
+- ⚠️ Disabled (requires widget enabled property)
+- ⚠️ Checked (requires Checkbox)
+- ⚠️ Group Hover (requires custom implementation)
+- ⚠️ Peer Hover (requires custom implementation)
+
+**Responsive Breakpoints:**
+- ⚠️ Breakpoints (sm, md, lg, xl, 2xl - requires MediaQuery)
+
+**Dark Mode:**
+- ⚠️ Dark Mode Variant (requires Theme.of(context).brightness)
+
+**Media Queries:**
+- ⚠️ Reduced Motion (requires MediaQuery.accessibleNavigation)
+- ⚠️ Orientation (requires MediaQuery.orientation)
+- ⚠️ Prefers Color Scheme (requires Theme)
+
+**State Modifiers:**
+- ⚠️ Before/After (requires Stack)
+- ⚠️ Backdrop (requires BackdropFilter)
+- ⚠️ Placeholder (requires TextField hintText)
+
+**Arbitrary Values:**
+- ⚠️ CSS Variables (not supported by Flutter)
+- ⚠️ Calc() (requires manual calculation)
+
+### ❌ Not Implemented (59+ features)
+
+**Layout:**
+- ❌ Columns (Flutter doesn't support CSS columns)
+- ❌ Break (Page Break - Flutter doesn't support print pagination)
+- ❌ Box Decoration Break
+- ❌ Float & Clear (Flutter doesn't support CSS float)
+- ❌ Isolation (Flutter doesn't support CSS isolation)
+- ❌ Visibility Collapse (Flutter doesn't support)
+
+**Typography:**
+- ❌ Font Smoothing (handled automatically by Flutter)
+- ❌ Font Stretch (not supported by Flutter)
+- ❌ Font Variant Numeric (not supported by Flutter)
+- ❌ Text Underline Offset (not supported by Flutter)
+- ❌ Text Indent (not supported by Flutter)
+- ❌ Vertical Align (requires Baseline widget)
+- ❌ White Space (pre, pre-line, pre-wrap, break-spaces - not supported)
+- ❌ Hyphens (not supported by Flutter)
+- ❌ Content (Flutter doesn't support CSS content)
+
+**Backgrounds:**
+- ❌ Background Attachment (Flutter doesn't support)
+- ❌ Background Origin (Flutter doesn't support)
+
+**Effects:**
+- ❌ Mask (Flutter doesn't support CSS mask)
+
+**Transforms:**
+- ❌ Transform Style (Flutter doesn't support 3D transform)
+- ❌ Backface Visibility (Flutter doesn't support)
+- ❌ Perspective (Flutter doesn't support)
+- ❌ Perspective Origin (Flutter doesn't support)
+
+**Interactivity:**
+- ❌ Resize (Flutter doesn't support)
+- ❌ Will Change (handled automatically by Flutter)
+- ❌ Accent Color (requires Theme)
+- ❌ Appearance (requires custom widget)
+- ❌ Field Sizing (Flutter doesn't support)
+
+**Accessibility:**
+- ❌ Forced Color Adjust (Flutter doesn't support)
+
+**Container Queries:**
+- ❌ Container Type (Flutter doesn't support CSS container queries)
+- ❌ Container Name
+
+**Pseudo-class Variants:**
+- ❌ Visited (Flutter doesn't support)
+- ❌ Target (Flutter doesn't support)
+- ❌ Open/Closed (requires custom state management)
+- ❌ Invalid/Valid (requires FormField validation)
+- ❌ Aria-* (requires Semantics)
+- ❌ Data-* (Flutter doesn't support)
+- ❌ Has() Selector (Flutter doesn't support CSS :has() selector)
+
+**Media Queries:**
+- ❌ Print (Flutter doesn't support print media queries)
+- ❌ Prefers Contrast (Flutter doesn't support)
+
+**State Modifiers:**
+- ❌ First Letter (Flutter doesn't support)
+- ❌ First Line (Flutter doesn't support)
+- ❌ Marker (Flutter doesn't support)
+- ❌ Selection (Flutter doesn't support)
+- ❌ File (Flutter doesn't support)
+
+**Important Modifier:**
+- ❌ Important Modifier (Flutter doesn't support CSS !important)
 
 ## ✨ Why TailwindCSS Build?
 
@@ -140,93 +399,6 @@ Container(
 
 </details>
 
-<details>
-<summary><strong>🔄 Complex Responsive Layout Example</strong></summary>
-
-**Traditional Flutter Way:**
-```dart
-Container(
-  padding: EdgeInsets.all(16),
-  color: Color(0xFFF3F4F6), // gray-100
-  child: Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    crossAxisAlignment: CrossAxisAlignment.stretch,
-    children: [
-      Expanded(
-        child: Container(
-          padding: EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: Color(0xFFEFF6FF), // blue-50
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Text(
-            'Left Panel',
-            style: TextStyle(
-              color: Color(0xFF1E40AF), // blue-700
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ),
-      ),
-      SizedBox(width: 16),
-      Expanded(
-        child: Container(
-          padding: EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: Color(0xFFF0FDF4), // green-50
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Text(
-            'Right Panel',
-            style: TextStyle(
-              color: Color(0xFF15803D), // green-700
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ),
-      ),
-    ],
-  ),
-)
-```
-
-**TailwindCSS Build Way:**
-```dart
-[
-  Text('Left Panel')
-      .asText()
-      .textBlue700()
-      .fontMedium()
-      .asContainer()
-      .bgBlue50()
-      .p4()
-      .r8()
-      .wFull()
-      .build(),
-  Text('Right Panel')
-      .asText()
-      .textGreen700()
-      .fontMedium()
-      .asContainer()
-      .bgGreen50()
-      .p4()
-      .r8()
-      .wFull()
-      .build(),
-].asFlex()
-    .flexRow()
-    .justifyBetween()
-    .itemsStretch()
-    .asContainer()
-    .bgGray100()
-    .p4()
-    .build()
-```
-
-**Result**: ✨ **Visual code structure matches UI layout!**
-
-</details>
-
 ## 🏗️ Revolutionary Architecture
 
 ### 🎯 Builder Pattern Benefits
@@ -236,13 +408,15 @@ Container(
 - **🛡️ Type Safe**: Full compile-time checking with Flutter's type system
 - **💾 Memory Efficient**: Reduced widget tree depth and improved rendering
 
-### 🧩 Three Core Builders
+### 🧩 Five Core Builders
 
 | Builder | Purpose | Features | Usage |
 |---------|---------|----------|-------|
 | **TextBuilder** | Text styling & typography | Decoration, Transform, Overflow control | `Text('Hello').asText().textBlue600().underline().decorationRed500().build()` |
-| **ContainerBuilder** | Layout, spacing & visual effects | Complete Position system | `.asContainer().px6().py3().bgWhite().positionAbsolute(top: 10, left: 20).build()` |
-| **FlexBuilder** | Layout management (Row/Column) | Flex properties and gap control | `[widgets].asFlex().flexRow().justifyCenter().gap4().asContainer().build()` |
+| **ContainerBuilder** | Layout, spacing & visual effects | Complete Position system, RTL support | `.asContainer().px6().py3().bgWhite().positionAbsolute(top: 10, left: 20).build()` |
+| **FlexBuilder** | Layout management (Row/Column) | Flex properties, gap, wrap, space, divide | `[widgets].asFlex().flexRow().justifyCenter().gap4().flexWrap().build()` |
+| **GridBuilder** | Grid layout system | Columns, rows, gap, span, auto-flow | `[widgets].asGrid().gridCols3().gap4().build()` |
+| **ScrollBuilder** | Overflow & scroll control | Overflow variants, overscroll behavior | `.asScrollView().overflowAuto().overscrollContain().build()` |
 
 ## 🚀 Quick Start
 
@@ -250,7 +424,7 @@ Container(
 
 ```yaml
 dependencies:
-  tailwindcss_build: ^0.4.4
+  tailwindcss_build: ^0.4.7
 ```
 
 ### Import
@@ -259,10 +433,10 @@ dependencies:
 import 'package:tailwindcss_build/tailwindcss_build.dart';
 ```
 
-### Basic Usage Patterns
+### Basic Usage Examples
 
 <details>
-<summary><strong>📝 Advanced Text Styling</strong></summary>
+<summary><strong>📝 Text Styling</strong></summary>
 
 ```dart
 // Basic text styling
@@ -302,12 +476,11 @@ Text('Very long text that might overflow...')
 </details>
 
 <details>
-<summary><strong>🎯 Advanced Container Styling</strong></summary>
+<summary><strong>🎯 Container Styling</strong></summary>
 
 ```dart
 // Basic container
 Text('Content')
-    .build()
     .asContainer()
     .px6()           // Horizontal padding
     .py3()           // Vertical padding
@@ -332,26 +505,20 @@ Text('Positioned Element')
       width: 200,
     )
 
-// Tailwind-style positioning
-Text('Fixed Element')
+// RTL Support (padding-start/end)
+Text('RTL Support')
     .asContainer()
-    .px6()
-    .py3()
-    .bgBlue600()
-    .top0()              // top: 0
-    .right4()            // right: 16px
-    .insetX2()           // left: 8px, right: 8px
-    .positionFixed()
+    .paddingStart(16)  // Adapts to text direction
+    .paddingEnd(16)
+    .bgGray100()
+    .build()
 
-// Combined positioning
-Widget()
+// Aspect Ratio
+Container(
+  child: Image.network('...'),
+)
     .asContainer()
-    .position()          // Enable positioning
-    .top(50)            // Custom top value
-    .left0()            // Left edge
-    .w64()              // Width control
-    .h32()              // Height control
-    .bgGreen500()
+    .aspectVideo()    // 16:9 aspect ratio
     .build()
 ```
 
@@ -361,7 +528,7 @@ Widget()
 <summary><strong>🔄 Flex Layouts</strong></summary>
 
 ```dart
-// Row layout
+// Row layout with gap
 [
   Text('Item 1').build(),
   Text('Item 2').build(),
@@ -370,23 +537,114 @@ Widget()
     .flexRow()          // Direction
     .justifyCenter()    // Main axis alignment
     .itemsCenter()      // Cross axis alignment
-    .asContainer()      // Convert to container for styling
+    .gap4()             // Gap between items
+    .asContainer()
     .bgGray100()
     .p4()
     .r8()
     .build()
 
-// Column layout
+// Column layout with wrap
 [
-  Text('Title').build(),
-  Text('Subtitle').build(),
+  Text('Item 1').build(),
+  Text('Item 2').build(),
+  Text('Item 3').build(),
 ].asFlex()
     .flexCol()
+    .flexWrap()         // Wrap to next line
     .itemsStart()
+    .spaceY4()          // Space between children
     .asContainer()
     .bgWhite()
     .p6()
     .shadowMd()
+    .build()
+
+// Divide between children
+[
+  Text('Item 1').build(),
+  Text('Item 2').build(),
+  Text('Item 3').build(),
+].asFlex()
+    .flexRow()
+    .divideX()          // Vertical divider between items
+    .divideColor(Colors.grey)
+    .divideWidth(2)
+    .build()
+```
+
+</details>
+
+<details>
+<summary><strong>📐 Grid Layouts</strong></summary>
+
+```dart
+// Basic grid
+[
+  Text('Item 1').build(),
+  Text('Item 2').build(),
+  Text('Item 3').build(),
+  Text('Item 4').build(),
+].asGrid()
+    .gridCols2()        // 2 columns
+    .gap4()             // Gap between items
+    .build()
+
+// Grid with span
+[
+  Text('Span 2').colSpan(2).build(),
+  Text('Item 2').build(),
+  Text('Item 3').build(),
+].asGrid()
+    .gridCols3()
+    .gap4()
+    .build()
+
+// Grid auto-flow
+[
+  Text('Item 1').build(),
+  Text('Item 2').build(),
+  Text('Item 3').build(),
+].asGrid()
+    .gridCols3()
+    .gridFlowRowDense()  // Dense packing
+    .gap4()
+    .build()
+```
+
+</details>
+
+<details>
+<summary><strong>📜 Scroll & Overflow</strong></summary>
+
+```dart
+// Overflow auto
+Container(
+  width: 200,
+  height: 200,
+  child: Text('Long content...'),
+)
+    .asScrollView()
+    .overflowAuto()      // Auto scroll when needed
+    .build()
+
+// Overflow hidden
+Text('Content that will be clipped')
+    .asScrollView()
+    .overflowHidden()   // Clip overflow
+    .build()
+    .asContainer()
+    .w(200)
+    .h(100)
+    .build()
+
+// Overscroll behavior
+ListView(
+  children: [...],
+)
+    .asScrollView()
+    .overflowYAuto()
+    .overscrollContain()  // Contain overscroll
     .build()
 ```
 
@@ -437,401 +695,24 @@ Works out of the box on all platforms with no additional setup needed.
 
 ### 🌈 All TailwindCSS Colors Available
 
-<details>
-<summary><strong>Background Colors (21 color families)</strong></summary>
+**21 Color Families × 11 Shades = 231 Colors**
 
+- **Neutrals**: Gray, Slate, Zinc, Neutral, Stone
+- **Warm**: Red, Orange, Amber, Yellow, Lime
+- **Cool**: Green, Emerald, Teal, Cyan, Sky, Blue, Indigo, Violet, Purple
+- **Accents**: Fuchsia, Pink, Rose
+
+**Usage:**
 ```dart
-// Basic colors
-.bgWhite()      .bgBlack()      .bgTransparent()
+// Background colors
+.bgBlue600()    .bgRed500()    .bgGreen400()
 
-// Gray family (50-950)
-.bgGray50()     .bgGray100()    .bgGray200()    ...    .bgGray950()
+// Text colors
+.textBlue600()  .textRed500()  .textGreen400()
 
-// All color families with full ranges:
-.bgSlate50()    →  .bgSlate950()     // Slate
-.bgZinc50()     →  .bgZinc950()      // Zinc  
-.bgNeutral50()  →  .bgNeutral950()   // Neutral
-.bgStone50()    →  .bgStone950()     // Stone
-.bgRed50()      →  .bgRed950()       // Red
-.bgOrange50()   →  .bgOrange950()    // Orange
-.bgAmber50()    →  .bgAmber950()     // Amber
-.bgYellow50()   →  .bgYellow950()    // Yellow
-.bgLime50()     →  .bgLime950()      // Lime
-.bgGreen50()    →  .bgGreen950()     // Green
-.bgEmerald50()  →  .bgEmerald950()   // Emerald
-.bgTeal50()     →  .bgTeal950()      // Teal
-.bgCyan50()     →  .bgCyan950()      // Cyan
-.bgSky50()      →  .bgSky950()       // Sky
-.bgBlue50()     →  .bgBlue950()      // Blue
-.bgIndigo50()   →  .bgIndigo950()    // Indigo
-.bgViolet50()   →  .bgViolet950()    // Violet
-.bgPurple50()   →  .bgPurple950()    // Purple
-.bgFuchsia50()  →  .bgFuchsia950()   // Fuchsia
-.bgPink50()     →  .bgPink950()      // Pink
-.bgRose50()     →  .bgRose950()      // Rose
+// Border colors
+.borderBlue600() .borderRed500() .borderGreen400()
 ```
-
-</details>
-
-<details>
-<summary><strong>Border Colors (All families)</strong></summary>
-
-```dart
-// Default border (gray-200)
-.border()
-
-// Colored borders
-.border().borderBlue500()
-.border().borderRed300()
-.border().borderGreen600()
-
-// Custom border color
-.border(color: Colors.purple)
-
-// All border color families available:
-.borderGray50()   →  .borderGray950()
-.borderBlue50()   →  .borderBlue950()
-.borderRed50()    →  .borderRed950()
-// ... all 21 color families
-```
-
-</details>
-
-## 📐 Size Constraints System (NEW in v0.4.4)
-
-### 🎯 Complete Size Control
-
-TailwindCSS Build now includes comprehensive size constraints support, giving you precise control over element dimensions:
-
-<details>
-<summary><strong>📏 Min/Max Width Examples</strong></summary>
-
-```dart
-// Min-Width Examples
-Text('Content')
-    .asContainer()
-    .minW32()        // min-width: 128px
-    .minW48()        // min-width: 192px
-    .minWFull()      // min-width: 100%
-    .minWScreen()    // min-width: 100vw
-    .build()
-
-// Max-Width Examples
-Text('Content')
-    .asContainer()
-    .maxWsm()        // max-width: 384px
-    .maxWmd()        // max-width: 448px
-    .maxWlg()        // max-width: 512px
-    .maxWFull()      // max-width: 100%
-    .build()
-
-// Container Scale Sizes
-Text('Responsive Content')
-    .asContainer()
-    .minWsm()        // min-width: 24rem (384px)
-    .maxWlg()        // max-width: 32rem (512px)
-    .build()
-```
-
-</details>
-
-<details>
-<summary><strong>📐 Min/Max Height Examples</strong></summary>
-
-```dart
-// Min-Height Examples
-Text('Content')
-    .asContainer()
-    .minH16()        // min-height: 64px
-    .minH24()        // min-height: 96px
-    .minHFull()      // min-height: 100%
-    .minHScreen()    // min-height: 100vh
-    .build()
-
-// Max-Height Examples
-Text('Scrollable Content')
-    .asContainer()
-    .maxH32()        // max-height: 128px
-    .maxH48()        // max-height: 192px
-    .maxHFull()      // max-height: 100%
-    .maxHScreen()    // max-height: 100vh
-    .build()
-
-// Container Scale Heights
-Text('Responsive Height')
-    .asContainer()
-    .minHmd()        // min-height: 28rem (448px)
-    .maxHxl()        // max-height: 36rem (576px)
-    .build()
-```
-
-</details>
-
-<details>
-<summary><strong>🎨 Advanced Constraint Combinations</strong></summary>
-
-```dart
-// Complex Size Constraints
-Text('Flexible Content')
-    .asContainer()
-    .minW(200)       // min-width: 200px
-    .maxW(600)       // max-width: 600px
-    .minH(100)       // min-height: 100px
-    .maxH(400)       // max-height: 400px
-    .bgBlue50()
-    .p4()
-    .r8()
-    .build()
-
-// Responsive Card with Constraints
-Text('Card Content')
-    .asContainer()
-    .minWsm()        // min-width: 24rem
-    .maxW2xl()       // max-width: 42rem
-    .minH32()        // min-height: 128px
-    .maxH96()        // max-height: 384px
-    .bgWhite()
-    .p6()
-    .r12()
-    .shadowLg()
-    .build()
-
-// Content-based Sizing
-Text('Auto-sizing Content')
-    .asContainer()
-    .minWMin()       // min-width: min-content
-    .maxWMax()       // max-width: max-content
-    .minHFit()       // min-height: fit-content
-    .maxHFit()       // max-height: fit-content
-    .bgGreen50()
-    .p4()
-    .r6()
-    .build()
-```
-
-</details>
-
-### 🏗️ Technical Implementation
-
-- **BoxConstraints Integration**: All constraints use Flutter's native BoxConstraints system
-- **Performance Optimized**: Single Container with merged constraints
-- **Cross-Platform**: Works on all Flutter platforms (Android, iOS, Web, Windows, macOS, Linux)
-- **Type Safe**: Full compile-time checking and IntelliSense support
-
-## 🎯 Position Layout System
-
-### 📐 Complete Positioning Control
-
-TailwindCSS Build includes a comprehensive positioning system that mirrors TailwindCSS positioning utilities:
-
-<details>
-<summary><strong>🎯 Position Types</strong></summary>
-
-```dart
-// Static Positioning (Default)
-Text('Static Element')
-    .asContainer()
-    .positionStatic()
-    .bgBlue500()
-    .p4()
-    .build()
-
-// Relative Positioning
-Text('Relative Element')
-    .asContainer()
-    .positionRelative()
-    .bgGreen500()
-    .p4()
-    .build()
-
-// Absolute Positioning
-Text('Absolute Element')
-    .asContainer()
-    .positionAbsolute(
-      top: 20,
-      left: 10,
-      width: 200,
-      height: 100,
-    )
-    .bgRed500()
-    .p4()
-    .build()
-
-// Fixed Positioning
-Text('Fixed Element')
-    .asContainer()
-    .positionFixed(
-      top: 0,
-      right: 0,
-      width: 100,
-      height: 50,
-    )
-    .bgPurple500()
-    .p4()
-    .build()
-
-// Sticky Positioning
-Text('Sticky Element')
-    .asContainer()
-    .positionSticky()
-    .bgYellow500()
-    .p4()
-    .build()
-```
-
-</details>
-
-<details>
-<summary><strong>📏 Tailwind-style Position Values</strong></summary>
-
-```dart
-// Top Positioning
-Text('Top Positioned')
-    .asContainer()
-    .top0()           // top: 0
-    .top1()           // top: 4px
-    .top2()           // top: 8px
-    .top4()           // top: 16px
-    .top(50)          // top: 50px (custom value)
-    .positionAbsolute()
-    .bgBlue500()
-    .build()
-
-// Right Positioning
-Text('Right Positioned')
-    .asContainer()
-    .right0()         // right: 0
-    .right1()         // right: 4px
-    .right2()         // right: 8px
-    .right4()         // right: 16px
-    .right(30)        // right: 30px (custom value)
-    .positionAbsolute()
-    .bgGreen500()
-    .build()
-
-// Bottom Positioning
-Text('Bottom Positioned')
-    .asContainer()
-    .bottom0()        // bottom: 0
-    .bottom1()        // bottom: 4px
-    .bottom2()        // bottom: 8px
-    .bottom4()        // bottom: 16px
-    .bottom(20)       // bottom: 20px (custom value)
-    .positionAbsolute()
-    .bgRed500()
-    .build()
-
-// Left Positioning
-Text('Left Positioned')
-    .asContainer()
-    .left0()          // left: 0
-    .left1()          // left: 4px
-    .left2()          // left: 8px
-    .left4()          // left: 16px
-    .left(10)         // left: 10px (custom value)
-    .positionAbsolute()
-    .bgPurple500()
-    .build()
-```
-
-</details>
-
-<details>
-<summary><strong>⚡ Inset Shortcuts</strong></summary>
-
-```dart
-// All Directions
-Text('Inset All')
-    .asContainer()
-    .inset0()         // top: 0, right: 0, bottom: 0, left: 0
-    .inset1()         // top: 4px, right: 4px, bottom: 4px, left: 4px
-    .inset2()         // top: 8px, right: 8px, bottom: 8px, left: 8px
-    .inset4()         // top: 16px, right: 16px, bottom: 16px, left: 16px
-    .positionAbsolute()
-    .bgBlue500()
-    .build()
-
-// Horizontal (X-axis)
-Text('Inset X')
-    .asContainer()
-    .insetX0()        // left: 0, right: 0
-    .insetX1()        // left: 4px, right: 4px
-    .insetX2()        // left: 8px, right: 8px
-    .positionAbsolute()
-    .bgGreen500()
-    .build()
-
-// Vertical (Y-axis)
-Text('Inset Y')
-    .asContainer()
-    .insetY0()        // top: 0, bottom: 0
-    .insetY1()        // top: 4px, bottom: 4px
-    .insetY2()        // top: 8px, bottom: 8px
-    .positionAbsolute()
-    .bgRed500()
-    .build()
-```
-
-</details>
-
-<details>
-<summary><strong>🎨 Advanced Position Combinations</strong></summary>
-
-```dart
-// Complex Positioning
-Text('Complex Positioned')
-    .asContainer()
-    .position()       // Enable positioning
-    .top(50)          // Custom top value
-    .left0()          // Left edge
-    .w64()            // Width control
-    .h32()            // Height control
-    .bgOrange500()
-    .p4()
-    .r8()
-    .build()
-
-// Responsive Positioning
-Text('Responsive Positioned')
-    .asContainer()
-    .positionAbsolute(
-      top: 20,
-      right: 10,
-      width: 200,
-      height: 100,
-    )
-    .bgIndigo500()
-    .p4()
-    .r8()
-    .shadowLg()
-    .build()
-
-// Custom Positioned Helper
-Text('Custom Positioned')
-    .asContainer()
-    .positioned(
-      top: 30,
-      right: 20,
-      bottom: 10,
-      left: 15,
-      width: 300,
-      height: 150,
-    )
-    .bgPink500()
-    .p6()
-    .r12()
-    .build()
-```
-
-</details>
-
-### 🏗️ Position System Features
-
-- **TailwindCSS Compatible**: Matches official TailwindCSS positioning syntax
-- **Flutter Optimized**: Uses native Positioned widget for absolute/fixed positioning
-- **Type Safe**: Full compile-time checking for position values
-- **Flexible**: Supports both preset values and custom positioning
-- **Performance**: Efficient widget tree with minimal nesting
 
 ## 📚 Advanced Examples
 
@@ -968,88 +849,9 @@ Text('Custom Positioned')
 
 </details>
 
-<details>
-<summary><strong>📱 Mobile-First Form</strong></summary>
-
-```dart
-[
-  Text('Sign Up')
-      .asText()
-      .text2xl()
-      .fontBold()
-      .textCenter()
-      .textGray900()
-      .build(),
-  
-  SizedBox(height: 24),
-  
-  // Email input
-  TextFormField(
-    decoration: InputDecoration(
-      hintText: 'Enter your email',
-      border: OutlineInputBorder(),
-    ),
-  ).asContainer()
-      .px4()
-      .py2()
-      .bgWhite()
-      .border()
-      .borderGray300()
-      .r8()
-      .build(),
-  
-  SizedBox(height: 16),
-  
-  // Password input
-  TextFormField(
-    obscureText: true,
-    decoration: InputDecoration(
-      hintText: 'Enter your password',
-      border: OutlineInputBorder(),
-    ),
-  ).asContainer()
-      .px4()
-      .py2()
-      .bgWhite()
-      .border()
-      .borderGray300()
-      .r8()
-      .build(),
-  
-  SizedBox(height: 24),
-  
-  // Submit button
-  Text('Create Account')
-      .asText()
-      .textWhite()
-      .fontMedium()
-      .textCenter()
-      .asContainer()
-      .px6()
-      .py3()
-      .bgBlue600()
-      .r8()
-      .shadow()
-      .wFull()
-      .onTap(() {}),
-      
-].asFlex()
-    .flexCol()
-    .asContainer()
-    .bgGray50()
-    .p6()
-    .wFull()
-    .build()
-```
-
-</details>
-
 ## 🎯 Performance & Best Practices
 
 ### ⚡ Performance Benefits
-
-<details>
-<summary><strong>Widget Tree Optimization</strong></summary>
 
 **Before (Multiple nested containers):**
 ```
@@ -1068,21 +870,6 @@ Container (all properties merged)
 ```
 
 **Result**: 🚀 **5x fewer widgets, 3x faster rendering**
-
-</details>
-
-### 🛡️ Type Safety & IntelliSense
-
-```dart
-// Full autocompletion support
-Text('Hello')
-    .asText()
-    .text     // ← Shows: textXs, textSm, textBase, textLg...
-    .font     // ← Shows: fontThin, fontLight, fontNormal...
-    .asContainer()
-    .bg       // ← Shows: bgWhite, bgBlack, bgGray50...
-    .p        // ← Shows: p1, p2, p3, px2, py4...
-```
 
 ### 📋 Recommended Chain Order
 
@@ -1127,34 +914,17 @@ Text('Text')
 // Text Alignment
 .textLeft()   .textCenter() .textRight()  .textJustify()
 
-// Text Decoration Line
+// Text Decoration
 .underline()  .overline()   .lineThrough() .noUnderline()
-.underlineLineThrough()  .underlineOverline()  .allDecorations()
-
-// Text Decoration Style
 .decorationSolid() .decorationDouble() .decorationDotted()
 .decorationDashed() .decorationWavy()
-
-// Text Decoration Thickness
-.decoration0() .decoration1() .decoration2() .decoration4() .decoration8()
-.decorationAuto() .decorationFromFont() .decorationCustom(3.5)
-
-// Text Decoration Colors (Full TailwindCSS palette)
-.decorationRed500() .decorationBlue600() .decorationGreen700()
-.decorationPurple500() .decorationYellow400() // All color families
 
 // Text Transform
 .uppercase()  .lowercase()  .capitalize()  .normalCase()
 
-// Text Overflow & Wrap
+// Text Overflow
 .truncate()   .textEllipsis() .textClip()
-.textWrap()   .textNowrap()   .textBalance()  .textPretty()
-
-// Line Height & Letter Spacing
-.leadingNone() .leadingTight() .leadingSnug() .leadingNormal()
-.leadingRelaxed() .leadingLoose()
-.trackingTighter() .trackingTight() .trackingNormal() .trackingWide()
-.trackingWider() .trackingWidest()
+.textWrap()   .textNowrap()
 ```
 
 </details>
@@ -1165,84 +935,50 @@ Text('Text')
 ```dart
 // Padding & Margin
 .p0() .p1() .p2() .p3() .p4() ... .p96()
-.px0() .py0() .pl0() .pr0() .pt0() .pb0() // Directional
-.m0() .m1() .m2() ... .m96() // Margin variants
+.px0() .py0() .pl0() .pr0() .pt0() .pb0()
+.paddingStart() .paddingEnd()  // RTL support
+.m0() .m1() .m2() ... .m96()
 
-// Background Colors (all TailwindCSS colors)
+// Background Colors
 .bgWhite() .bgBlack() .bgTransparent()
 .bgGray50() ... .bgGray950() // All color families
 
 // Border
 .border() .borderT() .borderR() .borderB() .borderL()
-.border0() .border2() .border4() .border8() // Widths
-.borderSolid() .borderDashed() .borderDotted()
+.borderStart() .borderEnd()  // RTL support
+.border0() .border2() .border4() .border8()
 
 // Border Colors
 .borderGray50() ... .borderGray950() // All color families
 
 // Border Radius
-.r0() .r1() .r2() .r3() .r4() .r6() .r8() .r12() .r16() .r20() .r24()
-.rFull() .rNone()
+.r0() .r1() .r2() .r3() .r4() .r6() .r8() .r12() .r16()
+.roundedStart() .roundedEnd()  // RTL support
 
 // Shadows
-.shadow() .shadowSm() .shadowMd() .shadowLg() .shadowXl() .shadow2xl()
-.shadowInner() .shadowNone()
+.shadow() .shadowSm() .shadowMd() .shadowLg() .shadowXl()
 
 // Size
 .w0() .w1() ... .w96() .wAuto() .wFull() .wScreen()
 .h0() .h1() ... .h96() .hAuto() .hFull() .hScreen()
 
-// Size Constraints (NEW in v0.4.4)
-// Min-Width
-.minW0() .minW1() ... .minW96() .minWAuto() .minWFull() .minWScreen()
-.minWMin() .minWMax() .minWFit() .minW(double) .minWCustom(double)
+// Size Constraints
+.minW0() ... .minW96() .minWAuto() .minWFull() .minWScreen()
+.maxW0() ... .maxW96() .maxWAuto() .maxWFull() .maxWScreen()
+.minH0() ... .minH96() .minHAuto() .minHFull() .minHScreen()
+.maxH0() ... .maxH96() .maxHAuto() .maxHFull() .maxHScreen()
 
-// Max-Width  
-.maxW0() .maxW1() ... .maxW96() .maxWAuto() .maxWFull() .maxWScreen()
-.maxWMin() .maxWMax() .maxWFit() .maxW(double) .maxWCustom(double)
+// Position
+.positionStatic() .positionRelative() .positionAbsolute()
+.positionFixed() .positionSticky()
+.top0() .right0() .bottom0() .left0()
+.start() .end()  // RTL support
 
-// Min-Height
-.minH0() .minH1() ... .minH96() .minHAuto() .minHFull() .minHScreen()
-.minHMin() .minHMax() .minHFit() .minH(double) .minHCustom(double)
+// Aspect Ratio
+.aspectRatio() .aspectSquare() .aspectVideo() .aspectAuto()
 
-// Max-Height
-.maxH0() .maxH1() ... .maxH96() .maxHAuto() .maxHFull() .maxHScreen()
-.maxHMin() .maxHMax() .maxHFit() .maxH(double) .maxHCustom(double)
-
-// Container Scale Sizes
-.minW3xs() .minW2xs() .minWxs() .minWsm() .minWmd() .minWlg() .minWxl()
-.minW2xl() .minW3xl() .minW4xl() .minW5xl() .minW6xl() .minW7xl()
-.maxW3xs() .maxW2xs() .maxWxs() .maxWsm() .maxWmd() .maxWlg() .maxWxl()
-.maxW2xl() .maxW3xl() .maxW4xl() .maxW5xl() .maxW6xl() .maxW7xl()
-.minH3xs() .minH2xs() .minHxs() .minHsm() .minHmd() .minHlg() .minHxl()
-.minH2xl() .minH3xl() .minH4xl() .minH5xl() .minH6xl() .minH7xl()
-.maxH3xs() .maxH2xs() .maxHxs() .maxHsm() .maxHmd() .maxHlg() .maxHxl()
-.maxH2xl() .maxH3xl() .maxH4xl() .maxH5xl() .maxH6xl() .maxH7xl()
-
-// Position System
-.position()              // Enable positioning
-.positionStatic()        // Default positioning
-.positionRelative()      // Relative positioning
-.positionAbsolute()      // Absolute positioning
-.positionFixed()         // Fixed positioning
-.positionSticky()        // Sticky positioning
-
-// Position Values (Tailwind-style)
-.top0() .top1() .top2() .top4() .top(50)    // Top positioning
-.right0() .right1() .right2() .right4() .right(30)  // Right positioning
-.bottom0() .bottom1() .bottom2() .bottom4() .bottom(20) // Bottom positioning
-.left0() .left1() .left2() .left4() .left(10)  // Left positioning
-
-// Inset Shortcuts
-.inset0() .inset1() .inset2() .inset4()     // All directions
-.insetX0() .insetX1() .insetX2()            // Horizontal (left + right)
-.insetY0() .insetY1() .insetY2()            // Vertical (top + bottom)
-
-// Custom Positioning
-.positioned(top: 20, left: 10, width: 200, height: 100)
-
-// Interactions
-.onTap(() {}) .onDoubleTap(() {}) .onLongPress(() {})
+// Z-Index
+.z0() .z10() .z20() .z30() .z40() .z50() .zAuto()
 ```
 
 </details>
@@ -1263,33 +999,76 @@ Text('Text')
 .itemsStretch() .itemsBaseline()
 
 // Flex Properties
-.flex1() .flex2() .flex3() // Fixed flex values
-.flexAuto() .flexNone() .flex(int) // Custom flex
+.flex1() .flex2() .flex3()
+.flexAuto() .flexNone() .flex(int)
 
-// Gap (spacing between children)
-.gap1() .gap2() .gap3() .gap4() .gap6() .gap8() .gap12() .gap16()
-.gap(double) // Custom gap value
+// Wrap
+.flexWrap() .flexNoWrap()
+
+// Gap
+.gap1() .gap2() .gap3() .gap4() .gap6() .gap8()
+
+// Space Between Children
+.spaceX1() .spaceX2() .spaceX4() .spaceXReverse()
+.spaceY1() .spaceY2() .spaceY4() .spaceYReverse()
+
+// Divide Between Children
+.divideX() .divideY()
+.divideColor() .divideWidth()
+.divideSolid() .divideNone()
 ```
 
 </details>
 
-### 🔗 Method Chaining
+<details>
+<summary><strong>GridBuilder Methods</strong></summary>
 
-All builders support fluent method chaining:
 ```dart
-Text('Hello')
-    .asText()        // Convert to TextBuilder
-    .textBlue600()   // Text styling
-    .fontBold()      // More text styling
-    .asContainer()   // Convert to ContainerBuilder  
-    .px6()           // Container styling
-    .py3()           // More container styling
-    .bgWhite()       // Background
-    .r8()            // Border radius
-    .shadow()        // Drop shadow
-    .onTap(() {})    // Interaction
-    // .build() called automatically when used
+// Grid Columns
+.gridCols1() .gridCols2() .gridCols3() ... .gridCols12()
+.gridColsNone() .gridColsSubgrid()
+
+// Grid Rows
+.gridRows1() .gridRows2() .gridRows3() ... .gridRows12()
+.gridRowsNone() .gridRowsSubgrid()
+
+// Gap
+.gap4() .gapX4() .gapY4()
+
+// Auto Flow
+.gridFlowRow() .gridFlowCol()
+.gridFlowRowDense() .gridFlowColDense()
+
+// Justify & Align
+.justifyItemsStart() .justifyItemsEnd() .justifyItemsCenter()
+.alignItemsStart() .alignItemsEnd() .alignItemsCenter()
+.placeContentStart() .placeContentCenter() .placeContentBetween()
 ```
+
+</details>
+
+<details>
+<summary><strong>ScrollBuilder Methods</strong></summary>
+
+```dart
+// Overflow
+.overflowAuto() .overflowHidden() .overflowClip()
+.overflowVisible() .overflowScroll()
+
+// Overflow X/Y
+.overflowXAuto() .overflowYAuto()
+.overflowXHidden() .overflowYHidden()
+.overflowXClip() .overflowYClip()
+.overflowXVisible() .overflowYVisible()
+.overflowXScroll() .overflowYScroll()
+
+// Overscroll Behavior
+.overscrollAuto() .overscrollContain() .overscrollNone()
+.overscrollXAuto() .overscrollXContain() .overscrollXNone()
+.overscrollYAuto() .overscrollYContain() .overscrollYNone()
+```
+
+</details>
 
 ## ❓ FAQ
 
@@ -1305,15 +1084,23 @@ Text('Hello')
 </details>
 
 <details>
-<summary><strong>How does this compare to other Flutter styling solutions?</strong></summary>
+<summary><strong>How do I handle responsive design?</strong></summary>
 
-| Feature | TailwindCSS Build | Traditional Flutter | Other Packages |
-|---------|-------------------|-------------------|----------------|
-| Code Length | 70% shorter | Verbose | Varies |
-| Performance | Single widgets | Nested containers | Varies |
-| Learning Curve | TailwindCSS knowledge | Flutter widgets | Package-specific |
-| Type Safety | Full | Full | Varies |
-| Customization | High | High | Limited |
+Use Flutter's built-in responsive tools with builders:
+
+```dart
+LayoutBuilder(
+  builder: (context, constraints) {
+    if (constraints.maxWidth > 600) {
+      // Desktop layout
+      return [widgets].asFlex().flexRow().build();
+    } else {
+      // Mobile layout  
+      return [widgets].asFlex().flexCol().build();
+    }
+  },
+)
+```
 
 </details>
 
@@ -1341,127 +1128,6 @@ Column(
         .build(),
   ],
 )
-```
-
-</details>
-
-<details>
-<summary><strong>Does this work with existing themes and styling?</strong></summary>
-
-Yes! The builders respect Flutter's theme system and can be combined with:
-- Material Design themes
-- Custom themes
-- Dark/Light mode
-- Custom color schemes
-
-</details>
-
-<details>
-<summary><strong>How do I handle responsive design?</strong></summary>
-
-Use Flutter's built-in responsive tools with builders:
-
-```dart
-LayoutBuilder(
-  builder: (context, constraints) {
-    if (constraints.maxWidth > 600) {
-      // Desktop layout
-      return [widgets].asFlex().flexRow().build();
-    } else {
-      // Mobile layout  
-      return [widgets].asFlex().flexCol().build();
-    }
-  },
-)
-```
-
-</details>
-
-## 🔄 Migration Guide
-
-
-### From 0.3.x to 0.4.0
-
-<details>
-<summary><strong>API Changes</strong></summary>
-
-```dart
-// ❌ Old way (0.3.x)
-Text('Hello').textBlue600().fontBold().asContainer().px4().bgWhite()
-
-// ✅ New way (0.4.0)
-Text('Hello')
-    .asText()
-    .textBlue600()
-    .fontBold()
-    .asContainer()
-    .px4()
-    .bgWhite()
-    .build()
-
-// ❌ Old method names
-.asTextBuilder()  →  .asText()
-.asContainerBuilder()  →  .asContainer()
-
-// ✅ Simplified interactions
-// Old: GestureDetector(onTap: ..., child: widget)
-// New: widget.onTap(...)
-```
-
-</details>
-
-## 🧪 Testing & Debugging
-
-### 🔍 Widget Inspector Integration
-
-```dart
-// Each builder creates a single, inspectable widget
-Text('Debug Me')
-    .asText()
-    .textRed600()
-    .asContainer()
-    .px4()
-    .py2()
-    .bgRed100()
-    .border()
-    .borderRed500()
-    .r4()
-    .build() // ← Single Container widget in inspector tree
-```
-
-## 🎨 Custom Extensions
-
-<details>
-<summary><strong>Brand Colors</strong></summary>
-
-```dart
-// Define your brand colors
-extension BrandColors on ContainerBuilder {
-  ContainerBuilder bgPrimary() => backgroundColor(Color(0xFF1E40AF));
-  ContainerBuilder bgSecondary() => backgroundColor(Color(0xFF7C3AED));
-  ContainerBuilder bgAccent() => backgroundColor(Color(0xFF059669));
-}
-
-// Usage
-Text('Brand Button')
-    .asContainer()
-    .px6()
-    .py3()
-    .bgPrimary()  // Custom brand color
-    .r8()
-    .build()
-```
-
-</details>
-
-<details>
-<summary><strong>Custom Spacing</strong></summary>
-
-```dart
-extension CustomSpacing on ContainerBuilder {
-  ContainerBuilder pSection() => padding(EdgeInsets.all(32));
-  ContainerBuilder pCard() => padding(EdgeInsets.all(16));
-}
 ```
 
 </details>

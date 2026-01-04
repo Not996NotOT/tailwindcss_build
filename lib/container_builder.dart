@@ -13,6 +13,8 @@ class ContainerBuilder {
   EdgeInsetsGeometry? _margin;
   BorderRadiusGeometry? _borderRadius;
   Border? _border;
+  // RTL 支持的边框（通过 BorderDirectional 实现）
+  BorderDirectional? _borderDirectional;
   List<BoxShadow>? _boxShadow;
   AlignmentGeometry? _alignment;
   BoxConstraints? _constraints;
@@ -38,10 +40,24 @@ class ContainerBuilder {
   double? _positionRight;
   double? _positionBottom;
   double? _positionLeft;
+  double? _positionStart; // RTL 支持：start 位置
+  double? _positionEnd; // RTL 支持：end 位置
   double? _positionWidth;
   double? _positionHeight;
   
+  // === Aspect Ratio 相关属性 ===
+  double? _aspectRatio;
+  
+  // === TextDirection 用于 RTL 支持 ===
+  TextDirection? _textDirection;
+  
   ContainerBuilder(this.child);
+  
+  /// 设置 TextDirection（用于 RTL 支持）
+  ContainerBuilder textDirection(TextDirection direction) {
+    _textDirection = direction;
+    return this;
+  }
   
   // === Z-Index 方法 ===
   /// 设置 z-index 值
@@ -71,8 +87,17 @@ class ContainerBuilder {
           right: existing.right + newPadding.right,
           bottom: existing.bottom + newPadding.bottom,
         );
+      } else if (_padding is EdgeInsetsDirectional && padding is EdgeInsetsDirectional) {
+        final existing = _padding as EdgeInsetsDirectional;
+        final newPadding = padding;
+        _padding = EdgeInsetsDirectional.only(
+          start: existing.start + newPadding.start,
+          top: existing.top + newPadding.top,
+          end: existing.end + newPadding.end,
+          bottom: existing.bottom + newPadding.bottom,
+        );
       } else {
-        _padding = padding; // 如果不是EdgeInsets，直接替换
+        _padding = padding; // 如果不是相同类型，直接替换
       }
     }
     return this;
@@ -90,9 +115,110 @@ class ContainerBuilder {
     return padding(EdgeInsets.all(value));
   }
   
+  // === RTL 支持：逻辑属性 ===
+  /// padding-start / ps-{size} -> 设置开始方向的内边距（LTR 时为 left，RTL 时为 right）
+  ContainerBuilder paddingStart(double value) {
+    if (_padding == null) {
+      _padding = EdgeInsetsDirectional.only(start: value);
+    } else if (_padding is EdgeInsetsDirectional) {
+      final existing = _padding as EdgeInsetsDirectional;
+      _padding = EdgeInsetsDirectional.only(
+        start: existing.start + value,
+        top: existing.top,
+        end: existing.end,
+        bottom: existing.bottom,
+      );
+    } else if (_padding is EdgeInsets) {
+      // 如果之前使用的是 EdgeInsets，转换为 EdgeInsetsDirectional
+      final existing = _padding as EdgeInsets;
+      _padding = EdgeInsetsDirectional.only(
+        start: value,
+        top: existing.top,
+        end: existing.right,
+        bottom: existing.bottom,
+      );
+    }
+    return this;
+  }
+  
+  /// padding-end / pe-{size} -> 设置结束方向的内边距（LTR 时为 right，RTL 时为 left）
+  ContainerBuilder paddingEnd(double value) {
+    if (_padding == null) {
+      _padding = EdgeInsetsDirectional.only(end: value);
+    } else if (_padding is EdgeInsetsDirectional) {
+      final existing = _padding as EdgeInsetsDirectional;
+      _padding = EdgeInsetsDirectional.only(
+        start: existing.start,
+        top: existing.top,
+        end: existing.end + value,
+        bottom: existing.bottom,
+      );
+    } else if (_padding is EdgeInsets) {
+      // 如果之前使用的是 EdgeInsets，转换为 EdgeInsetsDirectional
+      final existing = _padding as EdgeInsets;
+      _padding = EdgeInsetsDirectional.only(
+        start: existing.left,
+        top: existing.top,
+        end: value,
+        bottom: existing.bottom,
+      );
+    }
+    return this;
+  }
+  
   // === 外边距 ===
   ContainerBuilder margin(EdgeInsetsGeometry margin) {
     _margin = margin;
+    return this;
+  }
+  
+  /// margin-start / ms-{size} -> 设置开始方向的外边距（LTR 时为 left，RTL 时为 right）
+  ContainerBuilder marginStart(double value) {
+    if (_margin == null) {
+      _margin = EdgeInsetsDirectional.only(start: value);
+    } else if (_margin is EdgeInsetsDirectional) {
+      final existing = _margin as EdgeInsetsDirectional;
+      _margin = EdgeInsetsDirectional.only(
+        start: existing.start + value,
+        top: existing.top,
+        end: existing.end,
+        bottom: existing.bottom,
+      );
+    } else if (_margin is EdgeInsets) {
+      // 如果之前使用的是 EdgeInsets，转换为 EdgeInsetsDirectional
+      final existing = _margin as EdgeInsets;
+      _margin = EdgeInsetsDirectional.only(
+        start: value,
+        top: existing.top,
+        end: existing.right,
+        bottom: existing.bottom,
+      );
+    }
+    return this;
+  }
+  
+  /// margin-end / me-{size} -> 设置结束方向的外边距（LTR 时为 right，RTL 时为 left）
+  ContainerBuilder marginEnd(double value) {
+    if (_margin == null) {
+      _margin = EdgeInsetsDirectional.only(end: value);
+    } else if (_margin is EdgeInsetsDirectional) {
+      final existing = _margin as EdgeInsetsDirectional;
+      _margin = EdgeInsetsDirectional.only(
+        start: existing.start,
+        top: existing.top,
+        end: existing.end + value,
+        bottom: existing.bottom,
+      );
+    } else if (_margin is EdgeInsets) {
+      // 如果之前使用的是 EdgeInsets，转换为 EdgeInsetsDirectional
+      final existing = _margin as EdgeInsets;
+      _margin = EdgeInsetsDirectional.only(
+        start: existing.left,
+        top: existing.top,
+        end: value,
+        bottom: existing.bottom,
+      );
+    }
     return this;
   }
   
@@ -113,6 +239,57 @@ class ContainerBuilder {
     return this;
   }
   
+  // === RTL 支持的边框方法 ===
+  /// border-s -> 设置开始方向的边框（LTR 时为 left，RTL 时为 right）
+  ContainerBuilder borderS({double width = 1.0, Color color = const Color(0xFFE5E7EB)}) {
+    if (_borderDirectional == null) {
+      _borderDirectional = BorderDirectional(
+        start: BorderSide(color: color, width: width),
+      );
+    } else {
+      final existing = _borderDirectional!;
+      _borderDirectional = BorderDirectional(
+        start: BorderSide(color: color, width: width),
+        end: existing.end,
+        top: existing.top,
+        bottom: existing.bottom,
+      );
+    }
+    return this;
+  }
+  
+  /// border-e -> 设置结束方向的边框（LTR 时为 right，RTL 时为 left）
+  ContainerBuilder borderE({double width = 1.0, Color color = const Color(0xFFE5E7EB)}) {
+    if (_borderDirectional == null) {
+      _borderDirectional = BorderDirectional(
+        end: BorderSide(color: color, width: width),
+      );
+    } else {
+      final existing = _borderDirectional!;
+      _borderDirectional = BorderDirectional(
+        start: existing.start,
+        end: BorderSide(color: color, width: width),
+        top: existing.top,
+        bottom: existing.bottom,
+      );
+    }
+    return this;
+  }
+  
+  // border-s 快捷方法
+  ContainerBuilder borderS0() => borderS(width: 0);
+  ContainerBuilder borderS1() => borderS(width: 1);
+  ContainerBuilder borderS2() => borderS(width: 2);
+  ContainerBuilder borderS4() => borderS(width: 4);
+  ContainerBuilder borderS8() => borderS(width: 8);
+  
+  // border-e 快捷方法
+  ContainerBuilder borderE0() => borderE(width: 0);
+  ContainerBuilder borderE1() => borderE(width: 1);
+  ContainerBuilder borderE2() => borderE(width: 2);
+  ContainerBuilder borderE4() => borderE(width: 4);
+  ContainerBuilder borderE8() => borderE(width: 8);
+  
   // === 圆角 ===
   ContainerBuilder borderRadius(BorderRadiusGeometry borderRadius) {
     _borderRadius = borderRadius;
@@ -121,6 +298,22 @@ class ContainerBuilder {
   
   ContainerBuilder borderRadiusCircular(double radius) {
     _borderRadius = BorderRadius.circular(radius);
+    return this;
+  }
+  
+  /// borderRadiusDirectional - RTL 支持的圆角
+  ContainerBuilder borderRadiusDirectional({
+    double? topStart,
+    double? topEnd,
+    double? bottomStart,
+    double? bottomEnd,
+  }) {
+    _borderRadius = BorderRadiusDirectional.only(
+      topStart: topStart != null ? Radius.circular(topStart) : Radius.zero,
+      topEnd: topEnd != null ? Radius.circular(topEnd) : Radius.zero,
+      bottomStart: bottomStart != null ? Radius.circular(bottomStart) : Radius.zero,
+      bottomEnd: bottomEnd != null ? Radius.circular(bottomEnd) : Radius.zero,
+    );
     return this;
   }
   
@@ -154,6 +347,31 @@ class ContainerBuilder {
   
   ContainerBuilder transformAlignment(AlignmentGeometry alignment) {
     _transformAlignment = alignment;
+    return this;
+  }
+  
+  // === Aspect Ratio 方法 ===
+  /// aspect-ratio: {ratio} -> 设置宽高比
+  ContainerBuilder aspectRatio(double ratio) {
+    _aspectRatio = ratio;
+    return this;
+  }
+  
+  /// aspect-square -> aspect-ratio: 1 / 1
+  ContainerBuilder aspectSquare() {
+    _aspectRatio = 1.0;
+    return this;
+  }
+  
+  /// aspect-video -> aspect-ratio: 16 / 9
+  ContainerBuilder aspectVideo() {
+    _aspectRatio = 16 / 9;
+    return this;
+  }
+  
+  /// aspect-auto -> 移除 aspect ratio 限制
+  ContainerBuilder aspectAuto() {
+    _aspectRatio = null;
     return this;
   }
   
@@ -1996,14 +2214,51 @@ class ContainerBuilder {
     // 构建 BoxDecoration
     BoxDecoration? decoration;
     
+    // 处理边框：合并 Border 和 BorderDirectional
+    Border? finalBorder = _border;
+    if (_borderDirectional != null) {
+      // 如果有 BorderDirectional，需要与现有 Border 合并
+      // BoxDecoration 不支持 BorderDirectional，我们需要根据 TextDirection 转换
+      // 使用 Builder 来获取当前的 TextDirection
+      final borderDir = _borderDirectional!;
+      final textDir = _textDirection;
+      
+      // 根据 TextDirection 决定 start/end 对应 left/right
+      BorderSide leftSide = borderDir.start;
+      BorderSide rightSide = borderDir.end;
+      
+      // 如果指定了 TextDirection 且为 RTL，交换 left 和 right
+      if (textDir == TextDirection.rtl) {
+        leftSide = borderDir.end;
+        rightSide = borderDir.start;
+      }
+      
+      // 合并边框
+      if (_border != null) {
+        finalBorder = Border(
+          top: _border!.top,
+          bottom: _border!.bottom,
+          left: borderDir.start.width > 0 ? leftSide : _border!.left,
+          right: borderDir.end.width > 0 ? rightSide : _border!.right,
+        );
+      } else {
+        finalBorder = Border(
+          top: borderDir.top,
+          bottom: borderDir.bottom,
+          left: leftSide,
+          right: rightSide,
+        );
+      }
+    }
+    
     if (_backgroundColor != null || 
-        _border != null || 
+        finalBorder != null || 
         _borderRadius != null || 
         _boxShadow != null ||
         _gradient != null) {
       decoration = BoxDecoration(
         color: _gradient == null ? _backgroundColor : null, // 如果有渐变就不设置color
-        border: _border,
+        border: finalBorder,
         borderRadius: _borderRadius,
         boxShadow: _boxShadow,
         gradient: _gradient,
@@ -2023,19 +2278,93 @@ class ContainerBuilder {
       );
     }
     
-    Widget container = Container(
-      width: _width,
-      height: _height,
-      alignment: _alignment,
-      padding: _padding,
-      margin: _margin,
-      constraints: constraints,
-      transform: _transform,
-      transformAlignment: _transformAlignment,
-      decoration: decoration,
-      foregroundDecoration: _foregroundDecoration,
-      child: child,
-    );
+    // 如果有 BorderDirectional 且需要 RTL 支持，使用 Builder 获取 TextDirection
+    Widget container;
+    if (_borderDirectional != null && _textDirection == null) {
+      // 如果没有指定 TextDirection，使用 Builder 从上下文获取
+      container = Builder(
+        builder: (context) {
+          final textDir = Directionality.of(context);
+          Border? dynamicBorder = _border;
+          
+          if (_borderDirectional != null) {
+            final borderDir = _borderDirectional!;
+            BorderSide leftSide = borderDir.start;
+            BorderSide rightSide = borderDir.end;
+            
+            if (textDir == TextDirection.rtl) {
+              leftSide = borderDir.end;
+              rightSide = borderDir.start;
+            }
+            
+            if (_border != null) {
+              dynamicBorder = Border(
+                top: _border!.top,
+                bottom: _border!.bottom,
+                left: borderDir.start.width > 0 ? leftSide : _border!.left,
+                right: borderDir.end.width > 0 ? rightSide : _border!.right,
+              );
+            } else {
+              dynamicBorder = Border(
+                top: borderDir.top,
+                bottom: borderDir.bottom,
+                left: leftSide,
+                right: rightSide,
+              );
+            }
+          }
+          
+          BoxDecoration? dynamicDecoration = decoration;
+          if (dynamicBorder != finalBorder && dynamicDecoration != null) {
+            dynamicDecoration = BoxDecoration(
+              color: dynamicDecoration.color,
+              border: dynamicBorder,
+              borderRadius: dynamicDecoration.borderRadius,
+              boxShadow: dynamicDecoration.boxShadow,
+              gradient: dynamicDecoration.gradient,
+              backgroundBlendMode: dynamicDecoration.backgroundBlendMode,
+              shape: dynamicDecoration.shape,
+            );
+          }
+          
+          return Container(
+            width: _width,
+            height: _height,
+            alignment: _alignment,
+            padding: _padding,
+            margin: _margin,
+            constraints: constraints,
+            transform: _transform,
+            transformAlignment: _transformAlignment,
+            decoration: dynamicDecoration ?? (dynamicBorder != null ? BoxDecoration(border: dynamicBorder) : null),
+            foregroundDecoration: _foregroundDecoration,
+            child: child,
+          );
+        },
+      );
+    } else {
+      container = Container(
+        width: _width,
+        height: _height,
+        alignment: _alignment,
+        padding: _padding,
+        margin: _margin,
+        constraints: constraints,
+        transform: _transform,
+        transformAlignment: _transformAlignment,
+        decoration: decoration,
+        foregroundDecoration: _foregroundDecoration,
+        child: child,
+      );
+    }
+    
+    // 如果设置了 aspect ratio，使用 AspectRatio widget 包裹
+    if (_aspectRatio != null) {
+      container = AspectRatio(
+        aspectRatio: _aspectRatio!,
+        child: container,
+      );
+    }
     
     // 如果设置了 z-index，使用 Transform 来模拟层级
     if (_zIndex != null) {
@@ -2045,17 +2374,31 @@ class ContainerBuilder {
       );
     }
     
-    // 如果需要定位，包装成Positioned
+    // 如果需要定位，包装成Positioned或PositionedDirectional
     if (_isPositioned) {
-      return Positioned(
-        top: _positionTop,
-        right: _positionRight,
-        bottom: _positionBottom,
-        left: _positionLeft,
-        width: _positionWidth,
-        height: _positionHeight,
-        child: container,
-      );
+      // 如果使用了 start/end，使用 PositionedDirectional 以支持 RTL
+      if (_positionStart != null || _positionEnd != null) {
+        return PositionedDirectional(
+          top: _positionTop,
+          start: _positionStart,
+          end: _positionEnd,
+          bottom: _positionBottom,
+          width: _positionWidth,
+          height: _positionHeight,
+          child: container,
+        );
+      } else {
+        // 否则使用普通的 Positioned
+        return Positioned(
+          top: _positionTop,
+          right: _positionRight,
+          bottom: _positionBottom,
+          left: _positionLeft,
+          width: _positionWidth,
+          height: _positionHeight,
+          child: container,
+        );
+      }
     }
     
     return container;
@@ -2582,6 +2925,79 @@ extension ContainerBuilderTailwindExtensions on ContainerBuilder {
   ContainerBuilder r12() => borderRadiusCircular(12);
   ContainerBuilder r16() => borderRadiusCircular(16);
   
+  // === RTL 支持的圆角方法 ===
+  /// rounded-s -> 设置开始方向的圆角（LTR 时为 left，RTL 时为 right）
+  ContainerBuilder roundedS(double radius) {
+    if (_borderRadius == null) {
+      _borderRadius = BorderRadiusDirectional.only(
+        topStart: Radius.circular(radius),
+        bottomStart: Radius.circular(radius),
+      );
+    } else if (_borderRadius is BorderRadiusDirectional) {
+      final existing = _borderRadius as BorderRadiusDirectional;
+      _borderRadius = BorderRadiusDirectional.only(
+        topStart: Radius.circular(radius),
+        topEnd: existing.topEnd,
+        bottomStart: Radius.circular(radius),
+        bottomEnd: existing.bottomEnd,
+      );
+    } else if (_borderRadius is BorderRadius) {
+      // 如果之前使用的是 BorderRadius，转换为 BorderRadiusDirectional
+      final existing = _borderRadius as BorderRadius;
+      _borderRadius = BorderRadiusDirectional.only(
+        topStart: Radius.circular(radius),
+        topEnd: existing.topRight,
+        bottomStart: Radius.circular(radius),
+        bottomEnd: existing.bottomRight,
+      );
+    }
+    return this;
+  }
+  
+  /// rounded-e -> 设置结束方向的圆角（LTR 时为 right，RTL 时为 left）
+  ContainerBuilder roundedE(double radius) {
+    if (_borderRadius == null) {
+      _borderRadius = BorderRadiusDirectional.only(
+        topEnd: Radius.circular(radius),
+        bottomEnd: Radius.circular(radius),
+      );
+    } else if (_borderRadius is BorderRadiusDirectional) {
+      final existing = _borderRadius as BorderRadiusDirectional;
+      _borderRadius = BorderRadiusDirectional.only(
+        topStart: existing.topStart,
+        topEnd: Radius.circular(radius),
+        bottomStart: existing.bottomStart,
+        bottomEnd: Radius.circular(radius),
+      );
+    } else if (_borderRadius is BorderRadius) {
+      // 如果之前使用的是 BorderRadius，转换为 BorderRadiusDirectional
+      final existing = _borderRadius as BorderRadius;
+      _borderRadius = BorderRadiusDirectional.only(
+        topStart: existing.topLeft,
+        topEnd: Radius.circular(radius),
+        bottomStart: existing.bottomLeft,
+        bottomEnd: Radius.circular(radius),
+      );
+    }
+    return this;
+  }
+  
+  // rounded-s 快捷方法
+  ContainerBuilder roundedS0() => roundedS(0);
+  ContainerBuilder roundedS1() => roundedS(4);
+  ContainerBuilder roundedS2() => roundedS(8);
+  ContainerBuilder roundedS4() => roundedS(16);
+  ContainerBuilder roundedS6() => roundedS(24);
+  ContainerBuilder roundedS8() => roundedS(32);
+  
+  // rounded-e 快捷方法
+  ContainerBuilder roundedE0() => roundedE(0);
+  ContainerBuilder roundedE1() => roundedE(4);
+  ContainerBuilder roundedE2() => roundedE(8);
+  ContainerBuilder roundedE4() => roundedE(16);
+  ContainerBuilder roundedE6() => roundedE(24);
+  ContainerBuilder roundedE8() => roundedE(32);
+  
   // === 阴影快捷方法 ===
   ContainerBuilder shadow() => boxShadow([
     BoxShadow(
@@ -3026,6 +3442,46 @@ extension ContainerBuilderPositionExtensions on ContainerBuilder {
     _positionHeight = height;
     return this;
   }
+  
+  // === RTL 支持：逻辑位置属性 ===
+  
+  /// start-{value} -> 设置开始方向的位置（LTR 时为 left，RTL 时为 right）
+  ContainerBuilder start(double value) {
+    _isPositioned = true;
+    _positionStart = value;
+    return this;
+  }
+  
+  /// start-0 -> start: 0
+  ContainerBuilder start0() => start(0);
+  
+  /// start-1 -> start: 4px
+  ContainerBuilder start1() => start(4);
+  
+  /// start-2 -> start: 8px
+  ContainerBuilder start2() => start(8);
+  
+  /// start-4 -> start: 16px
+  ContainerBuilder start4() => start(16);
+  
+  /// end-{value} -> 设置结束方向的位置（LTR 时为 right，RTL 时为 left）
+  ContainerBuilder end(double value) {
+    _isPositioned = true;
+    _positionEnd = value;
+    return this;
+  }
+  
+  /// end-0 -> end: 0
+  ContainerBuilder end0() => end(0);
+  
+  /// end-1 -> end: 4px
+  ContainerBuilder end1() => end(4);
+  
+  /// end-2 -> end: 8px
+  ContainerBuilder end2() => end(8);
+  
+  /// end-4 -> end: 16px
+  ContainerBuilder end4() => end(16);
 }
 
 /// ContainerBuilder 的Z-Index扩展 - TailwindCSS风格的z-index类

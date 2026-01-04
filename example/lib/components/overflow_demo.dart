@@ -1,232 +1,238 @@
 import 'package:flutter/material.dart';
 import 'package:tailwindcss_build/tailwindcss_build.dart';
 
-/// Overflow 功能演示组件
-/// 展示各种 overflow 样式的使用方法
 class OverflowDemo extends StatelessWidget {
-  const OverflowDemo({super.key});
+  const OverflowDemo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Overflow Demo'),
-      ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // === overflow-visible 示例 ===
-              const Text(
-                'overflow-visible',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildSectionTitle('溢出隐藏 (Overflow Hidden)'),
+          _buildExample('overflow-hidden', Container(
+            width: 200,
+            height: 100,
+            child: Container(
+              width: 300,
+              height: 150,
+              child: Center(
+                child: Text('Content larger than container').asText().textWhite().build(),
               ),
-              const SizedBox(height: 8),
-              Container(
-                width: 200,
-                height: 100,
-                color: Colors.grey[200],
-                child: Text('这是一段很长的文字，会溢出容器显示在外面 ' * 3)
-                    .asScrollView()
-                    .overflowVisible()
-                    .build(),
-              ),
-              const SizedBox(height: 32),
+            ).asContainer().bgBlue500().build(),
+          ).asScrollView().overflowHidden().build()),
 
-              // === overflow-hidden 示例 ===
-              const Text(
-                'overflow-hidden',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 8),
-              Container(
-                width: 200,
-                height: 100,
-                color: Colors.grey[200],
-                child: Text('这是一段很长的文字，超出部分会被隐藏 ' * 3)
-                    .asScrollView()
-                    .overflowHidden()
-                    .build(),
-              ),
-              const SizedBox(height: 32),
-
-              // === overflow-x-scroll 示例 ===
-              const Text(
-                'overflow-x-scroll',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 8),
-              Container(
-                width: double.infinity,
-                height: 100,
-                color: Colors.grey[200],
-                child: List.generate(
-                  10,
-                  (index) => Container(
-                    width: 100,
-                    height: 80,
-                    margin: const EdgeInsets.all(4),
-                    color: Colors.blue[300],
-                    child: Center(child: Text('Item $index')),
-                  ),
-                )
-                    .asRow()
-                    .build()
-                    .asScrollView()
-                    .overflowXScroll()
-                    .build(),
-              ),
-              const SizedBox(height: 32),
-
-              // === overflow-y-scroll 示例 ===
-              const Text(
-                'overflow-y-scroll',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 8),
-              Container(
-                width: double.infinity,
-                height: 200,
-                color: Colors.grey[200],
-                child: List.generate(
-                  20,
-                  (index) => Container(
-                    width: double.infinity,
-                    height: 40,
-                    margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                    color: Colors.green[300],
-                    child: Center(child: Text('Row $index')),
-                  ),
-                )
-                    .asColumn()
-                    .build()
-                    .asScrollView()
-                    .overflowYScroll()
-                    .build(),
-              ),
-              const SizedBox(height: 32),
-
-              // === overflow-auto 示例 ===
-              const Text(
-                'overflow-auto (双向滚动)',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 8),
-              Container(
-                width: double.infinity,
-                height: 200,
-                color: Colors.grey[200],
-                child: Container(
-                  width: 600,
-                  height: 400,
-                  color: Colors.purple[200],
-                  child: const Center(
-                    child: Text(
-                      '这是一个大容器\n可以双向滚动',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 20),
+          _buildSectionTitle('自动滚动 (Overflow Auto)'),
+          _buildExample('overflow-auto (Vertical)', Container(
+            width: 200,
+            height: 100,
+            child: Column(
+              children: [
+                for (int i = 1; i <= 10; i++)
+                  Container(
+                    margin: EdgeInsets.only(bottom: 8),
+                    child: Text('Item $i').asText().textWhite().build(),
+                  ).asContainer().bgBlue500().p2().rounded().build(),
+              ],
+            ),
+          ).asScrollView().overflowAuto().build()),
+          _buildExample('overflow-auto (Horizontal)', Container(
+            width: 200,
+            height: 100,
+            child: Row(
+              children: [
+                for (int i = 1; i <= 10; i++)
+                  Container(
+                    margin: EdgeInsets.only(right: 8),
+                    width: 80,
+                    child: Center(
+                      child: Text('Item $i').asText().textWhite().build(),
                     ),
-                  ),
-                )
-                    .asScrollView()
-                    .overflowAuto()
-                    .build(),
-              ),
-              const SizedBox(height: 32),
+                  ).asContainer().bgBlue500().p2().rounded().build(),
+              ],
+            ),
+          ).asScrollView().overflowAuto().build()),
 
-              // === 链式调用示例 ===
-              const Text(
-                '链式调用示例',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 8),
-              List.generate(
-                10,
-                (index) => Container(
-                  width: 80,
-                  height: 80,
-                  margin: const EdgeInsets.all(4),
-                  decoration: BoxDecoration(
-                    color: Colors.red[300],
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Center(child: Text('$index')),
-                ),
-              )
-                  .asRow()
-                  .gap2()
-                  .build()
-                  .asScrollView()
-                  .overflowXAuto()
-                  .build()
-                  .asContainer()
-                  .p4()
-                  .bgGray100()
-                  .rounded8()
-                  .build(),
-              const SizedBox(height: 32),
+          _buildSectionTitle('X轴溢出 (Overflow X)'),
+          _buildExample('overflow-x-auto', Container(
+            width: 200,
+            height: 100,
+            child: Row(
+              children: [
+                for (int i = 1; i <= 10; i++)
+                  Container(
+                    margin: EdgeInsets.only(right: 8),
+                    width: 80,
+                    child: Center(
+                      child: Text('Item $i').asText().textWhite().build(),
+                    ),
+                  ).asContainer().bgBlue500().p2().rounded().build(),
+              ],
+            ),
+          ).asScrollView().overflowXAuto().build()),
+          _buildExample('overflow-x-hidden', Container(
+            width: 200,
+            height: 100,
+            child: Row(
+              children: [
+                for (int i = 1; i <= 10; i++)
+                  Container(
+                    margin: EdgeInsets.only(right: 8),
+                    width: 80,
+                    child: Center(
+                      child: Text('Item $i').asText().textWhite().build(),
+                    ),
+                  ).asContainer().bgBlue500().p2().rounded().build(),
+              ],
+            ),
+          ).asScrollView().overflowXHidden().build()),
+          _buildExample('overflow-x-scroll', Container(
+            width: 200,
+            height: 100,
+            child: Row(
+              children: [
+                for (int i = 1; i <= 10; i++)
+                  Container(
+                    margin: EdgeInsets.only(right: 8),
+                    width: 80,
+                    child: Center(
+                      child: Text('Item $i').asText().textWhite().build(),
+                    ),
+                  ).asContainer().bgBlue500().p2().rounded().build(),
+              ],
+            ),
+          ).asScrollView().overflowXScroll().build()),
 
-              // === 实际应用场景：横向卡片列表 ===
-              const Text(
-                '实际应用：横向卡片列表',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          _buildSectionTitle('Y轴溢出 (Overflow Y)'),
+          _buildExample('overflow-y-auto', Container(
+            width: 200,
+            height: 100,
+            child: Column(
+              children: [
+                for (int i = 1; i <= 10; i++)
+                  Container(
+                    margin: EdgeInsets.only(bottom: 8),
+                    child: Text('Item $i').asText().textWhite().build(),
+                  ).asContainer().bgBlue500().p2().rounded().build(),
+              ],
+            ),
+          ).asScrollView().overflowYAuto().build()),
+          _buildExample('overflow-y-hidden', Container(
+            width: 200,
+            height: 100,
+            child: Column(
+              children: [
+                for (int i = 1; i <= 10; i++)
+                  Container(
+                    margin: EdgeInsets.only(bottom: 8),
+                    child: Text('Item $i').asText().textWhite().build(),
+                  ).asContainer().bgBlue500().p2().rounded().build(),
+              ],
+            ),
+          ).asScrollView().overflowYHidden().build()),
+          _buildExample('overflow-y-scroll', Container(
+            width: 200,
+            height: 100,
+            child: Column(
+              children: [
+                for (int i = 1; i <= 10; i++)
+                  Container(
+                    margin: EdgeInsets.only(bottom: 8),
+                    child: Text('Item $i').asText().textWhite().build(),
+                  ).asContainer().bgBlue500().p2().rounded().build(),
+              ],
+            ),
+          ).asScrollView().overflowYScroll().build()),
+
+          _buildSectionTitle('溢出可见 (Overflow Visible)'),
+          _buildExample('overflow-visible', Container(
+            width: 200,
+            height: 100,
+            child: Container(
+              width: 250,
+              height: 120,
+              child: Center(
+                child: Text('Overflow visible').asText().textWhite().build(),
               ),
-              const SizedBox(height: 8),
-              List.generate(
-                8,
-                (index) => Container(
-                  width: 160,
-                  height: 200,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 160,
-                        height: 120,
-                        decoration: BoxDecoration(
-                          color: Colors.amber[300],
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: const Icon(Icons.image, size: 40),
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        'Card Title $index',
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
-                        ),
-                      ),
-                      const SizedBox(height: 4),
-                      Text(
-                        'Card description here',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey[600],
-                        ),
-                      ),
-                    ],
-                  )
-                      .asContainer()
-                      .p3()
-                      .bgWhite()
-                      .rounded8()
-                      .shadow()
-                      .build(),
-                ),
-              )
-                  .asRow()
-                  .gap4()
-                  .build()
-                  .asScrollView()
-                  .overflowXScroll()
-                  .padding(const EdgeInsets.symmetric(horizontal: 8))
-                  .build(),
-            ],
-          ),
-        ),
+            ).asContainer().bgBlue500().build(),
+          ).asScrollView().overflowVisible().build()),
+
+          _buildSectionTitle('滚动行为 (Overscroll Behavior)'),
+          _buildExample('overscroll-auto', Container(
+            width: 200,
+            height: 100,
+            child: Column(
+              children: [
+                for (int i = 1; i <= 10; i++)
+                  Container(
+                    margin: EdgeInsets.only(bottom: 8),
+                    child: Text('Item $i').asText().textWhite().build(),
+                  ).asContainer().bgBlue500().p2().rounded().build(),
+              ],
+            ),
+          ).asScrollView().overflowYAuto().overscrollAuto().build()),
+          _buildExample('overscroll-contain', Container(
+            width: 200,
+            height: 100,
+            child: Column(
+              children: [
+                for (int i = 1; i <= 10; i++)
+                  Container(
+                    margin: EdgeInsets.only(bottom: 8),
+                    child: Text('Item $i').asText().textWhite().build(),
+                  ).asContainer().bgBlue500().p2().rounded().build(),
+              ],
+            ),
+          ).asScrollView().overflowYAuto().overscrollContain().build()),
+          _buildExample('overscroll-none', Container(
+            width: 200,
+            height: 100,
+            child: Column(
+              children: [
+                for (int i = 1; i <= 10; i++)
+                  Container(
+                    margin: EdgeInsets.only(bottom: 8),
+                    child: Text('Item $i').asText().textWhite().build(),
+                  ).asContainer().bgBlue500().p2().rounded().build(),
+              ],
+            ),
+          ).asScrollView().overflowYAuto().overscrollNone().build()),
+
+          const SizedBox(height: 32),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSectionTitle(String title) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 24, bottom: 12),
+      child: Text(title)
+          .asText()
+          .textLg()
+          .fontBold()
+          .textGray900()
+          .build(),
+    );
+  }
+
+  Widget _buildExample(String label, Widget example) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(label)
+              .asText()
+              .textSm()
+              .textGray600()
+              .fontMedium()
+              .build(),
+          const SizedBox(height: 4),
+          example,
+        ],
       ),
     );
   }

@@ -1,449 +1,257 @@
 import 'package:flutter/material.dart';
 import 'package:tailwindcss_build/tailwindcss_build.dart';
 
-/// Z-Index 功能演示组件
 class ZIndexDemo extends StatelessWidget {
-  const ZIndexDemo({super.key});
+  const ZIndexDemo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Z-Index Demo'),
-        backgroundColor: Colors.blue[600],
-        foregroundColor: Colors.white,
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // 标题
-            const Text(
-              'Z-Index Layout System',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
-              ),
-            ),
-            const SizedBox(height: 8),
-            const Text(
-              'Utilities for controlling the stack order of an element.',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey,
-              ),
-            ),
-            const SizedBox(height: 32),
-
-            // 基础 Z-Index 示例
-            _buildSection(
-              'Basic Z-Index',
-              'Layered elements with different z-index values',
-              _buildBasicZIndexExample(),
-            ),
-
-            const SizedBox(height: 32),
-
-            // 负值 Z-Index 示例
-            _buildSection(
-              'Negative Z-Index',
-              'Elements with negative z-index values',
-              _buildNegativeZIndexExample(),
-            ),
-
-            const SizedBox(height: 32),
-
-            // 复杂层叠示例
-            _buildSection(
-              'Complex Layering',
-              'Multiple elements with different z-index values',
-              _buildComplexLayeringExample(),
-            ),
-
-            const SizedBox(height: 32),
-
-            // 实际应用场景
-            _buildSection(
-              'Real-world Example',
-              'Modal overlay with backdrop',
-              _buildModalExample(),
-            ),
-
-            const SizedBox(height: 32),
-
-            // Z-Index 值表格
-            _buildSection(
-              'Available Z-Index Classes',
-              'Complete list of z-index utility classes',
-              _buildZIndexTable(),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildSection(String title, String description, Widget content) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          title,
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.black87,
-          ),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          description,
-          style: const TextStyle(
-            fontSize: 14,
-            color: Colors.grey,
-          ),
-        ),
-        const SizedBox(height: 16),
-        content,
-      ],
-    );
-  }
-
-  Widget _buildBasicZIndexExample() {
-    return Container(
-      height: 200,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey[300]!),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Stack(
-        children: [
-          // Background (z-0)
-          const Text('Background Layer')
-              .asContainer()
-              .z0()
-              .w(120)
-              .h(80)
-              .bgRed200()
-              .alignment(Alignment.center)
-              .rounded8()
-              .positioned(top: 20, left: 20)
-              .build(),
-
-          // Middle (z-10)
-          const Text('Middle Layer')
-              .asContainer()
-              .z10()
-              .w(120)
-              .h(80)
-              .bgBlue200()
-              .alignment(Alignment.center)
-              .rounded8()
-              .positioned(top: 40, left: 60)
-              .build(),
-
-          // Foreground (z-20)
-          const Text('Foreground Layer')
-              .asContainer()
-              .z20()
-              .w(120)
-              .h(80)
-              .bgGreen200()
-              .alignment(Alignment.center)
-              .rounded8()
-              .positioned(top: 60, left: 100)
-              .build(),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildNegativeZIndexExample() {
-    return Container(
-      height: 200,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey[300]!),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Stack(
-        children: [
-          // Base layer (z-0)
-          const Text('Base Layer')
-              .asContainer()
-              .z0()
-              .w(140)
-              .h(100)
-              .bgGray200()
-              .alignment(Alignment.center)
-              .rounded8()
-              .positioned(top: 50, left: 50)
-              .build(),
-
-          // Behind base (z-negative-10)
-          const Text('Behind Base')
-              .asContainer()
-              .zNegative10()
-              .w(140)
-              .h(100)
-              .bgPurple200()
-              .alignment(Alignment.center)
-              .rounded8()
-              .positioned(top: 30, left: 80)
-              .build(),
-
-          // Far behind (z-negative-20)
-          const Text('Far Behind')
-              .asContainer()
-              .zNegative20()
-              .w(140)
-              .h(100)
-              .bgOrange200()
-              .alignment(Alignment.center)
-              .rounded8()
-              .positioned(top: 10, left: 110)
-              .build(),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildComplexLayeringExample() {
-    return Container(
-      height: 250,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey[300]!),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Stack(
-        children: [
-          // Background elements
-          const Text('z-1')
-              .asContainer()
-              .z1()
-              .w(60)
-              .h(60)
-              .bgRed100()
-              .alignment(Alignment.center)
-              .rounded8()
-              .positioned(top: 20, left: 20)
-              .build(),
-
-          const Text('z-2')
-              .asContainer()
-              .z2()
-              .w(60)
-              .h(60)
-              .bgBlue100()
-              .alignment(Alignment.center)
-              .rounded8()
-              .positioned(top: 40, left: 40)
-              .build(),
-
-          const Text('z-3')
-              .asContainer()
-              .z3()
-              .w(60)
-              .h(60)
-              .bgGreen100()
-              .alignment(Alignment.center)
-              .rounded8()
-              .positioned(top: 60, left: 60)
-              .build(),
-
-          const Text('z-4')
-              .asContainer()
-              .z4()
-              .w(60)
-              .h(60)
-              .bgYellow100()
-              .alignment(Alignment.center)
-              .rounded8()
-              .positioned(top: 80, left: 80)
-              .build(),
-
-          const Text('z-5')
-              .asContainer()
-              .z5()
-              .w(60)
-              .h(60)
-              .bgPurple100()
-              .alignment(Alignment.center)
-              .rounded8()
-              .positioned(top: 100, left: 100)
-              .build(),
-
-          // High z-index element
-          const Text('z-50')
-              .asContainer()
-              .z50()
-              .w(80)
-              .h(80)
-              .bgPink300()
-              .alignment(Alignment.center)
-              .rounded8()
-              .positioned(top: 120, left: 150)
-              .build(),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildModalExample() {
-    return Container(
-      height: 200,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey[300]!),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Stack(
-        children: [
-          // Page content (z-0)
-          const Text('Page Content')
-              .asContainer()
-              .z0()
-              .wFull()
-              .hFull()
-              .bgGray100()
-              .alignment(Alignment.center)
-              .build(),
-
-          // Modal backdrop (z-40)
-          Container()
-              .asContainer()
-              .z40()
-              .wFull()
-              .hFull()
-              .backgroundColor(Colors.black.withValues(alpha: 0.5))
-              .build(),
-
-          // Modal content (z-50)
-          const Text('Modal Dialog')
-              .asContainer()
-              .z50()
-              .w(200)
-              .h(100)
-              .bgWhite()
-              .alignment(Alignment.center)
-              .rounded8()
-              .shadow()
-              .build()
-              .asContainer()
-              .positioned(top: 50, left: 100)
-              .build(),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildZIndexTable() {
-    final zIndexClasses = [
-      {'class': 'z-auto', 'value': 'auto', 'description': 'Auto z-index'},
-      {'class': 'z0()', 'value': '0', 'description': 'z-index: 0'},
-      {'class': 'z1()', 'value': '1', 'description': 'z-index: 1'},
-      {'class': 'z2()', 'value': '2', 'description': 'z-index: 2'},
-      {'class': 'z3()', 'value': '3', 'description': 'z-index: 3'},
-      {'class': 'z4()', 'value': '4', 'description': 'z-index: 4'},
-      {'class': 'z5()', 'value': '5', 'description': 'z-index: 5'},
-      {'class': 'z10()', 'value': '10', 'description': 'z-index: 10'},
-      {'class': 'z20()', 'value': '20', 'description': 'z-index: 20'},
-      {'class': 'z30()', 'value': '30', 'description': 'z-index: 30'},
-      {'class': 'z40()', 'value': '40', 'description': 'z-index: 40'},
-      {'class': 'z50()', 'value': '50', 'description': 'z-index: 50'},
-      {'class': 'zNegative1()', 'value': '-1', 'description': 'z-index: -1'},
-      {'class': 'zNegative10()', 'value': '-10', 'description': 'z-index: -10'},
-      {'class': 'zNegative20()', 'value': '-20', 'description': 'z-index: -20'},
-      {'class': 'zNegative30()', 'value': '-30', 'description': 'z-index: -30'},
-      {'class': 'zNegative40()', 'value': '-40', 'description': 'z-index: -40'},
-      {'class': 'zNegative50()', 'value': '-50', 'description': 'z-index: -50'},
-    ];
-
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey[300]!),
-        borderRadius: BorderRadius.circular(8),
-      ),
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Header
-          Container(
-            padding: const EdgeInsets.all(12),
-            decoration: BoxDecoration(
-              color: Colors.grey[100],
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(8),
-                topRight: Radius.circular(8),
+          _buildSectionTitle('Z-Index 基础 (Z-Index Basics)'),
+          _buildExample('Stack with z-index', Stack(
+            children: [
+              Container(
+                width: 200,
+                height: 200,
+                child: Center(
+                  child: Text('z-0').asText().textWhite().fontBold().build(),
+                ),
+              ).asContainer().bgBlue500().rounded().z0().build(),
+              Positioned(
+                left: 40,
+                top: 40,
+                child: Container(
+                  width: 200,
+                  height: 200,
+                  child: Center(
+                    child: Text('z-10').asText().textWhite().fontBold().build(),
+                  ),
+                ).asContainer().bgGreen500().rounded().z10().build(),
               ),
-            ),
-            child: const Row(
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: Text(
-                    'Class',
-                    style: TextStyle(fontWeight: FontWeight.bold),
+              Positioned(
+                left: 80,
+                top: 80,
+                child: Container(
+                  width: 200,
+                  height: 200,
+                  child: Center(
+                    child: Text('z-20').asText().textWhite().fontBold().build(),
+                  ),
+                ).asContainer().bgRed500().rounded().z20().build(),
+              ),
+            ],
+          )),
+
+          _buildSectionTitle('Z-Index 值 (Z-Index Values)'),
+          _buildExample('z-0, z-10, z-20, z-30', Stack(
+            children: [
+              Container(
+                width: 150,
+                height: 150,
+                child: Center(
+                  child: Text('z-0').asText().textWhite().fontBold().build(),
+                ),
+              ).asContainer().bgBlue500().rounded().z0().build(),
+              Positioned(
+                left: 30,
+                top: 30,
+                child: Container(
+                  width: 150,
+                  height: 150,
+                  child: Center(
+                    child: Text('z-10').asText().textWhite().fontBold().build(),
+                  ),
+                ).asContainer().bgGreen500().rounded().z10().build(),
+              ),
+              Positioned(
+                left: 60,
+                top: 60,
+                child: Container(
+                  width: 150,
+                  height: 150,
+                  child: Center(
+                    child: Text('z-20').asText().textWhite().fontBold().build(),
+                  ),
+                ).asContainer().bgPurple500().rounded().z20().build(),
+              ),
+              Positioned(
+                left: 90,
+                top: 90,
+                child: Container(
+                  width: 150,
+                  height: 150,
+                  child: Center(
+                    child: Text('z-30').asText().textWhite().fontBold().build(),
+                  ),
+                ).asContainer().bgOrange500().rounded().z30().build(),
+              ),
+            ],
+          )),
+
+          _buildSectionTitle('模态框示例 (Modal Example)'),
+          _buildExample('Modal Overlay', Stack(
+            children: [
+              Container(
+                width: 300,
+                height: 200,
+                child: Center(
+                  child: Text('Background Content').asText().textGray600().build(),
+                ),
+              ).asContainer().bgGray200().rounded().p4().z0().build(),
+              Positioned.fill(
+                child: Container(
+                  color: Colors.black54,
+                  child: Center(
+                    child: Container(
+                      width: 250,
+                      padding: EdgeInsets.all(20),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text('Modal Title').asText().textXl().fontBold().textGray900().build(),
+                          SizedBox(height: 12),
+                          Text('This is a modal dialog with z-index.').asText().textGray600().build(),
+                          SizedBox(height: 16),
+                          Container(
+                            width: double.infinity,
+                            child: Text('Close').asText().textWhite().textCenter().fontMedium().build(),
+                          ).asContainer().bgBlue600().rounded().py2().build(),
+                        ],
+                      ),
+                    ).asContainer().bgWhite().roundedLg().shadowLg().build(),
                   ),
                 ),
-                Expanded(
-                  child: Text(
-                    'Value',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Text(
-                    'Description',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          // Rows
-          ...zIndexClasses.map((item) => Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  border: Border(
-                    top: BorderSide(color: Colors.grey[300]!),
-                  ),
-                ),
-                child: Row(
+              ).asContainer().z50().build(),
+            ],
+          )),
+
+          _buildSectionTitle('浮动按钮示例 (Floating Button Example)'),
+          _buildExample('FAB with z-index', Stack(
+            children: [
+              Container(
+                width: 300,
+                height: 400,
+                child: ListView(
                   children: [
-                    Expanded(
-                      flex: 2,
-                      child: Text(
-                        item['class']!,
-                        style: const TextStyle(
-                          fontFamily: 'monospace',
-                          fontSize: 12,
-                          color: Colors.blue,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        item['value']!,
-                        style: const TextStyle(fontSize: 12),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: Text(
-                        item['description']!,
-                        style: const TextStyle(fontSize: 12),
-                      ),
-                    ),
+                    for (int i = 1; i <= 10; i++)
+                      Container(
+                        margin: EdgeInsets.only(bottom: 8),
+                        child: Text('List Item $i').asText().build(),
+                      ).asContainer().bgGray100().p4().rounded().build(),
                   ],
                 ),
-              )),
+              ).asContainer().bgWhite().rounded().border().z0().build(),
+              Positioned(
+                right: 16,
+                bottom: 16,
+                child: Container(
+                  width: 56,
+                  height: 56,
+                  child: Center(
+                    child: Icon(Icons.add, color: Colors.white, size: 24),
+                  ),
+                ).asContainer().bgBlue600().borderRadiusCircular(28).shadowLg().z50().onTap(() {}),
+              ),
+            ],
+          )),
+
+          _buildSectionTitle('工具提示示例 (Tooltip Example)'),
+          _buildExample('Tooltip with z-index', Stack(
+            children: [
+              Container(
+                width: 200,
+                height: 100,
+                child: Center(
+                  child: Text('Hover me').asText().textBlue600().fontMedium().build(),
+                ),
+              ).asContainer().bgBlue100().rounded().p4().z0().build(),
+              Positioned(
+                top: -40,
+                left: 50,
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  child: Text('Tooltip').asText().textWhite().textSm().build(),
+                ).asContainer().bgGray900().rounded().z50().build(),
+              ),
+            ],
+          )),
+
+          _buildSectionTitle('导航栏示例 (Navigation Bar Example)'),
+          _buildExample('Sticky Nav Bar', Stack(
+            children: [
+              Container(
+                height: 600,
+                child: ListView(
+                  children: [
+                    for (int i = 1; i <= 20; i++)
+                      Container(
+                        margin: EdgeInsets.only(bottom: 8),
+                        height: 80,
+                        child: Center(
+                          child: Text('Content Item $i').asText().build(),
+                        ),
+                      ).asContainer().bgGray100().rounded().build(),
+                  ],
+                ),
+              ).asContainer().z0().build(),
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                child: Container(
+                  height: 60,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text('Home').asText().textBlue600().fontMedium().build(),
+                      Text('About').asText().textGray600().build(),
+                      Text('Contact').asText().textGray600().build(),
+                    ],
+                  ),
+                ).asContainer().bgWhite().shadowLg().z50().build(),
+              ),
+            ],
+          )),
+
+          const SizedBox(height: 32),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSectionTitle(String title) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 24, bottom: 12),
+      child: Text(title)
+          .asText()
+          .textLg()
+          .fontBold()
+          .textGray900()
+          .build(),
+    );
+  }
+
+  Widget _buildExample(String label, Widget example) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(label)
+              .asText()
+              .textSm()
+              .textGray600()
+              .fontMedium()
+              .build(),
+          const SizedBox(height: 4),
+          example,
         ],
       ),
     );
   }
 }
+

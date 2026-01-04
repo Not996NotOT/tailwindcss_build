@@ -201,6 +201,17 @@ extension TextBuilderTailwindExtensions on TextBuilder {
   TextBuilder textGreen800() => color(const Color(0xFF166534));
   TextBuilder textGreen900() => color(const Color(0xFF14532D));
   
+  TextBuilder textPurple50() => color(const Color(0xFFFAF5FF));
+  TextBuilder textPurple100() => color(const Color(0xFFF3E8FF));
+  TextBuilder textPurple200() => color(const Color(0xFFE9D5FF));
+  TextBuilder textPurple300() => color(const Color(0xFFD8B4FE));
+  TextBuilder textPurple400() => color(const Color(0xFFC084FC));
+  TextBuilder textPurple500() => color(const Color(0xFFA855F7));
+  TextBuilder textPurple600() => color(const Color(0xFF9333EA));
+  TextBuilder textPurple700() => color(const Color(0xFF7C3AED));
+  TextBuilder textPurple800() => color(const Color(0xFF6B21A8));
+  TextBuilder textPurple900() => color(const Color(0xFF581C87));
+  
   // === 字体大小快捷方法 ===
   TextBuilder textXs() => fontSize(12);
   TextBuilder textSm() => fontSize(14);

@@ -52,6 +52,16 @@ class FlexBuilder {
   TextDirection? _textDirection;
   final VerticalDirection _verticalDirection = VerticalDirection.down;
   double? _gap; // gap间距
+  bool _spaceReverse = false; // space-x-reverse / space-y-reverse
+  bool _flexWrap = false; // flex-wrap: 是否启用换行
+  
+  // === Divide Between Children 相关属性 ===
+  bool _divideX = false; // divide-x: 在水平方向的子元素之间添加垂直分隔线
+  bool _divideY = false; // divide-y: 在垂直方向的子元素之间添加水平分隔线
+  bool _divideReverse = false; // divide-x-reverse / divide-y-reverse
+  Color _divideColor = const Color(0xFFE5E7EB); // 默认 gray-200
+  double _divideWidth = 1.0; // 默认 1px
+  // 注意：Flutter Container 不支持 BorderStyle，所以暂时不存储样式
   
   FlexBuilder(this.children);
   
@@ -63,6 +73,19 @@ class FlexBuilder {
   
   FlexBuilder flexCol() {
     _direction = Axis.vertical;
+    return this;
+  }
+  
+  // === Flex Wrap ===
+  /// flex-wrap -> 允许子元素换行（使用 Wrap widget）
+  FlexBuilder flexWrap() {
+    _flexWrap = true;
+    return this;
+  }
+  
+  /// flex-nowrap -> 不允许子元素换行（使用 Row/Column）
+  FlexBuilder flexNowrap() {
+    _flexWrap = false;
     return this;
   }
   
@@ -155,13 +178,217 @@ class FlexBuilder {
   FlexBuilder gap24() => gap(96.0); // gap-24 = 96px
   FlexBuilder gap32() => gap(128.0); // gap-32 = 128px
   
+  // === Space Between Children (Tailwind CSS space-x, space-y) ===
+  // space-x 和 space-y 实际上就是 gap，但为了保持 Tailwind CSS 的命名习惯，我们提供这些方法
+  
+  /// space-x-{size} -> 在水平方向的子元素之间添加间距（等同于 gap）
+  FlexBuilder spaceX(double size) {
+    if (_direction == Axis.horizontal) {
+      return gap(size);
+    }
+    // 如果是垂直方向，space-x 不起作用
+    return this;
+  }
+  
+  /// space-y-{size} -> 在垂直方向的子元素之间添加间距（等同于 gap）
+  FlexBuilder spaceY(double size) {
+    if (_direction == Axis.vertical) {
+      return gap(size);
+    }
+    // 如果是水平方向，space-y 不起作用
+    return this;
+  }
+  
+  /// space-x-reverse -> 反转水平方向的间距顺序
+  FlexBuilder spaceXReverse() {
+    if (_direction == Axis.horizontal) {
+      _spaceReverse = true;
+    }
+    return this;
+  }
+  
+  /// space-y-reverse -> 反转垂直方向的间距顺序
+  FlexBuilder spaceYReverse() {
+    if (_direction == Axis.vertical) {
+      _spaceReverse = true;
+    }
+    return this;
+  }
+  
+  // space-x 快捷方法
+  FlexBuilder spaceX0() => spaceX(0);
+  FlexBuilder spaceX1() => spaceX(4.0);
+  FlexBuilder spaceX2() => spaceX(8.0);
+  FlexBuilder spaceX3() => spaceX(12.0);
+  FlexBuilder spaceX4() => spaceX(16.0);
+  FlexBuilder spaceX5() => spaceX(20.0);
+  FlexBuilder spaceX6() => spaceX(24.0);
+  FlexBuilder spaceX8() => spaceX(32.0);
+  FlexBuilder spaceX10() => spaceX(40.0);
+  FlexBuilder spaceX12() => spaceX(48.0);
+  FlexBuilder spaceX16() => spaceX(64.0);
+  FlexBuilder spaceX20() => spaceX(80.0);
+  FlexBuilder spaceX24() => spaceX(96.0);
+  FlexBuilder spaceX32() => spaceX(128.0);
+  
+  // space-y 快捷方法
+  FlexBuilder spaceY0() => spaceY(0);
+  FlexBuilder spaceY1() => spaceY(4.0);
+  FlexBuilder spaceY2() => spaceY(8.0);
+  FlexBuilder spaceY3() => spaceY(12.0);
+  FlexBuilder spaceY4() => spaceY(16.0);
+  FlexBuilder spaceY5() => spaceY(20.0);
+  FlexBuilder spaceY6() => spaceY(24.0);
+  FlexBuilder spaceY8() => spaceY(32.0);
+  FlexBuilder spaceY10() => spaceY(40.0);
+  FlexBuilder spaceY12() => spaceY(48.0);
+  FlexBuilder spaceY16() => spaceY(64.0);
+  FlexBuilder spaceY20() => spaceY(80.0);
+  FlexBuilder spaceY24() => spaceY(96.0);
+  FlexBuilder spaceY32() => spaceY(128.0);
+  
+  // === Divide Between Children (Tailwind CSS divide-x, divide-y) ===
+  
+  /// divide-x -> 在水平方向的子元素之间添加垂直分隔线
+  FlexBuilder divideX({Color? color, double? width, BorderStyle? style}) {
+    _divideX = true;
+    _divideY = false;
+    if (color != null) _divideColor = color;
+    if (width != null) _divideWidth = width;
+    // 注意：style 参数保留以便将来扩展，但目前 Flutter Container 不支持 BorderStyle
+    return this;
+  }
+  
+  /// divide-y -> 在垂直方向的子元素之间添加水平分隔线
+  FlexBuilder divideY({Color? color, double? width, BorderStyle? style}) {
+    _divideX = false;
+    _divideY = true;
+    if (color != null) _divideColor = color;
+    if (width != null) _divideWidth = width;
+    // 注意：style 参数保留以便将来扩展，但目前 Flutter Container 不支持 BorderStyle
+    return this;
+  }
+  
+  /// divide-x-reverse -> 反转水平方向的分隔线顺序
+  FlexBuilder divideXReverse() {
+    if (_divideX) {
+      _divideReverse = true;
+    }
+    return this;
+  }
+  
+  /// divide-y-reverse -> 反转垂直方向的分隔线顺序
+  FlexBuilder divideYReverse() {
+    if (_divideY) {
+      _divideReverse = true;
+    }
+    return this;
+  }
+  
+  /// divide-{color} -> 设置分隔线颜色（通过 divideX 或 divideY 的 color 参数）
+  FlexBuilder divideColor(Color color) {
+    _divideColor = color;
+    return this;
+  }
+  
+  /// divide-{width} -> 设置分隔线宽度（通过 divideX 或 divideY 的 width 参数）
+  FlexBuilder divideWidth(double width) {
+    _divideWidth = width;
+    return this;
+  }
+  
+  /// divide-solid -> 实线分隔线（默认）
+  FlexBuilder divideSolid() {
+    // Flutter Container 默认就是实线
+    return this;
+  }
+  
+  /// divide-dashed -> 虚线分隔线（Flutter 中暂不支持，使用实线代替）
+  FlexBuilder divideDashed() {
+    // Flutter Container 不支持 dashed，使用实线代替
+    return this;
+  }
+  
+  /// divide-dotted -> 点线分隔线（Flutter 中暂不支持，使用实线代替）
+  FlexBuilder divideDotted() {
+    // Flutter Container 不支持 dotted，使用实线代替
+    return this;
+  }
+  
+  /// divide-none -> 移除分隔线
+  FlexBuilder divideNone() {
+    _divideX = false;
+    _divideY = false;
+    return this;
+  }
+  
   
   /// 构建Flex组件 - 只负责布局，不含视觉样式
   Widget build() {
-    // 先处理order排序，再处理gap间距
+    // 先处理order排序，再处理gap间距，最后处理divide分隔线
     List<Widget> orderedChildren = _buildOrderedChildren();
     List<Widget> childrenWithGap = _buildChildrenWithGap(orderedChildren);
+    List<Widget> childrenWithDivide = _buildChildrenWithDivide(childrenWithGap);
     
+    // 如果启用了 flex-wrap，使用 Wrap widget
+    if (_flexWrap) {
+      // 将 MainAxisAlignment 转换为 WrapAlignment
+      WrapAlignment wrapAlignment = WrapAlignment.start;
+      switch (_mainAxisAlignment) {
+        case MainAxisAlignment.start:
+          wrapAlignment = WrapAlignment.start;
+          break;
+        case MainAxisAlignment.end:
+          wrapAlignment = WrapAlignment.end;
+          break;
+        case MainAxisAlignment.center:
+          wrapAlignment = WrapAlignment.center;
+          break;
+        case MainAxisAlignment.spaceBetween:
+          wrapAlignment = WrapAlignment.spaceBetween;
+          break;
+        case MainAxisAlignment.spaceAround:
+          wrapAlignment = WrapAlignment.spaceAround;
+          break;
+        case MainAxisAlignment.spaceEvenly:
+          wrapAlignment = WrapAlignment.spaceEvenly;
+          break;
+      }
+      
+      // 将 CrossAxisAlignment 转换为 WrapCrossAlignment
+      WrapCrossAlignment wrapCrossAlignment = WrapCrossAlignment.start;
+      switch (_crossAxisAlignment) {
+        case CrossAxisAlignment.start:
+          wrapCrossAlignment = WrapCrossAlignment.start;
+          break;
+        case CrossAxisAlignment.end:
+          wrapCrossAlignment = WrapCrossAlignment.end;
+          break;
+        case CrossAxisAlignment.center:
+          wrapCrossAlignment = WrapCrossAlignment.center;
+          break;
+        case CrossAxisAlignment.stretch:
+          wrapCrossAlignment = WrapCrossAlignment.center; // Wrap 不支持 stretch
+          break;
+        case CrossAxisAlignment.baseline:
+          wrapCrossAlignment = WrapCrossAlignment.start; // Wrap 不支持 baseline
+          break;
+      }
+      
+      return Wrap(
+        direction: _direction,
+        alignment: wrapAlignment,
+        spacing: _gap ?? 0.0,
+        runAlignment: wrapAlignment,
+        runSpacing: _gap ?? 0.0,
+        crossAxisAlignment: wrapCrossAlignment,
+        textDirection: _textDirection,
+        verticalDirection: _verticalDirection,
+        children: childrenWithDivide,
+      );
+    }
+    
+    // 否则使用 Row/Column
     if (_direction == Axis.horizontal) {
       return Row(
         mainAxisAlignment: _mainAxisAlignment,
@@ -169,7 +396,7 @@ class FlexBuilder {
         mainAxisSize: _mainAxisSize,
         textDirection: _textDirection,
         verticalDirection: _verticalDirection,
-        children: childrenWithGap,
+        children: childrenWithDivide,
       );
     } else {
       return Column(
@@ -178,7 +405,7 @@ class FlexBuilder {
         mainAxisSize: _mainAxisSize,
         textDirection: _textDirection,
         verticalDirection: _verticalDirection,
-        children: childrenWithGap,
+        children: childrenWithDivide,
       );
     }
   }
@@ -229,6 +456,12 @@ class FlexBuilder {
     }
     
     List<Widget> result = [];
+    
+    // 如果设置了 reverse，反转列表
+    if (_spaceReverse) {
+      targetChildren = targetChildren.reversed.toList();
+    }
+    
     for (int i = 0; i < targetChildren.length; i++) {
       result.add(targetChildren[i]);
       
@@ -240,6 +473,59 @@ class FlexBuilder {
           result.add(SizedBox(height: _gap));
         }
       }
+    }
+    
+    // 如果设置了 reverse，再次反转结果
+    if (_spaceReverse) {
+      result = result.reversed.toList();
+    }
+    
+    return result;
+  }
+  
+  /// 构建带分隔线的子组件列表
+  List<Widget> _buildChildrenWithDivide([List<Widget>? childrenList]) {
+    List<Widget> targetChildren = childrenList ?? children;
+    
+    if ((!_divideX && !_divideY) || targetChildren.isEmpty || targetChildren.length < 2) {
+      return targetChildren;
+    }
+    
+    List<Widget> result = [];
+    
+    // 如果设置了 reverse，反转列表
+    if (_divideReverse) {
+      targetChildren = targetChildren.reversed.toList();
+    }
+    
+    for (int i = 0; i < targetChildren.length; i++) {
+      result.add(targetChildren[i]);
+      
+      // 在非最后一个元素后添加分隔线
+      if (i < targetChildren.length - 1) {
+        if (_divideX && _direction == Axis.horizontal) {
+          // 垂直分隔线（在水平布局中）
+          result.add(
+            Container(
+              width: _divideWidth,
+              color: _divideColor,
+            ),
+          );
+        } else if (_divideY && _direction == Axis.vertical) {
+          // 水平分隔线（在垂直布局中）
+          result.add(
+            Container(
+              height: _divideWidth,
+              color: _divideColor,
+            ),
+          );
+        }
+      }
+    }
+    
+    // 如果设置了 reverse，再次反转结果
+    if (_divideReverse) {
+      result = result.reversed.toList();
     }
     
     return result;

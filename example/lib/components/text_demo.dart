@@ -11,153 +11,138 @@ class TextDemo extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-        const Text('Text Demo')
-            .text2xl()
-            .fontBold()
-            .textGray900()
-            .build(),
-        
-        const SizedBox(height: 16),
-        
-        // 字体大小
-        const Text('text-sm').textSm().textGray700().build(),
-        const Text('text-base').textBase().textGray700().build(),
-        const Text('text-lg').textLg().textGray700().build(),
-        const Text('text-xl').textXl().textGray700().build(),
-        const Text('text-2xl').text2xl().textGray700().build(),
-        
-        const SizedBox(height: 16),
-        
-        // 字体粗细
-        const Text('font-light').fontLight().textGray700().build(),
-        const Text('font-medium').fontMedium().textGray700().build(),
-        const Text('font-bold').fontBold().textGray700().build(),
-        
-        const SizedBox(height: 16),
-        
-        // 颜色
-        Wrap(
-          spacing: 12,
-          children: [
-            const Text('Blue').textBlue600().fontMedium().build(),
-            const Text('Red').textRed600().fontMedium().build(),
-            const Text('Green').textGreen600().fontMedium().build(),
-            const Text('Purple').textPurple600().fontMedium().build(),
-          ],
-        ),
-        
-        const SizedBox(height: 16),
-        
-        // Text Decoration Line (Tailwind CSS)
-        const Text('Text Decoration Examples')
-            .textLg()
-            .fontSemibold()
-            .textGray800()
-            .build(),
-        
-        const SizedBox(height: 8),
-        
-        const Text('Normal text').textGray700().build(),
-        const Text('underline').underline().textBlue600().build(),
-        const Text('overline').overline().textGreen600().build(),
-        const Text('line-through').lineThrough().textRed600().build(),
-        const Text('no-underline').noUnderline().textGray700().build(),
-        
-        const SizedBox(height: 8),
-        
-        // Text Decoration Style
-        const Text('Decoration Styles:').fontMedium().textGray800().build(),
-        const Text('decoration-solid').underline().decorationSolid().textBlue600().build(),
-        const Text('decoration-double').underline().decorationDouble().textBlue600().build(),
-        const Text('decoration-dotted').underline().decorationDotted().textBlue600().build(),
-        const Text('decoration-dashed').underline().decorationDashed().textBlue600().build(),
-        const Text('decoration-wavy').underline().decorationWavy().textBlue600().build(),
-        
-        const SizedBox(height: 8),
-        
-        // Text Decoration Thickness
-        const Text('Decoration Thickness:').fontMedium().textGray800().build(),
-        const Text('decoration-auto').underline().decorationAuto().textBlue600().build(),
-        const Text('decoration-from-font').underline().decorationFromFont().textBlue600().build(),
-        const Text('decoration-0').underline().decoration0().textBlue600().build(),
-        const Text('decoration-1').underline().decoration1().textBlue600().build(),
-        const Text('decoration-2').underline().decoration2().textBlue600().build(),
-        const Text('decoration-4').underline().decoration4().textBlue600().build(),
-        const Text('decoration-8').underline().decoration8().textBlue600().build(),
-        const Text('decoration-custom(3.5)').underline().decorationCustom(3.5).textBlue600().build(),
-        
-        const SizedBox(height: 8),
-        
-        // Text Decoration Color  
-        const Text('Decoration Colors:').fontMedium().textGray800().build(),
-        const Text('decoration-red-500').underline().decorationRed500().textGray700().build(),
-        const Text('decoration-blue-600').underline().decorationBlue600().textGray700().build(),
-        const Text('decoration-green-500').underline().decorationGreen500().textGray700().build(),
-        const Text('decoration-purple-600').underline().decorationPurple600().textGray700().build(),
-        const Text('decoration-orange-500').underline().decorationOrange500().textGray700().build(),
-        
-        const SizedBox(height: 8),
-        
-        // Combined Decorations
-        const Text('Combined Decorations:').fontMedium().textGray800().build(),
-        const Text('underline + line-through').underlineLineThrough().textRed600().build(),
-        const Text('underline + overline').underlineOverline().textGreen600().build(),
-        
-        const SizedBox(height: 8),
-        
-        // Text Transform
-        const Text('Text Transform:').fontMedium().textGray800().build(),
-        const Text('Hello World').uppercase().textBlue600().build(),
-        const Text('Hello World').lowercase().textGreen600().build(),
-        const Text('hello world').capitalize().textBlue600().build(),
-        const Text('HELLO WORLD').normalCase().textGray700().build(),
-        
-        const SizedBox(height: 8),
-        
-        // Text Overflow
-        const Text('Text Overflow:').fontMedium().textGray800().build(),
-        SizedBox(
-          width: 100,
-          child: const Text('This is a very long text that will overflow').truncate().textRed600().build(),
-        ),
-        SizedBox(
-          width: 100,
-          child: const Text('Text with ellipsis overflow').textEllipsis().textBlue600().build(),
-        ),
-        SizedBox(
-          width: 100,
-          child: const Text('Text with clip overflow').textClip().textGreen600().build(),
-        ),
-        
-        const SizedBox(height: 8),
-        
-        // Text Wrap
-        const Text('Text Wrap:').fontMedium().textGray800().build(),
-        SizedBox(
-          width: 150,
-          child: const Text('This text will wrap normally').textWrap().textBlue600().build(),
-        ),
-        SizedBox(
-          width: 150,
-          child: const Text('This text will not wrap at all').textNowrap().textRed600().build(),
-        ),
-        
-        const SizedBox(height: 8),
-        
-        // String Extensions
-        const Text('String Extensions:').fontMedium().textGray800().build(),
-        'String underline'.asText().underline().decorationWavy().decorationBlue600().textBlue600().build(),
-        'String UPPERCASE'.asText().lowercase().decorationRed500().textRed600().build(),
-        'String truncate example'.asText().truncate().textGreen600().build(),
-        
-        const SizedBox(height: 16),
-        
-        // String扩展
-        'String to TextBuilder'
-            .asText()
-            .textOrange600()
-            .fontSemibold()
-            .build(),
+          _buildSectionTitle('字体大小 (Font Sizes)'),
+          _buildExample('text-xs', 'Extra Small'.asText().textXs().build()),
+          _buildExample('text-sm', 'Small'.asText().textSm().build()),
+          _buildExample('text-base', 'Base'.asText().textBase().build()),
+          _buildExample('text-lg', 'Large'.asText().textLg().build()),
+          _buildExample('text-xl', 'Extra Large'.asText().textXl().build()),
+          _buildExample('text-2xl', '2XL'.asText().text2xl().build()),
+          _buildExample('text-3xl', '3XL'.asText().text3xl().build()),
+          _buildExample('text-4xl', '4XL'.asText().text4xl().build()),
+          _buildExample('text-5xl', '5XL'.asText().text5xl().build()),
+          _buildExample('text-6xl', '6XL'.asText().text6xl().build()),
+
+          _buildSectionTitle('字体粗细 (Font Weights)'),
+          _buildExample('font-thin', 'Thin (100)'.asText().fontThin().build()),
+          _buildExample('font-extralight', 'Extralight (200)'.asText().fontExtralight().build()),
+          _buildExample('font-light', 'Light (300)'.asText().fontLight().build()),
+          _buildExample('font-normal', 'Normal (400)'.asText().fontNormal().build()),
+          _buildExample('font-medium', 'Medium (500)'.asText().fontMedium().build()),
+          _buildExample('font-semibold', 'Semibold (600)'.asText().fontSemibold().build()),
+          _buildExample('font-bold', 'Bold (700)'.asText().fontBold().build()),
+          _buildExample('font-extrabold', 'Extrabold (800)'.asText().fontExtrabold().build()),
+          _buildExample('font-black', 'Black (900)'.asText().fontBlack().build()),
+
+          _buildSectionTitle('文本颜色 (Text Colors)'),
+          _buildExample('text-red-500', 'Red 500'.asText().textRed500().build()),
+          _buildExample('text-blue-600', 'Blue 600'.asText().textBlue600().build()),
+          _buildExample('text-green-700', 'Green 700'.asText().textGreen700().build()),
+          _buildExample('text-purple-500', 'Purple 500'.asText().textPurple500().build()),
+          _buildExample('text-gray-900', 'Gray 900'.asText().textGray900().build()),
+          _buildExample('text-blue-700', 'Blue 700'.asText().textBlue700().build()),
+
+          _buildSectionTitle('文本对齐 (Text Alignment)'),
+          _buildExample('text-left', 'Left Aligned'.asText().textLeft().build()),
+          _buildExample('text-center', 'Center Aligned'.asText().textCenter().build()),
+          _buildExample('text-right', 'Right Aligned'.asText().textRight().build()),
+          _buildExample('text-justify', Container(
+            width: double.infinity,
+            child: 'Justified text with enough content to demonstrate the justify alignment feature. This text will be evenly distributed across the width.'.asText().textJustify().build(),
+          )),
+
+          _buildSectionTitle('文本装饰 (Text Decoration)'),
+          _buildExample('underline', 'Underlined'.asText().underline().build()),
+          _buildExample('overline', 'Overlined'.asText().overline().build()),
+          _buildExample('line-through', 'Line Through'.asText().lineThrough().build()),
+          _buildExample('no-underline', 'No Underline'.asText().noUnderline().build()),
+          _buildExample('underline + decoration-blue-500', 'Colored Underline'.asText().underline().decorationBlue500().build()),
+          _buildExample('decoration-dotted', 'Dotted Underline'.asText().underline().decorationDotted().build()),
+          _buildExample('decoration-dashed', 'Dashed Underline'.asText().underline().decorationDashed().build()),
+          _buildExample('decoration-wavy', 'Wavy Underline'.asText().underline().decorationWavy().build()),
+          _buildExample('decoration-double', 'Double Underline'.asText().underline().decorationDouble().build()),
+
+          _buildSectionTitle('文本转换 (Text Transform)'),
+          _buildExample('uppercase', 'uppercase text'.asText().uppercase().build()),
+          _buildExample('lowercase', 'LOWERCASE TEXT'.asText().lowercase().build()),
+          _buildExample('capitalize', 'capitalize text'.asText().capitalize().build()),
+          _buildExample('normal-case', 'Normal Case'.asText().normalCase().build()),
+
+          _buildSectionTitle('文本溢出 (Text Overflow)'),
+          _buildExample('truncate', SizedBox(
+            width: 200,
+            child: 'Very long text that will be truncated with ellipsis'.asText().truncate().build(),
+          )),
+          _buildExample('text-ellipsis', SizedBox(
+            width: 200,
+            child: 'Very long text with ellipsis'.asText().textEllipsis().build(),
+          )),
+          _buildExample('text-clip', SizedBox(
+            width: 200,
+            child: 'Very long text that will be clipped'.asText().textClip().build(),
+          )),
+          _buildExample('maxLines(2)', SizedBox(
+            width: 200,
+            child: 'Very long text that will be limited to two lines maximum and show ellipsis'.asText().maxLines(2).build(),
+          )),
+
+          _buildSectionTitle('字符间距 (Letter Spacing)'),
+          _buildExample('tracking-tighter', 'Tighter Spacing'.asText().trackingTighter().build()),
+          _buildExample('tracking-tight', 'Tight Spacing'.asText().trackingTight().build()),
+          _buildExample('tracking-normal', 'Normal Spacing'.asText().trackingNormal().build()),
+          _buildExample('tracking-wide', 'Wide Spacing'.asText().trackingWide().build()),
+          _buildExample('tracking-wider', 'Wider Spacing'.asText().trackingWider().build()),
+          _buildExample('tracking-widest', 'Widest Spacing'.asText().trackingWidest().build()),
+
+          _buildSectionTitle('行高 (Line Height)'),
+          _buildExample('leading-none', 'None\nLine Height'.asText().leadingNone().build()),
+          _buildExample('leading-tight', 'Tight\nLine Height'.asText().leadingTight().build()),
+          _buildExample('leading-snug', 'Snug\nLine Height'.asText().leadingSnug().build()),
+          _buildExample('leading-normal', 'Normal\nLine Height'.asText().leadingNormal().build()),
+          _buildExample('leading-relaxed', 'Relaxed\nLine Height'.asText().leadingRelaxed().build()),
+          _buildExample('leading-loose', 'Loose\nLine Height'.asText().leadingLoose().build()),
+
+          _buildSectionTitle('字体样式 (Font Style)'),
+          _buildExample('italic', 'Italic Text'.asText().italic().build()),
+          _buildExample('not-italic', 'Not Italic'.asText().notItalic().build()),
+
+          _buildSectionTitle('文本阴影 (Text Shadow)'),
+          _buildExample('text-shadow', 'Text with Shadow'.asText()
+            .textShadow([Shadow(color: Colors.black26, blurRadius: 4, offset: Offset(2, 2))])
+            .build()),
+
+          const SizedBox(height: 32),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSectionTitle(String title) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 24, bottom: 12),
+      child: Text(title)
+          .asText()
+          .textLg()
+          .fontBold()
+          .textGray900()
+          .build(),
+    );
+  }
+
+  Widget _buildExample(String label, Widget example) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(label)
+              .asText()
+              .textSm()
+              .textGray600()
+              .fontMedium()
+              .build(),
+          const SizedBox(height: 4),
+          example,
         ],
       ),
     );

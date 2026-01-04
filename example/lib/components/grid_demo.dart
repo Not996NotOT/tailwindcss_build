@@ -11,456 +11,172 @@ class GridDemo extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text('Grid Demo')
-              .text2xl()
-              .fontBold()
-              .textGray900()
-              .build(),
-          
-          const SizedBox(height: 16),
-          
-          // 基础Grid布局
-          const Text('基础Grid布局 - grid-cols-3')
-              .textLg()
-              .fontSemibold()
-              .textGray800()
-              .build(),
-          
-          const SizedBox(height: 8),
-          
-          [
-            _buildGridItem('1'),
-            _buildGridItem('2'),
-            _buildGridItem('3'),
-            _buildGridItem('4'),
-            _buildGridItem('5'),
-            _buildGridItem('6'),
-          ].asGrid()
-              .gridCols3()
-              .gap4()
-              .asContainer()
-              .bgGray100()
-              .p4()
-              .r8()
-              .build(),
-          
-          const SizedBox(height: 16),
-          
-          // Grid列跨度
-          const Text('Grid列跨度 - col-span')
-              .textLg()
-              .fontSemibold()
-              .textGray800()
-              .build(),
-          
-          const SizedBox(height: 8),
-          
-          [
-            _buildGridItem('span-2').colSpan(2),
-            _buildGridItem('1'),
-            _buildGridItem('1'),
-            _buildGridItem('span-2').colSpan(2),
-          ].asGrid()
-              .gridCols3()
-              .gap4()
-              .asContainer()
-              .bgBlue50()
-              .p4()
-              .r8()
-              .build(),
-          
-          const SizedBox(height: 16),
-          
-          // Grid行跨度
-          const Text('Grid行跨度 - row-span')
-              .textLg()
-              .fontSemibold()
-              .textGray800()
-              .build(),
-          
-          const SizedBox(height: 8),
-          
-          [
-            _buildGridItem('row-2', height: 80).rowSpan(2),
-            _buildGridItem('1'),
-            _buildGridItem('2'),
-            _buildGridItem('3'),
-            _buildGridItem('4'),
-          ].asGrid()
-              .gridCols3()
-              .gap4()
-              .asContainer()
-              .bgGreen50()
-              .p4()
-              .r8()
-              .build(),
-          
-          const SizedBox(height: 16),
-          
-          // Grid定位
-          const Text('Grid定位 - col-start, row-start')
-              .textLg()
-              .fontSemibold()
-              .textGray800()
-              .build(),
-          
-          const SizedBox(height: 8),
-          
-          [
-            _buildGridItem('1-1').gridArea(colStart: 1, rowStart: 1),
-            _buildGridItem('3-1').gridArea(colStart: 3, rowStart: 1),
-            _buildGridItem('2-2').gridArea(colStart: 2, rowStart: 2),
-            _buildGridItem('1-3').gridArea(colStart: 1, rowStart: 3),
-            _buildGridItem('3-3').gridArea(colStart: 3, rowStart: 3),
-          ].asGrid()
-              .gridCols3()
-              .gridRows3()
-              .gap4()
-              .asContainer()
-              .bgPurple50()
-              .p4()
-              .r8()
-              .build(),
-          
-          const SizedBox(height: 16),
-          
-          // 复杂Grid布局
-          const Text('复杂Grid布局')
-              .textLg()
-              .fontSemibold()
-              .textGray800()
-              .build(),
-          
-          const SizedBox(height: 8),
-          
-          [
-            _buildGridItem('Header', color: Colors.blue).colSpan(3),
-            _buildGridItem('Sidebar', color: Colors.green, height: 120).rowSpan(2),
-            _buildGridItem('Main', color: Colors.orange).colSpan(2),
-            _buildGridItem('Content', color: Colors.purple).colSpan(2),
-            _buildGridItem('Footer', color: Colors.red).colSpan(3),
-          ].asGrid()
-              .gridCols3()
-              .gap4()
-              .asContainer()
-              .bgGray100()
-              .p4()
-              .r8()
-              .build(),
-          
-          const SizedBox(height: 16),
-          
-          // Grid对齐
-          const Text('Grid对齐 - justify-content')
-              .textLg()
-              .fontSemibold()
-              .textGray800()
-              .build(),
-          
-          const SizedBox(height: 8),
-          
-          [
-            _buildGridItem('1'),
-            _buildGridItem('2'),
-            _buildGridItem('3'),
-          ].asGrid()
-              .gridCols3()
-              .justifyCenter()
-              .gap4()
-              .asContainer()
-              .bgYellow50()
-              .p4()
-              .r8()
-              .h(100)
-              .build(),
-          
-          const SizedBox(height: 16),
-          
-          // Grid Items对齐
-          const Text('Grid Items对齐 - place-items-center')
-              .textLg()
-              .fontSemibold()
-              .textGray800()
-              .build(),
-          
-          const SizedBox(height: 8),
-          
-          [
-            _buildGridItem('A', height: 60),
-            _buildGridItem('B', height: 40),
-            _buildGridItem('C', height: 80),
-            _buildGridItem('D', height: 50),
-          ].asGrid()
-              .gridCols2()
-              .placeItemsCenter()
-              .gap4()
-              .asContainer()
-              .bgPink50()
-              .p4()
-              .r8()
-              .h(200)
-              .build(),
-          
-          const SizedBox(height: 16),
-          
-          // Gap变化
-          const Text('Gap间距变化')
-              .textLg()
-              .fontSemibold()
-              .textGray800()
-              .build(),
-          
-          const SizedBox(height: 8),
-          
-          const Text('gap-2')
-              .textBase()
-              .fontMedium()
-              .textGray700()
-              .build(),
-          
-          const SizedBox(height: 4),
-          
-          [
-            _buildGridItem('1'),
-            _buildGridItem('2'),
-            _buildGridItem('3'),
-            _buildGridItem('4'),
-          ].asGrid()
-              .gridCols2()
-              .gap2()
-              .asContainer()
-              .bgTeal50()
-              .p4()
-              .r8()
-              .build(),
-          
-          const SizedBox(height: 8),
-          
-          const Text('gap-8')
-              .textBase()
-              .fontMedium()
-              .textGray700()
-              .build(),
-          
-          const SizedBox(height: 4),
-          
-          [
-            _buildGridItem('1'),
-            _buildGridItem('2'),
-            _buildGridItem('3'),
-            _buildGridItem('4'),
-          ].asGrid()
-              .gridCols2()
-              .gap8()
-              .asContainer()
-              .bgIndigo50()
-              .p4()
-              .r8()
-              .build(),
-          
-          const SizedBox(height: 16),
-          
-          // 不同列数展示
-          const Text('不同列数展示')
-              .textLg()
-              .fontSemibold()
-              .textGray800()
-              .build(),
-          
-          const SizedBox(height: 8),
-          
-          const Text('grid-cols-1')
-              .textBase()
-              .fontMedium()
-              .textGray700()
-              .build(),
-          
-          const SizedBox(height: 4),
-          
-          [
-            _buildGridItem('Item 1'),
-            _buildGridItem('Item 2'),
-            _buildGridItem('Item 3'),
-          ].asGrid()
-              .gridCols1()
-              .gap4()
-              .asContainer()
-              .bgRose50()
-              .p4()
-              .r8()
-              .build(),
-          
-          const SizedBox(height: 8),
-          
-          const Text('grid-cols-4')
-              .textBase()
-              .fontMedium()
-              .textGray700()
-              .build(),
-          
-          const SizedBox(height: 4),
-          
-          [
-            _buildGridItem('1'),
-            _buildGridItem('2'),
-            _buildGridItem('3'),
-            _buildGridItem('4'),
-            _buildGridItem('5'),
-            _buildGridItem('6'),
-            _buildGridItem('7'),
-            _buildGridItem('8'),
-          ].asGrid()
-              .gridCols4()
-              .gap4()
-              .asContainer()
-              .bgEmerald50()
-              .p4()
-              .r8()
-              .build(),
-          
-          const SizedBox(height: 16),
-          
-          // 实际应用示例
-          const Text('实际应用示例 - 卡片布局')
-              .textLg()
-              .fontSemibold()
-              .textGray800()
-              .build(),
-          
-          const SizedBox(height: 8),
-          
-          [
-            _buildCard('用户头像', Icons.person, Colors.blue),
-            _buildCard('消息通知', Icons.notifications, Colors.orange),
-            _buildCard('设置选项', Icons.settings, Colors.green),
-            _buildCard('帮助中心', Icons.help, Colors.purple),
-            _buildCard('关于我们', Icons.info, Colors.red),
-            _buildCard('联系客服', Icons.support_agent, Colors.teal),
-          ].asGrid()
-              .gridCols2()
-              .gap4()
-              .asContainer()
-              .p4()
-              .build(),
-          
-          const SizedBox(height: 16),
-          
-          // 响应式Grid示例
-          const Text('响应式Grid示例')
-              .textLg()
-              .fontSemibold()
-              .textGray800()
-              .build(),
-          
-          const SizedBox(height: 8),
-          
-          [
-            _buildResponsiveCard('产品A', '￥299'),
-            _buildResponsiveCard('产品B', '￥499'),
-            _buildResponsiveCard('产品C', '￥199'),
-            _buildResponsiveCard('产品D', '￥399'),
-            _buildResponsiveCard('产品E', '￥599'),
-            _buildResponsiveCard('产品F', '￥799'),
-          ].asGrid()
-              .gridCols3()
-              .gap6()
-              .asContainer()
-              .bgGray50()
-              .p6()
-              .r12()
-              .shadow()
-              .build(),
+          _buildSectionTitle('Grid 列数 (Grid Columns)'),
+          _buildExample('grid-cols-2', [
+            for (int i = 1; i <= 4; i++)
+              _buildGridItem('$i', Colors.blue),
+          ].asGrid().gridCols2().gap2().build()),
+          _buildExample('grid-cols-3', [
+            for (int i = 1; i <= 6; i++)
+              _buildGridItem('$i', Colors.green),
+          ].asGrid().gridCols3().gap2().build()),
+          _buildExample('grid-cols-4', [
+            for (int i = 1; i <= 8; i++)
+              _buildGridItem('$i', Colors.purple),
+          ].asGrid().gridCols4().gap2().build()),
+
+          _buildSectionTitle('Grid 行数 (Grid Rows)'),
+          _buildExample('grid-rows-2', [
+            for (int i = 1; i <= 4; i++)
+              _buildGridItem('$i', Colors.blue),
+          ].asGrid().gridRows2().gap2().build()),
+          _buildExample('grid-rows-3', [
+            for (int i = 1; i <= 6; i++)
+              _buildGridItem('$i', Colors.green),
+          ].asGrid().gridRows3().gap2().build()),
+
+          _buildSectionTitle('Grid 间距 (Gap)'),
+          _buildExample('gap-1', [
+            for (int i = 1; i <= 4; i++)
+              _buildGridItem('$i', Colors.blue),
+          ].asGrid().gridCols2().gap1().build()),
+          _buildExample('gap-4', [
+            for (int i = 1; i <= 4; i++)
+              _buildGridItem('$i', Colors.blue),
+          ].asGrid().gridCols2().gap4().build()),
+          _buildExample('gap-8', [
+            for (int i = 1; i <= 4; i++)
+              _buildGridItem('$i', Colors.blue),
+          ].asGrid().gridCols2().gap8().build()),
+
+          _buildSectionTitle('列跨度 (Column Span)'),
+          _buildExample('col-span-2', [
+            _buildGridItem('1', Colors.blue).colSpan(2),
+            _buildGridItem('2', Colors.green),
+            _buildGridItem('3', Colors.purple),
+            _buildGridItem('4', Colors.orange),
+          ].asGrid().gridCols3().gap2().build()),
+          _buildExample('col-span-3', [
+            _buildGridItem('1', Colors.blue).colSpan(3),
+            _buildGridItem('2', Colors.green),
+            _buildGridItem('3', Colors.purple),
+            _buildGridItem('4', Colors.orange),
+          ].asGrid().gridCols3().gap2().build()),
+
+          _buildSectionTitle('行跨度 (Row Span)'),
+          _buildExample('row-span-2', [
+            _buildGridItem('1', Colors.blue).rowSpan(2),
+            _buildGridItem('2', Colors.green),
+            _buildGridItem('3', Colors.purple),
+            _buildGridItem('4', Colors.orange),
+          ].asGrid().gridCols2().gridRows2().gap2().build()),
+          _buildExample('row-span-3', [
+            _buildGridItem('1', Colors.blue).rowSpan(3),
+            _buildGridItem('2', Colors.green),
+            _buildGridItem('3', Colors.purple),
+            _buildGridItem('4', Colors.orange),
+            _buildGridItem('5', Colors.red),
+          ].asGrid().gridCols2().gridRows3().gap2().build()),
+
+          _buildSectionTitle('列/行位置 (Column/Row Start/End)'),
+          _buildExample('col-start-2', [
+            _buildGridItem('1', Colors.blue),
+            _buildGridItem('2', Colors.green).colStart(2),
+            _buildGridItem('3', Colors.purple),
+          ].asGrid().gridCols3().gap2().build()),
+          _buildExample('row-start-2', [
+            _buildGridItem('1', Colors.blue),
+            _buildGridItem('2', Colors.green).rowStart(2),
+            _buildGridItem('3', Colors.purple),
+          ].asGrid().gridCols2().gridRows2().gap2().build()),
+
+          _buildSectionTitle('Grid 对齐 (Grid Alignment)'),
+          _buildExample('justify-items-start', [
+            for (int i = 1; i <= 4; i++)
+              _buildGridItem('$i', Colors.blue, width: 60),
+          ].asGrid().gridCols2().justifyItemsStart().gap2().build()),
+          _buildExample('justify-items-center', [
+            for (int i = 1; i <= 4; i++)
+              _buildGridItem('$i', Colors.blue, width: 60),
+          ].asGrid().gridCols2().justifyItemsCenter().gap2().build()),
+          _buildExample('justify-items-end', [
+            for (int i = 1; i <= 4; i++)
+              _buildGridItem('$i', Colors.blue, width: 60),
+          ].asGrid().gridCols2().justifyItemsEnd().gap2().build()),
+          _buildExample('place-items-center', [
+            for (int i = 1; i <= 4; i++)
+              _buildGridItem('$i', Colors.blue, width: 60),
+          ].asGrid().gridCols2().placeItemsCenter().gap2().build()),
+
+          _buildSectionTitle('Grid 内容对齐 (Place Content)'),
+          _buildExample('place-content-start', [
+            for (int i = 1; i <= 2; i++)
+              _buildGridItem('$i', Colors.blue),
+          ].asGrid().gridCols2().gridRows2().placeContentStart().gap2().build()),
+          _buildExample('place-content-center', [
+            for (int i = 1; i <= 2; i++)
+              _buildGridItem('$i', Colors.blue),
+          ].asGrid().gridCols2().gridRows2().placeContentCenter().gap2().build()),
+          _buildExample('place-content-between', [
+            for (int i = 1; i <= 2; i++)
+              _buildGridItem('$i', Colors.blue),
+          ].asGrid().gridCols2().gridRows2().placeContentBetween().gap2().build()),
+
+          _buildSectionTitle('Grid 流方向 (Grid Flow)'),
+          _buildExample('grid-flow-row', [
+            for (int i = 1; i <= 6; i++)
+              _buildGridItem('$i', Colors.blue),
+          ].asGrid().gridCols3().gridFlowRow().gap2().build()),
+          _buildExample('grid-flow-col', [
+            for (int i = 1; i <= 6; i++)
+              _buildGridItem('$i', Colors.green),
+          ].asGrid().gridRows3().gridFlowCol().gap2().build()),
+
+          const SizedBox(height: 32),
         ],
       ),
     );
   }
-  
-  Widget _buildGridItem(String text, {double? height, Color? color}) {
-    return Container(
-      height: height ?? 60,
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      decoration: BoxDecoration(
-        color: color ?? Colors.blue.shade500,
-        borderRadius: BorderRadius.circular(4),
-      ),
-      child: Center(
-        child: Text(
-          text,
-          style: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-          textAlign: TextAlign.center,
-        ),
+
+  Widget _buildSectionTitle(String title) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 24, bottom: 12),
+      child: Text(title)
+          .asText()
+          .textLg()
+          .fontBold()
+          .textGray900()
+          .build(),
+    );
+  }
+
+  Widget _buildExample(String label, Widget example) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(label)
+              .asText()
+              .textSm()
+              .textGray600()
+              .fontMedium()
+              .build(),
+          const SizedBox(height: 4),
+          example,
+        ],
       ),
     );
   }
-  
-  Widget _buildCard(String title, IconData icon, Color color) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(icon, size: 32, color: color),
-        const SizedBox(height: 8),
-        Text(title)
-            .textSm()
-            .fontMedium()
-            .textGray700()
-            .textCenter()
-            .build(),
-      ],
-    ).asContainer()
-        .p4()
-        .bgWhite()
-        .border()
-        .borderGray200()
-        .r8()
-        .shadow()
-        .onTap(() {
-          // 卡片点击事件
-        });
-  }
-  
-  Widget _buildResponsiveCard(String title, String price) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          width: double.infinity,
-          height: 80,
-          decoration: BoxDecoration(
-            color: Colors.grey.shade300,
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
-          ),
-          child: const Icon(Icons.image, size: 40, color: Colors.grey),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(12),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(title)
-                  .fontSemibold()
-                  .textGray900()
-                  .build(),
-              const SizedBox(height: 4),
-              Text(price)
-                  .textLg()
-                  .fontBold()
-                  .textBlue600()
-                  .build(),
-            ],
-          ),
-        ),
-      ],
-    ).asContainer()
-        .bgWhite()
-        .border()
-        .borderGray200()
-        .r8()
-        .shadow()
-        .onTap(() {
-          // 产品点击事件
-        });
+
+  Widget _buildGridItem(String text, Color color, {double? width, double? height}) {
+    return Container(
+      width: width,
+      height: height ?? 60,
+      child: Center(
+        child: Text(text).asText().textWhite().fontBold().build(),
+      ),
+    ).asContainer().backgroundColor(color).rounded().build();
   }
 }
+

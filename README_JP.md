@@ -8,11 +8,270 @@
 
 革新的な**ビルダーパターン**アーキテクチャを通じて、Tailwind CSS ユーティリティクラスの強力さと優雅さでFlutter開発を変革しましょう。
 
-## 🚨 1.0.0リリース前の注意事項
+## 🚨 Pre-1.0.0 リリース前の注意事項
 
 **重要**：このパッケージは1.0.0に向けて積極的に開発中です。最高のソリューションを提供するために、破壊的変更、API廃止、またはアーキテクチャの改善を導入する可能性があります。
 
-**現在の状況**：v0.4.0のビルダーパターン実装（ContainerBuilder、TextBuilder、FlexBuilder）は本番環境に対応しており、このライブラリの将来の方向性を表しています。
+**現在の状況**：v0.4.7のビルダーパターン実装（ContainerBuilder、TextBuilder、FlexBuilder、GridBuilder、ScrollBuilder）は本番環境に対応しており、このライブラリの将来の方向性を表しています。
+
+## 📊 実装状況
+
+### ✅ 完全実装済み（280+ 機能）
+
+**コアビルダー：**
+- ✅ **ContainerBuilder**: 完全なコンテナスタイリング（幅、高さ、パディング、マージン、ボーダー、角丸、シャドウ、z-index、位置、アスペクト比、RTLサポート）
+- ✅ **FlexBuilder**: 完全なFlexboxレイアウト（方向、整列、間隔、flex-grow/shrink、順序、折り返し、子要素間隔、子要素分割）
+- ✅ **GridBuilder**: 完全なGridレイアウト（列、行、間隔、整列、スパン、開始/終了、自動フロー）
+- ✅ **TextBuilder**: 完全なテキストスタイリング（サイズ、太さ、色、装飾、変換、オーバーフロー、行の高さ、文字間隔）
+- ✅ **ScrollBuilder**: 完全なオーバーフロー制御（自動、非表示、クリップ、表示、スクロール、オーバースクロール動作）
+
+**レイアウト機能：**
+- ✅ コンテナ、アスペクト比、表示（block、flex、grid、hidden）
+- ✅ 位置（static、relative、absolute、fixed、sticky）RTLサポート付き
+- ✅ オーバーフロー（すべてのバリアント：auto、hidden、clip、visible、scroll）
+- ✅ オーバースクロール動作（auto、contain、none）
+- ✅ Z-Index（z-0からz-50、z-auto）
+
+**Flexbox & Grid：**
+- ✅ Flex方向（row、col）
+- ✅ Flex折り返し（wrap、nowrap）
+- ✅ Flexプロパティ（flex-1、flex-auto、flex-none、flex-grow、flex-shrink）
+- ✅ 順序
+- ✅ 主軸整列（start、end、center、between、around、evenly）
+- ✅ 交差軸整列（start、end、center、baseline、stretch）
+- ✅ 間隔（すべてのサイズ）
+- ✅ Gridテンプレート列/行（1-12、none、subgrid、カスタム）
+- ✅ Grid列/行スパン（col-span、row-span、col-start、col-end、row-start、row-end）
+- ✅ Grid自動フロー（row、col、row-dense、col-dense）
+- ✅ Grid自動列/行（auto、min、max、fr）
+- ✅ Grid整列（すべてのバリアント）
+
+**間隔：**
+- ✅ パディング（すべての方向、RTLサポート：padding-start/end）
+- ✅ マージン（すべての方向、RTLサポート：margin-start/end）
+- ✅ 子要素間隔（space-x、space-y、リバースサポート付き）
+- ✅ 子要素分割（divide-x、divide-y、色と幅の制御付き）
+
+**サイズ：**
+- ✅ 幅（w-0からw-96、w-auto、w-full、w-screen、w-px、w-0.5、カスタム）
+- ✅ 高さ（h-0からh-96、h-auto、h-full、h-screen、h-px、h-0.5、カスタム）
+- ✅ 最小幅（min-w-0からmin-w-96、min-w-auto、min-w-full、min-w-screen、min-w-min、min-w-max、min-w-fit）
+- ✅ 最小高さ（min-h-0からmin-h-96、min-h-auto、min-h-full、min-h-screen）
+- ✅ 最大幅（max-w-0からmax-w-96、max-w-full、max-w-screen）
+- ✅ 最大高さ（max-h-0からmax-h-96、max-h-full、max-h-screen）
+
+**タイポグラフィ：**
+- ✅ フォントサイズ（text-xsからtext-9xl、カスタム）
+- ✅ フォント太さ（thin、extralight、light、normal、medium、semibold、bold、extrabold、black）
+- ✅ フォントスタイル（italic、not-italic）
+- ✅ 文字間隔（tracking-tighterからtracking-widest）
+- ✅ 行の高さ（leading-noneからleading-loose）
+- ✅ 行数制限（maxLines）
+- ✅ テキスト整列（left、center、right、justify）
+- ✅ テキスト色（すべてのTailwindCSSカラーファミリー：21ファミリー × 11シェード = 231色）
+- ✅ テキスト装飾線（underline、overline、line-through、no-underline）
+- ✅ テキスト装飾スタイル（solid、double、dotted、dashed、wavy）
+- ✅ テキスト装飾太さ（decoration-0からdecoration-8、auto、from-font）
+- ✅ テキスト装飾色（すべてのTailwindCSS色）
+- ✅ テキスト変換（uppercase、lowercase、capitalize、normal-case）
+- ✅ テキストオーバーフロー（truncate、text-ellipsis、text-clip）
+- ✅ テキスト折り返し（text-wrap、text-nowrap）
+
+**背景：**
+- ✅ 背景色（すべてのTailwindCSSカラーファミリー：21ファミリー × 11シェード = 231色）
+
+**ボーダー：**
+- ✅ 角丸（rounded-smからrounded-2xl、rounded-full、rounded-none、個別の角、RTLサポート：rounded-s/rounded-e）
+- ✅ ボーダー幅（border、border-t、border-r、border-b、border-l、border-x、border-y、RTLサポート：border-s/border-e）
+- ✅ ボーダー色（すべてのTailwindCSSカラーファミリー）
+- ✅ ボーダーなし
+
+**エフェクト：**
+- ✅ ボックスシャドウ（shadow-smからshadow-2xl、shadow-inner、shadow-none、カスタム）
+- ✅ テキストシャドウ
+- ✅ 不透明度（opacity-0からopacity-100）
+
+**インタラクティブ：**
+- ✅ ポインターイベント（pointer-events-none、pointer-events-auto）
+- ✅ ジェスチャーハンドラー（onTap、onDoubleTap、onLongPress）
+
+**任意の値：**
+- ✅ カスタム値（wCustom()、hCustom()など）
+
+### ⚠️ 部分的実装（142+ 機能）
+
+**レイアウト：**
+- ⚠️ ボックスサイズ（BoxConstraintsを介して間接的に制御）
+- ⚠️ 表示（inline、inline-block、inline-flex、inline-grid、table - 特定のwidgetが必要）
+- ⚠️ オブジェクトフィット（Image widgetが必要）
+- ⚠️ オブジェクト位置（Image widgetが必要）
+
+**タイポグラフィ：**
+- ⚠️ フォントファミリー（フォント設定が必要）
+- ⚠️ テキスト折り返し（text-balance、text-pretty - Flutterがサポートしていない）
+- ⚠️ 空白処理（限定的サポート、maxLinesが必要）
+- ⚠️ 単語分割（限定的サポート）
+- ⚠️ オーバーフロー折り返し（Flutterが自動処理）
+
+**間隔：**
+- ⚠️ 分割スタイル（divide-dashed、divide-dotted - Flutterの制限、solidを使用）
+
+**背景：**
+- ⚠️ 背景不透明度（Color.withOpacity()が必要）
+- ⚠️ 背景画像（DecorationImageが必要）
+- ⚠️ 背景位置（Alignmentが必要）
+- ⚠️ 背景サイズ（BoxFitが必要）
+- ⚠️ 背景繰り返し（ImageRepeatが必要）
+- ⚠️ 背景クリップ（Clipが必要）
+- ⚠️ 背景グラデーション（Gradientが必要）
+- ⚠️ 背景ブレンドモード（BlendModeが必要）
+
+**ボーダー：**
+- ⚠️ ボーダー不透明度（Color.withOpacity()が必要）
+- ⚠️ ボーダースタイル（border-dashed、border-dotted、border-double - カスタム描画が必要）
+- ⚠️ アウトライン（InputDecorationが必要）
+- ⚠️ リング（BoxShadowシミュレーションが必要）
+
+**エフェクト：**
+- ⚠️ ミックスブレンドモード（BlendModeが必要）
+- ⚠️ 背景ブレンドモード（BlendModeが必要）
+
+**フィルター：**
+- ⚠️ ぼかし（ImageFilter.blurが必要）
+- ⚠️ 明度、コントラスト、グレースケール、色相回転、反転、彩度、セピア（ColorFilterが必要）
+- ⚠️ バックドロップフィルター（BackdropFilter widgetが必要）
+
+**テーブル：**
+- ⚠️ ボーダー折りたたみ（Flutter Tableのデフォルト動作）
+- ⚠️ ボーダー間隔（Table borderが必要）
+- ⚠️ テーブルレイアウト（Flutterが自動処理）
+
+**トランジションとアニメーション：**
+- ⚠️ トランジションプロパティ（AnimatedContainerが必要）
+- ⚠️ トランジション期間（Durationが必要）
+- ⚠️ トランジションタイミング関数（Curveが必要）
+- ⚠️ トランジション遅延（Future.delayedが必要）
+- ⚠️ アニメーション（AnimationControllerが必要）
+
+**変換：**
+- ⚠️ 回転（Transform.rotateが必要）
+- ⚠️ スケール（Transform.scaleが必要）
+- ⚠️ スキュー（Transformが必要）
+- ⚠️ 平行移動（Transform.translateが必要）
+- ⚠️ 変換原点（Alignmentが必要）
+
+**インタラクティブ：**
+- ⚠️ カーソル（Flutter Webのみ、MouseCursorが必要）
+- ⚠️ ユーザー選択（SelectableTextが必要）
+- ⚠️ スクロール動作（ScrollPhysicsが必要）
+- ⚠️ スクロールマージン/パディング（padding実装が必要）
+- ⚠️ スクロールスナップ（PageViewが必要）
+- ⚠️ タッチアクション（GestureDetectorが必要）
+- ⚠️ キャレット色（TextField cursorColorが必要）
+- ⚠️ カラースキーム（Themeが必要）
+
+**SVG：**
+- ⚠️ 塗りつぶし、ストローク、ストローク幅（CustomPaintが必要）
+
+**疑似クラスバリアント：**
+- ⚠️ ホバー（InkWell、GestureDetectorが必要）
+- ⚠️ フォーカス（FocusNodeが必要）
+- ⚠️ アクティブ（GestureDetectorが必要）
+- ⚠️ 無効（widget enabledプロパティが必要）
+- ⚠️ チェック済み（Checkboxが必要）
+- ⚠️ グループホバー（カスタム実装が必要）
+- ⚠️ ピアホバー（カスタム実装が必要）
+
+**レスポンシブブレークポイント：**
+- ⚠️ ブレークポイント（sm、md、lg、xl、2xl - MediaQueryが必要）
+
+**ダークモード：**
+- ⚠️ ダークモードバリアント（Theme.of(context).brightnessが必要）
+
+**メディアクエリ：**
+- ⚠️ モーション削減（MediaQuery.accessibleNavigationが必要）
+- ⚠️ 方向（MediaQuery.orientationが必要）
+- ⚠️ 優先カラースキーム（Themeが必要）
+
+**状態修飾子：**
+- ⚠️ Before/After（Stackが必要）
+- ⚠️ バックドロップ（BackdropFilterが必要）
+- ⚠️ プレースホルダー（TextField hintTextが必要）
+
+**任意の値：**
+- ⚠️ CSS変数（Flutterがサポートしていない）
+- ⚠️ Calc()（手動計算が必要）
+
+### ❌ 未実装（59+ 機能）
+
+**レイアウト：**
+- ❌ 列（FlutterはCSS columnsをサポートしていない）
+- ❌ 改ページ（Flutterは印刷改ページをサポートしていない）
+- ❌ ボックス装飾分割
+- ❌ フロートとクリア（FlutterはCSS floatをサポートしていない）
+- ❌ 分離（FlutterはCSS isolationをサポートしていない）
+- ❌ 可視性折りたたみ（Flutterがサポートしていない）
+
+**タイポグラフィ：**
+- ❌ フォントスムージング（Flutterが自動処理）
+- ❌ フォントストレッチ（Flutterがサポートしていない）
+- ❌ フォントバリアント数値（Flutterがサポートしていない）
+- ❌ テキスト下線オフセット（Flutterがサポートしていない）
+- ❌ テキストインデント（Flutterがサポートしていない）
+- ❌ 垂直整列（Baseline widgetが必要）
+- ❌ 空白処理（pre、pre-line、pre-wrap、break-spaces - サポートされていない）
+- ❌ ハイフン（Flutterがサポートしていない）
+- ❌ コンテンツ（FlutterはCSS contentをサポートしていない）
+
+**背景：**
+- ❌ 背景添付（Flutterがサポートしていない）
+- ❌ 背景原点（Flutterがサポートしていない）
+
+**エフェクト：**
+- ❌ マスク（FlutterはCSS maskをサポートしていない）
+
+**変換：**
+- ❌ 変換スタイル（Flutterは3D変換をサポートしていない）
+- ❌ 背面可視性（Flutterがサポートしていない）
+- ❌ パースペクティブ（Flutterがサポートしていない）
+- ❌ パースペクティブ原点（Flutterがサポートしていない）
+
+**インタラクティブ：**
+- ❌ リサイズ（Flutterがサポートしていない）
+- ❌ 変更予定（Flutterが自動処理）
+- ❌ アクセントカラー（Themeが必要）
+- ❌ 外観（カスタムwidgetが必要）
+- ❌ フィールドサイズ（Flutterがサポートしていない）
+
+**アクセシビリティ：**
+- ❌ 強制カラー調整（Flutterがサポートしていない）
+
+**コンテナクエリ：**
+- ❌ コンテナタイプ（FlutterはCSS container queriesをサポートしていない）
+- ❌ コンテナ名
+
+**疑似クラスバリアント：**
+- ❌ 訪問済み（Flutterがサポートしていない）
+- ❌ ターゲット（Flutterがサポートしていない）
+- ❌ 開く/閉じる（カスタム状態管理が必要）
+- ❌ 無効/有効（FormField検証が必要）
+- ❌ Aria-*（Semanticsが必要）
+- ❌ Data-*（Flutterがサポートしていない）
+- ❌ Has()セレクター（FlutterはCSS :has()セレクターをサポートしていない）
+
+**メディアクエリ：**
+- ❌ 印刷（Flutterは印刷メディアクエリをサポートしていない）
+- ❌ 優先コントラスト（Flutterがサポートしていない）
+
+**状態修飾子：**
+- ❌ 最初の文字（Flutterがサポートしていない）
+- ❌ 最初の行（Flutterがサポートしていない）
+- ❌ マーカー（Flutterがサポートしていない）
+- ❌ 選択（Flutterがサポートしていない）
+- ❌ ファイル（Flutterがサポートしていない）
+
+**重要修飾子：**
+- ❌ 重要修飾子（FlutterはCSS !importantをサポートしていない）
 
 ## ✨ TailwindCSS Buildを選ぶ理由？
 
@@ -99,7 +358,7 @@ Container(
       ),
       SizedBox(height: 8),
       Text(
-        'カードのコンテンツがここに入ります...',
+        'カードの内容はここに...',
         style: TextStyle(
           fontSize: 16,
           color: Color(0xFF4B5563), // gray-600
@@ -120,7 +379,7 @@ Container(
       .textGray900()
       .build(),
   SizedBox(height: 8),
-  Text('カードのコンテンツがここに入ります...')
+  Text('カードの内容はここに...')
       .asText()
       .textBase()
       .textGray600()
@@ -136,94 +395,7 @@ Container(
     .build()
 ```
 
-**結果**：✨ **自己文書化コードと視覚的な明確さ！**
-
-</details>
-
-<details>
-<summary><strong>🔄 複雑なレスポンシブレイアウトの例</strong></summary>
-
-**従来のFlutterの書き方：**
-```dart
-Container(
-  padding: EdgeInsets.all(16),
-  color: Color(0xFFF3F4F6), // gray-100
-  child: Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    crossAxisAlignment: CrossAxisAlignment.stretch,
-    children: [
-      Expanded(
-        child: Container(
-          padding: EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: Color(0xFFEFF6FF), // blue-50
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Text(
-            '左パネル',
-            style: TextStyle(
-              color: Color(0xFF1E40AF), // blue-700
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ),
-      ),
-      SizedBox(width: 16),
-      Expanded(
-        child: Container(
-          padding: EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            color: Color(0xFFF0FDF4), // green-50
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Text(
-            '右パネル',
-            style: TextStyle(
-              color: Color(0xFF15803D), // green-700
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-        ),
-      ),
-    ],
-  ),
-)
-```
-
-**TailwindCSS Buildの書き方：**
-```dart
-[
-  Text('左パネル')
-      .asText()
-      .textBlue700()
-      .fontMedium()
-      .asContainer()
-      .bgBlue50()
-      .p4()
-      .r8()
-      .wFull()
-      .build(),
-  Text('右パネル')
-      .asText()
-      .textGreen700()
-      .fontMedium()
-      .asContainer()
-      .bgGreen50()
-      .p4()
-      .r8()
-      .wFull()
-      .build(),
-].asFlex()
-    .flexRow()
-    .justifyBetween()
-    .itemsStretch()
-    .asContainer()
-    .bgGray100()
-    .p4()
-    .build()
-```
-
-**結果**：✨ **コード構造がUIレイアウトと視覚的に一致！**
+**結果**：✨ **自己文書化コードで視覚的に明確！**
 
 </details>
 
@@ -231,18 +403,20 @@ Container(
 
 ### 🎯 ビルダーパターンの利点
 
-- **🚀 パフォーマンス**：ネストしたコンテナの代わりに単一ウィジェット作成
+- **🚀 パフォーマンス**：ネストされたコンテナの代わりに単一の最適化されたwidgetを作成
 - **🔗 チェーン可能**：複雑なスタイリングのための直感的なメソッドチェーン
-- **🛡️ 型安全**：Flutterの型システムとの完全なコンパイル時チェック
-- **💾 メモリ効率**：ウィジェットツリーの深度を削減し、レンダリング性能を向上
+- **🛡️ 型安全**：Flutterの型システムによる完全なコンパイル時チェック
+- **💾 メモリ効率**：widgetツリーの深度を減らし、レンダリングを改善
 
-### 🧩 3つのコアビルダー
+### 🧩 5つのコアビルダー
 
-| ビルダー | 目的 | 機能特性 | 使用方法 |
+| ビルダー | 目的 | 機能 | 使用方法 |
 |---------|---------|----------|-------|
 | **TextBuilder** | テキストスタイリングとタイポグラフィ | 装飾、変換、オーバーフロー制御 | `Text('Hello').asText().textBlue600().underline().decorationRed500().build()` |
-| **ContainerBuilder** | レイアウト、スペーシング、視覚効果 | 完全なポジションシステム | `.asContainer().px6().py3().bgWhite().positionAbsolute(top: 10, left: 20).build()` |
-| **FlexBuilder** | レイアウト管理（行/列） | Flexプロパティとギャップ制御 | `[widgets].asFlex().flexRow().justifyCenter().gap4().asContainer().build()` |
+| **ContainerBuilder** | レイアウト、間隔、視覚効果 | 完全な位置システム、RTLサポート | `.asContainer().px6().py3().bgWhite().positionAbsolute(top: 10, left: 20).build()` |
+| **FlexBuilder** | レイアウト管理（行/列） | Flexプロパティ、間隔、折り返し、子要素間隔、分割 | `[widgets].asFlex().flexRow().justifyCenter().gap4().flexWrap().build()` |
+| **GridBuilder** | Gridレイアウトシステム | 列、行、間隔、スパン、自動フロー | `[widgets].asGrid().gridCols3().gap4().build()` |
+| **ScrollBuilder** | オーバーフローとスクロール制御 | オーバーフローバリアント、オーバースクロール動作 | `.asScrollView().overflowAuto().overscrollContain().build()` |
 
 ## 🚀 クイックスタート
 
@@ -250,7 +424,7 @@ Container(
 
 ```yaml
 dependencies:
-  tailwindcss_build: ^0.4.3
+  tailwindcss_build: ^0.4.7
 ```
 
 ### インポート
@@ -259,10 +433,10 @@ dependencies:
 import 'package:tailwindcss_build/tailwindcss_build.dart';
 ```
 
-### 基本的な使用パターン
+### 基本的な使用例
 
 <details>
-<summary><strong>📝 高度なテキストスタイリング</strong></summary>
+<summary><strong>📝 テキストスタイリング</strong></summary>
 
 ```dart
 // 基本的なテキストスタイリング
@@ -270,17 +444,17 @@ Text('Hello World')
     .asText()
     .textBlue600()    // 色
     .textXl()         // サイズ
-    .fontBold()       // 重み
+    .fontBold()       // 太さ
     .build()
 
 // 高度なテキスト装飾
-Text('スタイル化テキスト')
+Text('スタイル化されたテキスト')
     .asText()
     .textRed600()
     .underline()               // 下線装飾
     .decorationBlue500()       // 装飾色
     .decorationDotted()        // 装飾スタイル
-    .decoration2()             // 装飾の厚さ
+    .decoration2()             // 装飾太さ
     .build()
 
 // テキスト変換
@@ -288,11 +462,11 @@ Text('変換してください')
     .asText()
     .uppercase()               // 大文字変換
     .trackingWide()           // 文字間隔
-    .leadingLoose()           // 行高
+    .leadingLoose()           // 行の高さ
     .build()
 
 // テキストオーバーフロー制御
-Text('非常に長いテキストがオーバーフローする可能性が...')
+Text('オーバーフローする可能性のある長いテキスト...')
     .asText()
     .truncate()               // 省略記号オーバーフロー
     .maxLines(2)             // 最大行数
@@ -302,22 +476,21 @@ Text('非常に長いテキストがオーバーフローする可能性が...')
 </details>
 
 <details>
-<summary><strong>🎯 高度なコンテナスタイリング</strong></summary>
+<summary><strong>🎯 コンテナスタイリング</strong></summary>
 
 ```dart
 // 基本的なコンテナ
 Text('コンテンツ')
-    .build()
     .asContainer()
     .px6()           // 水平パディング
     .py3()           // 垂直パディング
     .bgBlue600()     // 背景色
-    .r8()            // ボーダー半径
+    .r8()            // 角丸
     .shadow()        // ドロップシャドウ
     .build()
 
-// ポジションレイアウト
-Text('配置された要素')
+// 位置レイアウト
+Text('位置指定要素')
     .asText()
     .textWhite()
     .fontMedium()
@@ -326,67 +499,152 @@ Text('配置された要素')
     .py2()
     .bgRed500()
     .r6()
-    .positionAbsolute(     // 絶対配置
+    .positionAbsolute(     // 絶対位置指定
       top: 20,
       right: 10,
       width: 200,
     )
 
-// Tailwindスタイルの配置
-Text('固定要素')
+// RTLサポート（padding-start/end）
+Text('RTLサポート')
     .asContainer()
-    .px6()
-    .py3()
-    .bgBlue600()
-    .top0()              // top: 0
-    .right4()            // right: 16px
-    .insetX2()           // left: 8px, right: 8px
-    .positionFixed()
+    .paddingStart(16)  // テキスト方向に適応
+    .paddingEnd(16)
+    .bgGray100()
+    .build()
 
-// 組み合わせ配置
-Widget()
+// アスペクト比
+Container(
+  child: Image.network('...'),
+)
     .asContainer()
-    .position()          // 配置を有効化
-    .top(50)            // カスタムtop値
-    .left0()            // 左端
-    .w64()              // 幅制御
-    .h32()              // 高さ制御
-    .bgGreen500()
+    .aspectVideo()    // 16:9アスペクト比
     .build()
 ```
 
 </details>
 
 <details>
-<summary><strong>🔄 フレックスレイアウト</strong></summary>
+<summary><strong>🔄 Flexレイアウト</strong></summary>
 
 ```dart
-// 行レイアウト
+// 間隔付き行レイアウト
 [
-  Text('アイテム 1').build(),
-  Text('アイテム 2').build(),
-  Text('アイテム 3').build(),
+  Text('項目1').build(),
+  Text('項目2').build(),
+  Text('項目3').build(),
 ].asFlex()
     .flexRow()          // 方向
-    .justifyCenter()    // メイン軸アライメント
-    .itemsCenter()      // クロス軸アライメント
-    .asContainer()      // スタイリングのためコンテナに変換
+    .justifyCenter()    // 主軸整列
+    .itemsCenter()      // 交差軸整列
+    .gap4()             // 項目間の間隔
+    .asContainer()
     .bgGray100()
     .p4()
     .r8()
     .build()
 
-// 列レイアウト
+// 折り返し付き列レイアウト
 [
-  Text('タイトル').build(),
-  Text('サブタイトル').build(),
+  Text('項目1').build(),
+  Text('項目2').build(),
+  Text('項目3').build(),
 ].asFlex()
     .flexCol()
+    .flexWrap()         // 次の行に折り返し
     .itemsStart()
+    .spaceY4()          // 子要素間の間隔
     .asContainer()
     .bgWhite()
     .p6()
     .shadowMd()
+    .build()
+
+// 子要素間の分割
+[
+  Text('項目1').build(),
+  Text('項目2').build(),
+  Text('項目3').build(),
+].asFlex()
+    .flexRow()
+    .divideX()          // 項目間の垂直分割線
+    .divideColor(Colors.grey)
+    .divideWidth(2)
+    .build()
+```
+
+</details>
+
+<details>
+<summary><strong>📐 Gridレイアウト</strong></summary>
+
+```dart
+// 基本的なグリッド
+[
+  Text('項目1').build(),
+  Text('項目2').build(),
+  Text('項目3').build(),
+  Text('項目4').build(),
+].asGrid()
+    .gridCols2()        // 2列
+    .gap4()             // 項目間の間隔
+    .build()
+
+// スパン付きグリッド
+[
+  Text('スパン2').colSpan(2).build(),
+  Text('項目2').build(),
+  Text('項目3').build(),
+].asGrid()
+    .gridCols3()
+    .gap4()
+    .build()
+
+// グリッド自動フロー
+[
+  Text('項目1').build(),
+  Text('項目2').build(),
+  Text('項目3').build(),
+].asGrid()
+    .gridCols3()
+    .gridFlowRowDense()  // 密なパッキング
+    .gap4()
+    .build()
+```
+
+</details>
+
+<details>
+<summary><strong>📜 スクロールとオーバーフロー</strong></summary>
+
+```dart
+// オーバーフロー自動
+Container(
+  width: 200,
+  height: 200,
+  child: Text('長いコンテンツ...'),
+)
+    .asScrollView()
+    .overflowAuto()      // 必要に応じて自動スクロール
+    .build()
+
+// オーバーフロー非表示
+Text('クリップされるコンテンツ')
+    .asScrollView()
+    .overflowHidden()   // オーバーフローをクリップ
+    .build()
+    .asContainer()
+    .w(200)
+    .h(100)
+    .build()
+
+// オーバースクロール動作
+ListView(
+  children: [...],
+)
+    .asScrollView()
+    .overflowYAuto()
+    .overscrollContain()  // オーバースクロールを制限
     .build()
 ```
 
@@ -411,25 +669,25 @@ Text('クリックしてください')
       print('ボタンがクリックされました！');
     })
 
-// 手動でGestureDetectorは不要！
+// 手動のGestureDetectorは不要！
 ```
 
 </details>
 
 ## 🌐 プラットフォームサポート
 
-### ✅ 完全対応プラットフォーム
+### ✅ 完全サポートプラットフォーム
 
-このパッケージはすべてのFlutterプラットフォームをサポートしています：
+このパッケージはすべてのFlutterプラットフォームをサポートします：
 
 - 📱 **Android** - モバイルアプリの完全サポート
 - 🍎 **iOS** - 完全なiOS互換性  
 - 🌐 **Web** - Webアプリケーションサポート
-- 🖥️ **Windows** - デスクトップWindowsアプリ
-- 🍎 **macOS** - デスクトップmacOSアプリ  
-- 🐧 **Linux** - デスクトップLinuxアプリ
+- 🖥️ **Windows** - Windowsデスクトップアプリ
+- 🍎 **macOS** - macOSデスクトップアプリ  
+- 🐧 **Linux** - Linuxデスクトップアプリ
 
-### 🎯 ゼロ設定要件
+### 🎯 ゼロ設定が必要
 
 すべてのプラットフォームで追加設定なしで動作します。
 
@@ -437,65 +695,24 @@ Text('クリックしてください')
 
 ### 🌈 すべてのTailwindCSSカラーが利用可能
 
-<details>
-<summary><strong>背景色（21のカラーファミリー）</strong></summary>
+**21カラーファミリー × 11シェード = 231色**
 
+- **ニュートラル**：Gray、Slate、Zinc、Neutral、Stone
+- **暖色**：Red、Orange、Amber、Yellow、Lime
+- **寒色**：Green、Emerald、Teal、Cyan、Sky、Blue、Indigo、Violet、Purple
+- **アクセント**：Fuchsia、Pink、Rose
+
+**使用方法：**
 ```dart
-// 基本色
-.bgWhite()      .bgBlack()      .bgTransparent()
+// 背景色
+.bgBlue600()    .bgRed500()    .bgGreen400()
 
-// グレーファミリー（50-950）
-.bgGray50()     .bgGray100()    .bgGray200()    ...    .bgGray950()
+// テキスト色
+.textBlue600()  .textRed500()  .textGreen400()
 
-// フルレンジのすべてのカラーファミリー：
-.bgSlate50()    →  .bgSlate950()     // スレート
-.bgZinc50()     →  .bgZinc950()      // 亜鉛
-.bgNeutral50()  →  .bgNeutral950()   // ニュートラル
-.bgStone50()    →  .bgStone950()     // ストーン
-.bgRed50()      →  .bgRed950()       // 赤
-.bgOrange50()   →  .bgOrange950()    // オレンジ
-.bgAmber50()    →  .bgAmber950()     // アンバー
-.bgYellow50()   →  .bgYellow950()    // 黄色
-.bgLime50()     →  .bgLime950()      // ライム
-.bgGreen50()    →  .bgGreen950()     // 緑
-.bgEmerald50()  →  .bgEmerald950()   // エメラルド
-.bgTeal50()     →  .bgTeal950()      // ティール
-.bgCyan50()     →  .bgCyan950()      // シアン
-.bgSky50()      →  .bgSky950()       // 空
-.bgBlue50()     →  .bgBlue950()      // 青
-.bgIndigo50()   →  .bgIndigo950()    // インディゴ
-.bgViolet50()   →  .bgViolet950()    // バイオレット
-.bgPurple50()   →  .bgPurple950()    // パープル
-.bgFuchsia50()  →  .bgFuchsia950()   // フクシア
-.bgPink50()     →  .bgPink950()      // ピンク
-.bgRose50()     →  .bgRose950()      // ローズ
+// ボーダー色
+.borderBlue600() .borderRed500() .borderGreen400()
 ```
-
-</details>
-
-<details>
-<summary><strong>ボーダー色（すべてのファミリー）</strong></summary>
-
-```dart
-// デフォルトボーダー（グレー-200）
-.border()
-
-// カラーボーダー
-.border().borderBlue500()
-.border().borderRed300()
-.border().borderGreen600()
-
-// カスタムボーダー色
-.border(color: Colors.purple)
-
-// すべてのボーダーカラーファミリーが利用可能：
-.borderGray50()   →  .borderGray950()
-.borderBlue50()   →  .borderBlue950()
-.borderRed50()    →  .borderRed950()
-// ... 21のカラーファミリーすべて
-```
-
-</details>
 
 ## 📚 高度な例
 
@@ -518,13 +735,13 @@ Text('クリックしてください')
       .borderGray200()
       .build(),
   
-  // コンテンツエリア
+  // コンテンツ領域
   [
     // サイドバー
     [
       Text('ナビゲーション').build(),
-      Text('メニュー項目 1').build(),
-      Text('メニュー項目 2').build(),
+      Text('メニュー項目1').build(),
+      Text('メニュー項目2').build(),
     ].asFlex()
         .flexCol()
         .itemsStart()
@@ -535,7 +752,7 @@ Text('クリックしてください')
         .build(),
     
     // メインコンテンツ
-    Text('メインコンテンツエリア')
+    Text('メインコンテンツ領域')
         .asContainer()
         .bgWhite()
         .p6()
@@ -558,30 +775,30 @@ Text('クリックしてください')
 </details>
 
 <details>
-<summary><strong>💳 商品カード</strong></summary>
+<summary><strong>💳 製品カード</strong></summary>
 
 ```dart
 [
-  // 商品画像プレースホルダー
+  // 製品画像プレースホルダー
   Container(height: 200, color: Colors.grey[300]),
   
-  // 商品情報
+  // 製品情報
   [
-    Text('商品名')
+    Text('製品名')
         .asText()
         .textLg()
         .fontSemibold()
         .textGray900()
         .build(),
     
-    Text('¥2,999')
+    Text('\$29.99')
         .asText()
         .textXl()
         .fontBold()
         .textGreen600()
         .build(),
     
-    Text('商品説明がここに入ります...')
+    Text('製品の説明はここに...')
         .asText()
         .textSm()
         .textGray600()
@@ -632,121 +849,27 @@ Text('クリックしてください')
 
 </details>
 
-<details>
-<summary><strong>📱 モバイルファーストフォーム</strong></summary>
-
-```dart
-[
-  Text('サインアップ')
-      .asText()
-      .text2xl()
-      .fontBold()
-      .textCenter()
-      .textGray900()
-      .build(),
-  
-  SizedBox(height: 24),
-  
-  // メール入力
-  TextFormField(
-    decoration: InputDecoration(
-      hintText: 'メールアドレスを入力',
-      border: OutlineInputBorder(),
-    ),
-  ).asContainer()
-      .px4()
-      .py2()
-      .bgWhite()
-      .border()
-      .borderGray300()
-      .r8()
-      .build(),
-  
-  SizedBox(height: 16),
-  
-  // パスワード入力
-  TextFormField(
-    obscureText: true,
-    decoration: InputDecoration(
-      hintText: 'パスワードを入力',
-      border: OutlineInputBorder(),
-    ),
-  ).asContainer()
-      .px4()
-      .py2()
-      .bgWhite()
-      .border()
-      .borderGray300()
-      .r8()
-      .build(),
-  
-  SizedBox(height: 24),
-  
-  // 送信ボタン
-  Text('アカウント作成')
-      .asText()
-      .textWhite()
-      .fontMedium()
-      .textCenter()
-      .asContainer()
-      .px6()
-      .py3()
-      .bgBlue600()
-      .r8()
-      .shadow()
-      .wFull()
-      .onTap(() {}),
-      
-].asFlex()
-    .flexCol()
-    .asContainer()
-    .bgGray50()
-    .p6()
-    .wFull()
-    .build()
-```
-
-</details>
-
 ## 🎯 パフォーマンスとベストプラクティス
 
 ### ⚡ パフォーマンスの利点
 
-<details>
-<summary><strong>ウィジェットツリー最適化</strong></summary>
-
-**以前（複数のネストしたコンテナ）：**
+**以前（複数のネストされたコンテナ）：**
 ```
 Container
-  └── Container (パディング)
-      └── Container (背景)
-          └── Container (ボーダー)
-              └── Container (シャドウ)
+  └── Container (padding)
+      └── Container (background)
+          └── Container (border)
+              └── Container (shadow)
                   └── Text
 ```
 
-**以後（単一の最適化されたコンテナ）：**
+**後（単一の最適化されたコンテナ）：**
 ```
 Container (すべてのプロパティがマージ)
   └── Text
 ```
 
-**結果**：🚀 **ウィジェット数5分の1、レンダリング3倍高速化**
-
-</details>
-
-### 🛡️ 型安全とIntelliSense
-
-```dart
-// 完全な自動補完サポート
-Text('Hello')
-    .asText()
-    .text     // ← 表示：textXs, textSm, textBase, textLg...
-    .font     // ← 表示：fontThin, fontLight, fontNormal...
-    .asContainer()
-    .bg       // ← 表示：bgWhite, bgBlack, bgGray50...
-    .p        // ← 表示：p1, p2, p3, px2, py4...
-```
+**結果**：🚀 **widgetが5倍少なく、レンダリングが3倍高速**
 
 ### 📋 推奨チェーン順序
 
@@ -758,12 +881,12 @@ Text('テキスト')
     .fontBold()         // 
     .textBlue600()      // 
     .asContainer()      // 3. コンテナビルダーに変換
-    .px6()              // 4. スペーシング
+    .px6()              // 4. 間隔
     .py3()              // 
     .bgWhite()          // 5. 背景
     .border()           // 6. ボーダー
     .borderGray300()    // 
-    .r8()               // 7. ボーダー半径
+    .r8()               // 7. 角丸
     .shadow()           // 8. エフェクト
     .build()            // 9. 最終ビルド
 ```
@@ -780,45 +903,28 @@ Text('テキスト')
 .textXs()     .textSm()     .textBase()   .textLg()
 .textXl()     .text2xl()    .text3xl()    .text4xl()
 
-// フォントウェイト  
+// フォント太さ  
 .fontThin()   .fontLight()  .fontNormal() .fontMedium()
 .fontSemibold() .fontBold() .fontExtrabold() .fontBlack()
 
-// テキストカラー（すべてのTailwindCSSカラー）
+// テキスト色（すべてのTailwindCSS色）
 .textWhite()  .textBlack()  .textGray50() ... .textGray950()
 .textRed50()  ... .textRed950()  // すべてのカラーファミリー
 
-// テキスト配置
+// テキスト整列
 .textLeft()   .textCenter() .textRight()  .textJustify()
 
-// テキスト装飾ライン
+// テキスト装飾
 .underline()  .overline()   .lineThrough() .noUnderline()
-.underlineLineThrough()  .underlineOverline()  .allDecorations()
-
-// テキスト装飾スタイル
 .decorationSolid() .decorationDouble() .decorationDotted()
 .decorationDashed() .decorationWavy()
-
-// テキスト装飾の厚さ
-.decoration0() .decoration1() .decoration2() .decoration4() .decoration8()
-.decorationAuto() .decorationFromFont() .decorationCustom(3.5)
-
-// テキスト装飾カラー（完全なTailwindCSSパレット）
-.decorationRed500() .decorationBlue600() .decorationGreen700()
-.decorationPurple500() .decorationYellow400() // すべてのカラーファミリー
 
 // テキスト変換
 .uppercase()  .lowercase()  .capitalize()  .normalCase()
 
-// テキストオーバーフローと折り返し
+// テキストオーバーフロー
 .truncate()   .textEllipsis() .textClip()
-.textWrap()   .textNowrap()   .textBalance()  .textPretty()
-
-// 行の高さと文字間隔
-.leadingNone() .leadingTight() .leadingSnug() .leadingNormal()
-.leadingRelaxed() .leadingLoose()
-.trackingTighter() .trackingTight() .trackingNormal() .trackingWide()
-.trackingWider() .trackingWidest()
+.textWrap()   .textNowrap()
 ```
 
 </details>
@@ -829,57 +935,50 @@ Text('テキスト')
 ```dart
 // パディングとマージン
 .p0() .p1() .p2() .p3() .p4() ... .p96()
-.px0() .py0() .pl0() .pr0() .pt0() .pb0() // 方向別
-.m0() .m1() .m2() ... .m96() // マージンバリアント
+.px0() .py0() .pl0() .pr0() .pt0() .pb0()
+.paddingStart() .paddingEnd()  // RTLサポート
+.m0() .m1() .m2() ... .m96()
 
-// 背景色（すべてのTailwindCSSカラー）
+// 背景色
 .bgWhite() .bgBlack() .bgTransparent()
 .bgGray50() ... .bgGray950() // すべてのカラーファミリー
 
 // ボーダー
 .border() .borderT() .borderR() .borderB() .borderL()
-.border0() .border2() .border4() .border8() // 幅
-.borderSolid() .borderDashed() .borderDotted()
+.borderStart() .borderEnd()  // RTLサポート
+.border0() .border2() .border4() .border8()
 
-// ボーダーカラー
+// ボーダー色
 .borderGray50() ... .borderGray950() // すべてのカラーファミリー
 
-// ボーダー半径
-.r0() .r1() .r2() .r3() .r4() .r6() .r8() .r12() .r16() .r20() .r24()
-.rFull() .rNone()
+// 角丸
+.r0() .r1() .r2() .r3() .r4() .r6() .r8() .r12() .r16()
+.roundedStart() .roundedEnd()  // RTLサポート
 
 // シャドウ
-.shadow() .shadowSm() .shadowMd() .shadowLg() .shadowXl() .shadow2xl()
-.shadowInner() .shadowNone()
+.shadow() .shadowSm() .shadowMd() .shadowLg() .shadowXl()
 
 // サイズ
 .w0() .w1() ... .w96() .wAuto() .wFull() .wScreen()
 .h0() .h1() ... .h96() .hAuto() .hFull() .hScreen()
 
-// ポジションシステム
-.position()              // ポジションを有効化
-.positionStatic()        // デフォルトポジション
-.positionRelative()      // 相対ポジション
-.positionAbsolute()      // 絶対ポジション
-.positionFixed()         // 固定ポジション
-.positionSticky()        // スティッキーポジション
+// サイズ制約
+.minW0() ... .minW96() .minWAuto() .minWFull() .minWScreen()
+.maxW0() ... .maxW96() .maxWAuto() .maxWFull() .maxWScreen()
+.minH0() ... .minH96() .minHAuto() .minHFull() .minHScreen()
+.maxH0() ... .maxH96() .maxHAuto() .maxHFull() .maxHScreen()
 
-// ポジション値（Tailwindスタイル）
-.top0() .top1() .top2() .top4() .top(50)    // トップポジション
-.right0() .right1() .right2() .right4() .right(30)  // 右ポジション
-.bottom0() .bottom1() .bottom2() .bottom4() .bottom(20) // ボトムポジション
-.left0() .left1() .left2() .left4() .left(10)  // 左ポジション
+// 位置
+.positionStatic() .positionRelative() .positionAbsolute()
+.positionFixed() .positionSticky()
+.top0() .right0() .bottom0() .left0()
+.start() .end()  // RTLサポート
 
-// Insetショートカット
-.inset0() .inset1() .inset2() .inset4()     // すべての方向
-.insetX0() .insetX1() .insetX2()            // 水平（左+右）
-.insetY0() .insetY1() .insetY2()            // 垂直（上+下）
+// アスペクト比
+.aspectRatio() .aspectSquare() .aspectVideo() .aspectAuto()
 
-// カスタムポジショニング
-.positioned(top: 20, left: 10, width: 200, height: 100)
-
-// インタラクション
-.onTap(() {}) .onDoubleTap(() {}) .onLongPress(() {})
+// Z-Index
+.z0() .z10() .z20() .z30() .z40() .z50() .zAuto()
 ```
 
 </details>
@@ -891,73 +990,124 @@ Text('テキスト')
 // 方向
 .flexRow() .flexCol()
 
-// 主軸配置  
+// 主軸整列  
 .justifyStart() .justifyEnd() .justifyCenter()
 .justifyBetween() .justifyAround() .justifyEvenly()
 
-// 交差軸配置
+// 交差軸整列
 .itemsStart() .itemsEnd() .itemsCenter()
 .itemsStretch() .itemsBaseline()
 
 // Flexプロパティ
-.flex1() .flex2() .flex3() // 固定flex値
-.flexAuto() .flexNone() .flex(int) // カスタムflex
+.flex1() .flex2() .flex3()
+.flexAuto() .flexNone() .flex(int)
 
-// ギャップ（子要素間の間隔）
-.gap1() .gap2() .gap3() .gap4() .gap6() .gap8() .gap12() .gap16()
-.gap(double) // カスタムギャップ値
+// 折り返し
+.flexWrap() .flexNoWrap()
+
+// 間隔
+.gap1() .gap2() .gap3() .gap4() .gap6() .gap8()
+
+// 子要素間隔
+.spaceX1() .spaceX2() .spaceX4() .spaceXReverse()
+.spaceY1() .spaceY2() .spaceY4() .spaceYReverse()
+
+// 子要素分割
+.divideX() .divideY()
+.divideColor() .divideWidth()
+.divideSolid() .divideNone()
 ```
 
 </details>
 
-### 🔗 メソッドチェーン
+<details>
+<summary><strong>GridBuilderメソッド</strong></summary>
 
-すべてのビルダーは流暢なメソッドチェーンをサポートしています：
 ```dart
-Text('こんにちは')
-    .asText()        // TextBuilderに変換
-    .textBlue600()   // テキストスタイル
-    .fontBold()      // 追加テキストスタイル
-    .asContainer()   // ContainerBuilderに変換  
-    .px6()           // コンテナスタイル
-    .py3()           // 追加コンテナスタイル
-    .bgWhite()       // 背景
-    .r8()            // ボーダー半径
-    .shadow()        // ドロップシャドウ
-    .onTap(() {})    // インタラクション
-    // 使用時に.build()が自動的に呼ばれます
+// Grid列
+.gridCols1() .gridCols2() .gridCols3() ... .gridCols12()
+.gridColsNone() .gridColsSubgrid()
+
+// Grid行
+.gridRows1() .gridRows2() .gridRows3() ... .gridRows12()
+.gridRowsNone() .gridRowsSubgrid()
+
+// 間隔
+.gap4() .gapX4() .gapY4()
+
+// 自動フロー
+.gridFlowRow() .gridFlowCol()
+.gridFlowRowDense() .gridFlowColDense()
+
+// 整列
+.justifyItemsStart() .justifyItemsEnd() .justifyItemsCenter()
+.alignItemsStart() .alignItemsEnd() .alignItemsCenter()
+.placeContentStart() .placeContentCenter() .placeContentBetween()
 ```
+
+</details>
+
+<details>
+<summary><strong>ScrollBuilderメソッド</strong></summary>
+
+```dart
+// オーバーフロー
+.overflowAuto() .overflowHidden() .overflowClip()
+.overflowVisible() .overflowScroll()
+
+// オーバーフロー X/Y
+.overflowXAuto() .overflowYAuto()
+.overflowXHidden() .overflowYHidden()
+.overflowXClip() .overflowYClip()
+.overflowXVisible() .overflowYVisible()
+.overflowXScroll() .overflowYScroll()
+
+// オーバースクロール動作
+.overscrollAuto() .overscrollContain() .overscrollNone()
+.overscrollXAuto() .overscrollXContain() .overscrollXNone()
+.overscrollYAuto() .overscrollYContain() .overscrollYNone()
+```
+
+</details>
 
 ## ❓ よくある質問
 
 <details>
-<summary><strong>なぜ直接ウィジェットスタイルではなくビルダーパターンを使うのですか？</strong></summary>
+<summary><strong>直接widgetスタイリングの代わりにビルダーパターンを使用する理由は？</strong></summary>
 
-1. **パフォーマンス**：ネストしたコンテナではなく単一の最適化されたウィジェットを作成
+1. **パフォーマンス**：ネストされたコンテナの代わりに単一の最適化されたwidgetを作成
 2. **可読性**：CSSクラスのように読める自己文書化コード
-3. **タイプセーフティ**：完全なコンパイル時チェックとIntelliSenseサポート
-4. **保守性**：すべてのスタイリングニーズに対する一貫したAPI
-5. **メモリ効率**：ウィジェットツリーの深度を削減
+3. **型安全**：完全なコンパイル時チェックとIntelliSenseサポート
+4. **保守性**：すべてのスタイリングニーズにわたる一貫したAPI
+5. **メモリ効率**：widgetツリーの深度を減らす
 
 </details>
 
 <details>
-<summary><strong>他のFlutterスタイリングソリューションとの比較は？</strong></summary>
+<summary><strong>レスポンシブデザインをどのように処理しますか？</strong></summary>
 
-| 機能 | TailwindCSS Build | 従来のFlutter | その他のパッケージ |
-|---------|-------------------|-------------------|----------------|
-| コード長 | 70%短縮 | 冗長 | 様々 |
-| パフォーマンス | 単一ウィジェット | ネストしたコンテナ | 様々 |
-| 学習曲線 | TailwindCSS知識 | Flutterウィジェット | パッケージ固有 |
-| タイプセーフティ | 完全 | 完全 | 様々 |
-| カスタマイズ性 | 高 | 高 | 限定的 |
+ビルダーと一緒にFlutterの組み込みレスポンシブツールを使用：
+
+```dart
+LayoutBuilder(
+  builder: (context, constraints) {
+    if (constraints.maxWidth > 600) {
+      // デスクトップレイアウト
+      return [widgets].asFlex().flexRow().build();
+    } else {
+      // モバイルレイアウト  
+      return [widgets].asFlex().flexCol().build();
+    }
+  },
+)
+```
 
 </details>
 
 <details>
-<summary><strong>従来のFlutterウィジェットとビルダーを混在できますか？</strong></summary>
+<summary><strong>従来のFlutter widgetとビルダーを混在させることができますか？</strong></summary>
 
-はい！ビルダーは既存のFlutterコードとシームレスに動作するよう設計されています：
+はい！ビルダーは既存のFlutterコードとシームレスに動作するように設計されています：
 
 ```dart
 Column(
@@ -982,134 +1132,14 @@ Column(
 
 </details>
 
-<details>
-<summary><strong>既存のテーマとスタイリングで動作しますか？</strong></summary>
-
-はい！ビルダーはFlutterのテーマシステムを尊重し、以下と組み合わせることができます：
-- Material Designテーマ
-- カスタムテーマ
-- ダーク/ライトモード
-- カスタムカラースキーム
-
-</details>
-
-<details>
-<summary><strong>レスポンシブデザインはどう扱いますか？</strong></summary>
-
-Flutterのビルトインレスポンシブツールをビルダーと一緒に使用：
-
-```dart
-LayoutBuilder(
-  builder: (context, constraints) {
-    if (constraints.maxWidth > 600) {
-      // デスクトップレイアウト
-      return [widgets].asFlex().flexRow().build();
-    } else {
-      // モバイルレイアウト  
-      return [widgets].asFlex().flexCol().build();
-    }
-  },
-)
-```
-
-</details>
-
-## 🔄 マイグレーションガイド
-
-### 0.3.x から 0.4.0 へ
-
-<details>
-<summary><strong>API変更</strong></summary>
-
-```dart
-// ❌ 古い方法（0.3.x）
-Text('Hello').textBlue600().fontBold().asContainer().px4().bgWhite()
-
-// ✅ 新しい方法（0.4.0）
-Text('Hello')
-    .asText()
-    .textBlue600()
-    .fontBold()
-    .asContainer()
-    .px4()
-    .bgWhite()
-    .build()
-
-// ❌ 古いメソッド名
-.asTextBuilder()  →  .asText()
-.asContainerBuilder()  →  .asContainer()
-
-// ✅ 簡素化されたインタラクション
-// 古い：GestureDetector(onTap: ..., child: widget)
-// 新しい：widget.onTap(...)
-```
-
-</details>
-
-## 🧪 テストとデバッグ
-
-### 🔍 ウィジェットインスペクター統合
-
-```dart
-// 各ビルダーは単一の検査可能なウィジェットを作成
-Text('デバッグしてください')
-    .asText()
-    .textRed600()
-    .asContainer()
-    .px4()
-    .py2()
-    .bgRed100()
-    .border()
-    .borderRed500()
-    .r4()
-    .build() // ← インスペクターツリー内の単一Containerウィジェット
-```
-
-## 🎨 カスタム拡張
-
-<details>
-<summary><strong>ブランドカラー</strong></summary>
-
-```dart
-// ブランドカラーを定義
-extension BrandColors on ContainerBuilder {
-  ContainerBuilder bgPrimary() => backgroundColor(Color(0xFF1E40AF));
-  ContainerBuilder bgSecondary() => backgroundColor(Color(0xFF7C3AED));
-  ContainerBuilder bgAccent() => backgroundColor(Color(0xFF059669));
-}
-
-// 使用方法
-Text('ブランドボタン')
-    .asContainer()
-    .px6()
-    .py3()
-    .bgPrimary()  // カスタムブランドカラー
-    .r8()
-    .build()
-```
-
-</details>
-
-<details>
-<summary><strong>カスタムスペーシング</strong></summary>
-
-```dart
-extension CustomSpacing on ContainerBuilder {
-  ContainerBuilder pSection() => padding(EdgeInsets.all(32));
-  ContainerBuilder pCard() => padding(EdgeInsets.all(16));
-}
-```
-
-</details>
-
 ## 🤝 貢献
 
-貢献を歓迎します！これは1.0.0以前のパッケージのため：
+貢献を歓迎します！これはpre-1.0.0パッケージなので：
 
-1. **問題をチェック**：既存の問題を探すか新しい問題を作成
-2. **変更について議論**：大きな変更については事前に議論してください
+1. **問題を確認**：既存の問題を確認するか、新しい問題を作成
+2. **変更を議論**：大きな変更については、まず議論してください
 3. **パターンに従う**：確立されたビルダーパターンアーキテクチャを使用
-4. **テストを追加**：新機能にはテストを含めてください
+4. **テストを追加**：新機能にテストを含める
 5. **ドキュメントを更新**：新機能のドキュメントを更新
 
 ## 🌟 コミュニティ
@@ -1124,15 +1154,15 @@ extension CustomSpacing on ContainerBuilder {
 
 ## 🙏 謝辞
 
-- [Tailwind CSS](https://tailwindcss.com/)からインスピレーションを受けています
-- [Flutter](https://flutter.dev/)コミュニティのために構築
-- すべての貢献者とユーザーに感謝
+- [Tailwind CSS](https://tailwindcss.com/)にインスパイアされました
+- [Flutter](https://flutter.dev/)コミュニティのために構築されました
+- すべての貢献者とユーザーに感謝します
 
 ---
 
-**Flutter開発を革命化する準備はできていますか？**
+**Flutter開発を革新する準備はできましたか？** 
 ```bash
 flutter pub add tailwindcss_build
 ```
 
-*TailwindCSS Buildで冗長なFlutterコードをエレガントで保守しやすく、高性能なUI宣言に変換しましょう。*
+*TailwindCSS Buildで冗長なFlutterコードをエレガントで保守可能かつ高性能なUI宣言に変換します。*

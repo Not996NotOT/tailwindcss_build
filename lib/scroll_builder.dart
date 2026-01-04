@@ -163,6 +163,81 @@ class ScrollBuilder {
     return this;
   }
   
+  // === Overscroll Behavior 方法 ===
+  
+  /// overscroll-auto -> 允许过度滚动（默认行为，使用 BouncingScrollPhysics）
+  ScrollBuilder overscrollAuto() {
+    // 如果没有设置自定义 physics，使用 BouncingScrollPhysics
+    if (_physics == null) {
+      _physics = const BouncingScrollPhysics();
+    }
+    return this;
+  }
+  
+  /// overscroll-contain -> 限制过度滚动（使用 ClampingScrollPhysics）
+  ScrollBuilder overscrollContain() {
+    // 使用 ClampingScrollPhysics 来限制过度滚动
+    if (_physics == null) {
+      _physics = const ClampingScrollPhysics();
+    }
+    return this;
+  }
+  
+  /// overscroll-none -> 禁止过度滚动（使用 NeverScrollableScrollPhysics）
+  ScrollBuilder overscrollNone() {
+    // 使用 NeverScrollableScrollPhysics 来禁止滚动
+    _physics = const NeverScrollableScrollPhysics();
+    return this;
+  }
+  
+  /// overscroll-x-auto -> X轴允许过度滚动
+  ScrollBuilder overscrollXAuto() {
+    // 对于 X 轴，我们保持默认的 BouncingScrollPhysics
+    if (_physics == null) {
+      _physics = const BouncingScrollPhysics();
+    }
+    return this;
+  }
+  
+  /// overscroll-x-contain -> X轴限制过度滚动
+  ScrollBuilder overscrollXContain() {
+    // 对于 X 轴，使用 ClampingScrollPhysics
+    if (_physics == null) {
+      _physics = const ClampingScrollPhysics();
+    }
+    return this;
+  }
+  
+  /// overscroll-x-none -> X轴禁止过度滚动
+  ScrollBuilder overscrollXNone() {
+    _physics = const NeverScrollableScrollPhysics();
+    return this;
+  }
+  
+  /// overscroll-y-auto -> Y轴允许过度滚动
+  ScrollBuilder overscrollYAuto() {
+    // 对于 Y 轴，我们保持默认的 BouncingScrollPhysics
+    if (_physics == null) {
+      _physics = const BouncingScrollPhysics();
+    }
+    return this;
+  }
+  
+  /// overscroll-y-contain -> Y轴限制过度滚动
+  ScrollBuilder overscrollYContain() {
+    // 对于 Y 轴，使用 ClampingScrollPhysics
+    if (_physics == null) {
+      _physics = const ClampingScrollPhysics();
+    }
+    return this;
+  }
+  
+  /// overscroll-y-none -> Y轴禁止过度滚动
+  ScrollBuilder overscrollYNone() {
+    _physics = const NeverScrollableScrollPhysics();
+    return this;
+  }
+  
   /// 构建最终的 Widget
   Widget build() {
     // 如果需要双向滚动

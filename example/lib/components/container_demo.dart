@@ -11,352 +11,182 @@ class ContainerDemo extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-        const Text('Container Demo')
-            .text2xl()
-            .fontBold()
-            .textGray900()
-            .build(),
-        
-        const SizedBox(height: 16),
-        
-        // 基础容器
-        const Text('Simple Container')
-            .textWhite()
-                .fontMedium()
-                .asContainer()
-            .px4()
-            .py2()
-            .bgBlue500()
-            .r6()
-            .build(),
-        
-        const SizedBox(height: 12),
-        
-        // 带阴影
-        const Text('With Shadow')
-            .textWhite()
-                .fontMedium()
-                .asContainer()
-            .px4()
-            .py2()
-            .bgGreen500()
-            .r6()
-            .shadow()
-            .build(),
-        
-        const SizedBox(height: 12),
-        
-        // 带边框
-        const Text('With Border')
-            .textGray700()
-                .fontMedium()
-                .asContainer()
-            .px4()
-            .py2()
-            .bgWhite()
-            .border()
-            .borderGray300()
-            .r6()
-            .build(),
-        
-        const SizedBox(height: 16),
-        
-        // 不同内边距
-        Wrap(
-          spacing: 12,
-          runSpacing: 12,
-          children: [
-            const Text('px2 py1')
-                .textWhite()
-                .asContainer()
-                .px2()
-                .py1()
-                .bgPurple500()
-                .r4()
-                .build(),
-            
-            const Text('px4 py2')
-                .textWhite()
-                .asContainer()
-                .px4()
-                .py2()
-                .bgPurple500()
-                .r4()
-                .build(),
-            
-            const Text('px6 py3')
-                .textWhite()
-                .asContainer()
-                .px6()
-                .py3()
-                .bgPurple500()
-                .r4()
-                .build(),
-          ],
-        ),
-        
-        const SizedBox(height: 16),
-        
-        // 不同圆角
-        Wrap(
-          spacing: 12,
-          runSpacing: 12,
-          children: [
-            const Text('r4')
-                .textWhite()
-                .asContainer()
-                .px4()
-                .py2()
-                .bgRed500()
-                .r4()
-                .build(),
-            
-            const Text('r8')
-                .textWhite()
-                .asContainer()
-                .px4()
-                .py2()
-                .bgRed500()
-                .r8()
-                .build(),
-            
-            const Text('r12')
-                .textWhite()
-                .asContainer()
-                .px4()
-                .py2()
-                .bgRed500()
-                .r12()
-                .build(),
-          ],
-        ),
-        
-        const SizedBox(height: 16),
-        
-        // 尺寸约束示例
-        const Text('Size Constraints Demo')
-            .textLg()
-            .fontBold()
-            .textGray900()
-            .build(),
-        
-        const SizedBox(height: 12),
-        
-        // Min-Width 示例
-        const Text('Min-Width Examples')
-            .textBase()
-            .fontSemibold()
-            .textGray700()
-            .build(),
-        
-        const SizedBox(height: 8),
-        
-        Wrap(
-          spacing: 12,
-          runSpacing: 12,
-          children: [
-            const Text('min-w-32')
-                .textWhite()
-                .asContainer()
-                .px4()
-                .py2()
-                .bgBlue500()
-                .minW32()
-                .r4()
-                .build(),
-            
-            const Text('min-w-48')
-                .textWhite()
-                .asContainer()
-                .px4()
-                .py2()
-                .bgBlue500()
-                .minW48()
-                .r4()
-                .build(),
-            
-            const Text('min-w-64')
-                .textWhite()
-                .asContainer()
-                .px4()
-                .py2()
-                .bgBlue500()
-                .minW64()
-                .r4()
-                .build(),
-          ],
-        ),
-        
-        const SizedBox(height: 12),
-        
-        // Max-Width 示例
-        const Text('Max-Width Examples')
-            .textBase()
-            .fontSemibold()
-            .textGray700()
-            .build(),
-        
-        const SizedBox(height: 8),
-        
-        Column(
-          children: [
-            const Text('max-w-sm (384px)')
-                .textWhite()
-                .asContainer()
-                .px4()
-                .py2()
-                .bgGreen500()
-                .maxWsm()
-                .r4()
-                .build(),
-            
-            const SizedBox(height: 8),
-            
-            const Text('max-w-md (448px)')
-                .textWhite()
-                .asContainer()
-                .px4()
-                .py2()
-                .bgGreen500()
-                .maxWmd()
-                .r4()
-                .build(),
-            
-            const SizedBox(height: 8),
-            
-            const Text('max-w-lg (512px)')
-                .textWhite()
-                .asContainer()
-                .px4()
-                .py2()
-                .bgGreen500()
-                .maxWlg()
-                .r4()
-                .build(),
-          ],
-        ),
-        
-        const SizedBox(height: 12),
-        
-        // Min-Height 示例
-        const Text('Min-Height Examples')
-            .textBase()
-            .fontSemibold()
-            .textGray700()
-            .build(),
-        
-        const SizedBox(height: 8),
-        
-        Row(
-          children: [
-            const Text('min-h-16')
-                .textWhite()
-                .asContainer()
-                .px4()
-                .py2()
-                .bgPurple500()
-                .minH16()
-                .r4()
-                .build(),
-            
-            const SizedBox(width: 12),
-            
-            const Text('min-h-24')
-                .textWhite()
-                .asContainer()
-                .px4()
-                .py2()
-                .bgPurple500()
-                .minH24()
-                .r4()
-                .build(),
-            
-            const SizedBox(width: 12),
-            
-            const Text('min-h-32')
-                .textWhite()
-                .asContainer()
-                .px4()
-                .py2()
-                .bgPurple500()
-                .minH32()
-                .r4()
-                .build(),
-          ],
-        ),
-        
-        const SizedBox(height: 12),
-        
-        // Max-Height 示例
-        const Text('Max-Height Examples')
-            .textBase()
-            .fontSemibold()
-            .textGray700()
-            .build(),
-        
-        const SizedBox(height: 8),
-        
-        SizedBox(
-          height: 200,
-          child: SingleChildScrollView(
-            child: Column(
-              children: [
-                const Text('max-h-16 (64px)')
-                    .textWhite()
-                    .asContainer()
-                    .px4()
-                    .py2()
-                    .bgRed500()
-                    .maxH16()
-                    .r4()
-                    .build(),
-                
-                const SizedBox(height: 8),
-                
-                const Text('max-h-24 (96px)')
-                    .textWhite()
-                    .asContainer()
-                    .px4()
-                    .py2()
-                    .bgRed500()
-                    .maxH24()
-                    .r4()
-                    .build(),
-                
-                const SizedBox(height: 8),
-                
-                const Text('max-h-32 (128px)')
-                    .textWhite()
-                    .asContainer()
-                    .px4()
-                    .py2()
-                    .bgRed500()
-                    .maxH32()
-                    .r4()
-                    .build(),
-              ],
-            ),
-          ),
-        ),
-        
-        const SizedBox(height: 16),
-        
-        // 复合示例
-        const Text('Complex Container')
-            .textGray800()
-            .fontSemibold()
-            .build()
-            .asContainer()
-            .px6()
-            .py4()
-            .bgWhite()
-            .border()
-            .borderGray200()
-            .r12()
-            .shadowMd()
-            .build(),
+          _buildSectionTitle('背景颜色 (Background Colors)'),
+          _buildExample('bg-red-500', Container(
+            child: Text('Red Background').asText().textWhite().build(),
+          ).asContainer().bgRed500().p4().build()),
+          _buildExample('bg-blue-600', Container(
+            child: Text('Blue Background').asText().textWhite().build(),
+          ).asContainer().bgBlue600().p4().build()),
+          _buildExample('bg-green-500', Container(
+            child: Text('Green Background').asText().textWhite().build(),
+          ).asContainer().bgGreen500().p4().build()),
+          _buildExample('bg-purple-500', Container(
+            child: Text('Purple Background').asText().textWhite().build(),
+          ).asContainer().bgPurple500().p4().build()),
+
+          _buildSectionTitle('内边距 (Padding)'),
+          _buildExample('p-2', Container(
+            child: Text('Padding 2').asText().build(),
+          ).asContainer().bgBlue100().p2().build()),
+          _buildExample('p-4', Container(
+            child: Text('Padding 4').asText().build(),
+          ).asContainer().bgBlue100().p4().build()),
+          _buildExample('p-8', Container(
+            child: Text('Padding 8').asText().build(),
+          ).asContainer().bgBlue100().p8().build()),
+          _buildExample('px-4 py-2', Container(
+            child: Text('Padding X:4 Y:2').asText().build(),
+          ).asContainer().bgBlue100().px4().py2().build()),
+          _buildExample('pt-4 pb-2 pl-6 pr-8', Container(
+            child: Text('Padding T:4 B:2 L:6 R:8').asText().build(),
+          ).asContainer().bgBlue100().padding(EdgeInsets.only(top: 16, bottom: 8, left: 24, right: 32)).build()),
+
+          _buildSectionTitle('外边距 (Margin)'),
+          _buildExample('m-2', Container(
+            child: Text('Margin 2').asText().build(),
+          ).asContainer().bgGreen100().margin(EdgeInsets.all(8)).build()),
+          _buildExample('m-4', Container(
+            child: Text('Margin 4').asText().build(),
+          ).asContainer().bgGreen100().margin(EdgeInsets.all(16)).build()),
+          _buildExample('mx-auto', Container(
+            width: 200,
+            child: Text('Margin X Auto').asText().textCenter().build(),
+          ).asContainer().bgGreen100().margin(EdgeInsets.symmetric(horizontal: double.infinity)).p4().build()),
+          _buildExample('mt-4 mb-2', Container(
+            child: Text('Margin T:4 B:2').asText().build(),
+          ).asContainer().bgGreen100().margin(EdgeInsets.only(top: 16, bottom: 8)).p4().build()),
+
+          _buildSectionTitle('宽度和高度 (Width & Height)'),
+          _buildExample('w-full h-20', Container(
+            child: Text('Full Width, Height 20').asText().textCenter().textWhite().build(),
+          ).asContainer().bgBlue500().wFull().h20().build()),
+          _buildExample('w-48 h-32', Container(
+            child: Text('Width 48, Height 32').asText().textCenter().textWhite().build(),
+          ).asContainer().bgBlue500().w48().h32().build()),
+          _buildExample('w-auto h-auto', Container(
+            child: Text('Auto Size').asText().textWhite().build(),
+          ).asContainer().bgBlue500().wAuto().hAuto().p4().build()),
+
+          _buildSectionTitle('最小/最大尺寸 (Min/Max Sizing)'),
+          _buildExample('min-w-32 max-w-64', Container(
+            child: Text('Min Width 32, Max Width 64').asText().build(),
+          ).asContainer().bgPurple100().minW32().maxW64().p4().build()),
+          _buildExample('min-h-20 max-h-40', Container(
+            child: Text('Min Height 20, Max Height 40').asText().build(),
+          ).asContainer().bgPurple100().minH20().maxH40().p4().build()),
+
+          _buildSectionTitle('圆角 (Border Radius)'),
+          _buildExample('rounded', Container(
+            child: Text('Rounded').asText().textWhite().build(),
+          ).asContainer().bgBlue500().rounded().p4().build()),
+          _buildExample('rounded-lg', Container(
+            child: Text('Rounded Large').asText().textWhite().build(),
+          ).asContainer().bgBlue500().roundedLg().p4().build()),
+          _buildExample('rounded-xl', Container(
+            child: Text('Rounded XL').asText().textWhite().build(),
+          ).asContainer().bgBlue500().roundedXl().p4().build()),
+          _buildExample('rounded-full', Container(
+            width: 100,
+            height: 100,
+            child: Center(child: Text('Full').asText().textWhite().build()),
+          ).asContainer().bgBlue500().borderRadiusCircular(50).build()),
+          _buildExample('rounded-t-lg', Container(
+            child: Text('Rounded Top Large').asText().textWhite().build(),
+          ).asContainer().bgBlue500().borderRadius(BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8))).p4().build()),
+
+          _buildSectionTitle('边框 (Border)'),
+          _buildExample('border', Container(
+            child: Text('Border').asText().build(),
+          ).asContainer().border().p4().build()),
+          _buildExample('border-2 border-blue-500', Container(
+            child: Text('Border 2 Blue').asText().build(),
+          ).asContainer().border2().borderBlue500().p4().build()),
+          _buildExample('border-t-4 border-red-500', Container(
+            child: Text('Border Top 4 Red').asText().build(),
+          ).asContainer().setBorder(Border(top: BorderSide(color: Colors.red, width: 4))).p4().build()),
+          _buildExample('border-x-2 border-green-500', Container(
+            child: Text('Border X 2 Green').asText().build(),
+          ).asContainer().setBorder(Border(left: BorderSide(color: Colors.green, width: 2), right: BorderSide(color: Colors.green, width: 2))).p4().build()),
+
+          _buildSectionTitle('阴影 (Box Shadow)'),
+          _buildExample('shadow', Container(
+            child: Text('Shadow').asText().build(),
+          ).asContainer().bgWhite().shadow().p4().rounded().build()),
+          _buildExample('shadow-md', Container(
+            child: Text('Shadow Medium').asText().build(),
+          ).asContainer().bgWhite().shadowMd().p4().rounded().build()),
+          _buildExample('shadow-lg', Container(
+            child: Text('Shadow Large').asText().build(),
+          ).asContainer().bgWhite().shadowLg().p4().rounded().build()),
+          _buildExample('shadow-xl', Container(
+            child: Text('Shadow XL').asText().build(),
+          ).asContainer().bgWhite().shadowLg().p4().rounded().build()),
+
+          _buildSectionTitle('宽高比 (Aspect Ratio)'),
+          _buildExample('aspect-square', Container(
+            child: Center(child: Text('Square').asText().textWhite().build()),
+          ).asContainer().bgBlue500().aspectSquare().build()),
+          _buildExample('aspect-video', Container(
+            child: Center(child: Text('Video (16:9)').asText().textWhite().build()),
+          ).asContainer().bgBlue500().aspectVideo().build()),
+          _buildExample('aspect-ratio(4/3)', Container(
+            child: Center(child: Text('4:3').asText().textWhite().build()),
+          ).asContainer().bgBlue500().aspectRatio(4 / 3).build()),
+
+          _buildSectionTitle('Flex 属性'),
+          _buildExample('flex-1', Row(
+            children: [
+              Container(child: Text('Flex 1').asText().textWhite().build())
+                  .asContainer().bgBlue500().p4().flex1(),
+              Container(child: Text('Flex 1').asText().textWhite().build())
+                  .asContainer().bgGreen500().p4().flex1(),
+            ],
+          )),
+          _buildExample('flex-none', Row(
+            children: [
+              Container(child: Text('None').asText().textWhite().build())
+                  .asContainer().bgBlue500().p4().flexNone(),
+              Container(child: Text('Flex 1').asText().textWhite().build())
+                  .asContainer().bgGreen500().p4().flex1(),
+            ],
+          )),
+
+          const SizedBox(height: 32),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSectionTitle(String title) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 24, bottom: 12),
+      child: Text(title)
+          .asText()
+          .textLg()
+          .fontBold()
+          .textGray900()
+          .build(),
+    );
+  }
+
+  Widget _buildExample(String label, Widget example) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(label)
+              .asText()
+              .textSm()
+              .textGray600()
+              .fontMedium()
+              .build(),
+          const SizedBox(height: 4),
+          example,
         ],
       ),
     );
   }
 }
+

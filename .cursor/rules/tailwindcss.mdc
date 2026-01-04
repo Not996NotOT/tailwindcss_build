@@ -1,0 +1,839 @@
+---
+alwaysApply: true
+---
+
+# Tailwind CSS Utility Classes Reference for Flutter
+
+> **注意**: 本文档列出了 Tailwind CSS 的类名参考，并标注了在 Flutter 中的实现状态。
+> - ✅ 已实现
+> - ⚠️ 部分实现/有限支持
+> - ❌ 未实现/不支持
+
+## Layout
+
+### Container
+- ✅ container (通过 ContainerBuilder 实现)
+
+### Aspect Ratio
+- ✅ aspect-ratio (通过 ContainerBuilder.aspectRatio())
+- ✅ aspect-square (通过 ContainerBuilder.aspectSquare())
+- ✅ aspect-video (通过 ContainerBuilder.aspectVideo())
+- ✅ aspect-auto (通过 ContainerBuilder.aspectAuto())
+
+### Columns
+- ❌ columns (Flutter 不支持 CSS columns)
+- ❌ columns-{n}
+
+### Break (Page Break)
+- ❌ break-after (Flutter 不支持打印分页)
+- ❌ break-before
+- ❌ break-inside
+
+### Box Decoration Break
+- ❌ box-decoration-break (Flutter 不支持)
+
+### Box Sizing
+- ⚠️ box-sizing (Flutter 中通过 BoxConstraints 间接控制)
+
+### Display
+- ✅ block (通过 ContainerBuilder 实现)
+- ✅ flex (通过 FlexBuilder 实现)
+- ✅ grid (通过 GridBuilder 实现)
+- ✅ hidden (通过 Opacity 或移除 widget 实现)
+- ⚠️ inline (Flutter 中通过 Text 或 RichText 实现)
+- ⚠️ inline-block
+- ⚠️ inline-flex
+- ⚠️ inline-grid
+- ⚠️ table (Flutter 中通过 Table widget 实现)
+
+### Float & Clear
+- ❌ float (Flutter 不支持 CSS float)
+- ❌ clear
+
+### Isolation
+- ❌ isolation (Flutter 不支持 CSS isolation)
+
+### Object Fit
+- ⚠️ object-fit (Flutter 中通过 BoxFit 实现，但需要 Image widget)
+- ⚠️ object-contain
+- ⚠️ object-cover
+- ⚠️ object-fill
+- ⚠️ object-none
+- ⚠️ object-scale-down
+
+### Object Position
+- ⚠️ object-position (Flutter 中通过 Alignment 实现)
+
+### Overflow
+- ✅ overflow-auto (通过 ScrollBuilder.overflowAuto())
+- ✅ overflow-hidden (通过 ScrollBuilder.overflowHidden())
+- ✅ overflow-clip (通过 ScrollBuilder.overflowClip())
+- ✅ overflow-visible (通过 ScrollBuilder.overflowVisible())
+- ✅ overflow-scroll (通过 ScrollBuilder.overflowScroll())
+- ✅ overflow-x-auto (通过 ScrollBuilder.overflowXAuto())
+- ✅ overflow-y-auto (通过 ScrollBuilder.overflowYAuto())
+- ✅ overflow-x-hidden (通过 ScrollBuilder.overflowXHidden())
+- ✅ overflow-y-hidden (通过 ScrollBuilder.overflowYHidden())
+- ✅ overflow-x-clip (通过 ScrollBuilder.overflowXClip())
+- ✅ overflow-y-clip (通过 ScrollBuilder.overflowYClip())
+- ✅ overflow-x-visible (通过 ScrollBuilder.overflowXVisible())
+- ✅ overflow-y-visible (通过 ScrollBuilder.overflowYVisible())
+- ✅ overflow-x-scroll (通过 ScrollBuilder.overflowXScroll())
+- ✅ overflow-y-scroll (通过 ScrollBuilder.overflowYScroll())
+
+### Overscroll Behavior
+- ✅ overscroll-behavior (通过 ScrollBuilder.overscrollAuto(), overscrollContain(), overscrollNone() 实现)
+- ✅ overscroll-auto (通过 ScrollBuilder.overscrollAuto())
+- ✅ overscroll-contain (通过 ScrollBuilder.overscrollContain())
+- ✅ overscroll-none (通过 ScrollBuilder.overscrollNone())
+- ✅ overscroll-x-auto (通过 ScrollBuilder.overscrollXAuto())
+- ✅ overscroll-x-contain (通过 ScrollBuilder.overscrollXContain())
+- ✅ overscroll-x-none (通过 ScrollBuilder.overscrollXNone())
+- ✅ overscroll-y-auto (通过 ScrollBuilder.overscrollYAuto())
+- ✅ overscroll-y-contain (通过 ScrollBuilder.overscrollYContain())
+- ✅ overscroll-y-none (通过 ScrollBuilder.overscrollYNone())
+
+### Position
+- ✅ static (默认)
+- ✅ fixed (通过 Positioned 实现)
+- ✅ absolute (通过 Positioned 实现)
+- ✅ relative (通过 Positioned 实现)
+- ✅ sticky (通过 SliverAppBar 等实现)
+- ✅ top (通过 ContainerBuilder.position())
+- ✅ right
+- ✅ bottom
+- ✅ left
+- ✅ inset (通过 ContainerBuilder.position())
+- ✅ inset-x
+- ✅ inset-y
+- ✅ start (通过 ContainerBuilder.start()，使用 PositionedDirectional 支持 RTL)
+- ✅ end (通过 ContainerBuilder.end()，使用 PositionedDirectional 支持 RTL)
+
+### Visibility
+- ✅ visible (默认)
+- ✅ invisible (通过 Opacity 实现)
+- ❌ collapse (Flutter 不支持)
+
+### Z-Index
+- ✅ z-index (通过 ContainerBuilder.zIndex())
+- ✅ z-{value} (通过 ContainerBuilder.z0(), z10(), z20() 等)
+- ✅ z-auto (通过 ContainerBuilder.zAuto())
+
+## Flexbox & Grid
+
+### Flex Direction
+- ✅ flex-row (通过 FlexBuilder.flexRow())
+- ✅ flex-col (通过 FlexBuilder.flexCol())
+
+### Flex Wrap
+- ✅ flex-wrap (通过 FlexBuilder.flexWrap()，使用 Wrap widget 实现)
+- ✅ flex-nowrap (通过 FlexBuilder.flexNowrap()，使用 Row/Column 实现)
+
+### Flex
+- ✅ flex-1 (通过 ContainerBuilder.flex1())
+- ✅ flex-auto (通过 ContainerBuilder.flexAuto())
+- ✅ flex-initial (通过 ContainerBuilder.flexInitial())
+- ✅ flex-none (通过 ContainerBuilder.flexNone())
+- ✅ flex-grow (通过 FlexBuilder.flexGrow())
+- ✅ flex-shrink (通过 FlexBuilder.flexShrink())
+
+### Order
+- ✅ order (通过 WidgetOrderExtension.order())
+
+### Justify Content
+- ✅ justify-start (通过 FlexBuilder.justifyStart())
+- ✅ justify-end (通过 FlexBuilder.justifyEnd())
+- ✅ justify-center (通过 FlexBuilder.justifyCenter())
+- ✅ justify-between (通过 FlexBuilder.justifyBetween())
+- ✅ justify-around (通过 FlexBuilder.justifyAround())
+- ✅ justify-evenly (通过 FlexBuilder.justifyEvenly())
+
+### Align Items
+- ✅ items-start (通过 FlexBuilder.itemsStart())
+- ✅ items-end (通过 FlexBuilder.itemsEnd())
+- ✅ items-center (通过 FlexBuilder.itemsCenter())
+- ✅ items-baseline (通过 FlexBuilder.itemsBaseline())
+- ✅ items-stretch (通过 FlexBuilder.itemsStretch())
+
+### Gap
+- ✅ gap-{size} (通过 FlexBuilder.gap(), gap1(), gap2() 等)
+- ✅ gap-x-{size} (GridBuilder 支持)
+- ✅ gap-y-{size} (GridBuilder 支持)
+
+### Grid Template Columns
+- ✅ grid-cols-{n} (通过 GridBuilder.gridCols1(), gridCols2() 等)
+- ✅ grid-cols-none (通过 GridBuilder.gridColsNone())
+- ✅ grid-cols-subgrid (通过 GridBuilder.gridColsSubgrid())
+- ✅ grid-template-columns (通过 GridBuilder.gridTemplateColumns())
+
+### Grid Template Rows
+- ✅ grid-rows-{n} (通过 GridBuilder.gridRows1(), gridRows2() 等)
+- ✅ grid-rows-none (通过 GridBuilder.gridRowsNone())
+- ✅ grid-rows-subgrid (通过 GridBuilder.gridRowsSubgrid())
+- ✅ grid-template-rows (通过 GridBuilder.gridTemplateRows())
+
+### Grid Column/Row Span
+- ✅ col-span-{n} (通过 WidgetGridExtension.colSpan())
+- ✅ row-span-{n} (通过 WidgetGridExtension.rowSpan())
+- ✅ col-start-{n} (通过 WidgetGridExtension.colStart())
+- ✅ col-end-{n} (通过 WidgetGridExtension.colEnd())
+- ✅ row-start-{n} (通过 WidgetGridExtension.rowStart())
+- ✅ row-end-{n} (通过 WidgetGridExtension.rowEnd())
+
+### Grid Auto Flow
+- ✅ grid-flow-row (通过 GridBuilder.gridFlowRow())
+- ✅ grid-flow-col (通过 GridBuilder.gridFlowCol())
+- ✅ grid-flow-row-dense (通过 GridBuilder.gridFlowRowDense())
+- ✅ grid-flow-col-dense (通过 GridBuilder.gridFlowColDense())
+
+### Grid Auto Columns/Rows
+- ✅ auto-cols-auto (通过 GridBuilder.autoColsAuto())
+- ✅ auto-cols-min (通过 GridBuilder.autoColsMin())
+- ✅ auto-cols-max (通过 GridBuilder.autoColsMax())
+- ✅ auto-cols-fr (通过 GridBuilder.autoColsFr())
+- ✅ auto-rows-auto (通过 GridBuilder.autoRowsAuto())
+- ✅ auto-rows-min (通过 GridBuilder.autoRowsMin())
+- ✅ auto-rows-max (通过 GridBuilder.autoRowsMax())
+- ✅ auto-rows-fr (通过 GridBuilder.autoRowsFr())
+
+### Grid Justify/Align
+- ✅ justify-items-start (通过 GridBuilder.justifyItemsStart())
+- ✅ justify-items-end (通过 GridBuilder.justifyItemsEnd())
+- ✅ justify-items-center (通过 GridBuilder.justifyItemsCenter())
+- ✅ justify-items-stretch (通过 GridBuilder.justifyItemsStretch())
+- ✅ align-items-start (通过 GridBuilder.alignItemsStart())
+- ✅ align-items-end (通过 GridBuilder.alignItemsEnd())
+- ✅ align-items-center (通过 GridBuilder.alignItemsCenter())
+- ✅ align-items-stretch (通过 GridBuilder.alignItemsStretch())
+- ✅ place-content-start (通过 GridBuilder.placeContentStart())
+- ✅ place-content-end (通过 GridBuilder.placeContentEnd())
+- ✅ place-content-center (通过 GridBuilder.placeContentCenter())
+- ✅ place-content-between (通过 GridBuilder.placeContentBetween())
+- ✅ place-content-around (通过 GridBuilder.placeContentAround())
+- ✅ place-content-evenly (通过 GridBuilder.placeContentEvenly())
+- ✅ place-content-stretch (通过 GridBuilder.placeContentStretch())
+- ✅ place-items-start (通过 GridBuilder.placeItemsStart())
+- ✅ place-items-end (通过 GridBuilder.placeItemsEnd())
+- ✅ place-items-center (通过 GridBuilder.placeItemsCenter())
+- ✅ place-items-stretch (通过 GridBuilder.placeItemsStretch())
+
+## Spacing
+
+### Padding
+- ✅ padding (通过 ContainerBuilder.padding())
+- ✅ padding-x / px-{size} (通过 ContainerBuilder.paddingHorizontal())
+- ✅ padding-y / py-{size} (通过 ContainerBuilder.paddingVertical())
+- ✅ padding-top / pt-{size} (通过 ContainerBuilder.padding())
+- ✅ padding-right / pr-{size}
+- ✅ padding-bottom / pb-{size}
+- ✅ padding-left / pl-{size}
+- ✅ padding-start / ps-{size} (通过 ContainerBuilder.paddingStart()，使用 EdgeInsetsDirectional 支持 RTL)
+- ✅ padding-end / pe-{size} (通过 ContainerBuilder.paddingEnd()，使用 EdgeInsetsDirectional 支持 RTL)
+
+### Margin
+- ✅ margin (通过 ContainerBuilder.margin())
+- ✅ margin-x / mx-{size} (通过 ContainerBuilder.margin())
+- ✅ margin-y / my-{size}
+- ✅ margin-top / mt-{size}
+- ✅ margin-right / mr-{size}
+- ✅ margin-bottom / mb-{size}
+- ✅ margin-left / ml-{size}
+- ✅ margin-start / ms-{size} (通过 ContainerBuilder.marginStart()，使用 EdgeInsetsDirectional 支持 RTL)
+- ✅ margin-end / me-{size} (通过 ContainerBuilder.marginEnd()，使用 EdgeInsetsDirectional 支持 RTL)
+
+### Space Between Children
+- ✅ space-x-{size} (通过 FlexBuilder.spaceX() 或 spaceX1(), spaceX2() 等)
+- ✅ space-y-{size} (通过 FlexBuilder.spaceY() 或 spaceY1(), spaceY2() 等)
+- ✅ space-x-reverse (通过 FlexBuilder.spaceXReverse())
+- ✅ space-y-reverse (通过 FlexBuilder.spaceYReverse())
+
+### Divide Between Children
+- ✅ divide-x (通过 FlexBuilder.divideX())
+- ✅ divide-y (通过 FlexBuilder.divideY())
+- ✅ divide-x-reverse (通过 FlexBuilder.divideXReverse())
+- ✅ divide-y-reverse (通过 FlexBuilder.divideYReverse())
+- ✅ divide-{color} (通过 FlexBuilder.divideColor() 或 divideX/divideY 的 color 参数)
+- ✅ divide-{width} (通过 FlexBuilder.divideWidth() 或 divideX/divideY 的 width 参数)
+- ✅ divide-solid (通过 FlexBuilder.divideSolid())
+- ⚠️ divide-dashed (Flutter 不支持，使用 solid 代替)
+- ⚠️ divide-dotted (Flutter 不支持，使用 solid 代替)
+- ✅ divide-none (通过 FlexBuilder.divideNone())
+
+## Sizing
+
+### Width
+- ✅ w-{size} (通过 ContainerBuilder.w0(), w1(), w2() 等)
+- ✅ w-auto (通过 ContainerBuilder.wAuto())
+- ✅ w-full (通过 ContainerBuilder.wFull())
+- ✅ w-px (通过 ContainerBuilder.wPx())
+- ✅ w-0.5 (通过 ContainerBuilder.w0_5())
+- ✅ w-{custom} (通过 ContainerBuilder.w() 或 wCustom())
+
+### Height
+- ✅ h-{size} (通过 ContainerBuilder.h0(), h1(), h2() 等)
+- ✅ h-auto (通过 ContainerBuilder.hAuto())
+- ✅ h-full (通过 ContainerBuilder.hFull())
+- ✅ h-px (通过 ContainerBuilder.hPx())
+- ✅ h-0.5 (通过 ContainerBuilder.h0_5())
+- ✅ h-{custom} (通过 ContainerBuilder.h() 或 hCustom())
+
+### Min Width
+- ✅ min-w-{size} (通过 ContainerBuilder.minW0(), minW1() 等)
+- ✅ min-w-auto (通过 ContainerBuilder.minWAuto())
+- ✅ min-w-full (通过 ContainerBuilder.minWFull())
+- ✅ min-w-screen (通过 ContainerBuilder.minWScreen())
+- ✅ min-w-min (通过 ContainerBuilder.minWMin())
+- ✅ min-w-max (通过 ContainerBuilder.minWMax())
+- ✅ min-w-fit (通过 ContainerBuilder.minWFit())
+
+### Min Height
+- ✅ min-h-{size} (通过 ContainerBuilder.minH0(), minH1() 等)
+- ✅ min-h-auto (通过 ContainerBuilder.minHAuto())
+- ✅ min-h-full (通过 ContainerBuilder.minHFull())
+- ✅ min-h-screen (通过 ContainerBuilder.minHScreen())
+
+### Max Width
+- ✅ max-w-{size} (通过 ContainerBuilder.maxW0(), maxW1() 等)
+- ✅ max-w-full (通过 ContainerBuilder.maxWFull())
+- ✅ max-w-screen (通过 ContainerBuilder.maxWScreen())
+
+### Max Height
+- ✅ max-h-{size} (通过 ContainerBuilder.maxH0(), maxH1() 等)
+- ✅ max-h-full (通过 ContainerBuilder.maxHFull())
+- ✅ max-h-screen (通过 ContainerBuilder.maxHScreen())
+
+## Typography
+
+### Font Size
+- ✅ text-xs (通过 TextBuilder.textXs())
+- ✅ text-sm (通过 TextBuilder.textSm())
+- ✅ text-base (通过 TextBuilder.textBase())
+- ✅ text-lg (通过 TextBuilder.textLg())
+- ✅ text-xl (通过 TextBuilder.textXl())
+- ✅ text-2xl (通过 TextBuilder.text2xl())
+- ✅ text-3xl (通过 TextBuilder.text3xl())
+- ✅ text-4xl (通过 TextBuilder.text4xl())
+- ✅ text-5xl (通过 TextBuilder.text5xl())
+- ✅ text-6xl (通过 TextBuilder.text6xl())
+- ✅ text-7xl (通过 TextBuilder.text7xl())
+- ✅ text-8xl (通过 TextBuilder.text8xl())
+- ✅ text-9xl (通过 TextBuilder.text9xl())
+- ✅ text-{custom} (通过 TextBuilder.fontSize())
+
+### Font Weight
+- ✅ font-thin (通过 TextBuilder.fontThin())
+- ✅ font-extralight (通过 TextBuilder.fontExtralight())
+- ✅ font-light (通过 TextBuilder.fontLight())
+- ✅ font-normal (通过 TextBuilder.fontNormal())
+- ✅ font-medium (通过 TextBuilder.fontMedium())
+- ✅ font-semibold (通过 TextBuilder.fontSemibold())
+- ✅ font-bold (通过 TextBuilder.fontBold())
+- ✅ font-extrabold (通过 TextBuilder.fontExtrabold())
+- ✅ font-black (通过 TextBuilder.fontBlack())
+- ✅ font-{weight} (通过 TextBuilder.fontWeight())
+
+### Font Style
+- ✅ italic (通过 TextBuilder.italic())
+- ✅ not-italic (通过 TextBuilder.notItalic())
+
+### Font Family
+- ⚠️ font-family (通过 TextBuilder.fontFamily()，但需要配置字体)
+
+### Font Smoothing
+- ❌ font-smoothing (Flutter 自动处理)
+
+### Font Stretch
+- ❌ font-stretch (Flutter 不支持)
+
+### Font Variant Numeric
+- ❌ font-variant-numeric (Flutter 不支持)
+
+### Letter Spacing
+- ✅ letter-spacing (通过 TextBuilder.letterSpacing())
+
+### Line Height
+- ✅ line-height (通过 TextBuilder.lineHeight())
+
+### Line Clamp
+- ✅ line-clamp-{n} (通过 TextBuilder.maxLines())
+
+### Text Align
+- ✅ text-left (通过 TextBuilder.textAlign())
+- ✅ text-center
+- ✅ text-right
+- ✅ text-justify
+
+### Text Color
+- ✅ text-{color} (通过 TextBuilder.textWhite(), textBlack(), textGray500() 等)
+- ✅ text-{custom} (通过 TextBuilder.color())
+
+### Text Decoration Line
+- ✅ underline (通过 TextBuilder.underline())
+- ✅ overline (通过 TextBuilder.overline())
+- ✅ line-through (通过 TextBuilder.lineThrough())
+- ✅ no-underline (通过 TextBuilder.noUnderline())
+
+### Text Decoration Style
+- ✅ decoration-solid (通过 TextBuilder.decorationSolid())
+- ✅ decoration-double (通过 TextBuilder.decorationDouble())
+- ✅ decoration-dotted (通过 TextBuilder.decorationDotted())
+- ✅ decoration-dashed (通过 TextBuilder.decorationDashed())
+- ✅ decoration-wavy (通过 TextBuilder.decorationWavy())
+
+### Text Decoration Thickness
+- ✅ decoration-{thickness} (通过 TextBuilder.decoration0(), decoration1() 等)
+- ✅ decoration-auto (通过 TextBuilder.decorationAuto())
+- ✅ decoration-from-font (通过 TextBuilder.decorationFromFont())
+
+### Text Underline Offset
+- ❌ underline-offset-{value} (Flutter 不支持)
+
+### Text Transform
+- ✅ uppercase (通过 TextBuilder.uppercase())
+- ✅ lowercase (通过 TextBuilder.lowercase())
+- ✅ capitalize (通过 TextBuilder.capitalize())
+- ✅ normal-case (通过 TextBuilder.normalCase())
+
+### Text Overflow
+- ✅ truncate (通过 TextBuilder.truncate())
+- ✅ text-ellipsis (通过 TextBuilder.textEllipsis())
+- ✅ text-clip (通过 TextBuilder.textClip())
+
+### Text Wrap
+- ✅ text-wrap (通过 TextBuilder.textWrap())
+- ✅ text-nowrap (通过 TextBuilder.textNowrap())
+- ⚠️ text-balance (Flutter 不支持 CSS text-wrap: balance)
+- ⚠️ text-pretty (Flutter 不支持 CSS text-wrap: pretty)
+
+### Text Indent
+- ❌ text-indent (Flutter 不支持)
+
+### Vertical Align
+- ❌ vertical-align (Flutter 中通过 Baseline 等实现)
+
+### White Space
+- ⚠️ whitespace-normal (通过 maxLines: null 实现)
+- ⚠️ whitespace-nowrap (通过 maxLines: 1 实现)
+- ❌ whitespace-pre (Flutter 不支持)
+- ❌ whitespace-pre-line
+- ❌ whitespace-pre-wrap
+- ❌ whitespace-break-spaces
+
+### Word Break
+- ⚠️ break-normal (默认行为)
+- ⚠️ break-words (通过 TextOverflow 实现)
+- ⚠️ break-all (Flutter 不完全支持)
+- ⚠️ break-keep (Flutter 不支持)
+
+### Overflow Wrap
+- ⚠️ overflow-wrap (Flutter 自动处理)
+
+### Hyphens
+- ❌ hyphens (Flutter 不支持)
+
+### Content
+- ❌ content (Flutter 不支持 CSS content)
+
+## Backgrounds
+
+### Background Color
+- ✅ bg-{color} (通过 ContainerBuilder.backgroundColor())
+- ⚠️ bg-opacity-{value} (通过 Color.withOpacity() 实现)
+
+### Background Image
+- ⚠️ bg-image (Flutter 中通过 DecorationImage 实现)
+
+### Background Position
+- ⚠️ bg-{position} (Flutter 中通过 Alignment 实现)
+
+### Background Size
+- ⚠️ bg-{size} (Flutter 中通过 BoxFit 实现)
+
+### Background Repeat
+- ⚠️ bg-repeat (Flutter 中通过 ImageRepeat 实现)
+- ⚠️ bg-no-repeat
+- ⚠️ bg-repeat-x
+- ⚠️ bg-repeat-y
+
+### Background Attachment
+- ❌ bg-attachment (Flutter 不支持)
+
+### Background Clip
+- ⚠️ bg-clip (Flutter 中通过 Clip 实现)
+
+### Background Origin
+- ❌ bg-origin (Flutter 不支持)
+
+### Background Gradient
+- ⚠️ bg-gradient-to-{direction} (Flutter 中通过 Gradient 实现)
+
+### Background Blend Mode
+- ⚠️ bg-blend-{mode} (Flutter 中通过 BlendMode 实现)
+
+## Borders
+
+### Border Radius
+- ✅ rounded (通过 ContainerBuilder.rounded())
+- ✅ rounded-sm (通过 ContainerBuilder.roundedSm())
+- ✅ rounded-md (通过 ContainerBuilder.roundedMd())
+- ✅ rounded-lg (通过 ContainerBuilder.roundedLg())
+- ✅ rounded-xl (通过 ContainerBuilder.roundedXl())
+- ✅ rounded-2xl (通过 ContainerBuilder.rounded2xl())
+- ✅ rounded-{size} (通过 ContainerBuilder.rounded4(), rounded6() 等)
+- ✅ rounded-{corner} (通过 ContainerBuilder.borderRadius())
+- ✅ rounded-tl
+- ✅ rounded-tr
+- ✅ rounded-bl
+- ✅ rounded-br
+- ✅ rounded-t
+- ✅ rounded-r
+- ✅ rounded-b
+- ✅ rounded-l
+- ✅ rounded-s (通过 ContainerBuilder.roundedS()，使用 BorderRadiusDirectional 支持 RTL)
+- ✅ rounded-e (通过 ContainerBuilder.roundedE()，使用 BorderRadiusDirectional 支持 RTL)
+
+### Border Width
+- ✅ border (通过 ContainerBuilder.border())
+- ✅ border-{width} (通过 ContainerBuilder.borderAll())
+- ✅ border-x (通过 ContainerBuilder.setBorder())
+- ✅ border-y
+- ✅ border-t
+- ✅ border-r
+- ✅ border-b
+- ✅ border-l
+- ✅ border-s (通过 ContainerBuilder.borderS()，使用 BorderDirectional 支持 RTL)
+- ✅ border-e (通过 ContainerBuilder.borderE()，使用 BorderDirectional 支持 RTL)
+
+### Border Color
+- ✅ border-{color} (通过 ContainerBuilder.borderAll(color: ...))
+- ⚠️ border-opacity (通过 Color.withOpacity() 实现)
+
+### Border Style
+- ⚠️ border-solid (Flutter 默认)
+- ⚠️ border-dashed (需要自定义绘制)
+- ⚠️ border-dotted (需要自定义绘制)
+- ⚠️ border-double (需要自定义绘制)
+- ✅ border-none (通过 ContainerBuilder.setBorder())
+
+### Outline
+- ⚠️ outline (Flutter 中通过 InputDecoration 等实现)
+- ⚠️ outline-{width}
+- ⚠️ outline-{color}
+- ⚠️ outline-style
+- ⚠️ outline-offset
+
+### Ring
+- ⚠️ ring (Flutter 中通过 BoxShadow 模拟)
+- ⚠️ ring-{width}
+- ⚠️ ring-{color}
+- ⚠️ ring-opacity
+- ⚠️ ring-offset
+- ⚠️ ring-offset-{width}
+- ⚠️ ring-offset-{color}
+- ⚠️ ring-inset
+
+## Effects
+
+### Box Shadow
+- ✅ shadow (通过 ContainerBuilder.boxShadow())
+- ✅ shadow-{size} (通过 ContainerBuilder.boxShadow())
+- ✅ shadow-{color} (通过 BoxShadow color)
+
+### Text Shadow
+- ✅ text-shadow (通过 TextBuilder.textShadow())
+
+### Opacity
+- ✅ opacity-{value} (通过 Opacity widget)
+
+### Mix Blend Mode
+- ⚠️ mix-blend-mode (Flutter 中通过 BlendMode 实现)
+
+### Background Blend Mode
+- ⚠️ background-blend-mode (Flutter 中通过 BlendMode 实现)
+
+### Mask
+- ❌ mask-* (Flutter 不支持 CSS mask)
+
+## Filters
+
+### Filter
+- ⚠️ blur (Flutter 中通过 ImageFilter.blur 实现)
+- ⚠️ brightness (Flutter 中通过 ColorFilter 实现)
+- ⚠️ contrast
+- ⚠️ drop-shadow (通过 BoxShadow 实现)
+- ⚠️ grayscale
+- ⚠️ hue-rotate
+- ⚠️ invert
+- ⚠️ saturate
+- ⚠️ sepia
+
+### Backdrop Filter
+- ⚠️ backdrop-blur (Flutter 中通过 BackdropFilter 实现)
+- ⚠️ backdrop-brightness
+- ⚠️ backdrop-contrast
+- ⚠️ backdrop-saturate
+- ⚠️ backdrop-sepia
+- ⚠️ backdrop-opacity
+- ⚠️ backdrop-grayscale
+- ⚠️ backdrop-invert
+- ⚠️ backdrop-hue-rotate
+
+## Tables
+
+### Border Collapse
+- ⚠️ border-collapse (Flutter Table 默认行为)
+
+### Border Spacing
+- ⚠️ border-spacing (Flutter 中通过 Table 的 border 实现)
+
+### Table Layout
+- ⚠️ table-layout (Flutter Table 自动处理)
+
+### Caption Side
+- ❌ caption-side (Flutter 不支持)
+
+## Transitions & Animation
+
+### Transition Property
+- ⚠️ transition (Flutter 中通过 AnimatedContainer 等实现)
+
+### Transition Duration
+- ⚠️ duration-{time} (Flutter 中通过 Duration 实现)
+
+### Transition Timing Function
+- ⚠️ ease-{type} (Flutter 中通过 Curve 实现)
+
+### Transition Delay
+- ⚠️ delay-{time} (Flutter 中通过 Future.delayed 实现)
+
+### Animation
+- ⚠️ animate-{name} (Flutter 中通过 AnimationController 实现)
+- ⚠️ animate-spin
+- ⚠️ animate-ping
+- ⚠️ animate-pulse
+- ⚠️ animate-bounce
+
+## Transforms
+
+### Transform
+- ✅ transform (通过 ContainerBuilder.transform())
+
+### Rotate
+- ⚠️ rotate-{value} (通过 Transform.rotate 实现)
+
+### Scale
+- ⚠️ scale-{value} (通过 Transform.scale 实现)
+
+### Skew
+- ⚠️ skew-x-{value} (通过 Transform 实现)
+- ⚠️ skew-y-{value}
+
+### Translate
+- ⚠️ translate-x-{value} (通过 Transform.translate 实现)
+- ⚠️ translate-y-{value}
+
+### Transform Origin
+- ⚠️ transform-origin (Flutter 中通过 Alignment 实现)
+
+### Transform Style
+- ❌ transform-style (Flutter 不支持 3D transform)
+
+### Backface Visibility
+- ❌ backface-visibility (Flutter 不支持)
+
+### Perspective
+- ❌ perspective (Flutter 不支持)
+
+### Perspective Origin
+- ❌ perspective-origin (Flutter 不支持)
+
+## Interactivity
+
+### Cursor
+- ⚠️ cursor-{type} (Flutter Web 中通过 MouseCursor 实现)
+
+### User Select
+- ⚠️ select-none (Flutter 中通过 SelectableText 控制)
+- ⚠️ select-text
+- ⚠️ select-all
+- ⚠️ select-auto
+
+### Pointer Events
+- ✅ pointer-events-none (通过 IgnorePointer)
+- ✅ pointer-events-auto (默认)
+
+### Resize
+- ❌ resize (Flutter 不支持)
+
+### Scroll Behavior
+- ⚠️ scroll-behavior (Flutter 中通过 ScrollPhysics 控制)
+
+### Scroll Margin/Padding
+- ⚠️ scroll-margin (Flutter 中通过 padding 实现)
+- ⚠️ scroll-padding
+
+### Scroll Snap
+- ⚠️ scroll-snap-* (Flutter 中通过 PageView 等实现)
+
+### Touch Action
+- ⚠️ touch-action (Flutter 中通过 GestureDetector 控制)
+
+### Will Change
+- ❌ will-change (Flutter 自动优化)
+
+### Accent Color
+- ❌ accent-color (Flutter 中通过 Theme 控制)
+
+### Appearance
+- ❌ appearance (Flutter 中通过自定义 widget 实现)
+
+### Caret Color
+- ⚠️ caret-color (Flutter 中通过 TextField 的 cursorColor 控制)
+
+### Color Scheme
+- ⚠️ color-scheme (Flutter 中通过 Theme 控制)
+
+### Field Sizing
+- ❌ field-sizing (Flutter 不支持)
+
+## SVG
+
+### Fill
+- ⚠️ fill (Flutter 中通过 CustomPaint 实现)
+
+### Stroke
+- ⚠️ stroke (Flutter 中通过 CustomPaint 实现)
+
+### Stroke Width
+- ⚠️ stroke-width (Flutter 中通过 CustomPaint 实现)
+
+## Accessibility
+
+### Forced Color Adjust
+- ❌ forced-color-adjust (Flutter 不支持)
+
+## Container Queries
+
+### Container Type
+- ❌ @container (Flutter 不支持 CSS container queries)
+- ❌ container-type
+- ❌ container-name
+- ❌ container-{name}
+
+## Pseudo-class Variants
+
+### State Variants
+- ⚠️ hover: (Flutter 中通过 InkWell, GestureDetector 等实现)
+- ⚠️ focus: (Flutter 中通过 FocusNode 实现)
+- ⚠️ active: (Flutter 中通过 GestureDetector 实现)
+- ⚠️ disabled: (Flutter 中通过 widget 的 enabled 属性控制)
+- ⚠️ checked: (Flutter 中通过 Checkbox 等实现)
+- ⚠️ group-hover: (需要自定义实现)
+- ⚠️ peer-hover: (需要自定义实现)
+- ❌ visited: (Flutter 不支持)
+- ❌ target: (Flutter 不支持)
+- ❌ open: (Flutter 中通过自定义状态管理)
+- ❌ closed: (Flutter 中通过自定义状态管理)
+- ❌ invalid: (Flutter 中通过 FormField 验证)
+- ❌ valid: (Flutter 中通过 FormField 验证)
+- ❌ aria-*: (Flutter 中通过 Semantics 实现)
+- ❌ data-*: (Flutter 不支持)
+- ❌ has-[:*]: (Flutter 不支持 CSS :has() 选择器)
+
+## Responsive Breakpoints
+
+### Breakpoints
+- ⚠️ sm: (通过 MediaQuery 实现)
+- ⚠️ md:
+- ⚠️ lg:
+- ⚠️ xl:
+- ⚠️ 2xl:
+- ⚠️ max-sm:
+- ⚠️ max-md:
+- ⚠️ max-lg:
+- ⚠️ max-xl:
+- ⚠️ max-2xl:
+
+## Dark Mode
+
+### Dark Mode Variant
+- ⚠️ dark: (通过 Theme.of(context).brightness 实现)
+- ⚠️ light:
+
+## Media Queries
+
+### Print
+- ❌ print: (Flutter 不支持打印媒体查询)
+
+### Reduced Motion
+- ⚠️ motion-safe: (通过 MediaQuery.accessibleNavigation 实现)
+- ⚠️ motion-reduce:
+
+### Orientation
+- ⚠️ portrait: (通过 MediaQuery.orientation 实现)
+- ⚠️ landscape:
+
+### Prefers Color Scheme
+- ⚠️ prefers-color-scheme-light: (通过 Theme 实现)
+- ⚠️ prefers-color-scheme-dark:
+
+### Prefers Contrast
+- ❌ prefers-contrast-*: (Flutter 不支持)
+
+### Prefers Reduced Motion
+- ⚠️ prefers-reduced-motion: (通过 MediaQuery 实现)
+
+## State Modifiers
+
+### Pseudo-elements
+- ⚠️ before: (Flutter 中通过 Stack 实现)
+- ⚠️ after: (Flutter 中通过 Stack 实现)
+- ❌ first-letter: (Flutter 不支持)
+- ❌ first-line: (Flutter 不支持)
+- ❌ marker: (Flutter 不支持)
+- ❌ selection: (Flutter 不支持)
+- ❌ file: (Flutter 不支持)
+- ⚠️ backdrop: (Flutter 中通过 BackdropFilter 实现)
+- ⚠️ placeholder: (Flutter 中通过 TextField 的 hintText 实现)
+
+## Arbitrary Values
+
+### Arbitrary Values Pattern
+- ✅ {property}-[{value}] (通过自定义方法实现，如 wCustom(), hCustom())
+- ⚠️ Supports CSS variables: {property}-[var(--my-var)] (Flutter 不支持 CSS 变量)
+- ⚠️ Supports calc(): {property}-[calc(100%-2rem)] (Flutter 中通过计算实现)
+
+## Important Modifier
+
+### Important Modifier
+- ❌ !{class} (Flutter 不支持 CSS !important，通过覆盖实现)
+
+## Implementation Notes
+
+### 已实现的核心功能
+1. **ContainerBuilder**: 完整的容器样式支持（width, height, padding, margin, border, borderRadius, shadow, z-index, position）
+2. **FlexBuilder**: 完整的 Flexbox 布局支持（direction, justify, align, gap, flex-grow/shrink, order）
+3. **GridBuilder**: 完整的 Grid 布局支持（columns, rows, gap, justify, align, span, start/end）
+4. **TextBuilder**: 完整的文本样式支持（size, weight, color, decoration, transform, overflow）
+5. **ScrollBuilder**: 完整的 overflow 控制支持（auto, hidden, clip, visible, scroll）
+
+### 部分实现的功能
+- 响应式断点（需要通过 MediaQuery 手动实现）
+- 伪类变体（需要通过状态管理实现）
+- 动画和过渡（需要通过 Flutter 动画系统实现）
+- 滤镜效果（部分支持，需要自定义实现）
+
+### 不支持的功能
+- CSS 特有的功能（columns, float, isolation 等）
+- 打印相关功能
+- CSS 变量和 calc()
+- CSS 选择器（:has(), :not() 等）
+- Container queries
+- 某些 CSS 属性（text-indent, hyphens 等）
+
+### 使用建议
+1. 优先使用已实现的功能（✅ 标记）
+2. 部分实现的功能（⚠️ 标记）需要额外处理或自定义实现
+3. 不支持的功能（❌ 标记）需要使用 Flutter 原生方式实现
+4. 响应式设计需要通过 MediaQuery 和条件判断实现
+5. 状态变体（hover, focus 等）需要通过 GestureDetector, InkWell 等实现
