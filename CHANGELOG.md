@@ -1,3 +1,10 @@
+## [Unreleased] - Version 0.4.8
+
+### 📦 Release
+- 🔄 Version bump to 0.4.8
+
+---
+
 ## [2025-10-04] - Version 0.4.7 - Example Application Overflow Fix & Flex Order System & Grid Builder System
 
 ### 🚀 New Features
