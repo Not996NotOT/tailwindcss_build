@@ -12,11 +12,11 @@
 
 **重要提示**：此包正在积极开发中，目标是 1.0.0 版本。我们可能会引入破坏性更改、弃用 API 或进行架构改进，以提供最佳解决方案。
 
-**当前状态**：v0.4.7 中的建造者模式实现（ContainerBuilder、TextBuilder、FlexBuilder、GridBuilder、ScrollBuilder）已准备好用于生产环境，代表了此库的未来方向。
+**当前状态**：v0.4.9 中的建造者模式实现（ContainerBuilder、TextBuilder、FlexBuilder、GridBuilder、ScrollBuilder）已准备好用于生产环境，代表了此库的未来方向。
 
 ## 📊 实现状态
 
-### ✅ 已完全实现（280+ 功能）
+### ✅ 已完全实现（400+ 功能）
 
 **核心建造者：**
 - ✅ **ContainerBuilder**: 完整的容器样式支持（宽度、高度、内边距、外边距、边框、圆角、阴影、z-index、定位、宽高比、RTL 支持）
@@ -79,21 +79,69 @@
 
 **背景：**
 - ✅ 背景颜色（所有 TailwindCSS 颜色系列：21 个系列 × 11 个色阶 = 231 种颜色）
+- ✅ 背景透明度（bg-opacity-0 到 bg-opacity-100）
+- ✅ 背景图片（backgroundImage、backgroundImageFromNetwork、backgroundImageFromAsset）
+- ✅ 背景位置（bg-center、bg-top、bg-bottom、bg-left、bg-right，以及所有位置）
+- ✅ 背景尺寸（bg-contain、bg-cover、bg-fill、bg-none、bg-scale-down）
+- ✅ 背景重复（bg-repeat、bg-no-repeat、bg-repeat-x、bg-repeat-y）
+- ✅ 背景裁剪（bg-clip 通过 ContainerBuilder.clip()）
+- ✅ 背景渐变（bg-gradient-to-r、bg-gradient-to-l、bg-gradient-to-t、bg-gradient-to-b，以及所有方向）
+- ✅ 背景混合模式（bg-blend-normal、bg-blend-multiply、bg-blend-screen，以及所有混合模式）
 
 **边框：**
 - ✅ 圆角（rounded-sm 到 rounded-2xl、rounded-full、rounded-none、单独角、RTL 支持：rounded-s/rounded-e）
 - ✅ 边框宽度（border、border-t、border-r、border-b、border-l、border-x、border-y、RTL 支持：border-s/border-e）
 - ✅ 边框颜色（所有 TailwindCSS 颜色系列）
+- ✅ 边框透明度（border-opacity-0 到 border-opacity-100）
+- ✅ 边框样式（border-solid、border-dashed、border-dotted、border-double、border-none）
 - ✅ 无边框
+- ✅ 轮廓（outline-0 到 outline-8、轮廓颜色、outline-offset）
+- ✅ 环形（ring-0 到 ring-8、环形颜色、ring-opacity、ring-offset、ring-inset）
 
 **效果：**
 - ✅ 盒子阴影（shadow-sm 到 shadow-2xl、shadow-inner、shadow-none、自定义）
 - ✅ 文本阴影
 - ✅ 透明度（opacity-0 到 opacity-100）
+- ✅ 混合模式（blend-normal、blend-multiply、blend-screen，以及所有混合模式）
+- ✅ 背景混合模式（bg-blend-normal、bg-blend-multiply、bg-blend-screen，以及所有混合模式）
 
 **交互：**
 - ✅ 指针事件（pointer-events-none、pointer-events-auto）
 - ✅ 手势处理器（onTap、onDoubleTap、onLongPress）
+- ✅ 光标（cursor-pointer、cursor-text、cursor-not-allowed、cursor-wait、cursor-move、cursor-grab、cursor-grabbing、cursor-help、cursor-default - Web 平台）
+- ✅ 用户选择（select-none、select-text、select-all、select-auto）
+
+**滤镜：**
+- ✅ 模糊（blur-sm 到 blur-3xl）
+- ✅ 亮度（brightness-0 到 brightness-200）
+- ✅ 对比度（contrast-0 到 contrast-200）
+- ✅ 投影（drop-shadow-sm 到 drop-shadow-2xl）
+- ✅ 灰度（grayscale-0、grayscale-100）
+- ✅ 色相旋转（hue-rotate-0、hue-rotate-15、hue-rotate-30、hue-rotate-60、hue-rotate-90、hue-rotate-180）
+- ✅ 反色（invert-0、invert-100）
+- ✅ 饱和度（saturate-0 到 saturate-200）
+- ✅ 棕褐色（sepia-0、sepia-100）
+- ✅ 背景模糊（backdrop-blur-sm 到 backdrop-blur-3xl）
+- ✅ 背景亮度（backdrop-brightness-0 到 backdrop-brightness-200）
+- ✅ 背景对比度（backdrop-contrast-0 到 backdrop-contrast-200）
+- ✅ 背景饱和度（backdrop-saturate-0 到 backdrop-saturate-200）
+- ✅ 背景棕褐色（backdrop-sepia-0、backdrop-sepia-100）
+- ✅ 背景透明度（backdrop-opacity-0 到 backdrop-opacity-100）
+- ✅ 背景灰度（backdrop-grayscale-0、backdrop-grayscale-100）
+- ✅ 背景反色（backdrop-invert-0、backdrop-invert-100）
+- ✅ 背景色相旋转（backdrop-hue-rotate-0 到 backdrop-hue-rotate-180）
+
+**变换：**
+- ✅ 变换（transform 通过 ContainerBuilder.transform()）
+- ✅ 旋转（rotate-0 到 rotate-180、rotate-45、rotate-90、rotate-180）
+- ✅ 缩放（scale-0 到 scale-150、scale-x、scale-y）
+- ✅ 倾斜（skew-x-0 到 skew-x-12、skew-y-0 到 skew-y-12）
+- ✅ 平移（translate-x-0 到 translate-x-64、translate-y-0 到 translate-y-64）
+- ✅ 变换原点（transform-origin 通过 ContainerBuilder.transformAlignment()）
+
+**对象适配与位置：**
+- ✅ 对象适配（object-contain、object-cover、object-fill、object-none、object-scale-down）
+- ✅ 对象位置（object-center、object-top、object-bottom、object-left、object-right，以及所有位置）
 
 **任意值：**
 - ✅ 自定义值（wCustom()、hCustom() 等）
@@ -103,8 +151,6 @@
 **布局：**
 - ⚠️ 盒子尺寸（通过 BoxConstraints 间接控制）
 - ⚠️ 显示（inline、inline-block、inline-flex、inline-grid、table - 需要特定 widget）
-- ⚠️ 对象适配（需要 Image widget）
-- ⚠️ 对象位置（需要 Image widget）
 
 **排版：**
 - ⚠️ 字体族（需要字体配置）
@@ -114,32 +160,7 @@
 - ⚠️ 溢出换行（Flutter 自动处理）
 
 **间距：**
-- ⚠️ 分隔样式（divide-dashed、divide-dotted - Flutter 限制，使用 solid 代替）
-
-**背景：**
-- ⚠️ 背景透明度（需要 Color.withOpacity()）
-- ⚠️ 背景图片（需要 DecorationImage）
-- ⚠️ 背景位置（需要 Alignment）
-- ⚠️ 背景尺寸（需要 BoxFit）
-- ⚠️ 背景重复（需要 ImageRepeat）
-- ⚠️ 背景裁剪（需要 Clip）
-- ⚠️ 背景渐变（需要 Gradient）
-- ⚠️ 背景混合模式（需要 BlendMode）
-
-**边框：**
-- ⚠️ 边框透明度（需要 Color.withOpacity()）
-- ⚠️ 边框样式（border-dashed、border-dotted、border-double - 需要自定义绘制）
-- ⚠️ 轮廓（需要 InputDecoration）
-- ⚠️ 环形（需要 BoxShadow 模拟）
-
-**效果：**
-- ⚠️ 混合模式（需要 BlendMode）
-- ⚠️ 背景混合模式（需要 BlendMode）
-
-**滤镜：**
-- ⚠️ 模糊（需要 ImageFilter.blur）
-- ⚠️ 亮度、对比度、灰度、色相旋转、反转、饱和度、棕褐色（需要 ColorFilter）
-- ⚠️ 背景滤镜（需要 BackdropFilter widget）
+- ⚠️ 分隔样式（divide-dashed、divide-dotted - Flutter 限制：使用 solid 代替。如需真正的虚线/点线分隔线，请使用自定义实现）
 
 **表格：**
 - ⚠️ 边框合并（Flutter Table 默认行为）
@@ -153,16 +174,9 @@
 - ⚠️ 过渡延迟（需要 Future.delayed）
 - ⚠️ 动画（需要 AnimationController）
 
-**变换：**
-- ⚠️ 旋转（需要 Transform.rotate）
-- ⚠️ 缩放（需要 Transform.scale）
-- ⚠️ 倾斜（需要 Transform）
-- ⚠️ 平移（需要 Transform.translate）
-- ⚠️ 变换原点（需要 Alignment）
 
 **交互：**
-- ⚠️ 光标（仅 Flutter Web，需要 MouseCursor）
-- ⚠️ 用户选择（需要 SelectableText）
+- ⚠️ 光标（仅 Flutter Web 平台 - 需要 Web 平台以获得完整支持）
 - ⚠️ 滚动行为（需要 ScrollPhysics）
 - ⚠️ 滚动边距/内边距（需要 padding 实现）
 - ⚠️ 滚动吸附（需要 PageView）

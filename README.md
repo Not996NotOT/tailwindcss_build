@@ -12,11 +12,11 @@ Transform your Flutter development with the power and elegance of Tailwind CSS u
 
 **Important**: This package is in active development toward version 1.0.0. We may introduce breaking changes, deprecate APIs, or make architectural improvements to provide the best possible solution.
 
-**Current Status**: The builder pattern implementations (ContainerBuilder, TextBuilder, FlexBuilder, GridBuilder, ScrollBuilder) in v0.4.7 are production-ready and represent the future direction of this library.
+**Current Status**: The builder pattern implementations (ContainerBuilder, TextBuilder, FlexBuilder, GridBuilder, ScrollBuilder) in v0.4.9 are production-ready and represent the future direction of this library.
 
 ## 📊 Implementation Status
 
-### ✅ Fully Implemented (280+ features)
+### ✅ Fully Implemented (400+ features)
 
 **Core Builders:**
 - ✅ **ContainerBuilder**: Complete container styling (width, height, padding, margin, border, borderRadius, shadow, z-index, position, aspect ratio, RTL support)
@@ -79,21 +79,69 @@ Transform your Flutter development with the power and elegance of Tailwind CSS u
 
 **Backgrounds:**
 - ✅ Background Color (all TailwindCSS color families: 21 families × 11 shades = 231 colors)
+- ✅ Background Opacity (bg-opacity-0 through bg-opacity-100)
+- ✅ Background Image (backgroundImage, backgroundImageFromNetwork, backgroundImageFromAsset)
+- ✅ Background Position (bg-center, bg-top, bg-bottom, bg-left, bg-right, and all positions)
+- ✅ Background Size (bg-contain, bg-cover, bg-fill, bg-none, bg-scale-down)
+- ✅ Background Repeat (bg-repeat, bg-no-repeat, bg-repeat-x, bg-repeat-y)
+- ✅ Background Clip (bg-clip via ContainerBuilder.clip())
+- ✅ Background Gradient (bg-gradient-to-r, bg-gradient-to-l, bg-gradient-to-t, bg-gradient-to-b, and all directions)
+- ✅ Background Blend Mode (bg-blend-normal, bg-blend-multiply, bg-blend-screen, and all blend modes)
 
 **Borders:**
 - ✅ Border Radius (rounded-sm through rounded-2xl, rounded-full, rounded-none, individual corners, RTL support with rounded-s/rounded-e)
 - ✅ Border Width (border, border-t, border-r, border-b, border-l, border-x, border-y, RTL support with border-s/border-e)
 - ✅ Border Color (all TailwindCSS color families)
+- ✅ Border Opacity (border-opacity-0 through border-opacity-100)
+- ✅ Border Style (border-solid, border-dashed, border-dotted, border-double, border-none)
 - ✅ Border None
+- ✅ Outline (outline-0 through outline-8, outline colors, outline-offset)
+- ✅ Ring (ring-0 through ring-8, ring colors, ring-opacity, ring-offset, ring-inset)
 
 **Effects:**
 - ✅ Box Shadow (shadow-sm through shadow-2xl, shadow-inner, shadow-none, custom)
 - ✅ Text Shadow
 - ✅ Opacity (opacity-0 through opacity-100)
+- ✅ Mix Blend Mode (blend-normal, blend-multiply, blend-screen, and all blend modes)
+- ✅ Background Blend Mode (bg-blend-normal, bg-blend-multiply, bg-blend-screen, and all blend modes)
 
 **Interactivity:**
 - ✅ Pointer Events (pointer-events-none, pointer-events-auto)
 - ✅ Gesture Handlers (onTap, onDoubleTap, onLongPress)
+- ✅ Cursor (cursor-pointer, cursor-text, cursor-not-allowed, cursor-wait, cursor-move, cursor-grab, cursor-grabbing, cursor-help, cursor-default - Web platform)
+- ✅ User Select (select-none, select-text, select-all, select-auto)
+
+**Filters:**
+- ✅ Blur (blur-sm through blur-3xl)
+- ✅ Brightness (brightness-0 through brightness-200)
+- ✅ Contrast (contrast-0 through contrast-200)
+- ✅ Drop Shadow (drop-shadow-sm through drop-shadow-2xl)
+- ✅ Grayscale (grayscale-0, grayscale-100)
+- ✅ Hue Rotate (hue-rotate-0, hue-rotate-15, hue-rotate-30, hue-rotate-60, hue-rotate-90, hue-rotate-180)
+- ✅ Invert (invert-0, invert-100)
+- ✅ Saturate (saturate-0 through saturate-200)
+- ✅ Sepia (sepia-0, sepia-100)
+- ✅ Backdrop Blur (backdrop-blur-sm through backdrop-blur-3xl)
+- ✅ Backdrop Brightness (backdrop-brightness-0 through backdrop-brightness-200)
+- ✅ Backdrop Contrast (backdrop-contrast-0 through backdrop-contrast-200)
+- ✅ Backdrop Saturate (backdrop-saturate-0 through backdrop-saturate-200)
+- ✅ Backdrop Sepia (backdrop-sepia-0, backdrop-sepia-100)
+- ✅ Backdrop Opacity (backdrop-opacity-0 through backdrop-opacity-100)
+- ✅ Backdrop Grayscale (backdrop-grayscale-0, backdrop-grayscale-100)
+- ✅ Backdrop Invert (backdrop-invert-0, backdrop-invert-100)
+- ✅ Backdrop Hue Rotate (backdrop-hue-rotate-0 through backdrop-hue-rotate-180)
+
+**Transforms:**
+- ✅ Transform (transform via ContainerBuilder.transform())
+- ✅ Rotate (rotate-0 through rotate-180, rotate-45, rotate-90, rotate-180)
+- ✅ Scale (scale-0 through scale-150, scale-x, scale-y)
+- ✅ Skew (skew-x-0 through skew-x-12, skew-y-0 through skew-y-12)
+- ✅ Translate (translate-x-0 through translate-x-64, translate-y-0 through translate-y-64)
+- ✅ Transform Origin (transform-origin via ContainerBuilder.transformAlignment())
+
+**Object Fit & Position:**
+- ✅ Object Fit (object-contain, object-cover, object-fill, object-none, object-scale-down)
+- ✅ Object Position (object-center, object-top, object-bottom, object-left, object-right, and all positions)
 
 **Arbitrary Values:**
 - ✅ Custom values (wCustom(), hCustom(), etc.)
@@ -103,8 +151,6 @@ Transform your Flutter development with the power and elegance of Tailwind CSS u
 **Layout:**
 - ⚠️ Box Sizing (indirectly controlled through BoxConstraints)
 - ⚠️ Display (inline, inline-block, inline-flex, inline-grid, table - requires specific widgets)
-- ⚠️ Object Fit (requires Image widget)
-- ⚠️ Object Position (requires Image widget)
 
 **Typography:**
 - ⚠️ Font Family (requires font configuration)
@@ -114,32 +160,7 @@ Transform your Flutter development with the power and elegance of Tailwind CSS u
 - ⚠️ Overflow Wrap (handled automatically by Flutter)
 
 **Spacing:**
-- ⚠️ Divide Style (divide-dashed, divide-dotted - Flutter limitation, uses solid instead)
-
-**Backgrounds:**
-- ⚠️ Background Opacity (requires Color.withOpacity())
-- ⚠️ Background Image (requires DecorationImage)
-- ⚠️ Background Position (requires Alignment)
-- ⚠️ Background Size (requires BoxFit)
-- ⚠️ Background Repeat (requires ImageRepeat)
-- ⚠️ Background Clip (requires Clip)
-- ⚠️ Background Gradient (requires Gradient)
-- ⚠️ Background Blend Mode (requires BlendMode)
-
-**Borders:**
-- ⚠️ Border Opacity (requires Color.withOpacity())
-- ⚠️ Border Style (border-dashed, border-dotted, border-double - requires custom painting)
-- ⚠️ Outline (requires InputDecoration)
-- ⚠️ Ring (requires BoxShadow simulation)
-
-**Effects:**
-- ⚠️ Mix Blend Mode (requires BlendMode)
-- ⚠️ Background Blend Mode (requires BlendMode)
-
-**Filters:**
-- ⚠️ Blur (requires ImageFilter.blur)
-- ⚠️ Brightness, Contrast, Grayscale, Hue Rotate, Invert, Saturate, Sepia (requires ColorFilter)
-- ⚠️ Backdrop Filter (requires BackdropFilter widget)
+- ⚠️ Divide Style (divide-dashed, divide-dotted - Flutter limitation, uses solid instead. For true dashed/dotted dividers, use custom implementation)
 
 **Tables:**
 - ⚠️ Border Collapse (default Flutter Table behavior)
@@ -153,16 +174,9 @@ Transform your Flutter development with the power and elegance of Tailwind CSS u
 - ⚠️ Transition Delay (requires Future.delayed)
 - ⚠️ Animation (requires AnimationController)
 
-**Transforms:**
-- ⚠️ Rotate (requires Transform.rotate)
-- ⚠️ Scale (requires Transform.scale)
-- ⚠️ Skew (requires Transform)
-- ⚠️ Translate (requires Transform.translate)
-- ⚠️ Transform Origin (requires Alignment)
 
 **Interactivity:**
-- ⚠️ Cursor (Flutter Web only, requires MouseCursor)
-- ⚠️ User Select (requires SelectableText)
+- ⚠️ Cursor (Flutter Web platform only - requires Web platform for full support)
 - ⚠️ Scroll Behavior (requires ScrollPhysics)
 - ⚠️ Scroll Margin/Padding (requires padding implementation)
 - ⚠️ Scroll Snap (requires PageView)
@@ -218,30 +232,30 @@ Transform your Flutter development with the power and elegance of Tailwind CSS u
 - ❌ Font Variant Numeric (not supported by Flutter)
 - ❌ Text Underline Offset (not supported by Flutter)
 - ❌ Text Indent (not supported by Flutter)
-- ❌ Vertical Align (requires Baseline widget)
-- ❌ White Space (pre, pre-line, pre-wrap, break-spaces - not supported)
+- ❌ Vertical Align (Flutter uses Baseline widget and TextBaseline, not fully equivalent to CSS vertical-align)
+- ❌ White Space (pre, pre-line, pre-wrap, break-spaces - not supported by Flutter)
 - ❌ Hyphens (not supported by Flutter)
-- ❌ Content (Flutter doesn't support CSS content)
+- ❌ Content (Flutter doesn't support CSS content pseudo-element)
 
 **Backgrounds:**
 - ❌ Background Attachment (Flutter doesn't support)
 - ❌ Background Origin (Flutter doesn't support)
 
 **Effects:**
-- ❌ Mask (Flutter doesn't support CSS mask)
+- ❌ Mask (Flutter doesn't support CSS mask properties - mask-clip, mask-composite, mask-image, etc.)
 
 **Transforms:**
-- ❌ Transform Style (Flutter doesn't support 3D transform)
-- ❌ Backface Visibility (Flutter doesn't support)
-- ❌ Perspective (Flutter doesn't support)
-- ❌ Perspective Origin (Flutter doesn't support)
+- ❌ Transform Style (Flutter doesn't support 3D transform-style: preserve-3d)
+- ❌ Backface Visibility (Flutter doesn't support backface-visibility)
+- ❌ Perspective (Flutter doesn't support CSS perspective)
+- ❌ Perspective Origin (Flutter doesn't support perspective-origin)
 
 **Interactivity:**
-- ❌ Resize (Flutter doesn't support)
-- ❌ Will Change (handled automatically by Flutter)
-- ❌ Accent Color (requires Theme)
-- ❌ Appearance (requires custom widget)
-- ❌ Field Sizing (Flutter doesn't support)
+- ❌ Resize (Flutter doesn't support CSS resize property)
+- ❌ Will Change (handled automatically by Flutter's rendering engine)
+- ❌ Accent Color (Flutter controls accent color through Theme, not CSS accent-color)
+- ❌ Appearance (Flutter requires custom widget implementation, not CSS appearance)
+- ❌ Field Sizing (Flutter doesn't support CSS field-sizing property)
 
 **Accessibility:**
 - ❌ Forced Color Adjust (Flutter doesn't support)
