@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:vector_math/vector_math_64.dart' as vm;
 
@@ -9,12 +11,14 @@ class ContainerBuilder {
   
   // 收集的样式属性
   Color? _backgroundColor;
+  double? _backgroundOpacity; // bg-opacity 支持
   EdgeInsetsGeometry? _padding;
   EdgeInsetsGeometry? _margin;
   BorderRadiusGeometry? _borderRadius;
   Border? _border;
   // RTL 支持的边框（通过 BorderDirectional 实现）
   BorderDirectional? _borderDirectional;
+  double? _borderOpacity; // border-opacity 支持
   List<BoxShadow>? _boxShadow;
   AlignmentGeometry? _alignment;
   BoxConstraints? _constraints;
@@ -23,6 +27,14 @@ class ContainerBuilder {
   Decoration? _foregroundDecoration;
   Gradient? _gradient;
   BlendMode? _backgroundBlendMode;
+  DecorationImage? _backgroundImage;
+  BoxFit? _backgroundSize;
+  AlignmentGeometry? _backgroundPosition;
+  ImageRepeat? _backgroundRepeat;
+  Clip? _clipBehavior;
+  BlendMode? _mixBlendMode;
+  ImageFilter? _imageFilter;
+  ColorFilter? _colorFilter;
   final BoxShape _shape = BoxShape.rectangle;
   double? _width;
   double? _height;
@@ -51,6 +63,11 @@ class ContainerBuilder {
   // === TextDirection 用于 RTL 支持 ===
   TextDirection? _textDirection;
   
+  // === Outline 相关属性 ===
+  double? _outlineWidth;
+  Color? _outlineColor;
+  double? _outlineOffset;
+  
   ContainerBuilder(this.child);
   
   /// 设置 TextDirection（用于 RTL 支持）
@@ -71,6 +88,44 @@ class ContainerBuilder {
     _backgroundColor = color;
     return this;
   }
+  
+  // === 背景透明度 ===
+  /// bg-opacity-{value} - 设置背景透明度（0.0 到 1.0）
+  ContainerBuilder bgOpacity(double opacity) {
+    _backgroundOpacity = opacity.clamp(0.0, 1.0);
+    return this;
+  }
+  
+  /// bg-opacity-0 - 完全透明
+  ContainerBuilder bgOpacity0() => bgOpacity(0.0);
+  /// bg-opacity-5 - 5% 透明度
+  ContainerBuilder bgOpacity5() => bgOpacity(0.05);
+  /// bg-opacity-10 - 10% 透明度
+  ContainerBuilder bgOpacity10() => bgOpacity(0.1);
+  /// bg-opacity-20 - 20% 透明度
+  ContainerBuilder bgOpacity20() => bgOpacity(0.2);
+  /// bg-opacity-25 - 25% 透明度
+  ContainerBuilder bgOpacity25() => bgOpacity(0.25);
+  /// bg-opacity-30 - 30% 透明度
+  ContainerBuilder bgOpacity30() => bgOpacity(0.3);
+  /// bg-opacity-40 - 40% 透明度
+  ContainerBuilder bgOpacity40() => bgOpacity(0.4);
+  /// bg-opacity-50 - 50% 透明度
+  ContainerBuilder bgOpacity50() => bgOpacity(0.5);
+  /// bg-opacity-60 - 60% 透明度
+  ContainerBuilder bgOpacity60() => bgOpacity(0.6);
+  /// bg-opacity-70 - 70% 透明度
+  ContainerBuilder bgOpacity70() => bgOpacity(0.7);
+  /// bg-opacity-75 - 75% 透明度
+  ContainerBuilder bgOpacity75() => bgOpacity(0.75);
+  /// bg-opacity-80 - 80% 透明度
+  ContainerBuilder bgOpacity80() => bgOpacity(0.8);
+  /// bg-opacity-90 - 90% 透明度
+  ContainerBuilder bgOpacity90() => bgOpacity(0.9);
+  /// bg-opacity-95 - 95% 透明度
+  ContainerBuilder bgOpacity95() => bgOpacity(0.95);
+  /// bg-opacity-100 - 完全不透明
+  ContainerBuilder bgOpacity100() => bgOpacity(1.0);
   
   // === 内边距 ===
   ContainerBuilder padding(EdgeInsetsGeometry padding) {
@@ -276,6 +331,44 @@ class ContainerBuilder {
     return this;
   }
   
+  // === 边框透明度 ===
+  /// border-opacity-{value} - 设置边框透明度（0.0 到 1.0）
+  ContainerBuilder borderOpacity(double opacity) {
+    _borderOpacity = opacity.clamp(0.0, 1.0);
+    return this;
+  }
+  
+  /// border-opacity-0 - 完全透明
+  ContainerBuilder borderOpacity0() => borderOpacity(0.0);
+  /// border-opacity-5 - 5% 透明度
+  ContainerBuilder borderOpacity5() => borderOpacity(0.05);
+  /// border-opacity-10 - 10% 透明度
+  ContainerBuilder borderOpacity10() => borderOpacity(0.1);
+  /// border-opacity-20 - 20% 透明度
+  ContainerBuilder borderOpacity20() => borderOpacity(0.2);
+  /// border-opacity-25 - 25% 透明度
+  ContainerBuilder borderOpacity25() => borderOpacity(0.25);
+  /// border-opacity-30 - 30% 透明度
+  ContainerBuilder borderOpacity30() => borderOpacity(0.3);
+  /// border-opacity-40 - 40% 透明度
+  ContainerBuilder borderOpacity40() => borderOpacity(0.4);
+  /// border-opacity-50 - 50% 透明度
+  ContainerBuilder borderOpacity50() => borderOpacity(0.5);
+  /// border-opacity-60 - 60% 透明度
+  ContainerBuilder borderOpacity60() => borderOpacity(0.6);
+  /// border-opacity-70 - 70% 透明度
+  ContainerBuilder borderOpacity70() => borderOpacity(0.7);
+  /// border-opacity-75 - 75% 透明度
+  ContainerBuilder borderOpacity75() => borderOpacity(0.75);
+  /// border-opacity-80 - 80% 透明度
+  ContainerBuilder borderOpacity80() => borderOpacity(0.8);
+  /// border-opacity-90 - 90% 透明度
+  ContainerBuilder borderOpacity90() => borderOpacity(0.9);
+  /// border-opacity-95 - 95% 透明度
+  ContainerBuilder borderOpacity95() => borderOpacity(0.95);
+  /// border-opacity-100 - 完全不透明
+  ContainerBuilder borderOpacity100() => borderOpacity(1.0);
+  
   // border-s 快捷方法
   ContainerBuilder borderS0() => borderS(width: 0);
   ContainerBuilder borderS1() => borderS(width: 1);
@@ -342,6 +435,70 @@ class ContainerBuilder {
   // === 位置 ===
   ContainerBuilder transform(Matrix4 transform) {
     _transform = transform;
+    return this;
+  }
+  
+  /// 设置变换对齐方式
+  ContainerBuilder transformAlignment(AlignmentGeometry alignment) {
+    _transformAlignment = alignment;
+    return this;
+  }
+  
+  // === Transform 便捷方法 ===
+  /// rotate-{angle} - 旋转角度（度）
+  ContainerBuilder rotate(double angle) {
+    final radians = angle * (3.14159265359 / 180.0);
+    _transform = (_transform ?? Matrix4.identity())..rotateZ(radians);
+    return this;
+  }
+  
+  /// scale-{value} - 缩放比例
+  ContainerBuilder scale(double scale) {
+    _transform = (_transform ?? Matrix4.identity())..scale(scale);
+    return this;
+  }
+  
+  /// scale-x-{value} - X轴缩放
+  ContainerBuilder scaleX(double scaleX) {
+    _transform = (_transform ?? Matrix4.identity())..scale(scaleX, 1.0);
+    return this;
+  }
+  
+  /// scale-y-{value} - Y轴缩放
+  ContainerBuilder scaleY(double scaleY) {
+    _transform = (_transform ?? Matrix4.identity())..scale(1.0, scaleY);
+    return this;
+  }
+  
+  /// skew-x-{angle} - X轴倾斜（度）
+  ContainerBuilder skewX(double angle) {
+    final radians = angle * (3.14159265359 / 180.0);
+    _transform = (_transform ?? Matrix4.identity())..setEntry(0, 1, radians);
+    return this;
+  }
+  
+  /// skew-y-{angle} - Y轴倾斜（度）
+  ContainerBuilder skewY(double angle) {
+    final radians = angle * (3.14159265359 / 180.0);
+    _transform = (_transform ?? Matrix4.identity())..setEntry(1, 0, radians);
+    return this;
+  }
+  
+  /// translate-x-{value} - X轴平移（像素）
+  ContainerBuilder translateX(double x) {
+    _transform = (_transform ?? Matrix4.identity())..translate(x);
+    return this;
+  }
+  
+  /// translate-y-{value} - Y轴平移（像素）
+  ContainerBuilder translateY(double y) {
+    _transform = (_transform ?? Matrix4.identity())..translate(0.0, y);
+    return this;
+  }
+  
+  /// translate-{x}-{y} - 同时平移X和Y轴
+  ContainerBuilder translate(double x, double y) {
+    _transform = (_transform ?? Matrix4.identity())..translate(x, y);
     return this;
   }
   
@@ -2209,6 +2366,80 @@ class ContainerBuilder {
     _gradient = gradient;
     return this;
   }
+  
+  // === 背景图片 ===
+  ContainerBuilder backgroundImage(DecorationImage image) {
+    _backgroundImage = image;
+    return this;
+  }
+  
+  ContainerBuilder backgroundImageFromNetwork(String url, {BoxFit? fit, AlignmentGeometry? alignment, ImageRepeat? repeat}) {
+    _backgroundImage = DecorationImage(
+      image: NetworkImage(url),
+      fit: fit,
+      alignment: alignment ?? Alignment.center,
+      repeat: repeat ?? ImageRepeat.noRepeat,
+    );
+    return this;
+  }
+  
+  ContainerBuilder backgroundImageFromAsset(String asset, {BoxFit? fit, AlignmentGeometry? alignment, ImageRepeat? repeat}) {
+    _backgroundImage = DecorationImage(
+      image: AssetImage(asset),
+      fit: fit,
+      alignment: alignment ?? Alignment.center,
+      repeat: repeat ?? ImageRepeat.noRepeat,
+    );
+    return this;
+  }
+  
+  // === 背景位置 ===
+  ContainerBuilder backgroundPosition(AlignmentGeometry position) {
+    _backgroundPosition = position;
+    return this;
+  }
+  
+  // === 背景大小 ===
+  ContainerBuilder backgroundSize(BoxFit size) {
+    _backgroundSize = size;
+    return this;
+  }
+  
+  // === 背景重复 ===
+  ContainerBuilder backgroundRepeat(ImageRepeat repeat) {
+    _backgroundRepeat = repeat;
+    return this;
+  }
+  
+  // === 背景混合模式 ===
+  ContainerBuilder backgroundBlendMode(BlendMode mode) {
+    _backgroundBlendMode = mode;
+    return this;
+  }
+  
+  // === 混合模式 ===
+  ContainerBuilder mixBlendMode(BlendMode mode) {
+    _mixBlendMode = mode;
+    return this;
+  }
+  
+  // === 图片滤镜 ===
+  ContainerBuilder imageFilter(ImageFilter filter) {
+    _imageFilter = filter;
+    return this;
+  }
+  
+  // === 颜色滤镜 ===
+  ContainerBuilder colorFilter(ColorFilter filter) {
+    _colorFilter = filter;
+    return this;
+  }
+  
+  // === 裁剪行为 ===
+  ContainerBuilder clip(Clip clip) {
+    _clipBehavior = clip;
+    return this;
+  }
   /// 最终构建方法 - 一次性创建Container
   Widget build() {
     // 构建 BoxDecoration
@@ -2251,18 +2482,54 @@ class ContainerBuilder {
       }
     }
     
-    if (_backgroundColor != null || 
+    // 应用边框透明度
+    if (_borderOpacity != null && finalBorder != null) {
+      finalBorder = Border(
+        top: BorderSide(
+          color: finalBorder.top.color.withOpacity(_borderOpacity!),
+          width: finalBorder.top.width,
+        ),
+        bottom: BorderSide(
+          color: finalBorder.bottom.color.withOpacity(_borderOpacity!),
+          width: finalBorder.bottom.width,
+        ),
+        left: BorderSide(
+          color: finalBorder.left.color.withOpacity(_borderOpacity!),
+          width: finalBorder.left.width,
+        ),
+        right: BorderSide(
+          color: finalBorder.right.color.withOpacity(_borderOpacity!),
+          width: finalBorder.right.width,
+        ),
+      );
+    }
+    
+    // 应用背景透明度
+    Color? finalBackgroundColor = _backgroundColor;
+    if (_backgroundOpacity != null && finalBackgroundColor != null) {
+      finalBackgroundColor = finalBackgroundColor.withOpacity(_backgroundOpacity!);
+    }
+    
+    if (finalBackgroundColor != null || 
         finalBorder != null || 
         _borderRadius != null || 
         _boxShadow != null ||
-        _gradient != null) {
+        _gradient != null ||
+        _backgroundImage != null ||
+        _backgroundSize != null ||
+        _backgroundPosition != null ||
+        _backgroundRepeat != null) {
       decoration = BoxDecoration(
-        color: _gradient == null ? _backgroundColor : null, // 如果有渐变就不设置color
+        color: _gradient == null ? finalBackgroundColor : null, // 如果有渐变就不设置color
         border: finalBorder,
         borderRadius: _borderRadius,
         boxShadow: _boxShadow,
         gradient: _gradient,
         backgroundBlendMode: _backgroundBlendMode,
+        image: _backgroundImage,
+        fit: _backgroundSize,
+        alignment: _backgroundPosition,
+        repeat: _backgroundRepeat ?? ImageRepeat.noRepeat,
         shape: _shape,
       );
     }
@@ -2323,6 +2590,10 @@ class ContainerBuilder {
               boxShadow: dynamicDecoration.boxShadow,
               gradient: dynamicDecoration.gradient,
               backgroundBlendMode: dynamicDecoration.backgroundBlendMode,
+              image: dynamicDecoration.image,
+              fit: dynamicDecoration.fit,
+              alignment: dynamicDecoration.alignment,
+              repeat: dynamicDecoration.repeat,
               shape: dynamicDecoration.shape,
             );
           }
@@ -2362,6 +2633,32 @@ class ContainerBuilder {
     if (_aspectRatio != null) {
       container = AspectRatio(
         aspectRatio: _aspectRatio!,
+        child: container,
+      );
+    }
+    
+    // 如果设置了 mix-blend-mode，使用 ColorFiltered 实现
+    // 注意：Flutter 的 mix-blend-mode 需要通过 ColorFiltered 实现，但效果有限
+    // 对于复杂的混合模式，建议使用 BackdropFilter 或其他方式
+    if (_mixBlendMode != null) {
+      container = ColorFiltered(
+        colorFilter: ColorFilter.mode(Colors.transparent, _mixBlendMode!),
+        child: container,
+      );
+    }
+    
+    // 如果设置了 imageFilter，使用 ImageFilter
+    if (_imageFilter != null) {
+      container = ImageFiltered(
+        imageFilter: _imageFilter!,
+        child: container,
+      );
+    }
+    
+    // 如果设置了 colorFilter，使用 ColorFiltered
+    if (_colorFilter != null) {
+      container = ColorFiltered(
+        colorFilter: _colorFilter!,
         child: container,
       );
     }
@@ -3577,6 +3874,668 @@ extension ContainerBuilderZIndexExtensions on ContainerBuilder {
   /// z-negative-1 -> z-index: -1
   ContainerBuilder zNegative1() {
     return zIndex(-1);
+  }
+}
+
+/// ContainerBuilder 的背景扩展 - TailwindCSS 风格的背景方法
+extension ContainerBuilderBackgroundExtensions on ContainerBuilder {
+  // === 背景位置 ===
+  ContainerBuilder bgCenter() => backgroundPosition(Alignment.center);
+  ContainerBuilder bgTop() => backgroundPosition(Alignment.topCenter);
+  ContainerBuilder bgBottom() => backgroundPosition(Alignment.bottomCenter);
+  ContainerBuilder bgLeft() => backgroundPosition(Alignment.centerLeft);
+  ContainerBuilder bgRight() => backgroundPosition(Alignment.centerRight);
+  ContainerBuilder bgTopLeft() => backgroundPosition(Alignment.topLeft);
+  ContainerBuilder bgTopRight() => backgroundPosition(Alignment.topRight);
+  ContainerBuilder bgBottomLeft() => backgroundPosition(Alignment.bottomLeft);
+  ContainerBuilder bgBottomRight() => backgroundPosition(Alignment.bottomRight);
+  
+  // === 背景大小 ===
+  ContainerBuilder bgContain() => backgroundSize(BoxFit.contain);
+  ContainerBuilder bgCover() => backgroundSize(BoxFit.cover);
+  ContainerBuilder bgFill() => backgroundSize(BoxFit.fill);
+  ContainerBuilder bgNone() => backgroundSize(BoxFit.none);
+  ContainerBuilder bgScaleDown() => backgroundSize(BoxFit.scaleDown);
+  
+  // === 背景重复 ===
+  ContainerBuilder bgRepeat() => backgroundRepeat(ImageRepeat.repeat);
+  ContainerBuilder bgNoRepeat() => backgroundRepeat(ImageRepeat.noRepeat);
+  ContainerBuilder bgRepeatX() => backgroundRepeat(ImageRepeat.repeatX);
+  ContainerBuilder bgRepeatY() => backgroundRepeat(ImageRepeat.repeatY);
+  
+  // === 背景混合模式 ===
+  ContainerBuilder bgBlendNormal() => backgroundBlendMode(BlendMode.srcOver);
+  ContainerBuilder bgBlendMultiply() => backgroundBlendMode(BlendMode.multiply);
+  ContainerBuilder bgBlendScreen() => backgroundBlendMode(BlendMode.screen);
+  ContainerBuilder bgBlendOverlay() => backgroundBlendMode(BlendMode.overlay);
+  ContainerBuilder bgBlendDarken() => backgroundBlendMode(BlendMode.darken);
+  ContainerBuilder bgBlendLighten() => backgroundBlendMode(BlendMode.lighten);
+  ContainerBuilder bgBlendColorDodge() => backgroundBlendMode(BlendMode.colorDodge);
+  ContainerBuilder bgBlendColorBurn() => backgroundBlendMode(BlendMode.colorBurn);
+  ContainerBuilder bgBlendHardLight() => backgroundBlendMode(BlendMode.hardLight);
+  ContainerBuilder bgBlendSoftLight() => backgroundBlendMode(BlendMode.softLight);
+  ContainerBuilder bgBlendDifference() => backgroundBlendMode(BlendMode.difference);
+  ContainerBuilder bgBlendExclusion() => backgroundBlendMode(BlendMode.exclusion);
+  ContainerBuilder bgBlendHue() => backgroundBlendMode(BlendMode.hue);
+  ContainerBuilder bgBlendSaturation() => backgroundBlendMode(BlendMode.saturation);
+  ContainerBuilder bgBlendColor() => backgroundBlendMode(BlendMode.color);
+  ContainerBuilder bgBlendLuminosity() => backgroundBlendMode(BlendMode.luminosity);
+  
+  // === 渐变 ===
+  ContainerBuilder bgGradientToR({required List<Color> colors}) => gradient(LinearGradient(colors: colors, begin: Alignment.centerLeft, end: Alignment.centerRight));
+  ContainerBuilder bgGradientToL({required List<Color> colors}) => gradient(LinearGradient(colors: colors, begin: Alignment.centerRight, end: Alignment.centerLeft));
+  ContainerBuilder bgGradientToT({required List<Color> colors}) => gradient(LinearGradient(colors: colors, begin: Alignment.bottomCenter, end: Alignment.topCenter));
+  ContainerBuilder bgGradientToB({required List<Color> colors}) => gradient(LinearGradient(colors: colors, begin: Alignment.topCenter, end: Alignment.bottomCenter));
+  ContainerBuilder bgGradientToTR({required List<Color> colors}) => gradient(LinearGradient(colors: colors, begin: Alignment.bottomLeft, end: Alignment.topRight));
+  ContainerBuilder bgGradientToTL({required List<Color> colors}) => gradient(LinearGradient(colors: colors, begin: Alignment.bottomRight, end: Alignment.topLeft));
+  ContainerBuilder bgGradientToBR({required List<Color> colors}) => gradient(LinearGradient(colors: colors, begin: Alignment.topLeft, end: Alignment.bottomRight));
+  ContainerBuilder bgGradientToBL({required List<Color> colors}) => gradient(LinearGradient(colors: colors, begin: Alignment.topRight, end: Alignment.bottomLeft));
+}
+
+/// ContainerBuilder 的混合模式扩展
+extension ContainerBuilderBlendModeExtensions on ContainerBuilder {
+  ContainerBuilder blendNormal() => mixBlendMode(BlendMode.srcOver);
+  ContainerBuilder blendMultiply() => mixBlendMode(BlendMode.multiply);
+  ContainerBuilder blendScreen() => mixBlendMode(BlendMode.screen);
+  ContainerBuilder blendOverlay() => mixBlendMode(BlendMode.overlay);
+  ContainerBuilder blendDarken() => mixBlendMode(BlendMode.darken);
+  ContainerBuilder blendLighten() => mixBlendMode(BlendMode.lighten);
+  ContainerBuilder blendColorDodge() => mixBlendMode(BlendMode.colorDodge);
+  ContainerBuilder blendColorBurn() => mixBlendMode(BlendMode.colorBurn);
+  ContainerBuilder blendHardLight() => mixBlendMode(BlendMode.hardLight);
+  ContainerBuilder blendSoftLight() => mixBlendMode(BlendMode.softLight);
+  ContainerBuilder blendDifference() => mixBlendMode(BlendMode.difference);
+  ContainerBuilder blendExclusion() => mixBlendMode(BlendMode.exclusion);
+  ContainerBuilder blendHue() => mixBlendMode(BlendMode.hue);
+  ContainerBuilder blendSaturation() => mixBlendMode(BlendMode.saturation);
+  ContainerBuilder blendColor() => mixBlendMode(BlendMode.color);
+  ContainerBuilder blendLuminosity() => mixBlendMode(BlendMode.luminosity);
+}
+
+/// ContainerBuilder 的滤镜扩展
+extension ContainerBuilderFilterExtensions on ContainerBuilder {
+  // === Blur ===
+  ContainerBuilder blur({double sigmaX = 8.0, double sigmaY = 8.0}) => imageFilter(ImageFilter.blur(sigmaX: sigmaX, sigmaY: sigmaY));
+  ContainerBuilder blurSm() => blur(sigmaX: 4.0, sigmaY: 4.0);
+  ContainerBuilder blurMd() => blur(sigmaX: 12.0, sigmaY: 12.0);
+  ContainerBuilder blurLg() => blur(sigmaX: 16.0, sigmaY: 16.0);
+  ContainerBuilder blurXl() => blur(sigmaX: 24.0, sigmaY: 24.0);
+  ContainerBuilder blur2xl() => blur(sigmaX: 40.0, sigmaY: 40.0);
+  ContainerBuilder blur3xl() => blur(sigmaX: 64.0, sigmaY: 64.0);
+  
+  // === Brightness ===
+  ContainerBuilder brightness(double value) => colorFilter(ColorFilter.matrix([
+    1.0 * value, 0, 0, 0, 0,
+    0, 1.0 * value, 0, 0, 0,
+    0, 0, 1.0 * value, 0, 0,
+    0, 0, 0, 1, 0,
+  ]));
+  ContainerBuilder brightness0() => brightness(0.0);
+  ContainerBuilder brightness50() => brightness(0.5);
+  ContainerBuilder brightness75() => brightness(0.75);
+  ContainerBuilder brightness90() => brightness(0.9);
+  ContainerBuilder brightness95() => brightness(0.95);
+  ContainerBuilder brightness100() => brightness(1.0);
+  ContainerBuilder brightness105() => brightness(1.05);
+  ContainerBuilder brightness110() => brightness(1.1);
+  ContainerBuilder brightness125() => brightness(1.25);
+  ContainerBuilder brightness150() => brightness(1.5);
+  ContainerBuilder brightness200() => brightness(2.0);
+  
+  // === Contrast ===
+  ContainerBuilder contrast(double value) {
+    final factor = (259 * (value * 255 + 255)) / (255 * (259 - value * 255));
+    return colorFilter(ColorFilter.matrix([
+      factor, 0, 0, 0, 128 * (1 - factor),
+      0, factor, 0, 0, 128 * (1 - factor),
+      0, 0, factor, 0, 128 * (1 - factor),
+      0, 0, 0, 1, 0,
+    ]));
+  }
+  ContainerBuilder contrast0() => contrast(0.0);
+  ContainerBuilder contrast50() => contrast(0.5);
+  ContainerBuilder contrast75() => contrast(0.75);
+  ContainerBuilder contrast100() => contrast(1.0);
+  ContainerBuilder contrast125() => contrast(1.25);
+  ContainerBuilder contrast150() => contrast(1.5);
+  ContainerBuilder contrast200() => contrast(2.0);
+  
+  // === Grayscale ===
+  ContainerBuilder grayscale([double amount = 1.0]) => colorFilter(ColorFilter.matrix([
+    0.2126 + 0.7874 * (1 - amount), 0.7152 - 0.7152 * (1 - amount), 0.0722 - 0.0722 * (1 - amount), 0, 0,
+    0.2126 - 0.2126 * (1 - amount), 0.7152 + 0.2848 * (1 - amount), 0.0722 - 0.0722 * (1 - amount), 0, 0,
+    0.2126 - 0.2126 * (1 - amount), 0.7152 - 0.7152 * (1 - amount), 0.0722 + 0.9278 * (1 - amount), 0, 0,
+    0, 0, 0, 1, 0,
+  ]));
+  
+  // === Hue Rotate ===
+  ContainerBuilder hueRotate(double degrees) {
+    final radians = degrees * 3.14159265359 / 180.0;
+    final cos = (radians).cos();
+    final sin = (radians).sin();
+    final lumR = 0.213;
+    final lumG = 0.715;
+    final lumB = 0.072;
+    return colorFilter(ColorFilter.matrix([
+      lumR + cos * (1 - lumR) + sin * (-lumR), lumG + cos * (-lumG) + sin * (-lumG), lumB + cos * (-lumB) + sin * (1 - lumB), 0, 0,
+      lumR + cos * (-lumR) + sin * (0.143), lumG + cos * (1 - lumG) + sin * (lumG), lumB + cos * (-lumB) + sin * (-0.283), 0, 0,
+      lumR + cos * (-lumR) + sin * (-(1 - lumR)), lumG + cos * (-lumG) + sin * (lumG), lumB + cos * (1 - lumB) + sin * (lumB), 0, 0,
+      0, 0, 0, 1, 0,
+    ]));
+  }
+  ContainerBuilder hueRotate0() => hueRotate(0);
+  ContainerBuilder hueRotate15() => hueRotate(15);
+  ContainerBuilder hueRotate30() => hueRotate(30);
+  ContainerBuilder hueRotate60() => hueRotate(60);
+  ContainerBuilder hueRotate90() => hueRotate(90);
+  ContainerBuilder hueRotate180() => hueRotate(180);
+  
+  // === Invert ===
+  ContainerBuilder invert([double amount = 1.0]) => colorFilter(ColorFilter.matrix([
+    1 - 2 * amount, 0, 0, 0, 255 * amount,
+    0, 1 - 2 * amount, 0, 0, 255 * amount,
+    0, 0, 1 - 2 * amount, 0, 255 * amount,
+    0, 0, 0, 1, 0,
+  ]));
+  
+  // === Saturate ===
+  ContainerBuilder saturate(double value) => colorFilter(ColorFilter.matrix([
+    0.213 + 0.787 * value, 0.715 - 0.715 * value, 0.072 - 0.072 * value, 0, 0,
+    0.213 - 0.213 * value, 0.715 + 0.285 * value, 0.072 - 0.072 * value, 0, 0,
+    0.213 - 0.213 * value, 0.715 - 0.715 * value, 0.072 + 0.928 * value, 0, 0,
+    0, 0, 0, 1, 0,
+  ]));
+  ContainerBuilder saturate0() => saturate(0.0);
+  ContainerBuilder saturate50() => saturate(0.5);
+  ContainerBuilder saturate100() => saturate(1.0);
+  ContainerBuilder saturate150() => saturate(1.5);
+  ContainerBuilder saturate200() => saturate(2.0);
+  
+  // === Sepia ===
+  ContainerBuilder sepia([double amount = 1.0]) => colorFilter(ColorFilter.matrix([
+    0.393 + 0.607 * (1 - amount), 0.769 - 0.769 * (1 - amount), 0.189 - 0.189 * (1 - amount), 0, 0,
+    0.349 - 0.349 * (1 - amount), 0.686 + 0.314 * (1 - amount), 0.168 - 0.168 * (1 - amount), 0, 0,
+    0.272 - 0.272 * (1 - amount), 0.534 - 0.534 * (1 - amount), 0.131 + 0.869 * (1 - amount), 0, 0,
+    0, 0, 0, 1, 0,
+  ]));
+}
+
+/// ContainerBuilder 的变换扩展
+extension ContainerBuilderTransformExtensions on ContainerBuilder {
+  // === Rotate ===
+  ContainerBuilder rotate0() => rotate(0);
+  ContainerBuilder rotate1() => rotate(1);
+  ContainerBuilder rotate2() => rotate(2);
+  ContainerBuilder rotate3() => rotate(3);
+  ContainerBuilder rotate6() => rotate(6);
+  ContainerBuilder rotate12() => rotate(12);
+  ContainerBuilder rotate45() => rotate(45);
+  ContainerBuilder rotate90() => rotate(90);
+  ContainerBuilder rotate180() => rotate(180);
+  
+  // === Scale ===
+  ContainerBuilder scale0() => scale(0.0);
+  ContainerBuilder scale50() => scale(0.5);
+  ContainerBuilder scale75() => scale(0.75);
+  ContainerBuilder scale90() => scale(0.9);
+  ContainerBuilder scale95() => scale(0.95);
+  ContainerBuilder scale100() => scale(1.0);
+  ContainerBuilder scale105() => scale(1.05);
+  ContainerBuilder scale110() => scale(1.1);
+  ContainerBuilder scale125() => scale(1.25);
+  ContainerBuilder scale150() => scale(1.5);
+  
+  // === Skew ===
+  ContainerBuilder skewX0() => skewX(0);
+  ContainerBuilder skewX1() => skewX(1);
+  ContainerBuilder skewX2() => skewX(2);
+  ContainerBuilder skewX3() => skewX(3);
+  ContainerBuilder skewX6() => skewX(6);
+  ContainerBuilder skewX12() => skewX(12);
+  
+  ContainerBuilder skewY0() => skewY(0);
+  ContainerBuilder skewY1() => skewY(1);
+  ContainerBuilder skewY2() => skewY(2);
+  ContainerBuilder skewY3() => skewY(3);
+  ContainerBuilder skewY6() => skewY(6);
+  ContainerBuilder skewY12() => skewY(12);
+  
+  // === Translate ===
+  ContainerBuilder translateX0() => translateX(0);
+  ContainerBuilder translateX1() => translateX(4);
+  ContainerBuilder translateX2() => translateX(8);
+  ContainerBuilder translateX3() => translateX(12);
+  ContainerBuilder translateX4() => translateX(16);
+  ContainerBuilder translateX5() => translateX(20);
+  ContainerBuilder translateX6() => translateX(24);
+  ContainerBuilder translateX8() => translateX(32);
+  ContainerBuilder translateX10() => translateX(40);
+  ContainerBuilder translateX12() => translateX(48);
+  ContainerBuilder translateX16() => translateX(64);
+  ContainerBuilder translateX20() => translateX(80);
+  ContainerBuilder translateX24() => translateX(96);
+  ContainerBuilder translateX32() => translateX(128);
+  ContainerBuilder translateX40() => translateX(160);
+  ContainerBuilder translateX48() => translateX(192);
+  ContainerBuilder translateX56() => translateX(224);
+  ContainerBuilder translateX64() => translateX(256);
+  
+  ContainerBuilder translateY0() => translateY(0);
+  ContainerBuilder translateY1() => translateY(4);
+  ContainerBuilder translateY2() => translateY(8);
+  ContainerBuilder translateY3() => translateY(12);
+  ContainerBuilder translateY4() => translateY(16);
+  ContainerBuilder translateY5() => translateY(20);
+  ContainerBuilder translateY6() => translateY(24);
+  ContainerBuilder translateY8() => translateY(32);
+  ContainerBuilder translateY10() => translateY(40);
+  ContainerBuilder translateY12() => translateY(48);
+  ContainerBuilder translateY16() => translateY(64);
+  ContainerBuilder translateY20() => translateY(80);
+  ContainerBuilder translateY24() => translateY(96);
+  ContainerBuilder translateY32() => translateY(128);
+  ContainerBuilder translateY40() => translateY(160);
+  ContainerBuilder translateY48() => translateY(192);
+  ContainerBuilder translateY56() => translateY(224);
+  ContainerBuilder translateY64() => translateY(256);
+}
+
+/// ContainerBuilder 的 Ring 扩展 - 通过 BoxShadow 模拟 ring 效果
+extension ContainerBuilderRingExtensions on ContainerBuilder {
+  /// ring - 添加 ring 效果（通过 BoxShadow 模拟）
+  ContainerBuilder ring({double width = 2.0, Color color = const Color(0xFF3B82F6), double offset = 0.0, bool inset = false}) {
+    final shadow = BoxShadow(
+      color: color,
+      blurRadius: width,
+      spreadRadius: inset ? -width : width,
+      offset: Offset(offset, offset),
+    );
+    if (_boxShadow == null) {
+      _boxShadow = [shadow];
+    } else {
+      _boxShadow!.add(shadow);
+    }
+    return this;
+  }
+  
+  ContainerBuilder ring0() => ring(width: 0);
+  ContainerBuilder ring1() => ring(width: 1);
+  ContainerBuilder ring2() => ring(width: 2);
+  ContainerBuilder ring4() => ring(width: 4);
+  ContainerBuilder ring8() => ring(width: 8);
+  
+  /// ring-offset - ring 偏移量
+  ContainerBuilder ringOffset({double offset = 0.0, Color color = Colors.white}) {
+    // ring-offset 通过添加一个白色（或指定颜色）的 ring 来实现
+    return ring(width: 2.0, color: color, offset: offset);
+  }
+  
+  ContainerBuilder ringOffset0() => ringOffset(offset: 0);
+  ContainerBuilder ringOffset1() => ringOffset(offset: 1);
+  ContainerBuilder ringOffset2() => ringOffset(offset: 2);
+  ContainerBuilder ringOffset4() => ringOffset(offset: 4);
+  ContainerBuilder ringOffset8() => ringOffset(offset: 8);
+  
+  /// ring-inset - 内嵌 ring
+  ContainerBuilder ringInset({double width = 2.0, Color color = const Color(0xFF3B82F6)}) {
+    return ring(width: width, color: color, inset: true);
+  }
+  
+  // Ring 颜色快捷方法
+  ContainerBuilder ringBlue500() => ring(color: TwColors.blue500);
+  ContainerBuilder ringBlue600() => ring(color: TwColors.blue600);
+  ContainerBuilder ringGray300() => ring(color: TwColors.gray300);
+  ContainerBuilder ringGray400() => ring(color: TwColors.gray400);
+  ContainerBuilder ringGray500() => ring(color: TwColors.gray500);
+  ContainerBuilder ringRed500() => ring(color: TwColors.red500);
+  ContainerBuilder ringGreen500() => ring(color: TwColors.green500);
+  ContainerBuilder ringYellow500() => ring(color: TwColors.yellow500);
+  ContainerBuilder ringPurple500() => ring(color: TwColors.purple500);
+  ContainerBuilder ringPink500() => ring(color: TwColors.pink500);
+}
+
+/// ContainerBuilder 的边框样式扩展
+/// 注意：Flutter 原生不支持 dashed, dotted, double 边框样式
+/// 这些方法会使用 solid 样式代替，如果需要真正的 dashed/dotted/double，需要使用自定义绘制器
+extension ContainerBuilderBorderStyleExtensions on ContainerBuilder {
+  /// border-solid - 实线边框（Flutter 默认）
+  ContainerBuilder borderSolid() => this;
+  
+  /// border-dashed - 虚线边框（Flutter 限制：使用 solid 代替）
+  /// 如需真正的虚线边框，请使用自定义 CustomPainter
+  ContainerBuilder borderDashed({double width = 1.0, Color color = const Color(0xFFE5E7EB)}) {
+    // Flutter 不支持 dashed 边框，使用 solid 代替
+    return borderAll(color: color, width: width);
+  }
+  
+  /// border-dotted - 点线边框（Flutter 限制：使用 solid 代替）
+  /// 如需真正的点线边框，请使用自定义 CustomPainter
+  ContainerBuilder borderDotted({double width = 1.0, Color color = const Color(0xFFE5E7EB)}) {
+    // Flutter 不支持 dotted 边框，使用 solid 代替
+    return borderAll(color: color, width: width);
+  }
+  
+  /// border-double - 双线边框（Flutter 限制：使用 solid 代替）
+  /// 如需真正的双线边框，请使用自定义 CustomPainter
+  ContainerBuilder borderDouble({double width = 1.0, Color color = const Color(0xFFE5E7EB)}) {
+    // Flutter 不支持 double 边框，使用 solid 代替
+    return borderAll(color: color, width: width);
+  }
+  
+  /// border-none - 无边框
+  ContainerBuilder borderNone() {
+    _border = null;
+    _borderDirectional = null;
+    return this;
+  }
+}
+
+/// ContainerBuilder 的 Outline 扩展
+/// outline - 轮廓样式（Flutter 中通过 BoxDecoration 的 border 实现，但可以独立设置）
+extension ContainerBuilderOutlineExtensions on ContainerBuilder {
+  /// outline - 设置轮廓宽度和颜色
+  ContainerBuilder outline({double width = 2.0, Color color = const Color(0xFF000000), double offset = 0.0}) {
+    _outlineWidth = width;
+    _outlineColor = color;
+    _outlineOffset = offset;
+    return this;
+  }
+  
+  /// outline-0 - 无轮廓
+  ContainerBuilder outline0() => outline(width: 0);
+  /// outline-1 - 1px 轮廓
+  ContainerBuilder outline1() => outline(width: 1);
+  /// outline-2 - 2px 轮廓
+  ContainerBuilder outline2() => outline(width: 2);
+  /// outline-4 - 4px 轮廓
+  ContainerBuilder outline4() => outline(width: 4);
+  /// outline-8 - 8px 轮廓
+  ContainerBuilder outline8() => outline(width: 8);
+  
+  /// outline-offset-{value} - 轮廓偏移量
+  ContainerBuilder outlineOffset(double offset) {
+    _outlineOffset = offset;
+    return this;
+  }
+  
+  ContainerBuilder outlineOffset0() => outlineOffset(0);
+  ContainerBuilder outlineOffset1() => outlineOffset(1);
+  ContainerBuilder outlineOffset2() => outlineOffset(2);
+  ContainerBuilder outlineOffset4() => outlineOffset(4);
+  ContainerBuilder outlineOffset8() => outlineOffset(8);
+  
+  /// outline-{color} - 轮廓颜色快捷方法
+  ContainerBuilder outlineWhite() => outline(color: TwColors.white);
+  ContainerBuilder outlineBlack() => outline(color: TwColors.black);
+  ContainerBuilder outlineGray500() => outline(color: TwColors.gray500);
+  ContainerBuilder outlineBlue500() => outline(color: TwColors.blue500);
+  ContainerBuilder outlineRed500() => outline(color: TwColors.red500);
+  ContainerBuilder outlineGreen500() => outline(color: TwColors.green500);
+  
+  /// outline-none - 无轮廓
+  ContainerBuilder outlineNone() {
+    _outlineWidth = null;
+    _outlineColor = null;
+    _outlineOffset = null;
+    return this;
+  }
+  
+  /// 构建带轮廓的 Widget（需要在 build 方法中调用）
+  Widget buildWithOutline() {
+    final widget = build();
+    if (_outlineWidth == null || _outlineWidth == 0) {
+      return widget;
+    }
+    
+    // 通过 Stack 和多个 Container 来实现 outline 效果
+    // outline 是 border 外面的轮廓，可以通过叠加边框来实现
+    return Stack(
+      children: [
+        // 外层轮廓（offset 偏移）
+        if (_outlineOffset != null && _outlineOffset! > 0)
+          Positioned.fill(
+            child: Container(
+              margin: EdgeInsets.all(_outlineOffset!),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: _outlineColor ?? Colors.black,
+                  width: _outlineWidth ?? 2.0,
+                ),
+                borderRadius: _borderRadius,
+              ),
+            ),
+          )
+        else
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: _outlineColor ?? Colors.black,
+                width: _outlineWidth ?? 2.0,
+              ),
+              borderRadius: _borderRadius,
+            ),
+            child: widget,
+          ),
+        // 如果 offset 为 0，直接叠加
+        if (_outlineOffset == null || _outlineOffset == 0)
+          widget,
+      ],
+    );
+  }
+}
+
+/// ContainerBuilder 的 BackdropFilter 扩展
+extension ContainerBuilderBackdropFilterExtensions on ContainerBuilder {
+  /// 应用 BackdropFilter（背景模糊等效果）
+  /// 注意：这会返回一个新的 Widget，而不是修改 ContainerBuilder
+  Widget backdropBlur({double sigmaX = 8.0, double sigmaY = 8.0}) {
+    return BackdropFilter(
+      filter: ImageFilter.blur(sigmaX: sigmaX, sigmaY: sigmaY),
+      child: build(),
+    );
+  }
+  
+  Widget backdropBlurSm() => backdropBlur(sigmaX: 4.0, sigmaY: 4.0);
+  Widget backdropBlurMd() => backdropBlur(sigmaX: 12.0, sigmaY: 12.0);
+  Widget backdropBlurLg() => backdropBlur(sigmaX: 16.0, sigmaY: 16.0);
+  Widget backdropBlurXl() => backdropBlur(sigmaX: 24.0, sigmaY: 24.0);
+  Widget backdropBlur2xl() => backdropBlur(sigmaX: 40.0, sigmaY: 40.0);
+  Widget backdropBlur3xl() => backdropBlur(sigmaX: 64.0, sigmaY: 64.0);
+  
+  /// backdrop-brightness - 背景亮度
+  Widget backdropBrightness(double value) {
+    return ColorFiltered(
+      colorFilter: ColorFilter.matrix([
+        1.0 * value, 0, 0, 0, 0,
+        0, 1.0 * value, 0, 0, 0,
+        0, 0, 1.0 * value, 0, 0,
+        0, 0, 0, 1, 0,
+      ]),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
+        child: build(),
+      ),
+    );
+  }
+  
+  Widget backdropBrightness0() => backdropBrightness(0.0);
+  Widget backdropBrightness50() => backdropBrightness(0.5);
+  Widget backdropBrightness75() => backdropBrightness(0.75);
+  Widget backdropBrightness90() => backdropBrightness(0.9);
+  Widget backdropBrightness95() => backdropBrightness(0.95);
+  Widget backdropBrightness100() => backdropBrightness(1.0);
+  Widget backdropBrightness105() => backdropBrightness(1.05);
+  Widget backdropBrightness110() => backdropBrightness(1.1);
+  Widget backdropBrightness125() => backdropBrightness(1.25);
+  Widget backdropBrightness150() => backdropBrightness(1.5);
+  Widget backdropBrightness200() => backdropBrightness(2.0);
+  
+  /// backdrop-contrast - 背景对比度
+  Widget backdropContrast(double value) {
+    final factor = (259 * (value * 255 + 255)) / (255 * (259 - value * 255));
+    return ColorFiltered(
+      colorFilter: ColorFilter.matrix([
+        factor, 0, 0, 0, 128 * (1 - factor),
+        0, factor, 0, 0, 128 * (1 - factor),
+        0, 0, factor, 0, 128 * (1 - factor),
+        0, 0, 0, 1, 0,
+      ]),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
+        child: build(),
+      ),
+    );
+  }
+  
+  Widget backdropContrast0() => backdropContrast(0.0);
+  Widget backdropContrast50() => backdropContrast(0.5);
+  Widget backdropContrast75() => backdropContrast(0.75);
+  Widget backdropContrast100() => backdropContrast(1.0);
+  Widget backdropContrast125() => backdropContrast(1.25);
+  Widget backdropContrast150() => backdropContrast(1.5);
+  Widget backdropContrast200() => backdropContrast(2.0);
+  
+  /// backdrop-saturate - 背景饱和度
+  Widget backdropSaturate(double value) {
+    return ColorFiltered(
+      colorFilter: ColorFilter.matrix([
+        0.213 + 0.787 * value, 0.715 - 0.715 * value, 0.072 - 0.072 * value, 0, 0,
+        0.213 - 0.213 * value, 0.715 + 0.2848 * value, 0.072 - 0.072 * value, 0, 0,
+        0.213 - 0.213 * value, 0.715 - 0.715 * value, 0.072 + 0.9278 * value, 0, 0,
+        0, 0, 0, 1, 0,
+      ]),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
+        child: build(),
+      ),
+    );
+  }
+  
+  Widget backdropSaturate0() => backdropSaturate(0.0);
+  Widget backdropSaturate50() => backdropSaturate(0.5);
+  Widget backdropSaturate100() => backdropSaturate(1.0);
+  Widget backdropSaturate150() => backdropSaturate(1.5);
+  Widget backdropSaturate200() => backdropSaturate(2.0);
+  
+  /// backdrop-sepia - 背景棕褐色调
+  Widget backdropSepia([double amount = 1.0]) {
+    return ColorFiltered(
+      colorFilter: ColorFilter.matrix([
+        0.393 + 0.607 * (1 - amount), 0.769 - 0.769 * (1 - amount), 0.189 - 0.189 * (1 - amount), 0, 0,
+        0.349 - 0.349 * (1 - amount), 0.686 + 0.314 * (1 - amount), 0.168 - 0.168 * (1 - amount), 0, 0,
+        0.272 - 0.272 * (1 - amount), 0.534 - 0.534 * (1 - amount), 0.131 + 0.869 * (1 - amount), 0, 0,
+        0, 0, 0, 1, 0,
+      ]),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
+        child: build(),
+      ),
+    );
+  }
+  
+  Widget backdropSepia0() => backdropSepia(0.0);
+  Widget backdropSepia100() => backdropSepia(1.0);
+  
+  /// backdrop-opacity - 背景透明度（通过 ColorFiltered 实现）
+  Widget backdropOpacity(double opacity) {
+    return ColorFiltered(
+      colorFilter: ColorFilter.mode(
+        Colors.white.withOpacity(opacity.clamp(0.0, 1.0)),
+        BlendMode.modulate,
+      ),
+      child: build(),
+    );
+  }
+  
+  Widget backdropOpacity0() => backdropOpacity(0.0);
+  Widget backdropOpacity5() => backdropOpacity(0.05);
+  Widget backdropOpacity10() => backdropOpacity(0.1);
+  Widget backdropOpacity20() => backdropOpacity(0.2);
+  Widget backdropOpacity25() => backdropOpacity(0.25);
+  Widget backdropOpacity30() => backdropOpacity(0.3);
+  Widget backdropOpacity40() => backdropOpacity(0.4);
+  Widget backdropOpacity50() => backdropOpacity(0.5);
+  Widget backdropOpacity60() => backdropOpacity(0.6);
+  Widget backdropOpacity70() => backdropOpacity(0.7);
+  Widget backdropOpacity75() => backdropOpacity(0.75);
+  Widget backdropOpacity80() => backdropOpacity(0.8);
+  Widget backdropOpacity90() => backdropOpacity(0.9);
+  Widget backdropOpacity95() => backdropOpacity(0.95);
+  Widget backdropOpacity100() => backdropOpacity(1.0);
+  
+  /// backdrop-grayscale - 背景灰度
+  Widget backdropGrayscale([double amount = 1.0]) {
+    return ColorFiltered(
+      colorFilter: ColorFilter.matrix([
+        0.2126 + 0.7874 * (1 - amount), 0.7152 - 0.7152 * (1 - amount), 0.0722 - 0.0722 * (1 - amount), 0, 0,
+        0.2126 - 0.2126 * (1 - amount), 0.7152 + 0.2848 * (1 - amount), 0.0722 - 0.0722 * (1 - amount), 0, 0,
+        0.2126 - 0.2126 * (1 - amount), 0.7152 - 0.7152 * (1 - amount), 0.0722 + 0.9278 * (1 - amount), 0, 0,
+        0, 0, 0, 1, 0,
+      ]),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
+        child: build(),
+      ),
+    );
+  }
+  
+  Widget backdropGrayscale0() => backdropGrayscale(0.0);
+  Widget backdropGrayscale100() => backdropGrayscale(1.0);
+  
+  /// backdrop-invert - 背景反转
+  Widget backdropInvert([double amount = 1.0]) {
+    return ColorFiltered(
+      colorFilter: ColorFilter.matrix([
+        1 - 2 * amount, 0, 0, 0, 255 * amount,
+        0, 1 - 2 * amount, 0, 0, 255 * amount,
+        0, 0, 1 - 2 * amount, 0, 255 * amount,
+        0, 0, 0, 1, 0,
+      ]),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
+        child: build(),
+      ),
+    );
+  }
+  
+  Widget backdropInvert0() => backdropInvert(0.0);
+  Widget backdropInvert100() => backdropInvert(1.0);
+  
+  /// backdrop-hue-rotate - 背景色相旋转
+  Widget backdropHueRotate(double degrees) {
+    final radians = degrees * 3.14159265359 / 180.0;
+    final cos = (radians).cos();
+    final sin = (radians).sin();
+    final lumR = 0.213;
+    final lumG = 0.715;
+    final lumB = 0.072;
+    return ColorFiltered(
+      colorFilter: ColorFilter.matrix([
+        lumR + cos * (1 - lumR) + sin * (-lumR), lumG + cos * (-lumG) + sin * (-lumG), lumB + cos * (-lumB) + sin * (1 - lumB), 0, 0,
+        lumR + cos * (-lumR) + sin * (0.143), lumG + cos * (1 - lumG) + sin * (lumG), lumB + cos * (-lumB) + sin * (-0.283), 0, 0,
+        lumR + cos * (-lumR) + sin * (-(1 - lumR)), lumG + cos * (-lumG) + sin * (lumG), lumB + cos * (1 - lumB) + sin * (lumB), 0, 0,
+        0, 0, 0, 1, 0,
+      ]),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
+        child: build(),
+      ),
+    );
+  }
+  
+  Widget backdropHueRotate0() => backdropHueRotate(0);
+  Widget backdropHueRotate15() => backdropHueRotate(15);
+  Widget backdropHueRotate30() => backdropHueRotate(30);
+  Widget backdropHueRotate60() => backdropHueRotate(60);
+  Widget backdropHueRotate90() => backdropHueRotate(90);
+  Widget backdropHueRotate180() => backdropHueRotate(180);
+  
+  /// 应用 BackdropFilter 配合自定义 ImageFilter
+  Widget backdropFilter(ImageFilter filter) {
+    return BackdropFilter(
+      filter: filter,
+      child: build(),
+    );
   }
 }
 

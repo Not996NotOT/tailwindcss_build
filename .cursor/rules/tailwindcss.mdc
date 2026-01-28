@@ -54,15 +54,16 @@ alwaysApply: true
 - ❌ isolation (Flutter 不支持 CSS isolation)
 
 ### Object Fit
-- ⚠️ object-fit (Flutter 中通过 BoxFit 实现，但需要 Image widget)
-- ⚠️ object-contain
-- ⚠️ object-cover
-- ⚠️ object-fill
-- ⚠️ object-none
-- ⚠️ object-scale-down
+- ✅ object-fit (通过 Image widget 的 fit 属性实现，或通过 ContainerBuilder.backgroundSize() 用于背景图片)
+- ✅ object-contain (通过 Image.objectContain() 或 ContainerBuilder.bgContain() 实现)
+- ✅ object-cover (通过 Image.objectCover() 或 ContainerBuilder.bgCover() 实现)
+- ✅ object-fill (通过 Image.objectFill() 或 ContainerBuilder.bgFill() 实现)
+- ✅ object-none (通过 Image.objectNone() 或 ContainerBuilder.bgNone() 实现)
+- ✅ object-scale-down (通过 Image.objectScaleDown() 或 ContainerBuilder.bgScaleDown() 实现)
 
 ### Object Position
-- ⚠️ object-position (Flutter 中通过 Alignment 实现)
+- ✅ object-position (通过 Image.objectPosition() 或 ContainerBuilder.backgroundPosition() 实现)
+- ✅ object-{position} (通过 Image.objectCenter(), objectTop(), objectBottom() 等或 ContainerBuilder.bgCenter(), bgTop() 等实现)
 
 ### Overflow
 - ✅ overflow-auto (通过 ScrollBuilder.overflowAuto())
@@ -255,8 +256,8 @@ alwaysApply: true
 - ✅ divide-{color} (通过 FlexBuilder.divideColor() 或 divideX/divideY 的 color 参数)
 - ✅ divide-{width} (通过 FlexBuilder.divideWidth() 或 divideX/divideY 的 width 参数)
 - ✅ divide-solid (通过 FlexBuilder.divideSolid())
-- ⚠️ divide-dashed (Flutter 不支持，使用 solid 代替)
-- ⚠️ divide-dotted (Flutter 不支持，使用 solid 代替)
+- ✅ divide-dashed (通过 FlexBuilder.divideDashed() 实现，Flutter 限制：使用 solid 代替，如需真正的虚线分隔线请使用自定义实现)
+- ✅ divide-dotted (通过 FlexBuilder.divideDotted() 实现，Flutter 限制：使用 solid 代替，如需真正的点线分隔线请使用自定义实现)
 - ✅ divide-none (通过 FlexBuilder.divideNone())
 
 ## Sizing
@@ -409,7 +410,7 @@ alwaysApply: true
 - ❌ text-indent (Flutter 不支持)
 
 ### Vertical Align
-- ❌ vertical-align (Flutter 中通过 Baseline 等实现)
+- ⚠️ vertical-align (Flutter 中通过 Baseline widget 和 TextBaseline 实现，不完全等同于 CSS vertical-align)
 
 ### White Space
 - ⚠️ whitespace-normal (通过 maxLines: null 实现)
@@ -438,37 +439,37 @@ alwaysApply: true
 
 ### Background Color
 - ✅ bg-{color} (通过 ContainerBuilder.backgroundColor())
-- ⚠️ bg-opacity-{value} (通过 Color.withOpacity() 实现)
+- ✅ bg-opacity-{value} (通过 ContainerBuilder.bgOpacity(), bgOpacity0(), bgOpacity5() 等实现)
 
 ### Background Image
-- ⚠️ bg-image (Flutter 中通过 DecorationImage 实现)
+- ✅ bg-image (通过 ContainerBuilder.backgroundImage(), backgroundImageFromNetwork(), backgroundImageFromAsset() 实现)
 
 ### Background Position
-- ⚠️ bg-{position} (Flutter 中通过 Alignment 实现)
+- ✅ bg-{position} (通过 ContainerBuilder.bgCenter(), bgTop(), bgBottom(), bgLeft(), bgRight() 等实现)
 
 ### Background Size
-- ⚠️ bg-{size} (Flutter 中通过 BoxFit 实现)
+- ✅ bg-{size} (通过 ContainerBuilder.bgContain(), bgCover(), bgFill(), bgNone(), bgScaleDown() 实现)
 
 ### Background Repeat
-- ⚠️ bg-repeat (Flutter 中通过 ImageRepeat 实现)
-- ⚠️ bg-no-repeat
-- ⚠️ bg-repeat-x
-- ⚠️ bg-repeat-y
+- ✅ bg-repeat (通过 ContainerBuilder.bgRepeat(), bgNoRepeat(), bgRepeatX(), bgRepeatY() 实现)
+- ✅ bg-no-repeat
+- ✅ bg-repeat-x
+- ✅ bg-repeat-y
 
 ### Background Attachment
 - ❌ bg-attachment (Flutter 不支持)
 
 ### Background Clip
-- ⚠️ bg-clip (Flutter 中通过 Clip 实现)
+- ✅ bg-clip (通过 ContainerBuilder.clip() 设置)
 
 ### Background Origin
 - ❌ bg-origin (Flutter 不支持)
 
 ### Background Gradient
-- ⚠️ bg-gradient-to-{direction} (Flutter 中通过 Gradient 实现)
+- ✅ bg-gradient-to-{direction} (通过 ContainerBuilder.bgGradientToR(), bgGradientToL(), bgGradientToT(), bgGradientToB() 等实现)
 
 ### Background Blend Mode
-- ⚠️ bg-blend-{mode} (Flutter 中通过 BlendMode 实现)
+- ✅ bg-blend-{mode} (通过 ContainerBuilder.bgBlendNormal(), bgBlendMultiply(), bgBlendScreen() 等实现)
 
 ## Borders
 
@@ -506,31 +507,31 @@ alwaysApply: true
 
 ### Border Color
 - ✅ border-{color} (通过 ContainerBuilder.borderAll(color: ...))
-- ⚠️ border-opacity (通过 Color.withOpacity() 实现)
+- ✅ border-opacity (通过 ContainerBuilder.borderOpacity(), borderOpacity0(), borderOpacity5() 等实现)
 
 ### Border Style
-- ⚠️ border-solid (Flutter 默认)
-- ⚠️ border-dashed (需要自定义绘制)
-- ⚠️ border-dotted (需要自定义绘制)
-- ⚠️ border-double (需要自定义绘制)
-- ✅ border-none (通过 ContainerBuilder.setBorder())
+- ✅ border-solid (Flutter 默认，通过 ContainerBuilder.borderSolid() 实现)
+- ✅ border-dashed (通过 ContainerBuilder.borderDashed() 实现，Flutter 限制：使用 solid 代替，如需真正的虚线边框请使用自定义 CustomPainter)
+- ✅ border-dotted (通过 ContainerBuilder.borderDotted() 实现，Flutter 限制：使用 solid 代替，如需真正的点线边框请使用自定义 CustomPainter)
+- ✅ border-double (通过 ContainerBuilder.borderDouble() 实现，Flutter 限制：使用 solid 代替，如需真正的双线边框请使用自定义 CustomPainter)
+- ✅ border-none (通过 ContainerBuilder.borderNone() 实现)
 
 ### Outline
-- ⚠️ outline (Flutter 中通过 InputDecoration 等实现)
-- ⚠️ outline-{width}
-- ⚠️ outline-{color}
-- ⚠️ outline-style
-- ⚠️ outline-offset
+- ✅ outline (通过 ContainerBuilder.outline(), outline0(), outline1(), outline2(), outline4(), outline8() 实现)
+- ✅ outline-{width} (通过 ContainerBuilder.outline() 的 width 参数实现)
+- ✅ outline-{color} (通过 ContainerBuilder.outline() 的 color 参数或 outlineWhite(), outlineBlack(), outlineGray500() 等实现)
+- ⚠️ outline-style (Flutter 中通过 border 样式实现，但 outline 本身不支持样式)
+- ✅ outline-offset (通过 ContainerBuilder.outlineOffset(), outlineOffset0(), outlineOffset1() 等实现)
 
 ### Ring
-- ⚠️ ring (Flutter 中通过 BoxShadow 模拟)
-- ⚠️ ring-{width}
-- ⚠️ ring-{color}
-- ⚠️ ring-opacity
-- ⚠️ ring-offset
-- ⚠️ ring-offset-{width}
-- ⚠️ ring-offset-{color}
-- ⚠️ ring-inset
+- ✅ ring (通过 ContainerBuilder.ring(), ring0(), ring1(), ring2(), ring4(), ring8() 实现，使用 BoxShadow 模拟)
+- ✅ ring-{width} (通过 ContainerBuilder.ring() 的 width 参数实现)
+- ✅ ring-{color} (通过 ContainerBuilder.ring() 的 color 参数或 ringBlue500(), ringGray300() 等实现)
+- ✅ ring-opacity (通过 ContainerBuilder.ring() 的 color 参数透明度实现)
+- ✅ ring-offset (通过 ContainerBuilder.ringOffset(), ringOffset0(), ringOffset1() 等实现)
+- ✅ ring-offset-{width} (通过 ContainerBuilder.ringOffset() 的 offset 参数实现)
+- ✅ ring-offset-{color} (通过 ContainerBuilder.ringOffset() 的 color 参数实现)
+- ✅ ring-inset (通过 ContainerBuilder.ringInset() 实现)
 
 ## Effects
 
@@ -546,10 +547,10 @@ alwaysApply: true
 - ✅ opacity-{value} (通过 Opacity widget)
 
 ### Mix Blend Mode
-- ⚠️ mix-blend-mode (Flutter 中通过 BlendMode 实现)
+- ✅ mix-blend-mode (通过 ContainerBuilder.blendNormal(), blendMultiply(), blendScreen() 等实现)
 
 ### Background Blend Mode
-- ⚠️ background-blend-mode (Flutter 中通过 BlendMode 实现)
+- ✅ background-blend-mode (通过 ContainerBuilder.bgBlendNormal(), bgBlendMultiply(), bgBlendScreen() 等实现)
 
 ### Mask
 - ❌ mask-* (Flutter 不支持 CSS mask)
@@ -557,26 +558,26 @@ alwaysApply: true
 ## Filters
 
 ### Filter
-- ⚠️ blur (Flutter 中通过 ImageFilter.blur 实现)
-- ⚠️ brightness (Flutter 中通过 ColorFilter 实现)
-- ⚠️ contrast
-- ⚠️ drop-shadow (通过 BoxShadow 实现)
-- ⚠️ grayscale
-- ⚠️ hue-rotate
-- ⚠️ invert
-- ⚠️ saturate
-- ⚠️ sepia
+- ✅ blur (通过 ContainerBuilder.blur(), blurSm(), blurMd(), blurLg(), blurXl(), blur2xl(), blur3xl() 实现)
+- ✅ brightness (通过 ContainerBuilder.brightness(), brightness0(), brightness50(), brightness100(), brightness150(), brightness200() 等实现)
+- ✅ contrast (通过 ContainerBuilder.contrast(), contrast0(), contrast50(), contrast100(), contrast125(), contrast150(), contrast200() 等实现)
+- ✅ drop-shadow (通过 ContainerBuilder.boxShadow() 实现，使用 BoxShadow)
+- ✅ grayscale (通过 ContainerBuilder.grayscale() 实现)
+- ✅ hue-rotate (通过 ContainerBuilder.hueRotate(), hueRotate0(), hueRotate15(), hueRotate30(), hueRotate60(), hueRotate90(), hueRotate180() 实现)
+- ✅ invert (通过 ContainerBuilder.invert() 实现)
+- ✅ saturate (通过 ContainerBuilder.saturate(), saturate0(), saturate50(), saturate100(), saturate150(), saturate200() 实现)
+- ✅ sepia (通过 ContainerBuilder.sepia() 实现)
 
 ### Backdrop Filter
-- ⚠️ backdrop-blur (Flutter 中通过 BackdropFilter 实现)
-- ⚠️ backdrop-brightness
-- ⚠️ backdrop-contrast
-- ⚠️ backdrop-saturate
-- ⚠️ backdrop-sepia
-- ⚠️ backdrop-opacity
-- ⚠️ backdrop-grayscale
-- ⚠️ backdrop-invert
-- ⚠️ backdrop-hue-rotate
+- ✅ backdrop-blur (通过 ContainerBuilder.backdropBlur(), backdropBlurSm(), backdropBlurMd(), backdropBlurLg(), backdropBlurXl(), backdropBlur2xl(), backdropBlur3xl() 实现)
+- ✅ backdrop-brightness (通过 ContainerBuilder.backdropBrightness(), backdropBrightness0(), backdropBrightness50() 等实现)
+- ✅ backdrop-contrast (通过 ContainerBuilder.backdropContrast(), backdropContrast0(), backdropContrast50() 等实现)
+- ✅ backdrop-saturate (通过 ContainerBuilder.backdropSaturate(), backdropSaturate0(), backdropSaturate50() 等实现)
+- ✅ backdrop-sepia (通过 ContainerBuilder.backdropSepia() 实现)
+- ✅ backdrop-opacity (通过 ContainerBuilder.backdropOpacity(), backdropOpacity0(), backdropOpacity5() 等实现)
+- ✅ backdrop-grayscale (通过 ContainerBuilder.backdropGrayscale(), backdropGrayscale0(), backdropGrayscale100() 实现)
+- ✅ backdrop-invert (通过 ContainerBuilder.backdropInvert(), backdropInvert0(), backdropInvert100() 实现)
+- ✅ backdrop-hue-rotate (通过 ContainerBuilder.backdropHueRotate(), backdropHueRotate0(), backdropHueRotate15() 等实现)
 
 ## Tables
 
@@ -619,21 +620,23 @@ alwaysApply: true
 - ✅ transform (通过 ContainerBuilder.transform())
 
 ### Rotate
-- ⚠️ rotate-{value} (通过 Transform.rotate 实现)
+- ✅ rotate-{value} (通过 ContainerBuilder.rotate(), rotate0(), rotate1(), rotate2(), rotate3(), rotate6(), rotate12(), rotate45(), rotate90(), rotate180() 实现)
 
 ### Scale
-- ⚠️ scale-{value} (通过 Transform.scale 实现)
+- ✅ scale-{value} (通过 ContainerBuilder.scale(), scale0(), scale50(), scale75(), scale90(), scale95(), scale100(), scale105(), scale110(), scale125(), scale150() 实现)
+- ✅ scale-x-{value} (通过 ContainerBuilder.scaleX() 实现)
+- ✅ scale-y-{value} (通过 ContainerBuilder.scaleY() 实现)
 
 ### Skew
-- ⚠️ skew-x-{value} (通过 Transform 实现)
-- ⚠️ skew-y-{value}
+- ✅ skew-x-{value} (通过 ContainerBuilder.skewX(), skewX0(), skewX1(), skewX2(), skewX3(), skewX6(), skewX12() 实现)
+- ✅ skew-y-{value} (通过 ContainerBuilder.skewY(), skewY0(), skewY1(), skewY2(), skewY3(), skewY6(), skewY12() 实现)
 
 ### Translate
-- ⚠️ translate-x-{value} (通过 Transform.translate 实现)
-- ⚠️ translate-y-{value}
+- ✅ translate-x-{value} (通过 ContainerBuilder.translateX(), translateX0(), translateX1(), translateX2() 等到 translateX64() 实现)
+- ✅ translate-y-{value} (通过 ContainerBuilder.translateY(), translateY0(), translateY1(), translateY2() 等到 translateY64() 实现)
 
 ### Transform Origin
-- ⚠️ transform-origin (Flutter 中通过 Alignment 实现)
+- ✅ transform-origin (通过 ContainerBuilder.transformAlignment() 实现)
 
 ### Transform Style
 - ❌ transform-style (Flutter 不支持 3D transform)
@@ -650,13 +653,22 @@ alwaysApply: true
 ## Interactivity
 
 ### Cursor
-- ⚠️ cursor-{type} (Flutter Web 中通过 MouseCursor 实现)
+- ✅ cursor-{type} (通过 WidgetInteractivityExtensions.cursor() 实现，支持 Web 平台)
+- ✅ cursor-pointer (通过 cursorPointer() 实现)
+- ✅ cursor-text (通过 cursorText() 实现)
+- ✅ cursor-not-allowed (通过 cursorNotAllowed() 实现)
+- ✅ cursor-wait (通过 cursorWait() 实现)
+- ✅ cursor-move (通过 cursorMove() 实现)
+- ✅ cursor-grab (通过 cursorGrab() 实现)
+- ✅ cursor-grabbing (通过 cursorGrabbing() 实现)
+- ✅ cursor-help (通过 cursorHelp() 实现)
+- ✅ cursor-default (通过 cursorDefault() 实现)
 
 ### User Select
-- ⚠️ select-none (Flutter 中通过 SelectableText 控制)
-- ⚠️ select-text
-- ⚠️ select-all
-- ⚠️ select-auto
+- ✅ select-none (通过 WidgetInteractivityExtensions.selectNone() 实现)
+- ✅ select-text (通过 WidgetInteractivityExtensions.selectText() 实现)
+- ✅ select-all (通过 WidgetInteractivityExtensions.selectAll() 实现)
+- ✅ select-auto (通过 WidgetInteractivityExtensions.selectAuto() 实现)
 
 ### Pointer Events
 - ✅ pointer-events-none (通过 IgnorePointer)

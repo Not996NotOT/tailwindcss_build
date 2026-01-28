@@ -613,3 +613,243 @@ extension IconConversionExt on Icon {
   }
 
 }
+
+/// Widget 的交互扩展 - cursor 和 user-select
+extension WidgetInteractivityExtensions on Widget {
+  /// cursor-{type} - 设置鼠标光标样式（仅 Web 平台）
+  Widget cursor(MouseCursor cursor) {
+    return MouseRegion(
+      cursor: cursor,
+      child: this,
+    );
+  }
+  
+  /// cursor-pointer - 指针光标
+  Widget cursorPointer() => cursor(SystemMouseCursors.click);
+  
+  /// cursor-text - 文本光标
+  Widget cursorText() => cursor(SystemMouseCursors.text);
+  
+  /// cursor-not-allowed - 禁止光标
+  Widget cursorNotAllowed() => cursor(SystemMouseCursors.forbidden);
+  
+  /// cursor-wait - 等待光标
+  Widget cursorWait() => cursor(SystemMouseCursors.wait);
+  
+  /// cursor-move - 移动光标
+  Widget cursorMove() => cursor(SystemMouseCursors.move);
+  
+  /// cursor-grab - 抓取光标
+  Widget cursorGrab() => cursor(SystemMouseCursors.grab);
+  
+  /// cursor-grabbing - 抓取中光标
+  Widget cursorGrabbing() => cursor(SystemMouseCursors.grabbing);
+  
+  /// cursor-help - 帮助光标
+  Widget cursorHelp() => cursor(SystemMouseCursors.help);
+  
+  /// cursor-default - 默认光标
+  Widget cursorDefault() => cursor(SystemMouseCursors.basic);
+  
+  /// select-none - 禁止文本选择
+  Widget selectNone() {
+    return SelectionContainer.disabled(
+      child: this,
+    );
+  }
+  
+  /// select-text - 允许文本选择
+  Widget selectText() {
+    return SelectionContainer(
+      child: this,
+    );
+  }
+  
+  /// select-all - 允许选择所有内容
+  Widget selectAll() {
+    return SelectionContainer(
+      child: this,
+    );
+  }
+  
+  /// select-auto - 自动选择行为
+  Widget selectAuto() {
+    return this; // Flutter 默认行为
+  }
+}
+
+/// Image widget 的 object-fit 和 object-position 扩展
+extension ImageObjectFitExtensions on Image {
+  /// object-fit-contain - 保持宽高比，完整显示图片
+  Image objectContain() {
+    return Image(
+      image: image,
+      width: width,
+      height: height,
+      fit: BoxFit.contain,
+      alignment: alignment,
+      repeat: repeat,
+      matchTextDirection: matchTextDirection,
+      gaplessPlayback: gaplessPlayback,
+      filterQuality: filterQuality,
+      isAntiAlias: isAntiAlias,
+      frameBuilder: frameBuilder,
+      loadingBuilder: loadingBuilder,
+      errorBuilder: errorBuilder,
+      semanticLabel: semanticLabel,
+      excludeFromSemantics: excludeFromSemantics,
+      scale: scale,
+      color: color,
+      colorBlendMode: colorBlendMode,
+      opacity: opacity,
+      cacheWidth: cacheWidth,
+      cacheHeight: cacheHeight,
+    );
+  }
+  
+  /// object-fit-cover - 填充容器，保持宽高比，可能裁剪
+  Image objectCover() {
+    return Image(
+      image: image,
+      width: width,
+      height: height,
+      fit: BoxFit.cover,
+      alignment: alignment,
+      repeat: repeat,
+      matchTextDirection: matchTextDirection,
+      gaplessPlayback: gaplessPlayback,
+      filterQuality: filterQuality,
+      isAntiAlias: isAntiAlias,
+      frameBuilder: frameBuilder,
+      loadingBuilder: loadingBuilder,
+      errorBuilder: errorBuilder,
+      semanticLabel: semanticLabel,
+      excludeFromSemantics: excludeFromSemantics,
+      scale: scale,
+      color: color,
+      colorBlendMode: colorBlendMode,
+      opacity: opacity,
+      cacheWidth: cacheWidth,
+      cacheHeight: cacheHeight,
+    );
+  }
+  
+  /// object-fit-fill - 拉伸填充容器，不保持宽高比
+  Image objectFill() {
+    return Image(
+      image: image,
+      width: width,
+      height: height,
+      fit: BoxFit.fill,
+      alignment: alignment,
+      repeat: repeat,
+      matchTextDirection: matchTextDirection,
+      gaplessPlayback: gaplessPlayback,
+      filterQuality: filterQuality,
+      isAntiAlias: isAntiAlias,
+      frameBuilder: frameBuilder,
+      loadingBuilder: loadingBuilder,
+      errorBuilder: errorBuilder,
+      semanticLabel: semanticLabel,
+      excludeFromSemantics: excludeFromSemantics,
+      scale: scale,
+      color: color,
+      colorBlendMode: colorBlendMode,
+      opacity: opacity,
+      cacheWidth: cacheWidth,
+      cacheHeight: cacheHeight,
+    );
+  }
+  
+  /// object-fit-none - 不缩放，保持原始尺寸
+  Image objectNone() {
+    return Image(
+      image: image,
+      width: width,
+      height: height,
+      fit: BoxFit.none,
+      alignment: alignment,
+      repeat: repeat,
+      matchTextDirection: matchTextDirection,
+      gaplessPlayback: gaplessPlayback,
+      filterQuality: filterQuality,
+      isAntiAlias: isAntiAlias,
+      frameBuilder: frameBuilder,
+      loadingBuilder: loadingBuilder,
+      errorBuilder: errorBuilder,
+      semanticLabel: semanticLabel,
+      excludeFromSemantics: excludeFromSemantics,
+      scale: scale,
+      color: color,
+      colorBlendMode: colorBlendMode,
+      opacity: opacity,
+      cacheWidth: cacheWidth,
+      cacheHeight: cacheHeight,
+    );
+  }
+  
+  /// object-fit-scale-down - 缩小以适应，但不放大
+  Image objectScaleDown() {
+    return Image(
+      image: image,
+      width: width,
+      height: height,
+      fit: BoxFit.scaleDown,
+      alignment: alignment,
+      repeat: repeat,
+      matchTextDirection: matchTextDirection,
+      gaplessPlayback: gaplessPlayback,
+      filterQuality: filterQuality,
+      isAntiAlias: isAntiAlias,
+      frameBuilder: frameBuilder,
+      loadingBuilder: loadingBuilder,
+      errorBuilder: errorBuilder,
+      semanticLabel: semanticLabel,
+      excludeFromSemantics: excludeFromSemantics,
+      scale: scale,
+      color: color,
+      colorBlendMode: colorBlendMode,
+      opacity: opacity,
+      cacheWidth: cacheWidth,
+      cacheHeight: cacheHeight,
+    );
+  }
+  
+  /// object-position - 设置图片位置
+  Image objectPosition(AlignmentGeometry position) {
+    return Image(
+      image: image,
+      width: width,
+      height: height,
+      fit: fit,
+      alignment: position,
+      repeat: repeat,
+      matchTextDirection: matchTextDirection,
+      gaplessPlayback: gaplessPlayback,
+      filterQuality: filterQuality,
+      isAntiAlias: isAntiAlias,
+      frameBuilder: frameBuilder,
+      loadingBuilder: loadingBuilder,
+      errorBuilder: errorBuilder,
+      semanticLabel: semanticLabel,
+      excludeFromSemantics: excludeFromSemantics,
+      scale: scale,
+      color: color,
+      colorBlendMode: colorBlendMode,
+      opacity: opacity,
+      cacheWidth: cacheWidth,
+      cacheHeight: cacheHeight,
+    );
+  }
+  
+  /// object-position 快捷方法
+  Image objectCenter() => objectPosition(Alignment.center);
+  Image objectTop() => objectPosition(Alignment.topCenter);
+  Image objectBottom() => objectPosition(Alignment.bottomCenter);
+  Image objectLeft() => objectPosition(Alignment.centerLeft);
+  Image objectRight() => objectPosition(Alignment.centerRight);
+  Image objectTopLeft() => objectPosition(Alignment.topLeft);
+  Image objectTopRight() => objectPosition(Alignment.topRight);
+  Image objectBottomLeft() => objectPosition(Alignment.bottomLeft);
+  Image objectBottomRight() => objectPosition(Alignment.bottomRight);
+}
