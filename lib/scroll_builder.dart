@@ -4,7 +4,19 @@ import 'container_builder.dart';
 
 /// Scroll 建造者 - 处理 overflow 和滚动行为
 /// 对应 TailwindCSS 的 overflow 类
+/// 
+/// A builder class for creating scrollable widgets with Tailwind CSS-like overflow utility methods.
+/// Handles overflow behavior (auto, hidden, clip, visible, scroll) and scroll direction.
+/// 
+/// Example:
+/// ```dart
+/// ScrollBuilder(child: LongContent())
+///   .overflowAuto()
+///   .overflowYAuto()
+///   .build()
+/// ```
 class ScrollBuilder {
+  /// The child widget to be wrapped in a scrollable container.
   final Widget child;
   
   // 收集的滚动属性
@@ -16,6 +28,10 @@ class ScrollBuilder {
   EdgeInsetsGeometry? _padding;
   ScrollController? _controller;
   
+  /// Creates a [ScrollBuilder] with the given [child].
+  /// 
+  /// The [child] will be wrapped in a scrollable widget when [build] is called,
+  /// according to the overflow configuration set.
   ScrollBuilder(this.child);
   
   // === Overflow 基础方法 ===
@@ -168,18 +184,14 @@ class ScrollBuilder {
   /// overscroll-auto -> 允许过度滚动（默认行为，使用 BouncingScrollPhysics）
   ScrollBuilder overscrollAuto() {
     // 如果没有设置自定义 physics，使用 BouncingScrollPhysics
-    if (_physics == null) {
-      _physics = const BouncingScrollPhysics();
-    }
+    _physics ??= const BouncingScrollPhysics();
     return this;
   }
   
   /// overscroll-contain -> 限制过度滚动（使用 ClampingScrollPhysics）
   ScrollBuilder overscrollContain() {
     // 使用 ClampingScrollPhysics 来限制过度滚动
-    if (_physics == null) {
-      _physics = const ClampingScrollPhysics();
-    }
+    _physics ??= const ClampingScrollPhysics();
     return this;
   }
   
@@ -193,18 +205,14 @@ class ScrollBuilder {
   /// overscroll-x-auto -> X轴允许过度滚动
   ScrollBuilder overscrollXAuto() {
     // 对于 X 轴，我们保持默认的 BouncingScrollPhysics
-    if (_physics == null) {
-      _physics = const BouncingScrollPhysics();
-    }
+    _physics ??= const BouncingScrollPhysics();
     return this;
   }
   
   /// overscroll-x-contain -> X轴限制过度滚动
   ScrollBuilder overscrollXContain() {
     // 对于 X 轴，使用 ClampingScrollPhysics
-    if (_physics == null) {
-      _physics = const ClampingScrollPhysics();
-    }
+    _physics ??= const ClampingScrollPhysics();
     return this;
   }
   
@@ -217,18 +225,14 @@ class ScrollBuilder {
   /// overscroll-y-auto -> Y轴允许过度滚动
   ScrollBuilder overscrollYAuto() {
     // 对于 Y 轴，我们保持默认的 BouncingScrollPhysics
-    if (_physics == null) {
-      _physics = const BouncingScrollPhysics();
-    }
+    _physics ??= const BouncingScrollPhysics();
     return this;
   }
   
   /// overscroll-y-contain -> Y轴限制过度滚动
   ScrollBuilder overscrollYContain() {
     // 对于 Y 轴，使用 ClampingScrollPhysics
-    if (_physics == null) {
-      _physics = const ClampingScrollPhysics();
-    }
+    _physics ??= const ClampingScrollPhysics();
     return this;
   }
   

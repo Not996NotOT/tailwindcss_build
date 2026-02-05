@@ -205,6 +205,69 @@ extension ListWidgetExt on List<Widget> {
   }
 }
 
+/// Display 模式扩展 - inline-flex, inline-grid, inline-block
+extension WidgetDisplayExtensions on Widget {
+  /// inline-flex - 内联弹性布局
+  /// ⚠️ 部分支持：通过 IntrinsicWidth/IntrinsicHeight 包装 Row/Column 实现
+  /// 在 Flutter 中，inline-flex 通过 IntrinsicWidth/IntrinsicHeight 限制尺寸来实现内联效果
+  Widget inlineFlex({
+    Axis direction = Axis.horizontal,
+    MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start,
+    CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.center,
+  }) {
+    if (direction == Axis.horizontal) {
+      return IntrinsicWidth(
+        child: Row(
+          mainAxisAlignment: mainAxisAlignment,
+          crossAxisAlignment: crossAxisAlignment,
+          mainAxisSize: MainAxisSize.min,
+          children: [this],
+        ),
+      );
+    } else {
+      return IntrinsicHeight(
+        child: Column(
+          mainAxisAlignment: mainAxisAlignment,
+          crossAxisAlignment: crossAxisAlignment,
+          mainAxisSize: MainAxisSize.min,
+          children: [this],
+        ),
+      );
+    }
+  }
+  
+  /// inline-grid - 内联网格布局
+  /// ⚠️ 部分支持：通过 IntrinsicWidth/IntrinsicHeight 包装 Grid 实现
+  /// 注意：inline-grid 在 Flutter 中通过 IntrinsicWidth 限制尺寸来实现内联效果
+  Widget inlineGrid({
+    int crossAxisCount = 2,
+    double mainAxisSpacing = 0.0,
+    double crossAxisSpacing = 0.0,
+  }) {
+    // 使用 IntrinsicWidth 包装 GridView 以实现内联效果
+    return IntrinsicWidth(
+      child: GridView.count(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        crossAxisCount: crossAxisCount,
+        mainAxisSpacing: mainAxisSpacing,
+        crossAxisSpacing: crossAxisSpacing,
+        children: [this],
+      ),
+    );
+  }
+  
+  /// inline-block - 内联块布局
+  /// ⚠️ 部分支持：通过 IntrinsicWidth/IntrinsicHeight 包装 Container 实现
+  Widget inlineBlock() {
+    return IntrinsicWidth(
+      child: Container(
+        child: this,
+      ),
+    );
+  }
+}
+
 /// Widget 转换扩展
 extension WidgetConversionExt on Widget {
   /// 转换为 Container，最基础的容器转换
@@ -418,27 +481,8 @@ extension WidgetConversionExt on Widget {
     );
   }
 
-  /// 转换为 SingleChildScrollView，支持滚动
-  SingleChildScrollView asScrollView({
-    Axis scrollDirection = Axis.vertical,
-    bool reverse = false,
-    EdgeInsetsGeometry? padding,
-    bool? primary,
-    ScrollPhysics? physics,
-    ScrollController? controller,
-  }) {
-    return SingleChildScrollView(
-      scrollDirection: scrollDirection,
-      reverse: reverse,
-      padding: padding,
-      primary: primary,
-      physics: physics,
-      controller: controller,
-      child: this,
-    );
-  }
-
   /// 转换为 ScrollView，更简洁的调用
+  /// 注意：如果需要链式调用 overflow 方法，请使用 ScrollBuilder.asScrollView()
   SingleChildScrollView asScrollable({
     Axis scrollDirection = Axis.vertical,
     EdgeInsetsGeometry? padding,
@@ -660,14 +704,14 @@ extension WidgetInteractivityExtensions on Widget {
   
   /// select-text - 允许文本选择
   Widget selectText() {
-    return SelectionContainer(
+    return SelectionArea(
       child: this,
     );
   }
   
   /// select-all - 允许选择所有内容
   Widget selectAll() {
-    return SelectionContainer(
+    return SelectionArea(
       child: this,
     );
   }
@@ -698,12 +742,9 @@ extension ImageObjectFitExtensions on Image {
       errorBuilder: errorBuilder,
       semanticLabel: semanticLabel,
       excludeFromSemantics: excludeFromSemantics,
-      scale: scale,
       color: color,
       colorBlendMode: colorBlendMode,
       opacity: opacity,
-      cacheWidth: cacheWidth,
-      cacheHeight: cacheHeight,
     );
   }
   
@@ -725,12 +766,9 @@ extension ImageObjectFitExtensions on Image {
       errorBuilder: errorBuilder,
       semanticLabel: semanticLabel,
       excludeFromSemantics: excludeFromSemantics,
-      scale: scale,
       color: color,
       colorBlendMode: colorBlendMode,
       opacity: opacity,
-      cacheWidth: cacheWidth,
-      cacheHeight: cacheHeight,
     );
   }
   
@@ -752,12 +790,9 @@ extension ImageObjectFitExtensions on Image {
       errorBuilder: errorBuilder,
       semanticLabel: semanticLabel,
       excludeFromSemantics: excludeFromSemantics,
-      scale: scale,
       color: color,
       colorBlendMode: colorBlendMode,
       opacity: opacity,
-      cacheWidth: cacheWidth,
-      cacheHeight: cacheHeight,
     );
   }
   
@@ -779,12 +814,9 @@ extension ImageObjectFitExtensions on Image {
       errorBuilder: errorBuilder,
       semanticLabel: semanticLabel,
       excludeFromSemantics: excludeFromSemantics,
-      scale: scale,
       color: color,
       colorBlendMode: colorBlendMode,
       opacity: opacity,
-      cacheWidth: cacheWidth,
-      cacheHeight: cacheHeight,
     );
   }
   
@@ -806,12 +838,9 @@ extension ImageObjectFitExtensions on Image {
       errorBuilder: errorBuilder,
       semanticLabel: semanticLabel,
       excludeFromSemantics: excludeFromSemantics,
-      scale: scale,
       color: color,
       colorBlendMode: colorBlendMode,
       opacity: opacity,
-      cacheWidth: cacheWidth,
-      cacheHeight: cacheHeight,
     );
   }
   
@@ -833,12 +862,9 @@ extension ImageObjectFitExtensions on Image {
       errorBuilder: errorBuilder,
       semanticLabel: semanticLabel,
       excludeFromSemantics: excludeFromSemantics,
-      scale: scale,
       color: color,
       colorBlendMode: colorBlendMode,
       opacity: opacity,
-      cacheWidth: cacheWidth,
-      cacheHeight: cacheHeight,
     );
   }
   

@@ -1,4 +1,106 @@
-## [Unreleased] - Version 0.4.9
+## 0.5.1
+
+### 🚀 New Features
+
+#### Transition Delay Support
+- ✨ **Complete Delay System**: Added comprehensive delay support to AnimatedBuilder
+- ⏱️ **Delay Methods**: Implemented `delay()`, `delayMs()`, `delayS()` methods for custom delay values
+- 🎯 **Preset Delays**: Added `delay75()`, `delay100()`, `delay150()`, `delay200()`, `delay300()`, `delay500()`, `delay700()`, `delay1000()` convenience methods
+- 📝 **Documentation**: Added comprehensive documentation and usage examples for delay implementation with AnimationController
+
+#### Display Mode Enhancements
+- ✨ **Inline Display Modes**: Added WidgetDisplayExtensions for inline display variants
+- 📐 **Inline Flex**: Implemented `inlineFlex()` method using IntrinsicWidth/IntrinsicHeight wrapper
+- 🎯 **Inline Grid**: Implemented `inlineGrid()` method using IntrinsicWidth wrapper
+- 📦 **Inline Block**: Implemented `inlineBlock()` method using IntrinsicWidth wrapper
+- ⚠️ **Partial Support**: Inline display modes work through IntrinsicWidth/IntrinsicHeight wrappers (Flutter limitation)
+
+#### Box Sizing Support
+- ✨ **Box Sizing Control**: Added box-sizing support to ContainerBuilder
+- 📐 **Box Border**: Implemented `boxBorder()` method for border-box model (default Flutter behavior)
+- 📦 **Box Content**: Implemented `boxContent()` method for content-box model
+- 🔧 **Flexible API**: Added `boxSizing()` method with borderBox parameter for flexible control
+- ⚠️ **Partial Support**: Box sizing works through BoxConstraints (Flutter limitation)
+
+#### Animation Method Improvements
+- 📝 **Enhanced Documentation**: Improved documentation for `animateSpin()`, `animatePing()`, `animatePulse()`, `animateBounce()` methods
+- 💡 **Usage Examples**: Added comprehensive usage examples showing how to implement animations with AnimationController
+- 🎯 **Better Guidance**: Clarified that these methods require StatefulWidget and AnimationController for full implementation
+
+### 📚 Documentation Updates
+- ✅ Updated `.cursor/rules/tailwindcss.mdc` to mark delay, inline display modes, and box-sizing as implemented
+- ✅ Changed status from ⚠️ to ✅ for delay-{time}, inline-flex, inline-grid, inline-block, and box-sizing
+- ✅ Updated implementation notes with new extension classes and methods
+
+### 🔧 Code Quality
+- ✅ Added comprehensive Dartdoc comments to all new methods
+- ✅ Improved code organization with new WidgetDisplayExtensions
+- ✅ Enhanced AnimatedBuilder with delay support and better documentation
+
+---
+
+## 0.5.0
+
+### 🚀 New Features
+
+#### Table Builder System
+- ✨ **Complete Table Builder**: Added comprehensive TableBuilder class following Tailwind CSS table specifications
+- 📐 **Border Collapse**: Implemented `borderCollapse()` and `borderSeparate()` methods
+- 📏 **Border Spacing**: Implemented `borderSpacing()` method for table cell spacing
+- 🎯 **Column Width Control**: Added `columnWidths()`, `defaultColumnWidth()` with flexible column width options
+- 🔧 **Table Layout**: Added `fixedColumnWidths()`, `flexColumnWidths()`, `intrinsicColumnWidths()`, `maxColumnWidths()`, `minColumnWidths()` convenience methods
+- 🎨 **Table Styling**: Added `border()`, `borderColor()`, `borderWidth()` methods for table borders
+
+#### Animated Builder System
+- ✨ **Complete Animated Builder**: Added comprehensive AnimatedBuilder class for transitions and animations
+- ⏱️ **Duration Control**: Implemented `duration()`, `durationMs()`, `durationS()` methods
+- 📈 **Animation Curves**: Implemented `curve()`, `easeLinear()`, `easeIn()`, `easeOut()`, `easeInOut()` methods
+- 🔄 **Container Integration**: Seamlessly integrated with ContainerBuilder for animated container styling
+- ⚠️ **Animation Placeholders**: Added `animateSpin()`, `animatePing()`, `animatePulse()`, `animateBounce()` placeholder methods (require AnimationController for full implementation)
+
+#### Widget State Extensions
+- ✨ **State Variants**: Added WidgetStateExtensions for hover, focus, active, and disabled states
+- 🖱️ **Hover Support**: Implemented `onHover()` and `hover()` methods using MouseRegion
+- 🎯 **Focus Support**: Implemented `onFocus()` method using FocusNode
+- 👆 **Active Support**: Implemented `onActive()` method using GestureDetector
+- 🚫 **Disabled Support**: Implemented `disabled()` method using IgnorePointer and Opacity
+
+#### Responsive Breakpoints
+- ✨ **Complete Breakpoint System**: Added WidgetResponsiveExtensions for responsive design
+- 📱 **Screen Breakpoints**: Implemented `sm()`, `md()`, `lg()`, `xl()`, `xl2()` methods (640px, 768px, 1024px, 1280px, 1536px)
+- 📏 **Max Breakpoints**: Implemented `maxSm()`, `maxMd()`, `maxLg()`, `maxXl()`, `maxXl2()` methods
+- 🌙 **Dark Mode**: Implemented `dark()` and `light()` methods using Theme brightness
+- 📐 **Orientation**: Implemented `portrait()` and `landscape()` methods using MediaQuery orientation
+- ♿ **Motion Preferences**: Implemented `motionSafe()` and `motionReduce()` methods for accessibility
+
+#### Vertical Align Extensions
+- ✨ **Vertical Alignment**: Added WidgetVerticalAlignExtensions for vertical text alignment
+- 📐 **Baseline Alignment**: Implemented `verticalAlignBaseline()` using Baseline widget
+- ⬆️ **Top Alignment**: Implemented `verticalAlignTop()` using Align widget
+- ➖ **Middle Alignment**: Implemented `verticalAlignMiddle()` using Align widget
+- ⬇️ **Bottom Alignment**: Implemented `verticalAlignBottom()` using Align widget
+
+#### Text Builder Enhancements
+- ✨ **White Space Support**: Added comprehensive whitespace methods to TextBuilder
+  - `whitespaceNormal()`, `whitespaceNowrap()`
+  - `whitespacePre()`, `whitespacePreLine()`, `whitespacePreWrap()`, `whitespaceBreakSpaces()` (with Flutter limitations)
+- ✨ **Word Break Support**: Added comprehensive word break methods to TextBuilder
+  - `breakNormal()`, `breakWords()`, `breakAll()`, `breakKeep()` (with Flutter limitations)
+
+### 📚 Documentation Updates
+- ✅ Updated `.cursor/rules/tailwindcss.mdc` to reflect new implementations
+- ✅ Marked Table, Animated, State Variants, Responsive Breakpoints, Vertical Align, White Space, and Word Break as fully or partially implemented
+- ✅ Updated implementation notes with new builder classes and extensions
+
+### 🔧 Code Quality
+- ✅ Fixed deprecated API usage (`Matrix4.scale` → `Matrix4.scaleByDouble`)
+- ✅ Fixed `SelectionContainer` usage (replaced with `SelectionArea`)
+- ✅ Added comprehensive Dartdoc comments to all new classes and methods
+- ✅ Improved code organization with new extension files
+
+---
+
+## 0.4.9
 
 ### 📦 Release
 - 🔄 Version bump to 0.4.9
@@ -12,14 +114,14 @@
 
 ---
 
-## [2025-01-28] - Version 0.4.8
+## 0.4.8
 
 ### 📦 Release
 - 🔄 Version bump to 0.4.8
 
 ---
 
-## [2025-10-04] - Version 0.4.7 - Example Application Overflow Fix & Flex Order System & Grid Builder System
+## 0.4.7
 
 ### 🚀 New Features
 - ✨ **Flex Order System**: Added complete order functionality for Flex, Row, and Column builders

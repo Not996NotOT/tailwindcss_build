@@ -4,7 +4,21 @@ import 'colors.dart';
 import 'container_builder.dart';
 
 /// Text 建造者 - 收集所有文本样式属性，最后一次性构建
+/// 
+/// A builder class for creating styled text widgets with Tailwind CSS-like utility methods.
+/// Collects all text style properties and builds a Text widget at the end.
+/// 
+/// Example:
+/// ```dart
+/// TextBuilder('Hello World')
+///   .textXl()
+///   .fontBold()
+///   .textBlue500()
+///   .textCenter()
+///   .build()
+/// ```
 class TextBuilder {
+  /// The text string to be displayed.
   final String text;
   
   // 收集的文本样式属性
@@ -27,6 +41,9 @@ class TextBuilder {
   TextAlign? _textAlign;
   Locale? _locale;
   
+  /// Creates a [TextBuilder] with the given [text].
+  /// 
+  /// The [text] will be displayed in a Text widget when [build] is called.
   TextBuilder(this.text);
   
   // === 颜色 ===
@@ -470,6 +487,89 @@ extension TextBuilderTailwindExtensions on TextBuilder {
   /// ⚠️ 部分支持：Flutter 没有直接的 pretty 支持，使用默认换行
   TextBuilder textPretty() {
     _maxLines = null; // 允许多行，尽可能美观显示
+    return this;
+  }
+  
+  // === White Space (Tailwind CSS 命名) ===
+  /// ⚠️ 部分支持：Flutter 通过 maxLines 和 overflow 间接控制
+  
+  /// whitespace-normal: white-space: normal;
+  /// ✅ 支持：正常换行（默认行为）
+  TextBuilder whitespaceNormal() {
+    _maxLines = null;
+    return this;
+  }
+  
+  /// whitespace-nowrap: white-space: nowrap;
+  /// ✅ 支持：不换行，单行显示
+  TextBuilder whitespaceNowrap() {
+    _maxLines = 1;
+    _overflow ??= TextOverflow.ellipsis;
+    return this;
+  }
+  
+  /// whitespace-pre: white-space: pre;
+  /// ❌ 不支持：Flutter 不支持保留空格和换行符
+  TextBuilder whitespacePre() {
+    // Flutter 不支持 pre，使用 nowrap 作为替代
+    _maxLines = 1;
+    return this;
+  }
+  
+  /// whitespace-pre-line: white-space: pre-line;
+  /// ❌ 不支持：Flutter 不支持保留换行符
+  TextBuilder whitespacePreLine() {
+    // Flutter 不支持 pre-line，使用正常换行作为替代
+    _maxLines = null;
+    return this;
+  }
+  
+  /// whitespace-pre-wrap: white-space: pre-wrap;
+  /// ❌ 不支持：Flutter 不支持保留空格和换行符
+  TextBuilder whitespacePreWrap() {
+    // Flutter 不支持 pre-wrap，使用正常换行作为替代
+    _maxLines = null;
+    return this;
+  }
+  
+  /// whitespace-break-spaces: white-space: break-spaces;
+  /// ❌ 不支持：Flutter 不支持 break-spaces
+  TextBuilder whitespaceBreakSpaces() {
+    // Flutter 不支持 break-spaces，使用正常换行作为替代
+    _maxLines = null;
+    return this;
+  }
+  
+  // === Word Break (Tailwind CSS 命名) ===
+  /// ⚠️ 部分支持：Flutter 通过 TextOverflow 间接控制
+  
+  /// break-normal: word-break: normal;
+  /// ✅ 支持：正常断词（默认行为）
+  TextBuilder breakNormal() {
+    _overflow = null;
+    return this;
+  }
+  
+  /// break-words: word-break: break-word;
+  /// ⚠️ 部分支持：通过 TextOverflow.ellipsis 实现
+  TextBuilder breakWords() {
+    _overflow = TextOverflow.ellipsis;
+    return this;
+  }
+  
+  /// break-all: word-break: break-all;
+  /// ⚠️ 部分支持：Flutter 不完全支持 break-all
+  TextBuilder breakAll() {
+    // Flutter 不完全支持 break-all，使用 clip 作为替代
+    _overflow = TextOverflow.clip;
+    return this;
+  }
+  
+  /// break-keep: word-break: keep-all;
+  /// ❌ 不支持：Flutter 不支持 keep-all
+  TextBuilder breakKeep() {
+    // Flutter 不支持 keep-all，使用正常行为作为替代
+    _overflow = null;
     return this;
   }
   

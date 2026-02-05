@@ -170,7 +170,7 @@ class GridDemo extends StatelessWidget {
   }
 
   Widget _buildGridItem(String text, Color color, {double? width, double? height}) {
-    return Container(
+    return SizedBox(
       width: width,
       height: height ?? 60,
       child: Center(

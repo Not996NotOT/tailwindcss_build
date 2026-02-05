@@ -41,7 +41,25 @@ class _IndexedWidget {
 }
 
 /// Flex 建造者 - 只负责Flex布局属性，不包含视觉样式
+/// 
+/// A builder class for creating flex layouts (Row/Column) with Tailwind CSS-like utility methods.
+/// Handles flex direction, alignment, gap, wrap, and other flex-related properties.
+/// 
+/// Example:
+/// ```dart
+/// FlexBuilder([
+///   Text('Item 1'),
+///   Text('Item 2'),
+///   Text('Item 3'),
+/// ])
+///   .flexRow()
+///   .justifyCenter()
+///   .itemsCenter()
+///   .gap(16)
+///   .build()
+/// ```
 class FlexBuilder {
+  /// The list of child widgets to be arranged in the flex layout.
   final List<Widget> children;
   
   // 收集的Flex布局属性
@@ -63,6 +81,10 @@ class FlexBuilder {
   double _divideWidth = 1.0; // 默认 1px
   // 注意：Flutter Container 不支持 BorderStyle，所以暂时不存储样式
   
+  /// Creates a [FlexBuilder] with the given list of [children].
+  /// 
+  /// The [children] will be arranged in a Row or Column widget when [build] is called,
+  /// depending on the flex direction set.
   FlexBuilder(this.children);
   
   // === Flex Direction ===

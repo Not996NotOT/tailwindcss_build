@@ -33,7 +33,9 @@ alwaysApply: true
 - ❌ box-decoration-break (Flutter 不支持)
 
 ### Box Sizing
-- ⚠️ box-sizing (Flutter 中通过 BoxConstraints 间接控制)
+- ✅ box-sizing (通过 ContainerBuilder.boxBorder(), boxContent(), boxSizing() 实现)
+- ✅ box-border (通过 ContainerBuilder.boxBorder() 实现)
+- ✅ box-content (通过 ContainerBuilder.boxContent() 实现)
 
 ### Display
 - ✅ block (通过 ContainerBuilder 实现)
@@ -41,10 +43,10 @@ alwaysApply: true
 - ✅ grid (通过 GridBuilder 实现)
 - ✅ hidden (通过 Opacity 或移除 widget 实现)
 - ⚠️ inline (Flutter 中通过 Text 或 RichText 实现)
-- ⚠️ inline-block
-- ⚠️ inline-flex
-- ⚠️ inline-grid
-- ⚠️ table (Flutter 中通过 Table widget 实现)
+- ✅ inline-block (通过 WidgetDisplayExtensions.inlineBlock() 实现)
+- ✅ inline-flex (通过 WidgetDisplayExtensions.inlineFlex() 实现)
+- ✅ inline-grid (通过 WidgetDisplayExtensions.inlineGrid() 实现)
+- ✅ table (通过 TableBuilder 实现)
 
 ### Float & Clear
 - ❌ float (Flutter 不支持 CSS float)
@@ -410,21 +412,21 @@ alwaysApply: true
 - ❌ text-indent (Flutter 不支持)
 
 ### Vertical Align
-- ⚠️ vertical-align (Flutter 中通过 Baseline widget 和 TextBaseline 实现，不完全等同于 CSS vertical-align)
+- ✅ vertical-align (通过 WidgetVerticalAlignExtensions.verticalAlignBaseline(), verticalAlignTop(), verticalAlignMiddle(), verticalAlignBottom() 实现)
 
 ### White Space
-- ⚠️ whitespace-normal (通过 maxLines: null 实现)
-- ⚠️ whitespace-nowrap (通过 maxLines: 1 实现)
-- ❌ whitespace-pre (Flutter 不支持)
-- ❌ whitespace-pre-line
-- ❌ whitespace-pre-wrap
-- ❌ whitespace-break-spaces
+- ✅ whitespace-normal (通过 TextBuilder.whitespaceNormal() 实现)
+- ✅ whitespace-nowrap (通过 TextBuilder.whitespaceNowrap() 实现)
+- ⚠️ whitespace-pre (通过 TextBuilder.whitespacePre() 实现，Flutter 限制：使用 nowrap 作为替代)
+- ⚠️ whitespace-pre-line (通过 TextBuilder.whitespacePreLine() 实现，Flutter 限制：使用正常换行作为替代)
+- ⚠️ whitespace-pre-wrap (通过 TextBuilder.whitespacePreWrap() 实现，Flutter 限制：使用正常换行作为替代)
+- ⚠️ whitespace-break-spaces (通过 TextBuilder.whitespaceBreakSpaces() 实现，Flutter 限制：使用正常换行作为替代)
 
 ### Word Break
-- ⚠️ break-normal (默认行为)
-- ⚠️ break-words (通过 TextOverflow 实现)
-- ⚠️ break-all (Flutter 不完全支持)
-- ⚠️ break-keep (Flutter 不支持)
+- ✅ break-normal (通过 TextBuilder.breakNormal() 实现)
+- ✅ break-words (通过 TextBuilder.breakWords() 实现)
+- ⚠️ break-all (通过 TextBuilder.breakAll() 实现，Flutter 限制：使用 clip 作为替代)
+- ⚠️ break-keep (通过 TextBuilder.breakKeep() 实现，Flutter 限制：使用正常行为作为替代)
 
 ### Overflow Wrap
 - ⚠️ overflow-wrap (Flutter 自动处理)
@@ -582,13 +584,13 @@ alwaysApply: true
 ## Tables
 
 ### Border Collapse
-- ⚠️ border-collapse (Flutter Table 默认行为)
+- ✅ border-collapse (通过 TableBuilder.borderCollapse() 实现)
 
 ### Border Spacing
-- ⚠️ border-spacing (Flutter 中通过 Table 的 border 实现)
+- ✅ border-spacing (通过 TableBuilder.borderSpacing() 实现)
 
 ### Table Layout
-- ⚠️ table-layout (Flutter Table 自动处理)
+- ✅ table-layout (通过 TableBuilder.columnWidths(), defaultColumnWidth() 等实现)
 
 ### Caption Side
 - ❌ caption-side (Flutter 不支持)
@@ -596,23 +598,31 @@ alwaysApply: true
 ## Transitions & Animation
 
 ### Transition Property
-- ⚠️ transition (Flutter 中通过 AnimatedContainer 等实现)
+- ✅ transition (通过 AnimatedBuilder 实现)
 
 ### Transition Duration
-- ⚠️ duration-{time} (Flutter 中通过 Duration 实现)
+- ✅ duration-{time} (通过 AnimatedBuilder.duration(), durationMs(), durationS() 实现)
 
 ### Transition Timing Function
-- ⚠️ ease-{type} (Flutter 中通过 Curve 实现)
+- ✅ ease-{type} (通过 AnimatedBuilder.curve(), easeLinear(), easeIn(), easeOut(), easeInOut() 实现)
 
 ### Transition Delay
-- ⚠️ delay-{time} (Flutter 中通过 Future.delayed 实现)
+- ✅ delay-{time} (通过 AnimatedBuilder.delay(), delayMs(), delayS() 实现)
+- ✅ delay-75 (通过 AnimatedBuilder.delay75() 实现)
+- ✅ delay-100 (通过 AnimatedBuilder.delay100() 实现)
+- ✅ delay-150 (通过 AnimatedBuilder.delay150() 实现)
+- ✅ delay-200 (通过 AnimatedBuilder.delay200() 实现)
+- ✅ delay-300 (通过 AnimatedBuilder.delay300() 实现)
+- ✅ delay-500 (通过 AnimatedBuilder.delay500() 实现)
+- ✅ delay-700 (通过 AnimatedBuilder.delay700() 实现)
+- ✅ delay-1000 (通过 AnimatedBuilder.delay1000() 实现)
 
 ### Animation
-- ⚠️ animate-{name} (Flutter 中通过 AnimationController 实现)
-- ⚠️ animate-spin
-- ⚠️ animate-ping
-- ⚠️ animate-pulse
-- ⚠️ animate-bounce
+- ✅ animate-{name} (通过 AnimatedBuilder 基础实现，完整动画需要 AnimationController)
+- ✅ animate-spin (通过 AnimatedBuilder.animateSpin() 实现，需要配合 AnimationController 使用)
+- ✅ animate-ping (通过 AnimatedBuilder.animatePing() 实现，需要配合 AnimationController 使用)
+- ✅ animate-pulse (通过 AnimatedBuilder.animatePulse() 实现，需要配合 AnimationController 使用)
+- ✅ animate-bounce (通过 AnimatedBuilder.animateBounce() 实现，需要配合 AnimationController 使用)
 
 ## Transforms
 
@@ -735,10 +745,10 @@ alwaysApply: true
 ## Pseudo-class Variants
 
 ### State Variants
-- ⚠️ hover: (Flutter 中通过 InkWell, GestureDetector 等实现)
-- ⚠️ focus: (Flutter 中通过 FocusNode 实现)
-- ⚠️ active: (Flutter 中通过 GestureDetector 实现)
-- ⚠️ disabled: (Flutter 中通过 widget 的 enabled 属性控制)
+- ✅ hover: (通过 WidgetStateExtensions.onHover(), hover() 实现)
+- ✅ focus: (通过 WidgetStateExtensions.onFocus() 实现)
+- ✅ active: (通过 WidgetStateExtensions.onActive() 实现)
+- ✅ disabled: (通过 WidgetStateExtensions.disabled() 实现)
 - ⚠️ checked: (Flutter 中通过 Checkbox 等实现)
 - ⚠️ group-hover: (需要自定义实现)
 - ⚠️ peer-hover: (需要自定义实现)
@@ -755,22 +765,22 @@ alwaysApply: true
 ## Responsive Breakpoints
 
 ### Breakpoints
-- ⚠️ sm: (通过 MediaQuery 实现)
-- ⚠️ md:
-- ⚠️ lg:
-- ⚠️ xl:
-- ⚠️ 2xl:
-- ⚠️ max-sm:
-- ⚠️ max-md:
-- ⚠️ max-lg:
-- ⚠️ max-xl:
-- ⚠️ max-2xl:
+- ✅ sm: (通过 WidgetResponsiveExtensions.sm() 实现)
+- ✅ md: (通过 WidgetResponsiveExtensions.md() 实现)
+- ✅ lg: (通过 WidgetResponsiveExtensions.lg() 实现)
+- ✅ xl: (通过 WidgetResponsiveExtensions.xl() 实现)
+- ✅ 2xl: (通过 WidgetResponsiveExtensions.xl2() 实现)
+- ✅ max-sm: (通过 WidgetResponsiveExtensions.maxSm() 实现)
+- ✅ max-md: (通过 WidgetResponsiveExtensions.maxMd() 实现)
+- ✅ max-lg: (通过 WidgetResponsiveExtensions.maxLg() 实现)
+- ✅ max-xl: (通过 WidgetResponsiveExtensions.maxXl() 实现)
+- ✅ max-2xl: (通过 WidgetResponsiveExtensions.maxXl2() 实现)
 
 ## Dark Mode
 
 ### Dark Mode Variant
-- ⚠️ dark: (通过 Theme.of(context).brightness 实现)
-- ⚠️ light:
+- ✅ dark: (通过 WidgetResponsiveExtensions.dark() 实现)
+- ✅ light: (通过 WidgetResponsiveExtensions.light() 实现)
 
 ## Media Queries
 
@@ -778,12 +788,12 @@ alwaysApply: true
 - ❌ print: (Flutter 不支持打印媒体查询)
 
 ### Reduced Motion
-- ⚠️ motion-safe: (通过 MediaQuery.accessibleNavigation 实现)
-- ⚠️ motion-reduce:
+- ✅ motion-safe: (通过 WidgetResponsiveExtensions.motionSafe() 实现)
+- ✅ motion-reduce: (通过 WidgetResponsiveExtensions.motionReduce() 实现)
 
 ### Orientation
-- ⚠️ portrait: (通过 MediaQuery.orientation 实现)
-- ⚠️ landscape:
+- ✅ portrait: (通过 WidgetResponsiveExtensions.portrait() 实现)
+- ✅ landscape: (通过 WidgetResponsiveExtensions.landscape() 实现)
 
 ### Prefers Color Scheme
 - ⚠️ prefers-color-scheme-light: (通过 Theme 实现)
@@ -826,8 +836,13 @@ alwaysApply: true
 1. **ContainerBuilder**: 完整的容器样式支持（width, height, padding, margin, border, borderRadius, shadow, z-index, position）
 2. **FlexBuilder**: 完整的 Flexbox 布局支持（direction, justify, align, gap, flex-grow/shrink, order）
 3. **GridBuilder**: 完整的 Grid 布局支持（columns, rows, gap, justify, align, span, start/end）
-4. **TextBuilder**: 完整的文本样式支持（size, weight, color, decoration, transform, overflow）
+4. **TextBuilder**: 完整的文本样式支持（size, weight, color, decoration, transform, overflow, whitespace, word-break）
 5. **ScrollBuilder**: 完整的 overflow 控制支持（auto, hidden, clip, visible, scroll）
+6. **TableBuilder**: 完整的表格布局支持（border-collapse, border-spacing, column-widths）
+7. **AnimatedBuilder**: 动画和过渡支持（duration, curve, ease variants）
+8. **WidgetStateExtensions**: 状态变体支持（hover, focus, active, disabled）
+9. **WidgetResponsiveExtensions**: 响应式断点支持（sm, md, lg, xl, 2xl, dark, light, portrait, landscape）
+10. **WidgetVerticalAlignExtensions**: 垂直对齐支持（baseline, top, middle, bottom）
 
 ### 部分实现的功能
 - 响应式断点（需要通过 MediaQuery 手动实现）

@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -6,7 +7,22 @@ import 'package:vector_math/vector_math_64.dart' as vm;
 import 'colors.dart';
 
 /// Container 建造者 - 收集所有样式属性，最后一次性构建
+/// 
+/// A builder class for creating styled containers with Tailwind CSS-like utility methods.
+/// Collects all style properties and builds a Container widget at the end.
+/// 
+/// Example:
+/// ```dart
+/// ContainerBuilder(child: Text('Hello'))
+///   .w64()
+///   .h32()
+///   .bgBlue500()
+///   .roundedLg()
+///   .padding(16)
+///   .build()
+/// ```
 class ContainerBuilder {
+  /// The child widget to be wrapped in the container.
   final Widget child;
   
   // 收集的样式属性
@@ -22,6 +38,12 @@ class ContainerBuilder {
   List<BoxShadow>? _boxShadow;
   AlignmentGeometry? _alignment;
   BoxConstraints? _constraints;
+  
+  // === Box Sizing 相关属性 ===
+  /// box-sizing 模式：true 表示 border-box（默认），false 表示 content-box
+  /// ⚠️ 部分支持：Flutter 中通过 BoxConstraints 间接控制
+  /// 在 Flutter 中，Container 默认行为类似于 border-box
+  bool _boxSizingBorderBox = true;
   Matrix4? _transform;
   AlignmentGeometry? _transformAlignment;
   Decoration? _foregroundDecoration;
@@ -68,6 +90,9 @@ class ContainerBuilder {
   Color? _outlineColor;
   double? _outlineOffset;
   
+  /// Creates a [ContainerBuilder] with the given [child].
+  /// 
+  /// The [child] will be wrapped in a Container widget when [build] is called.
   ContainerBuilder(this.child);
   
   /// 设置 TextDirection（用于 RTL 支持）
@@ -432,6 +457,31 @@ class ContainerBuilder {
     return this;
   }
   
+  // === Box Sizing ===
+  /// box-border - 边框盒模型（padding 和 border 包含在 width/height 内）
+  /// ⚠️ 部分支持：Flutter 中 Container 默认行为类似于 border-box
+  /// 这是 Flutter Container 的默认行为
+  ContainerBuilder boxBorder() {
+    _boxSizingBorderBox = true;
+    return this;
+  }
+  
+  /// box-content - 内容盒模型（padding 和 border 不包含在 width/height 内）
+  /// ⚠️ 部分支持：Flutter 中通过 BoxConstraints 间接控制
+  /// 注意：Flutter 的 Container 默认行为类似于 border-box，content-box 需要通过计算实现
+  ContainerBuilder boxContent() {
+    _boxSizingBorderBox = false;
+    return this;
+  }
+  
+  /// box-sizing - 设置盒模型
+  /// ⚠️ 部分支持：Flutter 中通过 BoxConstraints 间接控制
+  /// [borderBox] true 表示 border-box，false 表示 content-box
+  ContainerBuilder boxSizing({bool borderBox = true}) {
+    _boxSizingBorderBox = borderBox;
+    return this;
+  }
+  
   // === 位置 ===
   ContainerBuilder transform(Matrix4 transform) {
     _transform = transform;
@@ -453,20 +503,20 @@ class ContainerBuilder {
   }
   
   /// scale-{value} - 缩放比例
-  ContainerBuilder scale(double scale) {
-    _transform = (_transform ?? Matrix4.identity())..scale(scale);
+  ContainerBuilder scale(double scaleValue) {
+    _transform = (_transform ?? Matrix4.identity())..scaleByDouble(scaleValue, scaleValue, 1.0, 1.0);
     return this;
   }
   
   /// scale-x-{value} - X轴缩放
   ContainerBuilder scaleX(double scaleX) {
-    _transform = (_transform ?? Matrix4.identity())..scale(scaleX, 1.0);
+    _transform = (_transform ?? Matrix4.identity())..scaleByDouble(scaleX, 1.0, 1.0, 1.0);
     return this;
   }
   
   /// scale-y-{value} - Y轴缩放
   ContainerBuilder scaleY(double scaleY) {
-    _transform = (_transform ?? Matrix4.identity())..scale(1.0, scaleY);
+    _transform = (_transform ?? Matrix4.identity())..scaleByDouble(1.0, scaleY, 1.0, 1.0);
     return this;
   }
   
@@ -486,24 +536,19 @@ class ContainerBuilder {
   
   /// translate-x-{value} - X轴平移（像素）
   ContainerBuilder translateX(double x) {
-    _transform = (_transform ?? Matrix4.identity())..translate(x);
+    _transform = (_transform ?? Matrix4.identity())..translateByDouble(x, 0.0, 0.0, 0.0);
     return this;
   }
   
   /// translate-y-{value} - Y轴平移（像素）
   ContainerBuilder translateY(double y) {
-    _transform = (_transform ?? Matrix4.identity())..translate(0.0, y);
+    _transform = (_transform ?? Matrix4.identity())..translateByDouble(0.0, y, 0.0, 0.0);
     return this;
   }
   
   /// translate-{x}-{y} - 同时平移X和Y轴
   ContainerBuilder translate(double x, double y) {
-    _transform = (_transform ?? Matrix4.identity())..translate(x, y);
-    return this;
-  }
-  
-  ContainerBuilder transformAlignment(AlignmentGeometry alignment) {
-    _transformAlignment = alignment;
+    _transform = (_transform ?? Matrix4.identity())..translateByDouble(x, y, 0.0, 0.0);
     return this;
   }
   
@@ -2486,19 +2531,19 @@ class ContainerBuilder {
     if (_borderOpacity != null && finalBorder != null) {
       finalBorder = Border(
         top: BorderSide(
-          color: finalBorder.top.color.withOpacity(_borderOpacity!),
+          color: finalBorder.top.color.withValues(alpha: _borderOpacity!),
           width: finalBorder.top.width,
         ),
         bottom: BorderSide(
-          color: finalBorder.bottom.color.withOpacity(_borderOpacity!),
+          color: finalBorder.bottom.color.withValues(alpha: _borderOpacity!),
           width: finalBorder.bottom.width,
         ),
         left: BorderSide(
-          color: finalBorder.left.color.withOpacity(_borderOpacity!),
+          color: finalBorder.left.color.withValues(alpha: _borderOpacity!),
           width: finalBorder.left.width,
         ),
         right: BorderSide(
-          color: finalBorder.right.color.withOpacity(_borderOpacity!),
+          color: finalBorder.right.color.withValues(alpha: _borderOpacity!),
           width: finalBorder.right.width,
         ),
       );
@@ -2507,7 +2552,18 @@ class ContainerBuilder {
     // 应用背景透明度
     Color? finalBackgroundColor = _backgroundColor;
     if (_backgroundOpacity != null && finalBackgroundColor != null) {
-      finalBackgroundColor = finalBackgroundColor.withOpacity(_backgroundOpacity!);
+      finalBackgroundColor = finalBackgroundColor.withValues(alpha: _backgroundOpacity!);
+    }
+    
+    // 如果有背景图片，需要创建 DecorationImage
+    DecorationImage? decorationImage;
+    if (_backgroundImage != null) {
+      decorationImage = DecorationImage(
+        image: _backgroundImage!.image,
+        fit: _backgroundSize,
+        alignment: _backgroundPosition ?? Alignment.center,
+        repeat: _backgroundRepeat ?? ImageRepeat.noRepeat,
+      );
     }
     
     if (finalBackgroundColor != null || 
@@ -2515,10 +2571,7 @@ class ContainerBuilder {
         _borderRadius != null || 
         _boxShadow != null ||
         _gradient != null ||
-        _backgroundImage != null ||
-        _backgroundSize != null ||
-        _backgroundPosition != null ||
-        _backgroundRepeat != null) {
+        decorationImage != null) {
       decoration = BoxDecoration(
         color: _gradient == null ? finalBackgroundColor : null, // 如果有渐变就不设置color
         border: finalBorder,
@@ -2526,13 +2579,49 @@ class ContainerBuilder {
         boxShadow: _boxShadow,
         gradient: _gradient,
         backgroundBlendMode: _backgroundBlendMode,
-        image: _backgroundImage,
-        fit: _backgroundSize,
-        alignment: _backgroundPosition,
-        repeat: _backgroundRepeat ?? ImageRepeat.noRepeat,
+        image: decorationImage,
         shape: _shape,
       );
     }
+    
+    // 计算边框宽度（用于 box-sizing）
+    double borderWidthHorizontal = 0.0;
+    double borderWidthVertical = 0.0;
+    if (finalBorder != null) {
+      borderWidthHorizontal = finalBorder.left.width + finalBorder.right.width;
+      borderWidthVertical = finalBorder.top.width + finalBorder.bottom.width;
+    }
+    
+    // 计算 padding 尺寸（用于 box-sizing）
+    double paddingWidthHorizontal = 0.0;
+    double paddingWidthVertical = 0.0;
+    if (_padding != null) {
+      if (_padding is EdgeInsets) {
+        final padding = _padding as EdgeInsets;
+        paddingWidthHorizontal = padding.left + padding.right;
+        paddingWidthVertical = padding.top + padding.bottom;
+      } else if (_padding is EdgeInsetsDirectional) {
+        final padding = _padding as EdgeInsetsDirectional;
+        paddingWidthHorizontal = padding.start + padding.end;
+        paddingWidthVertical = padding.top + padding.bottom;
+      }
+    }
+    
+    // 应用 box-sizing：如果 content-box，需要调整 width/height
+    double? adjustedWidth = _width;
+    double? adjustedHeight = _height;
+    if (!_boxSizingBorderBox) {
+      // content-box: width/height 不包含 padding 和 border
+      // Flutter Container 默认行为是 border-box，所以我们需要调整
+      // 如果设置了 width，实际容器宽度 = width + padding + border
+      if (_width != null) {
+        adjustedWidth = _width! + paddingWidthHorizontal + borderWidthHorizontal;
+      }
+      if (_height != null) {
+        adjustedHeight = _height! + paddingWidthVertical + borderWidthVertical;
+      }
+    }
+    // border-box (默认): width/height 已经包含 padding 和 border，不需要调整
     
     // 构建约束
     BoxConstraints? constraints = _constraints;
@@ -2581,6 +2670,26 @@ class ContainerBuilder {
             }
           }
           
+          // 重新计算 box-sizing（因为 dynamicBorder 可能与 finalBorder 不同）
+          double dynamicBorderWidthHorizontal = 0.0;
+          double dynamicBorderWidthVertical = 0.0;
+          if (dynamicBorder != null) {
+            dynamicBorderWidthHorizontal = dynamicBorder.left.width + dynamicBorder.right.width;
+            dynamicBorderWidthVertical = dynamicBorder.top.width + dynamicBorder.bottom.width;
+          }
+          
+          double? dynamicAdjustedWidth = adjustedWidth;
+          double? dynamicAdjustedHeight = adjustedHeight;
+          if (!_boxSizingBorderBox) {
+            // content-box: 使用动态计算的边框宽度
+            if (_width != null) {
+              dynamicAdjustedWidth = _width! + paddingWidthHorizontal + dynamicBorderWidthHorizontal;
+            }
+            if (_height != null) {
+              dynamicAdjustedHeight = _height! + paddingWidthVertical + dynamicBorderWidthVertical;
+            }
+          }
+          
           BoxDecoration? dynamicDecoration = decoration;
           if (dynamicBorder != finalBorder && dynamicDecoration != null) {
             dynamicDecoration = BoxDecoration(
@@ -2591,16 +2700,13 @@ class ContainerBuilder {
               gradient: dynamicDecoration.gradient,
               backgroundBlendMode: dynamicDecoration.backgroundBlendMode,
               image: dynamicDecoration.image,
-              fit: dynamicDecoration.fit,
-              alignment: dynamicDecoration.alignment,
-              repeat: dynamicDecoration.repeat,
               shape: dynamicDecoration.shape,
             );
           }
           
           return Container(
-            width: _width,
-            height: _height,
+            width: dynamicAdjustedWidth,
+            height: dynamicAdjustedHeight,
             alignment: _alignment,
             padding: _padding,
             margin: _margin,
@@ -2609,14 +2715,15 @@ class ContainerBuilder {
             transformAlignment: _transformAlignment,
             decoration: dynamicDecoration ?? (dynamicBorder != null ? BoxDecoration(border: dynamicBorder) : null),
             foregroundDecoration: _foregroundDecoration,
+            clipBehavior: _clipBehavior ?? Clip.none,
             child: child,
           );
         },
       );
     } else {
       container = Container(
-        width: _width,
-        height: _height,
+        width: adjustedWidth,
+        height: adjustedHeight,
         alignment: _alignment,
         padding: _padding,
         margin: _margin,
@@ -2625,6 +2732,7 @@ class ContainerBuilder {
         transformAlignment: _transformAlignment,
         decoration: decoration,
         foregroundDecoration: _foregroundDecoration,
+        clipBehavior: _clipBehavior ?? Clip.none,
         child: child,
       );
     }
@@ -4011,8 +4119,8 @@ extension ContainerBuilderFilterExtensions on ContainerBuilder {
   // === Hue Rotate ===
   ContainerBuilder hueRotate(double degrees) {
     final radians = degrees * 3.14159265359 / 180.0;
-    final cos = (radians).cos();
-    final sin = (radians).sin();
+    final cos = math.cos(radians);
+    final sin = math.sin(radians);
     final lumR = 0.213;
     final lumG = 0.715;
     final lumB = 0.072;
@@ -4440,7 +4548,7 @@ extension ContainerBuilderBackdropFilterExtensions on ContainerBuilder {
   Widget backdropOpacity(double opacity) {
     return ColorFiltered(
       colorFilter: ColorFilter.mode(
-        Colors.white.withOpacity(opacity.clamp(0.0, 1.0)),
+        Colors.white.withValues(alpha: opacity.clamp(0.0, 1.0)),
         BlendMode.modulate,
       ),
       child: build(),
@@ -4504,8 +4612,8 @@ extension ContainerBuilderBackdropFilterExtensions on ContainerBuilder {
   /// backdrop-hue-rotate - 背景色相旋转
   Widget backdropHueRotate(double degrees) {
     final radians = degrees * 3.14159265359 / 180.0;
-    final cos = (radians).cos();
-    final sin = (radians).sin();
+    final cos = math.cos(radians);
+    final sin = math.sin(radians);
     final lumR = 0.213;
     final lumG = 0.715;
     final lumB = 0.072;

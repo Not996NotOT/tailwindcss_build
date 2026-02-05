@@ -46,7 +46,7 @@ class TextDemo extends StatelessWidget {
           _buildExample('text-left', 'Left Aligned'.asText().textLeft().build()),
           _buildExample('text-center', 'Center Aligned'.asText().textCenter().build()),
           _buildExample('text-right', 'Right Aligned'.asText().textRight().build()),
-          _buildExample('text-justify', Container(
+          _buildExample('text-justify', SizedBox(
             width: double.infinity,
             child: 'Justified text with enough content to demonstrate the justify alignment feature. This text will be evenly distributed across the width.'.asText().textJustify().build(),
           )),
@@ -108,7 +108,7 @@ class TextDemo extends StatelessWidget {
 
           _buildSectionTitle('文本阴影 (Text Shadow)'),
           _buildExample('text-shadow', 'Text with Shadow'.asText()
-            .textShadow([Shadow(color: Colors.black26, blurRadius: 4, offset: Offset(2, 2))])
+            .textShadow([const Shadow(color: Colors.black26, blurRadius: 4, offset: Offset(2, 2))])
             .build()),
 
           const SizedBox(height: 32),

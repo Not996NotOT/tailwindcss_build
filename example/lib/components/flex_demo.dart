@@ -187,7 +187,7 @@ class FlexDemo extends StatelessWidget {
   }
 
   Widget _buildBox(String text, Color color, {double? width, double? height}) {
-    return Container(
+    return SizedBox(
       width: width ?? 60,
       height: height ?? 60,
       child: Center(

@@ -106,7 +106,24 @@ class _GridItemInfo {
 }
 
 /// Grid 建造者 - 负责Grid布局属性
+/// 
+/// A builder class for creating grid layouts with Tailwind CSS-like utility methods.
+/// Handles grid columns, rows, gap, alignment, and item positioning.
+/// 
+/// Example:
+/// ```dart
+/// GridBuilder([
+///   Text('Item 1'),
+///   Text('Item 2'),
+///   Text('Item 3'),
+/// ])
+///   .gridCols3()
+///   .gap(16)
+///   .justifyItemsCenter()
+///   .build()
+/// ```
 class GridBuilder {
+  /// The list of child widgets to be arranged in the grid layout.
   final List<Widget> children;
   
   // Grid布局属性
@@ -127,6 +144,10 @@ class GridBuilder {
   MainAxisAlignment _justifyItems = MainAxisAlignment.start;
   CrossAxisAlignment _alignItems = CrossAxisAlignment.start;
   
+  /// Creates a [GridBuilder] with the given list of [children].
+  /// 
+  /// The [children] will be arranged in a GridView widget when [build] is called,
+  /// according to the grid configuration set.
   GridBuilder(this.children);
   
   // === Grid Template Columns ===

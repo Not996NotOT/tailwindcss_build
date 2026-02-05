@@ -13,62 +13,58 @@ class ButtonDemo extends StatelessWidget {
         children: [
           _buildSectionTitle('基础按钮 (Basic Buttons)'),
           _buildExample('Primary Button', Container(
-            child: Text('Primary').asText().textWhite().fontMedium().build(),
+            child: const Text('Primary').asText().textWhite().fontMedium().build(),
           ).asContainer().bgBlue600().rounded().px6().py3().onTap(() {})),
           _buildExample('Secondary Button', Container(
-            child: Text('Secondary').asText().textBlue600().fontMedium().build(),
+            child: const Text('Secondary').asText().textBlue600().fontMedium().build(),
           ).asContainer().bgBlue100().rounded().px6().py3().onTap(() {})),
           _buildExample('Success Button', Container(
-            child: Text('Success').asText().textWhite().fontMedium().build(),
+            child: const Text('Success').asText().textWhite().fontMedium().build(),
           ).asContainer().bgGreen600().rounded().px6().py3().onTap(() {})),
           _buildExample('Danger Button', Container(
-            child: Text('Danger').asText().textWhite().fontMedium().build(),
+            child: const Text('Danger').asText().textWhite().fontMedium().build(),
           ).asContainer().bgRed600().rounded().px6().py3().onTap(() {})),
 
           _buildSectionTitle('按钮尺寸 (Button Sizes)'),
           _buildExample('Small', Container(
-            child: Text('Small').asText().textWhite().textSm().fontMedium().build(),
+            child: const Text('Small').asText().textWhite().textSm().fontMedium().build(),
           ).asContainer().bgBlue600().rounded().px4().py2().onTap(() {})),
           _buildExample('Medium', Container(
-            child: Text('Medium').asText().textWhite().fontMedium().build(),
+            child: const Text('Medium').asText().textWhite().fontMedium().build(),
           ).asContainer().bgBlue600().rounded().px6().py3().onTap(() {})),
           _buildExample('Large', Container(
-            child: Text('Large').asText().textWhite().textLg().fontMedium().build(),
+            child: const Text('Large').asText().textWhite().textLg().fontMedium().build(),
           ).asContainer().bgBlue600().rounded().px8().py4().onTap(() {})),
 
           _buildSectionTitle('按钮样式变体 (Button Variants)'),
           _buildExample('Filled', Container(
-            child: Text('Filled').asText().textWhite().fontMedium().build(),
+            child: const Text('Filled').asText().textWhite().fontMedium().build(),
           ).asContainer().bgBlue600().rounded().px6().py3().onTap(() {})),
           _buildExample('Outlined', Container(
-            child: Text('Outlined').asText().textBlue600().fontMedium().build(),
+            child: const Text('Outlined').asText().textBlue600().fontMedium().build(),
           ).asContainer().border().borderBlue600().rounded().px6().py3().onTap(() {})),
           _buildExample('Text', Container(
-            child: Text('Text Button').asText().textBlue600().fontMedium().build(),
+            child: const Text('Text Button').asText().textBlue600().fontMedium().build(),
           ).asContainer().px6().py3().onTap(() {})),
 
           _buildSectionTitle('带图标的按钮 (Buttons with Icons)'),
-          _buildExample('Icon Left', Container(
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(Icons.add, color: Colors.white, size: 20),
-                SizedBox(width: 8),
-                Text('Add').asText().textWhite().fontMedium().build(),
-              ],
-            ),
+          _buildExample('Icon Left', Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Icon(Icons.add, color: Colors.white, size: 20),
+              const SizedBox(width: 8),
+              const Text('Add').asText().textWhite().fontMedium().build(),
+            ],
           ).asContainer().bgBlue600().rounded().px6().py3().onTap(() {})),
-          _buildExample('Icon Right', Container(
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text('Next').asText().textWhite().fontMedium().build(),
-                SizedBox(width: 8),
-                Icon(Icons.arrow_forward, color: Colors.white, size: 20),
-              ],
-            ),
+          _buildExample('Icon Right', Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text('Next').asText().textWhite().fontMedium().build(),
+              const SizedBox(width: 8),
+              const Icon(Icons.arrow_forward, color: Colors.white, size: 20),
+            ],
           ).asContainer().bgBlue600().rounded().px6().py3().onTap(() {})),
-          _buildExample('Icon Only', Container(
+          _buildExample('Icon Only', const SizedBox(
             width: 40,
             height: 40,
             child: Center(
@@ -81,64 +77,62 @@ class ButtonDemo extends StatelessWidget {
             children: [
               Expanded(
                 child: Container(
-                  child: Text('Left').asText().textWhite().textCenter().fontMedium().build(),
-                ).asContainer().bgBlue600().borderRadius(BorderRadius.only(topLeft: Radius.circular(8), bottomLeft: Radius.circular(8))).px4().py3().onTap(() {}),
+                  child: const Text('Left').asText().textWhite().textCenter().fontMedium().build(),
+                ).asContainer().bgBlue600().borderRadius(const BorderRadius.only(topLeft: Radius.circular(8), bottomLeft: Radius.circular(8))).px4().py3().onTap(() {}),
               ),
               Expanded(
                 child: Container(
-                  child: Text('Center').asText().textWhite().textCenter().fontMedium().build(),
+                  child: const Text('Center').asText().textWhite().textCenter().fontMedium().build(),
                 ).asContainer().bgBlue600().px4().py3().onTap(() {}),
               ),
               Expanded(
                 child: Container(
-                  child: Text('Right').asText().textWhite().textCenter().fontMedium().build(),
-                ).asContainer().bgBlue600().borderRadius(BorderRadius.only(topRight: Radius.circular(8), bottomRight: Radius.circular(8))).px4().py3().onTap(() {}),
+                  child: const Text('Right').asText().textWhite().textCenter().fontMedium().build(),
+                ).asContainer().bgBlue600().borderRadius(const BorderRadius.only(topRight: Radius.circular(8), bottomRight: Radius.circular(8))).px4().py3().onTap(() {}),
               ),
             ],
           )),
           _buildExample('Vertical Group', Column(
             children: [
-              Container(
+              SizedBox(
                 width: double.infinity,
-                child: Text('Top').asText().textWhite().textCenter().fontMedium().build(),
-              ).asContainer().bgBlue600().borderRadius(BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8))).px4().py3().onTap(() {}),
-              Container(
+                child: const Text('Top').asText().textWhite().textCenter().fontMedium().build(),
+              ).asContainer().bgBlue600().borderRadius(const BorderRadius.only(topLeft: Radius.circular(8), topRight: Radius.circular(8))).px4().py3().onTap(() {}),
+              SizedBox(
                 width: double.infinity,
-                child: Text('Middle').asText().textWhite().textCenter().fontMedium().build(),
+                child: const Text('Middle').asText().textWhite().textCenter().fontMedium().build(),
               ).asContainer().bgBlue600().px4().py3().onTap(() {}),
-              Container(
+              SizedBox(
                 width: double.infinity,
-                child: Text('Bottom').asText().textWhite().textCenter().fontMedium().build(),
-              ).asContainer().bgBlue600().borderRadius(BorderRadius.only(bottomLeft: Radius.circular(8), bottomRight: Radius.circular(8))).px4().py3().onTap(() {}),
+                child: const Text('Bottom').asText().textWhite().textCenter().fontMedium().build(),
+              ).asContainer().bgBlue600().borderRadius(const BorderRadius.only(bottomLeft: Radius.circular(8), bottomRight: Radius.circular(8))).px4().py3().onTap(() {}),
             ],
           )),
 
           _buildSectionTitle('加载状态 (Loading State)'),
-          _buildExample('Loading Button', Container(
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SizedBox(
-                  width: 16,
-                  height: 16,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2,
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                  ),
+          _buildExample('Loading Button', Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(
+                width: 16,
+                height: 16,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                 ),
-                SizedBox(width: 8),
-                Text('Loading...').asText().textWhite().fontMedium().build(),
-              ],
-            ),
+              ),
+              const SizedBox(width: 8),
+              const Text('Loading...').asText().textWhite().fontMedium().build(),
+            ],
           ).asContainer().bgBlue600().rounded().px6().py3().onTap(() {})),
 
           _buildSectionTitle('禁用状态 (Disabled State)'),
           _buildExample('Disabled', Container(
-            child: Text('Disabled').asText().textGray400().fontMedium().build(),
+            child: const Text('Disabled').asText().textGray400().fontMedium().build(),
           ).asContainer().bgGray200().rounded().px6().py3().build()),
 
           _buildSectionTitle('浮动操作按钮 (FAB)'),
-          _buildExample('FAB', Container(
+          _buildExample('FAB', const SizedBox(
             width: 56,
             height: 56,
             child: Center(

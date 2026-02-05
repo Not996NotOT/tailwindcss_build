@@ -14,32 +14,32 @@ class ZIndexDemo extends StatelessWidget {
           _buildSectionTitle('Z-Index 基础 (Z-Index Basics)'),
           _buildExample('Stack with z-index', Stack(
             children: [
-              Container(
+              SizedBox(
                 width: 200,
                 height: 200,
                 child: Center(
-                  child: Text('z-0').asText().textWhite().fontBold().build(),
+                  child: const Text('z-0').asText().textWhite().fontBold().build(),
                 ),
               ).asContainer().bgBlue500().rounded().z0().build(),
               Positioned(
                 left: 40,
                 top: 40,
-                child: Container(
+                child: SizedBox(
                   width: 200,
                   height: 200,
                   child: Center(
-                    child: Text('z-10').asText().textWhite().fontBold().build(),
+                    child: const Text('z-10').asText().textWhite().fontBold().build(),
                   ),
                 ).asContainer().bgGreen500().rounded().z10().build(),
               ),
               Positioned(
                 left: 80,
                 top: 80,
-                child: Container(
+                child: SizedBox(
                   width: 200,
                   height: 200,
                   child: Center(
-                    child: Text('z-20').asText().textWhite().fontBold().build(),
+                    child: const Text('z-20').asText().textWhite().fontBold().build(),
                   ),
                 ).asContainer().bgRed500().rounded().z20().build(),
               ),
@@ -49,43 +49,43 @@ class ZIndexDemo extends StatelessWidget {
           _buildSectionTitle('Z-Index 值 (Z-Index Values)'),
           _buildExample('z-0, z-10, z-20, z-30', Stack(
             children: [
-              Container(
+              SizedBox(
                 width: 150,
                 height: 150,
                 child: Center(
-                  child: Text('z-0').asText().textWhite().fontBold().build(),
+                  child: const Text('z-0').asText().textWhite().fontBold().build(),
                 ),
               ).asContainer().bgBlue500().rounded().z0().build(),
               Positioned(
                 left: 30,
                 top: 30,
-                child: Container(
+                child: SizedBox(
                   width: 150,
                   height: 150,
                   child: Center(
-                    child: Text('z-10').asText().textWhite().fontBold().build(),
+                    child: const Text('z-10').asText().textWhite().fontBold().build(),
                   ),
                 ).asContainer().bgGreen500().rounded().z10().build(),
               ),
               Positioned(
                 left: 60,
                 top: 60,
-                child: Container(
+                child: SizedBox(
                   width: 150,
                   height: 150,
                   child: Center(
-                    child: Text('z-20').asText().textWhite().fontBold().build(),
+                    child: const Text('z-20').asText().textWhite().fontBold().build(),
                   ),
                 ).asContainer().bgPurple500().rounded().z20().build(),
               ),
               Positioned(
                 left: 90,
                 top: 90,
-                child: Container(
+                child: SizedBox(
                   width: 150,
                   height: 150,
                   child: Center(
-                    child: Text('z-30').asText().textWhite().fontBold().build(),
+                    child: const Text('z-30').asText().textWhite().fontBold().build(),
                   ),
                 ).asContainer().bgOrange500().rounded().z30().build(),
               ),
@@ -95,11 +95,11 @@ class ZIndexDemo extends StatelessWidget {
           _buildSectionTitle('模态框示例 (Modal Example)'),
           _buildExample('Modal Overlay', Stack(
             children: [
-              Container(
+              SizedBox(
                 width: 300,
                 height: 200,
                 child: Center(
-                  child: Text('Background Content').asText().textGray600().build(),
+                  child: const Text('Background Content').asText().textGray600().build(),
                 ),
               ).asContainer().bgGray200().rounded().p4().z0().build(),
               Positioned.fill(
@@ -108,17 +108,17 @@ class ZIndexDemo extends StatelessWidget {
                   child: Center(
                     child: Container(
                       width: 250,
-                      padding: EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(20),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text('Modal Title').asText().textXl().fontBold().textGray900().build(),
-                          SizedBox(height: 12),
-                          Text('This is a modal dialog with z-index.').asText().textGray600().build(),
-                          SizedBox(height: 16),
-                          Container(
+                          const Text('Modal Title').asText().textXl().fontBold().textGray900().build(),
+                          const SizedBox(height: 12),
+                          const Text('This is a modal dialog with z-index.').asText().textGray600().build(),
+                          const SizedBox(height: 16),
+                          SizedBox(
                             width: double.infinity,
-                            child: Text('Close').asText().textWhite().textCenter().fontMedium().build(),
+                            child: const Text('Close').asText().textWhite().textCenter().fontMedium().build(),
                           ).asContainer().bgBlue600().rounded().py2().build(),
                         ],
                       ),
@@ -132,14 +132,14 @@ class ZIndexDemo extends StatelessWidget {
           _buildSectionTitle('浮动按钮示例 (Floating Button Example)'),
           _buildExample('FAB with z-index', Stack(
             children: [
-              Container(
+              SizedBox(
                 width: 300,
                 height: 400,
                 child: ListView(
                   children: [
                     for (int i = 1; i <= 10; i++)
                       Container(
-                        margin: EdgeInsets.only(bottom: 8),
+                        margin: const EdgeInsets.only(bottom: 8),
                         child: Text('List Item $i').asText().build(),
                       ).asContainer().bgGray100().p4().rounded().build(),
                   ],
@@ -148,7 +148,7 @@ class ZIndexDemo extends StatelessWidget {
               Positioned(
                 right: 16,
                 bottom: 16,
-                child: Container(
+                child: const SizedBox(
                   width: 56,
                   height: 56,
                   child: Center(
@@ -162,19 +162,19 @@ class ZIndexDemo extends StatelessWidget {
           _buildSectionTitle('工具提示示例 (Tooltip Example)'),
           _buildExample('Tooltip with z-index', Stack(
             children: [
-              Container(
+              SizedBox(
                 width: 200,
                 height: 100,
                 child: Center(
-                  child: Text('Hover me').asText().textBlue600().fontMedium().build(),
+                  child: const Text('Hover me').asText().textBlue600().fontMedium().build(),
                 ),
               ).asContainer().bgBlue100().rounded().p4().z0().build(),
               Positioned(
                 top: -40,
                 left: 50,
                 child: Container(
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                  child: Text('Tooltip').asText().textWhite().textSm().build(),
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  child: const Text('Tooltip').asText().textWhite().textSm().build(),
                 ).asContainer().bgGray900().rounded().z50().build(),
               ),
             ],
@@ -183,13 +183,13 @@ class ZIndexDemo extends StatelessWidget {
           _buildSectionTitle('导航栏示例 (Navigation Bar Example)'),
           _buildExample('Sticky Nav Bar', Stack(
             children: [
-              Container(
+              SizedBox(
                 height: 600,
                 child: ListView(
                   children: [
                     for (int i = 1; i <= 20; i++)
                       Container(
-                        margin: EdgeInsets.only(bottom: 8),
+                        margin: const EdgeInsets.only(bottom: 8),
                         height: 80,
                         child: Center(
                           child: Text('Content Item $i').asText().build(),
@@ -202,14 +202,14 @@ class ZIndexDemo extends StatelessWidget {
                 top: 0,
                 left: 0,
                 right: 0,
-                child: Container(
+                child: SizedBox(
                   height: 60,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text('Home').asText().textBlue600().fontMedium().build(),
-                      Text('About').asText().textGray600().build(),
-                      Text('Contact').asText().textGray600().build(),
+                      const Text('Home').asText().textBlue600().fontMedium().build(),
+                      const Text('About').asText().textGray600().build(),
+                      const Text('Contact').asText().textGray600().build(),
                     ],
                   ),
                 ).asContainer().bgWhite().shadowLg().z50().build(),
