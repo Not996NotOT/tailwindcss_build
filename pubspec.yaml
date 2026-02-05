@@ -7,7 +7,7 @@ issue_tracker: https://github.com/Not996NotOT/tailwindcss_build/issues
 documentation: https://pub.dev/documentation/tailwindcss_build/latest/
 
 # Publisher information for pub.dev
-# publish_to: 默认发布到 pub.dev
+# publish_to: not set (defaults to pub.dev)
 
 # Package metadata
 topics:

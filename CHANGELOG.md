@@ -1,4 +1,18 @@
-## [Unreleased] - Version 0.4.8
+## [Unreleased] - Version 0.4.9
+
+### 📦 Release
+- 🔄 Version bump to 0.4.9
+
+### 📚 Documentation Updates
+- ✅ Updated implementation status across all README files (English, Chinese, Japanese)
+- ✅ Aligned feature status with `.cursor/rules/tailwindcss.mdc` documentation
+- ✅ Added comprehensive feature listings for Backgrounds, Borders, Effects, Filters, Transforms, Object Fit/Position, and Interactivity
+- ✅ Updated feature count from 280+ to 400+ fully implemented features
+- ✅ Clarified partial implementation status and Flutter limitations
+
+---
+
+## [2025-01-28] - Version 0.4.8
 
 ### 📦 Release
 - 🔄 Version bump to 0.4.8
